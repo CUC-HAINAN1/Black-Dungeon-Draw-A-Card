@@ -25,7 +25,6 @@ echo "变基失败，群里联系，并手动处理/使用unity官方工具Unity
 # 开发完成后提交
 git add .
 git commit -m "feat: 实现功能A"
-git push -u origin feature/功能A
 
 # 合并 feature/功能A 到 dev
 git checkout dev
