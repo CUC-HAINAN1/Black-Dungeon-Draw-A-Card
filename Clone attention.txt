@@ -1,0 +1,28 @@
+#克隆dev库流程
+
+# 创建项目文件夹
+cd 你的项目目录
+
+# 大文件处理（LFS）​
+git lfs install    # 首次克隆前需安装 LFS
+
+# 标准克隆命令（指定 dev 分支）
+git clone -b dev --single-branch https://仓库地址.git
+
+# ​分支锁定验证
+git branch -a | findstr "origin/dev"  # 必须看到 remotes/origin/dev
+
+#这一步需先安装 Git LFS
+git lfs pull       # 确保拉取所有 LFS 文件
+
+# 确保行尾符一致
+git config --global core.autocrlf true   # Windows
+
+# 确保克隆成功
+git log -1 # 显示最新提交记录
+git status # 显示工作区干净
+
+#进入unity 打开项目文件夹，自动加载出项目配置/缓存文件
+#确保设置正确（见游戏设计文档）
+
+#一切就绪，导入代码/美术资源（可选），开始开发。
