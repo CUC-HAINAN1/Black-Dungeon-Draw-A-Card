@@ -13,7 +13,9 @@ git checkout -b feature/功能A
 
 # 在 feature 分支开发时定期执行
 git fetch origin
-git rebase origin/dev
+git stash          # 暂存未提交的改动
+git rebase origin/dev  # 执行 rebase
+git stash pop      # 恢复暂存的改动（可能需要解决冲突）
 echo "变基失败，群里联系，并手动处理/使用unity官方工具UnityYAMLMerge处理冲突后执行 git rebase --continue";
 
 ...
@@ -32,12 +34,12 @@ git pull origin dev --rebase  # 将本地未推送的提交变基到远程最新
 # 若产生冲突，群里联系，并手动处理/使用unity官方工具UnityYAMLMerge处理冲突
 ...
 
-git merge --no-ff feature/功能A  # 生成合并节点
+git merge --no-ff feature/功能A --no-edit # 生成合并节点
 
-# 检查无误后，推送至远程仓库
+# 检查无误后，推送至远程仓库，推送之后记录将会永久存在。
 git push origin dev
 
 # 分支清理
 git branch -d feature/功能A
-git push origin --delete feature/功能A
+
 
