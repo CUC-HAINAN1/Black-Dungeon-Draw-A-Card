@@ -9,6 +9,9 @@ git lfs install    # 首次克隆前需安装 LFS
 # 标准克隆命令（指定 dev 分支）
 git clone -b dev --single-branch https://仓库地址.git
 
+#这里要切到子文件夹，也就是要开发的项目文件夹
+cd Black-Dungeon-Draw-A-Card
+
 # ​分支锁定验证
 git branch -a | findstr "origin/dev"  # 必须看到 remotes/origin/dev
 
