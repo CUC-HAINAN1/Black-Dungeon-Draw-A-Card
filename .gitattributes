@@ -1,7 +1,6 @@
 # text files
 *.meta text eol=lf
 ProjectSettings/*.asset text
-
 # model files
 *.fbx filter=lfs diff=lfs merge=lfs -text
 *.FBX filter=lfs diff=lfs merge=lfs -text
@@ -12,7 +11,6 @@ ProjectSettings/*.asset text
 *.obj filter=lfs diff=lfs merge=lfs -text
 *.OBJ filter=lfs diff=lfs merge=lfs -text
 *.spm filter=lfs diff=lfs merge=lfs -text
-
 # texture files
 *.bmp filter=lfs diff=lfs merge=lfs -text
 *.BMP filter=lfs diff=lfs merge=lfs -text
@@ -36,37 +34,34 @@ ProjectSettings/*.asset text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.renderTexture filter=lfs diff=lfs merge=lfs -text
 *.aseprite filter=lfs diff=lfs merge=lfs -text
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 # dll files
 *.dll filter=lfs diff=lfs merge=lfs -text
 *.DLL filter=lfs diff=lfs merge=lfs -text
 *.so filter=lfs diff=lfs merge=lfs -text
 *.mdb filter=lfs diff=lfs merge=lfs -text
 *.pdb filter=lfs diff=lfs merge=lfs -text
-
 # font files
 *.ttc filter=lfs diff=lfs merge=lfs -text
 *.TTC filter=lfs diff=lfs merge=lfs -text
 *.ttf filter=lfs diff=lfs merge=lfs -text
 *.TTF filter=lfs diff=lfs merge=lfs -text
-
 # bundle files
 *.bundle filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
-
 #Unity 的 .asset 文件（如材质、动画控制器）通常是文本文件​（若启用了 Force Text 序列化模式），应通过 Git 直接版本控制，而非用 LFS 存储。
 # config files
 #**/Assets/**/*.asset filter=lfs diff=lfs merge=lfs -text
-
 # doc files
 *.pdf filter=lfs diff=lfs merge=lfs -text
 *.PDF filter=lfs diff=lfs merge=lfs -text
-
 # video files
 *.mov filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.ogv filter=lfs diff=lfs merge=lfs -text
-
 # audio files
 *.mp3 filter=lfs diff=lfs merge=lfs -text
 *.wav filter=lfs diff=lfs merge=lfs -text
