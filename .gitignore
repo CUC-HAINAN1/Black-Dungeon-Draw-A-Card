@@ -81,4 +81,7 @@ crashlytics-build.properties
 **/*.pem          
 
 # SSH_PUB
-**/*.pub          
+**/*.pub 
+
+#.DS_Store
+*.DS_Store
