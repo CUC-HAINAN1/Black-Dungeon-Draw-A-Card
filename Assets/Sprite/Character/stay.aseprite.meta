@@ -124,12 +124,12 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Frame_0
     originalName: 
-    pivot: {x: 2.1333334, y: 0}
+    pivot: {x: 0.53333336, y: -0.11538462}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 82
+      x: 83
       y: 4
       width: 30
       height: 26
@@ -141,17 +141,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 82, y: 4}
+    uvTransform: {x: 83, y: 4}
   - name: Frame_1
     originalName: 
-    pivot: {x: 2.064516, y: 0}
+    pivot: {x: 0.5, y: -0.11538462}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 31
+      width: 32
       height: 26
     spriteID: 644c812dda3b7e942ba7d999eb3b6185
     spriteBone: []
@@ -164,7 +164,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Frame_2
     originalName: 
-    pivot: {x: 2.1000001, y: 0}
+    pivot: {x: 0.5, y: -0.11538462}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -184,12 +184,12 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 38}
   - name: Frame_3
     originalName: 
-    pivot: {x: 2.064516, y: 0}
+    pivot: {x: 0.516129, y: -0.11538462}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 43
+      x: 44
       y: 4
       width: 31
       height: 26
@@ -201,10 +201,10 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 43, y: 4}
+    uvTransform: {x: 44, y: 4}
   - name: Frame_4
     originalName: 
-    pivot: {x: 2.1333334, y: 0}
+    pivot: {x: 0.53333336, y: -0.12}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -224,7 +224,7 @@ ScriptedImporter:
     uvTransform: {x: 81, y: 38}
   - name: Frame_5
     originalName: 
-    pivot: {x: 2.1000001, y: 0}
+    pivot: {x: 0.5, y: -0.12}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -244,7 +244,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 72}
   - name: Frame_6
     originalName: 
-    pivot: {x: 2.1000001, y: 0}
+    pivot: {x: 0.5, y: -0.12}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -264,7 +264,7 @@ ScriptedImporter:
     uvTransform: {x: 42, y: 72}
   - name: Frame_7
     originalName: 
-    pivot: {x: 2.064516, y: 0}
+    pivot: {x: 0.516129, y: -0.12}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -296,7 +296,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: 0
+        y: 3
         width: 30
         height: 26
       spriteId: ac6aba8cb9b7bd44384aea97999dbba1
@@ -305,8 +305,8 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: 0
-        width: 31
+        y: 3
+        width: 32
         height: 26
       spriteId: 644c812dda3b7e942ba7d999eb3b6185
     - name: Frame_2
@@ -314,7 +314,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 1
-        y: 0
+        y: 3
         width: 30
         height: 26
       spriteId: 4ed5b10f0d511c14094d9eee62082eaa
@@ -323,7 +323,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: 0
+        y: 3
         width: 31
         height: 26
       spriteId: 7377089f83c51014dbd610e3bb2b3ca8
@@ -332,7 +332,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: 0
+        y: 3
         width: 30
         height: 25
       spriteId: 1aa438b19dfd11048b010a47f499b92e
@@ -341,7 +341,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 1
-        y: 0
+        y: 3
         width: 30
         height: 25
       spriteId: d9cd3748b108c0e4abd8ad197584704e
@@ -350,7 +350,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 1
-        y: 0
+        y: 3
         width: 30
         height: 25
       spriteId: f6611e2e145d5934aa52759365371519
@@ -359,7 +359,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: 0
+        y: 3
         width: 31
         height: 25
       spriteId: b73508636c1f31549878a23c1207dae7
