@@ -39,7 +39,6 @@ public class PlayerMovement: MonoBehaviour
 
         animator.SetBool("IsMoving", movementInput.magnitude > 0.1f);
 
-
         //水平移动时改变角色朝向
         if (movementInput.x != 0) {
 
@@ -56,7 +55,8 @@ public class PlayerMovement: MonoBehaviour
 
             rb.drag = defaultDrag;
             Vector2 targetVelocity = movementInput * maxSpeed;
-            rb.velocity = Vector2.MoveTowards(rb.velocity, targetVelocity, acceleration * Time.fixedDeltaTime);
+            Vector2 velocityChange = (targetVelocity - rb.velocity) * acceleration;
+            rb.AddForce(velocityChange, ForceMode2D.Force);
 
         }
         else {
