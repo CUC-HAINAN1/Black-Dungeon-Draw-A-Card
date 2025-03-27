@@ -51,6 +51,13 @@ public class PlayerMovement: MonoBehaviour
     void Update()
     {
         
+        if (PlayerAttributes.Instance.IsDead) {
+
+            animator.SetBool("IsDead", true);
+            return;
+
+        }
+
         //翻滚时禁用常规移动
         if (isRolling) return;
 

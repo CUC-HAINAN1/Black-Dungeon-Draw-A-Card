@@ -20,6 +20,7 @@ public class PlayerAttributes : MonoBehaviour {
     [SerializeField] public float _manaRegenInterval = 1f;
     [SerializeField] public int _manaRegenBase = 5;
     private float _manaRegenTimer;
+    
 
     private float _manaRegenMutiplier = 1f;
     private bool _isManaRegenPaused = false;
