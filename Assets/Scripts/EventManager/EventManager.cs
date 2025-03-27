@@ -23,11 +23,10 @@ public class EventManager : MonoBehaviour
     
     }
 
-    //初始化
+    //单例初始化
     private void Awake()
     {
         if (_instance != null && _instance != this)
-
         {
             Destroy(gameObject);
             return;

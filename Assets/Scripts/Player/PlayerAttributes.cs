@@ -9,20 +9,25 @@ public enum AttributeType {
     Mana
 
 }
-
 public class PlayerAttributes : MonoBehaviour {
 
-    //单例实例
+    //单例实例化
     private static PlayerAttributes _instance;
     public static PlayerAttributes Instance => _instance;
 
-    [SerializeField] private static int _MaxHealth = 100;
-    [SerializeField] private static int _MaxMana = 100;
+    [SerializeField] public int _MaxHealth = 100;
+    [SerializeField] public int _MaxMana = 100;
+    [SerializeField] public float _manaRegenInterval = 1f;
+    [SerializeField] public int _manaRegenBase = 5;
+    private float _manaRegenTimer;
+
+    private float _manaRegenMutiplier = 1f;
+    private bool _isManaRegenPaused = false;
 
     private int _currentHealth;
     private int _currentMana;
-    private bool _isDead;
-    private bool _deathEventTriggered;
+    private bool _isDead = false;
+    private bool _deathEventTriggered = false;
     
     private void Awake() {
 
@@ -52,12 +57,6 @@ public class PlayerAttributes : MonoBehaviour {
             var previous = _currentHealth;
             _currentHealth = Mathf.Clamp(value, 0, _MaxHealth);
             
-            if (_currentHealth <= 0 && previous > 0) {
-
-                IsDead = true;
-
-            }   
-            
             EventManager.Instance.TriggerEvent("HealthChanged", 
                     new AttributeChangeData(
                         
@@ -68,6 +67,12 @@ public class PlayerAttributes : MonoBehaviour {
                     )
             
             );
+
+            if (_currentHealth <= 0 && previous > 0) {
+
+                IsDead = true;
+
+            }   
 
         }
 
@@ -81,6 +86,7 @@ public class PlayerAttributes : MonoBehaviour {
 
             var previous = _currentMana;
             _currentMana = Mathf.Clamp(value, 0, _MaxMana);
+            
             EventManager.Instance.TriggerEvent("ManaChanged",
                     new AttributeChangeData(
 
@@ -96,7 +102,6 @@ public class PlayerAttributes : MonoBehaviour {
 
     }
 
-    //todo
     public bool IsDead {
 
         get => _isDead;
@@ -105,8 +110,10 @@ public class PlayerAttributes : MonoBehaviour {
             if (_isDead != value) {
 
                 _isDead = value;
-                if (_isDead) {
+                
+                if (_isDead && !_deathEventTriggered) {
 
+                    _deathEventTriggered = true;
                     EventManager.Instance.TriggerEvent("PlayerDied", new DeathData(Health));
 
                 }
@@ -123,7 +130,7 @@ public class PlayerAttributes : MonoBehaviour {
 
         if (IsDead) return;
 
-        Health -= Mathf.Abs(amount);
+        Health -= amount;
 
     }
 
@@ -144,7 +151,49 @@ public class PlayerAttributes : MonoBehaviour {
         Mana += amount;
 
     }
+        
+    private void Update() {
+
+        if (ShouldRegenerateMana()) {
+
+            _manaRegenTimer += Time.deltaTime;
+
+            if (_manaRegenTimer >= _manaRegenInterval) {
+
+                ApplyManaRegeneration();
+                _manaRegenTimer = 0f;
+
+            }
+
+        }
+
+    }
+
+    private bool ShouldRegenerateMana() {
+
+        return !IsDead && !_isManaRegenPaused && _currentMana < _MaxMana;
+
+    }
+
+    private void ApplyManaRegeneration() {
+
+        int actualRegen = Mathf.RoundToInt(_manaRegenBase * _manaRegenMutiplier);
+        _currentMana += actualRegen;
+
+    }
+
+    public void SetManaRegenMutiplier(float Mutiplier) {
+
+        _manaRegenMutiplier = Mathf.Clamp(Mutiplier, 0f, 5f);
+
+    }
     
+    public void PauseManaRegen(bool pause) {
+
+        _isManaRegenPaused = pause;
+
+    }
+
     //属性更新数据类
     public struct AttributeChangeData {
 
