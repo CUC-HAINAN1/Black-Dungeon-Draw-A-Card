@@ -50,7 +50,7 @@ public class PlayerMovement: MonoBehaviour
 
     void Update()
     {
-        
+
         if (PlayerAttributes.Instance.IsDead) {
 
             animator.SetBool("IsDead", true);

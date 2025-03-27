@@ -21,12 +21,11 @@ public class PlayerAttributes : MonoBehaviour {
     [SerializeField] public int _manaRegenBase = 5;
     private float _manaRegenTimer;
     
-
     private float _manaRegenMutiplier = 1f;
     private bool _isManaRegenPaused = false;
 
-    private int _currentHealth;
-    private int _currentMana;
+    [SerializeField] public int _currentHealth;
+    [SerializeField] public int _currentMana;
     private bool _isDead = false;
     private bool _deathEventTriggered = false;
     
