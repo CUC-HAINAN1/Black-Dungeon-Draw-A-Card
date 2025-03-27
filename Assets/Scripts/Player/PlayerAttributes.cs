@@ -116,6 +116,9 @@ public class PlayerAttributes : MonoBehaviour {
                     _deathEventTriggered = true;
                     EventManager.Instance.TriggerEvent("PlayerDied", new DeathData(Health));
 
+                    _currentMana = 0;
+                    _isManaRegenPaused = true;
+
                 }
 
             }

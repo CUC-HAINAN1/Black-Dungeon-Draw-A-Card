@@ -18,6 +18,12 @@ public class PlayerMovement: MonoBehaviour
     public float rollCoolDown = 1f;
     public float rollStopTime = 0.05f;
 
+    [Header("Death Settings")]
+    public float deathDrag = 5f;
+    public float deathSpeedMutiplier = 3f;
+    private Vector2 lastNonZeroMovementInput;
+    private bool deathIsHandled = false;
+
 
     [Header("Rolling Curve")]
     public AnimationCurve rollSpeedCurve = new AnimationCurve(
@@ -44,6 +50,8 @@ public class PlayerMovement: MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         rb.drag = drag;
+        
+        //存储初始阻力
         defaultDrag = rb.drag;
 
     }
@@ -51,30 +59,32 @@ public class PlayerMovement: MonoBehaviour
     void Update()
     {
 
-        if (PlayerAttributes.Instance.IsDead) {
-
-            animator.SetBool("IsDead", true);
-            return;
-
-        }
+        //假如死亡直接返回
+        if (!CheckAndHandleDeath()) return;
 
         //翻滚时禁用常规移动
         if (isRolling) return;
 
-        movementInput.x = Input.GetAxisRaw("Horizontal");
-        movementInput.y = Input.GetAxisRaw("Vertical");
-        movementInput = movementInput.normalized;
+        if (!PlayerAttributes.Instance.IsDead) {
+            
+            movementInput.x = Input.GetAxisRaw("Horizontal");
+            movementInput.y = Input.GetAxisRaw("Vertical");
+            movementInput = movementInput.normalized;
 
-        animator.SetBool("IsMoving", movementInput.magnitude > 0.1f);
+            //设置移动动画状态
+            animator.SetBool("IsMoving", movementInput.magnitude > 0.1f);
 
+            //记录输入时更新最后移动方向
+            if (movementInput.magnitude > 0.1f) lastNonZeroMovementInput = movementInput.normalized;
 
-        //翻滚输入检测
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > lastRollTime + rollCoolDown) {
+            //翻滚输入检测
+            if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > lastRollTime + rollCoolDown) {
 
-            StartCoroutine(PerformRoll());
+                StartCoroutine(PerformRoll());
 
+            }
+        
         }
-
 
         //水平移动时改变角色朝向
         if (movementInput.x != 0) {
@@ -87,12 +97,15 @@ public class PlayerMovement: MonoBehaviour
 
     void FixedUpdate()
     {
-        
-        if (isRolling) return;
+        //处于翻滚或死亡状态直接返回
+        if (isRolling || PlayerAttributes.Instance.IsDead) return;
 
         if (movementInput.magnitude > 0.1f) {
 
+            //应用默认阻力
             rb.drag = defaultDrag;
+            
+            //加速度模拟
             Vector2 targetVelocity = movementInput * maxSpeed;
             Vector2 velocityChange = (targetVelocity - rb.velocity) * acceleration;
             rb.AddForce(velocityChange, ForceMode2D.Force);
@@ -174,6 +187,47 @@ public class PlayerMovement: MonoBehaviour
             transform.localScale = new Vector3(faceRight ? 4 : -4, 4, 1);
 
         }
+
+    }
+
+    //死亡状态特判与处理
+    private bool CheckAndHandleDeath() {
+
+        bool IsDead = PlayerAttributes.Instance.IsDead;
+        animator.SetBool("IsDead", IsDead);
+
+        if (IsDead && !deathIsHandled) {
+
+            OnDeathStart();
+            deathIsHandled = true;
+
+        }
+
+        if (IsDead) return false;
+
+        return true;
+
+    }
+    
+    //处理死亡滑行
+    private void OnDeathStart() {
+        
+        Vector2 deathDirection = lastNonZeroMovementInput;
+
+        if (deathDirection.magnitude < 0.1f) {
+
+            deathDirection = isFacingRight ? Vector2.right : Vector2.left;
+
+        }
+
+        float deathSpeed = maxSpeed * deathSpeedMutiplier;
+        rb.velocity = deathDirection * deathSpeed;
+
+        rb.drag = deathDrag;
+
+        movementInput = Vector2.zero;
+        StopAllCoroutines();
+        isRolling = false;
 
     }
 
