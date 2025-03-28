@@ -6,6 +6,7 @@ public class PlayerAnimatorShifter : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private PlayerMovement movement;
+    [SerializeField] private Animator shieldAnimator;
     
     // 使用哈希存储动画参数
     private int _isMovingHash = Animator.StringToHash("IsMoving");
@@ -69,8 +70,8 @@ public class PlayerAnimatorShifter : MonoBehaviour
     
     }
 
-    private void HandleShieldStart(object eventData) => animator.SetBool(_ShieldHash, true);
-    private void HandleShieldEnd(object eventData) => animator.SetBool(_ShieldHash, false);
+    private void HandleShieldStart(object eventData) => shieldAnimator.SetBool(_ShieldHash, true);
+    private void HandleShieldEnd(object eventData) => shieldAnimator.SetBool(_ShieldHash, false);
 
     private void HandleInvincibleStart(object eventData) => animator.SetBool(_InvincibleHash, true);
     private void HandleInvincibleEnd(object eventData) => animator.SetBool(_InvincibleHash, false);

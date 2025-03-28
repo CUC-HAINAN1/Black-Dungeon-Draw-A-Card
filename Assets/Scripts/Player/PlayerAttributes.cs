@@ -45,10 +45,10 @@ public class PlayerAttributes : MonoBehaviour {
     
     [SerializeField] public bool _isDead;
     private bool _deathEventTriggered;
-    private bool _inCombat;
-    private bool _isInvincible;
-    private bool _hasShield;
-    public bool _isAttackIncreased;
+    [SerializeField] private bool _inCombat;
+    [SerializeField] private bool _isInvincible;
+    [SerializeField] private bool _hasShield;
+    [SerializeField] public bool _isAttackIncreased;
     
     private void Awake() {
 
@@ -70,7 +70,6 @@ public class PlayerAttributes : MonoBehaviour {
         
         _currentShield = 0;
         _hasShield = false;
-
 
         _currentAttackPowerInCreased = 0;
         _isAttackIncreased = false;
@@ -353,7 +352,7 @@ public class PlayerAttributes : MonoBehaviour {
 
     public void GenerateShield() {
 
-        _currentShield = _MaxShield;
+        Shield = _MaxShield;
 
     }
 
