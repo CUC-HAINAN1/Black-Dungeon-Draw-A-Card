@@ -117,7 +117,6 @@ public class PlayerAttributes : MonoBehaviour {
                     EventManager.Instance.TriggerEvent("PlayerDied", new DeathData(Health));
 
                     _currentMana = 0;
-                    _isManaRegenPaused = true;
 
                 }
 
