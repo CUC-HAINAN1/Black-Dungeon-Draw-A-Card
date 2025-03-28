@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d803099e8c1f740eaa0d90776048ac4e, type: 3}
+  m_Name: PoisonMistCard
+  m_EditorClassIdentifier: 
+  cardID: 4
+  displayName: "\u6BD2\u96FE"
+  description: "\u5728\u6307\u5B9A\u8303\u56F4\u751F\u6210\u4E00\u7247\u6BD2\u96FE\uFF0C\u5BF9\u8303\u56F4\u5185\u654C\u4EBA\u6301\u7EED\u9020\u6210\u4F24\u5BB3"
+  cardIcon: {fileID: 0}
+  rarity: 0
+  manaCost: 20
+  cooldown: 1
+  skillType: 3
+  inputMode: 2
+  behaviorConfig:
+    projectile:
+      speed: 0
+      projectileCount: 0
+      spreadAngle: 0
+      maxRange: 0
+      damage: 0
+    sweep:
+      angle: 5
+      radius: 0
+      damage: 0
+    lockOn:
+      maxTargets: 0
+      damage: 0
+    area:
+      shape: 0
+      size: {x: 15, y: 0}
+      duration: 5
+      tickRate: 0.5
+      damage: 3
+    inceaseAttck:
+      amount: 0
+      duration: 0
+    generateShield:
+      amount: 0
+      duration: 0
+  visualConfig:
+    dragPreviewPrefab: {fileID: 0}
+    rangeIndicatorMat: {fileID: 0}
+    castEffect: {fileID: 0}
+    castSound: {fileID: 0}
+    hitEffect: {fileID: 0}
+    hitSound: {fileID: 0}
+  upgradableParams: []

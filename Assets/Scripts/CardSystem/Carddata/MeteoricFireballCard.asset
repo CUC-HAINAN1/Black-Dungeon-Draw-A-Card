@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d803099e8c1f740eaa0d90776048ac4e, type: 3}
+  m_Name: MeteoricFireballCard
+  m_EditorClassIdentifier: 
+  cardID: 3
+  displayName: "\u5F15\u706B\u5929\u964D"
+  description: "\u53EC\u5524\u4E00\u4E2A\u5DE8\u5927\u706B\u7403\uFF0C\u7838\u5411\u6307\u5B9A\u5706\u5F62\u8303\u56F4\uFF0C\u5BF9\u8303\u56F4\u5185\u654C\u4EBA\u9020\u6210\u4F24\u5BB3"
+  cardIcon: {fileID: 0}
+  rarity: 0
+  manaCost: 30
+  cooldown: 1
+  skillType: 3
+  inputMode: 2
+  behaviorConfig:
+    projectile:
+      speed: 0
+      projectileCount: 0
+      spreadAngle: 0
+      maxRange: 0
+      damage: 0
+    sweep:
+      angle: 5
+      radius: 0
+      damage: 0
+    lockOn:
+      maxTargets: 0
+      damage: 0
+    area:
+      shape: 0
+      size: {x: 10, y: 0}
+      duration: 1
+      tickRate: 1
+      damage: 20
+    inceaseAttck:
+      amount: 0
+      duration: 0
+    generateShield:
+      amount: 0
+      duration: 0
+  visualConfig:
+    dragPreviewPrefab: {fileID: 0}
+    rangeIndicatorMat: {fileID: 0}
+    castEffect: {fileID: 0}
+    castSound: {fileID: 0}
+    hitEffect: {fileID: 0}
+    hitSound: {fileID: 0}
+  upgradableParams: []
