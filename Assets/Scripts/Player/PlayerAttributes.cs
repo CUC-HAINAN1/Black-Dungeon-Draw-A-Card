@@ -7,7 +7,8 @@ public enum AttributeType {
 
     Health,
     Mana,
-    Shield
+    Shield,
+    AttackPowerIncreased
 
 }
 
@@ -16,7 +17,8 @@ public enum StateType {
     InCombat,
     Invincible,
     IsShield,
-    IsDead
+    IsDead,
+    IsAttackIncreased
 
 }
 public class PlayerAttributes : MonoBehaviour {
@@ -30,6 +32,7 @@ public class PlayerAttributes : MonoBehaviour {
     [SerializeField] public float _manaRegenInterval = 1f;
     [SerializeField] public int _manaRegenBase = 5;
     [SerializeField] public int _MaxShield = 25;
+    [SerializeField] public int _MaxAttackPowerInCreased = 100;
     private float _manaRegenTimer;
     
     private float _manaRegenMutiplier = 1f;
@@ -38,12 +41,14 @@ public class PlayerAttributes : MonoBehaviour {
     [SerializeField] public int _currentHealth;
     [SerializeField] public int _currentMana;
     [SerializeField] public int _currentShield;
+    [SerializeField] public int _currentAttackPowerInCreased;
     
     [SerializeField] public bool _isDead;
     private bool _deathEventTriggered;
     private bool _inCombat;
     private bool _isInvincible;
     private bool _hasShield;
+    public bool _isAttackIncreased;
     
     private void Awake() {
 
@@ -63,10 +68,18 @@ public class PlayerAttributes : MonoBehaviour {
         _currentMana = _MaxMana;
         _isManaRegenPaused = false;
         
-        _currentShield = _MaxShield;
+        _currentShield = 0;
+        _hasShield = false;
+
+
+        _currentAttackPowerInCreased = 0;
+        _isAttackIncreased = false;
         
         IsDead = false;
         _deathEventTriggered = false;
+
+        _isInvincible = false;
+        _inCombat = false;
 
     }
 
@@ -147,18 +160,42 @@ public class PlayerAttributes : MonoBehaviour {
             }
 
             EventManager.Instance.TriggerEvent("ShieldChanged", 
-                new AttributeChangeData(
-                    
-                    AttributeType.Shield,
-                    _currentShield,
-                    _currentShield - previous
+                    new AttributeChangeData(
+                        
+                        AttributeType.Shield,
+                        _currentShield,
+                        _currentShield - previous
                 
-                )
+                    )
             
             );
         
         }
     
+    }
+
+    public int AttackPowerIncreased {
+
+        get => _currentAttackPowerInCreased;
+
+        private set {
+
+            var previous = _currentAttackPowerInCreased;
+            _currentAttackPowerInCreased = Mathf.Clamp(value, 0, _MaxAttackPowerInCreased);
+            
+            EventManager.Instance.TriggerEvent("AttackPowerCoefficientChanged",
+                    new AttributeChangeData(
+
+                        AttributeType.AttackPowerIncreased,
+                        _currentAttackPowerInCreased,
+                        _currentAttackPowerInCreased - previous
+
+                    )
+            
+            );
+
+        }
+
     }
 
     //状态访问器
@@ -182,6 +219,10 @@ public class PlayerAttributes : MonoBehaviour {
                     );
 
                     Mana = 0;
+                    HasShield = false;
+                    IsInCombat = false;
+                    IsInvincible = false;
+
 
                 }
 
@@ -222,6 +263,27 @@ public class PlayerAttributes : MonoBehaviour {
                     
                     value ? "InvincibleStateEntered" : "InvincibleStateExited", 
                     new StateChangeData(StateType.Invincible)
+                
+                );
+            
+            }
+        
+        }
+    
+    }
+
+    public bool IsAttackIncreased {
+        
+        get => _isAttackIncreased;
+        private set {
+            
+            if (_isAttackIncreased != value) {
+                
+                _isAttackIncreased = value;
+                EventManager.Instance.TriggerEvent(
+                    
+                    value ? "AttackIncreasedStateEntered" : "AttackIncreasedStateExited", 
+                    new StateChangeData(StateType.IsAttackIncreased)
                 
                 );
             
