@@ -39,7 +39,7 @@ public class PlayerAttributes : MonoBehaviour {
     [SerializeField] public int _currentMana;
     [SerializeField] public int _currentShield;
     
-    private bool _isDead;
+    [SerializeField] public bool _isDead;
     private bool _deathEventTriggered;
     private bool _inCombat;
     private bool _isInvincible;
@@ -181,7 +181,7 @@ public class PlayerAttributes : MonoBehaviour {
                     
                     );
 
-                    _currentMana = 0;
+                    Mana = 0;
 
                 }
 
@@ -258,13 +258,13 @@ public class PlayerAttributes : MonoBehaviour {
 
         if (IsDead) return;
 
-        if (_currentShield > 0) {
+        if (Shield > 0) {
 
-            _currentShield -= amount;
+            Shield = (Shield - amount) >= 0 ? (Shield - amount) : 0;
 
         } else {
 
-            _currentHealth -= amount;
+            Health -= amount;
 
         } 
 
