@@ -174,7 +174,12 @@ public class PlayerAttributes : MonoBehaviour {
                 if (_isDead && !_deathEventTriggered) {
 
                     _deathEventTriggered = true;
-                    EventManager.Instance.TriggerEvent("PlayerDied", new StateChangeData(StateType.IsDead));
+                    EventManager.Instance.TriggerEvent(
+                        
+                    "PlayerDied", 
+                    new StateChangeData(StateType.IsDead)
+                    
+                    );
 
                     _currentMana = 0;
 

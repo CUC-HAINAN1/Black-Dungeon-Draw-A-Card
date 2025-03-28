@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class PlayerMovement: MonoBehaviour
+public class PlayerMovement: MonoBehaviour {
 
-{
+    public event Action<Vector2> OnMovementInputChanged;
+
     [Header("Movement")]
     public float acceleration = 30f; //加速度
     public float maxSpeed = 8f; //最大速度
@@ -56,38 +58,38 @@ public class PlayerMovement: MonoBehaviour
 
     }
 
-    void Update()
-    {
+    void Update() {
 
-        //假如死亡直接返回
-        if (!CheckAndHandleDeath()) return;
+        //假如死亡直接返回，翻滚时禁用常规移动
+        if (!CheckAndHandleDeath() || isRolling) return;
 
-        //翻滚时禁用常规移动
-        if (isRolling) return;
-
-        if (!PlayerAttributes.Instance.IsDead) {
+        Vector2 newInput = new Vector2(
             
-            movementInput.x = Input.GetAxisRaw("Horizontal");
-            movementInput.y = Input.GetAxisRaw("Vertical");
-            movementInput = movementInput.normalized;
+            Input.GetAxisRaw("Horizontal"),
+            Input.GetAxisRaw("Vertical")
+        
+        ).normalized;
 
-            //设置移动动画状态
-            animator.SetBool("IsMoving", movementInput.magnitude > 0.1f);
-
-            //记录输入时更新最后移动方向
-            if (movementInput.magnitude > 0.1f) lastNonZeroMovementInput = movementInput.normalized;
-
-            //翻滚输入检测
-            if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > lastRollTime + rollCoolDown) {
-
-                StartCoroutine(PerformRoll());
-
-            }
+        //触发输入变化事件
+        if (newInput != movementInput) {
+        
+            movementInput = newInput;
+            OnMovementInputChanged?.Invoke(movementInput);
         
         }
 
+        //记录输入时更新最后移动方向
+        if (movementInput.magnitude > 0.1f) lastNonZeroMovementInput = newInput.normalized;
+
+        //翻滚输入检测
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > lastRollTime + rollCoolDown) {
+
+            StartCoroutine(PerformRoll());
+
+        }
+        
         //水平移动时改变角色朝向
-        if (movementInput.x != 0) {
+        if (newInput.x != 0) {
 
             FilpCharacter(movementInput.x > 0);
 
@@ -95,8 +97,8 @@ public class PlayerMovement: MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
+    
         //处于翻滚或死亡状态直接返回
         if (isRolling || PlayerAttributes.Instance.IsDead) return;
 
@@ -194,7 +196,6 @@ public class PlayerMovement: MonoBehaviour
     private bool CheckAndHandleDeath() {
 
         bool IsDead = PlayerAttributes.Instance.IsDead;
-        animator.SetBool("IsDead", IsDead);
 
         if (IsDead && !deathIsHandled) {
 
