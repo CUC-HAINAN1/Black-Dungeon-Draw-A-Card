@@ -6,7 +6,17 @@ using UnityEngine;
 public enum AttributeType {
 
     Health,
-    Mana
+    Mana,
+    Shield
+
+}
+
+public enum StateType {
+
+    InCombat,
+    Invincible,
+    IsShield,
+    IsDead
 
 }
 public class PlayerAttributes : MonoBehaviour {
@@ -19,15 +29,21 @@ public class PlayerAttributes : MonoBehaviour {
     [SerializeField] public int _MaxMana = 100;
     [SerializeField] public float _manaRegenInterval = 1f;
     [SerializeField] public int _manaRegenBase = 5;
+    [SerializeField] public int _MaxShield = 25;
     private float _manaRegenTimer;
     
     private float _manaRegenMutiplier = 1f;
-    private bool _isManaRegenPaused = false;
+    private bool _isManaRegenPaused;
 
     [SerializeField] public int _currentHealth;
     [SerializeField] public int _currentMana;
-    private bool _isDead = false;
-    private bool _deathEventTriggered = false;
+    [SerializeField] public int _currentShield;
+    
+    private bool _isDead;
+    private bool _deathEventTriggered;
+    private bool _inCombat;
+    private bool _isInvincible;
+    private bool _hasShield;
     
     private void Awake() {
 
@@ -43,7 +59,14 @@ public class PlayerAttributes : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
 
         _currentHealth = _MaxHealth;
+        
         _currentMana = _MaxMana;
+        _isManaRegenPaused = false;
+        
+        _currentShield = _MaxShield;
+        
+        IsDead = false;
+        _deathEventTriggered = false;
 
     }
 
@@ -102,6 +125,43 @@ public class PlayerAttributes : MonoBehaviour {
 
     }
 
+    public int Shield {
+        
+        get => _currentShield;
+        private set {
+            
+            var previous = _currentShield;
+            _currentShield = Mathf.Clamp(value, 0, _MaxShield);
+            
+            // 自动更新护盾状态
+            if (previous > 0 && _currentShield == 0) {
+                
+                HasShield = false;
+            
+            } 
+            
+            else if (previous == 0 && _currentShield > 0) {
+                
+                HasShield = true;
+            
+            }
+
+            EventManager.Instance.TriggerEvent("ShieldChanged", 
+                new AttributeChangeData(
+                    
+                    AttributeType.Shield,
+                    _currentShield,
+                    _currentShield - previous
+                
+                )
+            
+            );
+        
+        }
+    
+    }
+
+    //状态访问器
     public bool IsDead {
 
         get => _isDead;
@@ -114,7 +174,7 @@ public class PlayerAttributes : MonoBehaviour {
                 if (_isDead && !_deathEventTriggered) {
 
                     _deathEventTriggered = true;
-                    EventManager.Instance.TriggerEvent("PlayerDied", new DeathData(Health));
+                    EventManager.Instance.TriggerEvent("PlayerDied", new StateChangeData(StateType.IsDead));
 
                     _currentMana = 0;
 
@@ -125,6 +185,67 @@ public class PlayerAttributes : MonoBehaviour {
         }
 
     }
+    public bool IsInCombat {
+        
+        get => _inCombat;
+        private set {
+            
+            if (_inCombat != value) {
+                
+                _inCombat = value;
+                EventManager.Instance.TriggerEvent(
+                    
+                    value ? "InCombatStateEntered" : "InCombatStateExited", 
+                    new StateChangeData(StateType.InCombat)
+                
+                );
+            
+            }
+        
+        }
+    
+    }
+    public bool IsInvincible {
+        
+        get => _isInvincible;
+        private set {
+            
+            if (_isInvincible != value) {
+                
+                _isInvincible = value;
+                EventManager.Instance.TriggerEvent(
+                    
+                    value ? "InvincibleStateEntered" : "InvincibleStateExited", 
+                    new StateChangeData(StateType.Invincible)
+                
+                );
+            
+            }
+        
+        }
+    
+    }
+
+    public bool HasShield {
+        
+        get => _hasShield;
+        private set {
+            
+            if (_hasShield != value) {
+                
+                _hasShield = value;
+                EventManager.Instance.TriggerEvent(
+                    
+                    value ? "ShieldStateEntered" : "ShieldStateExited", 
+                    new StateChangeData(StateType.IsShield)
+                
+                );
+            
+            }
+        
+        }
+    
+    }
 
     //操作方法
     //使用方式：PlayerAttributes.Instance.Takedamege(damage)
@@ -132,10 +253,19 @@ public class PlayerAttributes : MonoBehaviour {
 
         if (IsDead) return;
 
-        Health -= amount;
+        if (_currentShield > 0) {
+
+            _currentShield -= amount;
+
+        } else {
+
+            _currentHealth -= amount;
+
+        } 
 
     }
 
+    //属性操作方法
     public void Heal(int amount) {
 
         Health += amount;
@@ -153,6 +283,25 @@ public class PlayerAttributes : MonoBehaviour {
         Mana += amount;
 
     }
+
+    public void GenerateShield() {
+
+        _currentShield = _MaxShield;
+
+    }
+
+    public void VanishShield() {
+
+        _currentShield = 0;
+
+    }
+
+    //状态操作方法
+    public void EnterCombat() => IsInCombat = true;
+    public void ExitCombat() => IsInCombat = false;
+
+    public void EnableInvincible() => IsInvincible = true;
+    public void DisableInvincible() => IsInvincible = false;
         
     private void Update() {
 
@@ -213,18 +362,18 @@ public class PlayerAttributes : MonoBehaviour {
 
     }
     
-    public struct DeathData {
+    //状态更新数据类
+    public struct StateChangeData {
+        public readonly StateType StateType;
+        public readonly DateTime ChangeTime;
 
-        public readonly int FinalHealth;
-        public readonly System.DateTime DeathTime;
-
-        public DeathData(int health) {
-
-            FinalHealth = health;
-            DeathTime = System.DateTime.Now;
-
+        public StateChangeData(StateType type) {
+            
+            StateType = type;
+            ChangeTime = DateTime.Now;
+        
         }
-
+    
     }
 
 }
