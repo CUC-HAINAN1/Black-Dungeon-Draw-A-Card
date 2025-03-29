@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d803099e8c1f740eaa0d90776048ac4e, type: 3}
   m_Name: BerserkCard
   m_EditorClassIdentifier: 
-  cardID: 
-  displayName: 
-  description: 
+  cardID: 6
+  displayName: "\u72C2\u66B4"
+  description: "\u91CA\u653E\u540E\u4E00\u6BB5\u65F6\u95F4\u5185\uFF0C\u63D0\u5347\u73A9\u5BB6\u7684\u653B\u51FB\u529B"
   cardIcon: {fileID: 0}
   rarity: 0
-  manaCost: 0
-  cooldown: 0
-  skillType: 0
-  inputMode: 0
+  manaCost: 15
+  cooldown: 1
+  skillType: 4
+  inputMode: 3
   behaviorConfig:
     projectile:
       speed: 0
@@ -42,8 +42,8 @@ MonoBehaviour:
       tickRate: 0
       damage: 0
     inceaseAttck:
-      amount: 0
-      duration: 0
+      amount: 10
+      duration: 10
     generateShield:
       amount: 0
       duration: 0

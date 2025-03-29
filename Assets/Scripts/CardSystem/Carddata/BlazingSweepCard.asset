@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d803099e8c1f740eaa0d90776048ac4e, type: 3}
   m_Name: BlazingSweepCard
   m_EditorClassIdentifier: 
-  cardID: 
-  displayName: 
-  description: 
+  cardID: 2
+  displayName: "\u706B\u7130\u6A2A\u626B"
+  description: "\u671D\u6307\u5B9A\u6247\u5F62\u8303\u56F4\u53D1\u51FA\u4E00\u9053\u706B\u7130\uFF0C\u5BF9\u8303\u56F4\u5185\u654C\u4EBA\u9020\u6210\u4F24\u5BB3"
   cardIcon: {fileID: 0}
   rarity: 0
-  manaCost: 0
+  manaCost: 20
   cooldown: 0
-  skillType: 0
+  skillType: 1
   inputMode: 0
   behaviorConfig:
     projectile:
@@ -29,10 +29,9 @@ MonoBehaviour:
       maxRange: 0
       damage: 0
     sweep:
-      angle: 0
-      radius: 0
-      duration: 0
-      damage: 0
+      angle: 120
+      radius: 10
+      damage: 30
     lockOn:
       maxTargets: 0
       damage: 0
@@ -55,4 +54,8 @@ MonoBehaviour:
     castSound: {fileID: 0}
     hitEffect: {fileID: 0}
     hitSound: {fileID: 0}
-  upgradableParams: []
+  upgradableParams:
+  - displayName: "\u706B\u7130\u6A2A\u626B\u4F24\u5BB3\u589E\u52A0"
+    paramPath: behaviorConfig.Sweep.Damege
+    upgradeType: 0
+    value: 20

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d803099e8c1f740eaa0d90776048ac4e, type: 3}
   m_Name: DivineSpiritShieldCard
   m_EditorClassIdentifier: 
-  cardID: 
-  displayName: 
-  description: 
+  cardID: 7
+  displayName: "\u5723\u7075\u62A4\u76FE"
+  description: "\u91CA\u653E\u540E\u8D4B\u4E88\u73A9\u5BB6\u4E00\u4E2A\u53EF\u4EE5\u62B5\u6321\u4F24\u5BB3\u7684\u62A4\u76FE\uFF0C\u6301\u7EED\u4E00\u6BB5\u65F6\u95F4\u6216\u88AB\u6253\u7834\u540E\u6D88\u5931"
   cardIcon: {fileID: 0}
   rarity: 0
-  manaCost: 0
-  cooldown: 0
-  skillType: 0
-  inputMode: 0
+  manaCost: 20
+  cooldown: 1
+  skillType: 5
+  inputMode: 3
   behaviorConfig:
     projectile:
       speed: 0
@@ -45,8 +45,8 @@ MonoBehaviour:
       amount: 0
       duration: 0
     generateShield:
-      amount: 0
-      duration: 0
+      amount: 25
+      duration: 10
   visualConfig:
     dragPreviewPrefab: {fileID: 0}
     rangeIndicatorMat: {fileID: 0}
