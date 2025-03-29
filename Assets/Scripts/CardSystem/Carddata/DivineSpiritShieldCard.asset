@@ -19,6 +19,7 @@ MonoBehaviour:
   rarity: 0
   manaCost: 20
   cooldown: 1
+  Owned: 1
   skillType: 5
   inputMode: 3
   behaviorConfig:
