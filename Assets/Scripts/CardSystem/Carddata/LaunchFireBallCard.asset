@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardID: 1
   displayName: LaunchFireBall
-  description: "\u5411\u6307\u5B9A\u65B9\u5411\u53D1\u5C04\u4E00\u8FDE\u4E32\u706B\u7403\uFF0C\u547D\u4E2D\u654C\u4EBA\u9020\u6210\u4F24\u5BB3"
-  cardIcon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  description: Fires a series of fireballs in the specified direction, hitting enemies
+    and causing damage
+  cardIcon: {fileID: -7564434034282203093, guid: 897ad0c9a36ee354d8eed4613741515d, type: 3}
   rarity: 0
   manaCost: 20
   cooldown: 1

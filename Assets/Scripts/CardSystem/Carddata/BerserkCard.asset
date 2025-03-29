@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: BerserkCard
   m_EditorClassIdentifier: 
   cardID: 6
-  displayName: "\u72C2\u66B4"
-  description: "\u91CA\u653E\u540E\u4E00\u6BB5\u65F6\u95F4\u5185\uFF0C\u63D0\u5347\u73A9\u5BB6\u7684\u653B\u51FB\u529B"
-  cardIcon: {fileID: 0}
+  displayName: Berserk
+  description: After being released, the player's attack power will be increased
+    for a period of time.
+  cardIcon: {fileID: 156347195121582194, guid: 62d839ef54107b44fb11001a8541bedf, type: 3}
   rarity: 0
   manaCost: 15
   cooldown: 1

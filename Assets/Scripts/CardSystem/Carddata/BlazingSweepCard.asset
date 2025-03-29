@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: BlazingSweepCard
   m_EditorClassIdentifier: 
   cardID: 2
-  displayName: "\u706B\u7130\u6A2A\u626B"
-  description: "\u671D\u6307\u5B9A\u6247\u5F62\u8303\u56F4\u53D1\u51FA\u4E00\u9053\u706B\u7130\uFF0C\u5BF9\u8303\u56F4\u5185\u654C\u4EBA\u9020\u6210\u4F24\u5BB3"
-  cardIcon: {fileID: 0}
+  displayName: BlazingSweep
+  description: Sends out a flame in a designated fan-shaped area, causing damage
+    to enemies within the area.
+  cardIcon: {fileID: -3573070616845171490, guid: 6cb1b072edcfbf146b89f17951ae5c35, type: 3}
   rarity: 0
   manaCost: 20
   cooldown: 0
