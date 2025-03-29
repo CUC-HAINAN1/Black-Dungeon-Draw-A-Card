@@ -1,109 +1,43 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CardQueueSystem))]
+[RequireComponent(typeof(CardAnimator))]
 public class CardDrawController : MonoBehaviour
 {
-    [Header("卡牌位置配置")]
-    public Transform[] cardSlots = new Transform[4];
+    public CardQueueSystem queueSystem;
+    public CardAnimator cardAnimator;
 
-    [Header("卡牌预制件")] 
-    public GameObject cardPrefab;
-
-    //当前应该填充的卡牌位置索引
-    private int currentSlotIndex = 0;
-
-    //抽取到的卡牌的可视化与保存
-    [System.Serializable]
-    public class ActiveCardInfo
+    private void Start()
     {
-        public CardDataBase cardData;
-        public GameObject cardInstance;
+        queueSystem = GetComponent<CardQueueSystem>();
+        cardAnimator = GetComponent<CardAnimator>();
+        queueSystem.Initialize();
     }
 
-    [Header("当前卡牌状态")]
-    [SerializeField] public ActiveCardInfo[] currentCards = new ActiveCardInfo[4];
-
-
-    private void Start() {
-    
-        ClearAllSlots();
-
-    }
-
-    private void Update() {
-    
-        if (Input.GetKeyDown(KeyCode.Space)) {
-        
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             DrawAndCreateCard();
         }
-    
     }
 
-    private void DrawAndCreateCard() {
-
-        var drawnCard = CardPoolManager.Instance.DrawCard();
+    private void DrawAndCreateCard()
+    {
+        CardDataBase card = queueSystem.DrawCard();
         
-        if (drawnCard != null) {
-
-            CreateCardVisual(drawnCard);
-            Debug.Log($"抽到卡牌：{drawnCard.displayName}");
+            Transform targetSlot = queueSystem.GetNextSlot();
+            
+            queueSystem.CreateCard(card, targetSlot);
+            
+            int slotIndex = System.Array.IndexOf(queueSystem.cardSlots, targetSlot);
         
-        }
-    
-    }
-
-    private void CreateCardVisual(CardDataBase data) {
-        
-        Transform targetSlot = cardSlots[currentSlotIndex];
-
-        ClearSlot(targetSlot);
-
-        GameObject newCard = Instantiate(cardPrefab, 
+            CardQueueSystem.ActiveCardInfo newCardInfo = queueSystem.currentCards[slotIndex];
+            CardVisual visual = newCardInfo.cardInstance.GetComponent<CardVisual>();
                 
-                targetSlot.position, 
-                targetSlot.rotation,
-                targetSlot
-        
-        );
-
-        RectTransform rt = newCard.GetComponent<RectTransform>();
-        
-        rt.localPosition = Vector3.zero;
-        rt.localRotation = Quaternion.identity;
-        rt.localScale = Vector3.one;
-
-        CardVisual visual = newCard.GetComponent<CardVisual>();
-        visual.Initialize(data);
-
-        currentSlotIndex = (currentSlotIndex + 1) % cardSlots.Length;
-
-        //已抽到的卡牌数据存储
-        currentCards[currentSlotIndex] = new ActiveCardInfo {
-    
-                cardData = data,
-                cardInstance = newCard
-        
-        };
-
-    }
-
-    private void ClearAllSlots() {
-
-        foreach(Transform slot in cardSlots) {
-
-            ClearSlot(slot);
-
-        }
-
-    }
-
-    private void ClearSlot(Transform slot) {
-
-        foreach(Transform child in slot) {
-
-            Destroy(child.gameObject);
-
-        }
-
+            visual.Initialize(card);
+            cardAnimator.PlayCardEntrance(newCardInfo.cardInstance, targetSlot);
+                
     }
 
 }

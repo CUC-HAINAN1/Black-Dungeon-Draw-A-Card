@@ -362,6 +362,10 @@ MonoBehaviour:
   cardImage: {fileID: 1457762109363906123}
   nameText: {fileID: 8528169903198628730}
   descriptionText: {fileID: 5446039143877094760}
+  hoverScale: 1.3
+  ZoomScale: 0.85
+  hoverDuration: 0.3
+  hoverEase: 27
 --- !u!1 &7981382271883884452
 GameObject:
   m_ObjectHideFlags: 0
