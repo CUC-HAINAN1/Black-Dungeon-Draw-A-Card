@@ -28,6 +28,7 @@ public class PlayerAttributes : MonoBehaviour {
     public static PlayerAttributes Instance => _instance;
 
     [SerializeField] public int _MaxHealth = 100;
+    [SerializeField] public float GetDamageInvincibleDuration = 1f;
     [SerializeField] public int _MaxMana = 100;
     [SerializeField] public float _manaRegenInterval = 1f;
     [SerializeField] public int _manaRegenBase = 5;
@@ -47,6 +48,8 @@ public class PlayerAttributes : MonoBehaviour {
     private bool _deathEventTriggered;
     [SerializeField] private bool _inCombat;
     [SerializeField] private bool _isInvincible;
+    
+    private Coroutine _invincibleCoroutine;
     [SerializeField] private bool _hasShield;
     [SerializeField] public bool _isAttackIncreased;
     
@@ -317,7 +320,7 @@ public class PlayerAttributes : MonoBehaviour {
     //使用方式：PlayerAttributes.Instance.Takedamege(damage)
     public void TakeDamage(int amount) {
 
-        if (IsDead) return;
+        if (IsDead || IsInvincible) return;
 
         if (Shield > 0) {
 
@@ -326,6 +329,7 @@ public class PlayerAttributes : MonoBehaviour {
         } else {
 
             Health -= amount;
+            EnableInvincibleForDuration(GetDamageInvincibleDuration);
 
         } 
 
@@ -368,7 +372,32 @@ public class PlayerAttributes : MonoBehaviour {
 
     public void EnableInvincible() => IsInvincible = true;
     public void DisableInvincible() => IsInvincible = false;
-        
+
+    public void EnableInvincibleForDuration(float duration) {
+
+        //如果已经有正在持续的无敌协程，先停止
+        if (_invincibleCoroutine != null) {
+
+            StopCoroutine(_invincibleCoroutine);
+
+        }
+
+        _invincibleCoroutine = StartCoroutine(InvincibleDurationRoutine(duration));
+
+    }
+
+    private IEnumerator InvincibleDurationRoutine(float duration) {
+
+        EnableInvincible();
+
+        yield return new WaitForSeconds(duration);
+
+        DisableInvincible();
+
+        _invincibleCoroutine = null;
+
+    }
+
     private void Update() {
 
         if (ShouldRegenerateMana()) {

@@ -125,6 +125,8 @@ public class PlayerMovement: MonoBehaviour {
     IEnumerator PerformRoll() {
 
         isRolling = true;
+        PlayerAttributes.Instance.EnableInvincible();
+        
         lastRollTime = Time.time;
         
         //计算初始转向方向
@@ -176,6 +178,7 @@ public class PlayerMovement: MonoBehaviour {
         rb.drag = originalDrag;
         
         //重置翻滚状态
+        PlayerAttributes.Instance.DisableInvincible();
         isRolling = false;
 
     }
