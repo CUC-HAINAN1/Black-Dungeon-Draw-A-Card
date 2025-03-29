@@ -16,6 +16,9 @@ public class CardDataBase : ScriptableObject
     public int manaCost;
     public float cooldown;
 
+    [Header("玩家是否已拥有")]
+    public bool Owned;
+    
     [Header("技能类型配置")]
     public SkillType skillType;
     public InputMode inputMode;
