@@ -9,5 +9,4 @@ EditorBuildSettings:
     path: Assets/Scenes/Sang test scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects:
-    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c3aeb56182b8a43c1934407774c59903, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 1db683b8ea4fe47198cb39b227e57cdf, type: 2}

@@ -6,21 +6,29 @@ public class EventManager : MonoBehaviour
 {
     private static EventManager _instance;
     private Dictionary<string, Action<object>> _eventDictionary;
+    private static bool applicationIsQuitting = false;
 
-    public static EventManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
+    public static EventManager Instance {
+    
+        get {
+            
+            if (applicationIsQuitting) {
+
+                return null;
+
+            }
+
+            if (_instance == null) {
+            
                 GameObject go = new GameObject("EventManager");
                 _instance = go.AddComponent<EventManager>();
                 DontDestroyOnLoad(go);
+            
             }
             
             return _instance;
         }
-    
+
     }
 
     //单例初始化
@@ -35,6 +43,15 @@ public class EventManager : MonoBehaviour
         _instance = this;
         _eventDictionary = new Dictionary<string, Action<object>>();
         DontDestroyOnLoad(gameObject);
+    
+    }
+
+    //在应用完全退出前触发
+    private void OnApplicationQuit() {
+    
+        applicationIsQuitting = true;
+        _instance = null;
+        Destroy(gameObject);
     
     }
 

@@ -6,7 +6,19 @@ using UnityEngine;
 public enum AttributeType {
 
     Health,
-    Mana
+    Mana,
+    Shield,
+    AttackPowerIncreased
+
+}
+
+public enum StateType {
+
+    InCombat,
+    Invincible,
+    IsShield,
+    IsDead,
+    IsAttackIncreased
 
 }
 public class PlayerAttributes : MonoBehaviour {
@@ -16,18 +28,30 @@ public class PlayerAttributes : MonoBehaviour {
     public static PlayerAttributes Instance => _instance;
 
     [SerializeField] public int _MaxHealth = 100;
+    [SerializeField] public float GetDamageInvincibleDuration = 1f;
     [SerializeField] public int _MaxMana = 100;
     [SerializeField] public float _manaRegenInterval = 1f;
     [SerializeField] public int _manaRegenBase = 5;
+    [SerializeField] public int _MaxShield = 25;
+    [SerializeField] public int _MaxAttackPowerInCreased = 100;
     private float _manaRegenTimer;
     
     private float _manaRegenMutiplier = 1f;
-    private bool _isManaRegenPaused = false;
+    private bool _isManaRegenPaused;
 
     [SerializeField] public int _currentHealth;
     [SerializeField] public int _currentMana;
-    private bool _isDead = false;
-    private bool _deathEventTriggered = false;
+    [SerializeField] public int _currentShield;
+    [SerializeField] public int _currentAttackPowerInCreased;
+    
+    [SerializeField] public bool _isDead;
+    private bool _deathEventTriggered;
+    [SerializeField] private bool _inCombat;
+    [SerializeField] private bool _isInvincible;
+    
+    private Coroutine _invincibleCoroutine;
+    [SerializeField] private bool _hasShield;
+    [SerializeField] public bool _isAttackIncreased;
     
     private void Awake() {
 
@@ -43,7 +67,21 @@ public class PlayerAttributes : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
 
         _currentHealth = _MaxHealth;
+        
         _currentMana = _MaxMana;
+        _isManaRegenPaused = false;
+        
+        _currentShield = 0;
+        _hasShield = false;
+
+        _currentAttackPowerInCreased = 0;
+        _isAttackIncreased = false;
+        
+        IsDead = false;
+        _deathEventTriggered = false;
+
+        _isInvincible = false;
+        _inCombat = false;
 
     }
 
@@ -102,6 +140,67 @@ public class PlayerAttributes : MonoBehaviour {
 
     }
 
+    public int Shield {
+        
+        get => _currentShield;
+        private set {
+            
+            var previous = _currentShield;
+            _currentShield = Mathf.Clamp(value, 0, _MaxShield);
+            
+            // 自动更新护盾状态
+            if (previous > 0 && _currentShield == 0) {
+                
+                HasShield = false;
+            
+            } 
+            
+            else if (previous == 0 && _currentShield > 0) {
+                
+                HasShield = true;
+            
+            }
+
+            EventManager.Instance.TriggerEvent("ShieldChanged", 
+                    new AttributeChangeData(
+                        
+                        AttributeType.Shield,
+                        _currentShield,
+                        _currentShield - previous
+                
+                    )
+            
+            );
+        
+        }
+    
+    }
+
+    public int AttackPowerIncreased {
+
+        get => _currentAttackPowerInCreased;
+
+        private set {
+
+            var previous = _currentAttackPowerInCreased;
+            _currentAttackPowerInCreased = Mathf.Clamp(value, 0, _MaxAttackPowerInCreased);
+            
+            EventManager.Instance.TriggerEvent("AttackPowerCoefficientChanged",
+                    new AttributeChangeData(
+
+                        AttributeType.AttackPowerIncreased,
+                        _currentAttackPowerInCreased,
+                        _currentAttackPowerInCreased - previous
+
+                    )
+            
+            );
+
+        }
+
+    }
+
+    //状态访问器
     public bool IsDead {
 
         get => _isDead;
@@ -114,10 +213,18 @@ public class PlayerAttributes : MonoBehaviour {
                 if (_isDead && !_deathEventTriggered) {
 
                     _deathEventTriggered = true;
-                    EventManager.Instance.TriggerEvent("PlayerDied", new DeathData(Health));
+                    EventManager.Instance.TriggerEvent(
+                        
+                    "PlayerDied", 
+                    new StateChangeData(StateType.IsDead)
+                    
+                    );
 
-                    _currentMana = 0;
-                    _isManaRegenPaused = true;
+                    Mana = 0;
+                    HasShield = false;
+                    IsInCombat = false;
+                    IsInvincible = false;
+
 
                 }
 
@@ -126,17 +233,109 @@ public class PlayerAttributes : MonoBehaviour {
         }
 
     }
+    public bool IsInCombat {
+        
+        get => _inCombat;
+        private set {
+            
+            if (_inCombat != value) {
+                
+                _inCombat = value;
+                EventManager.Instance.TriggerEvent(
+                    
+                    value ? "InCombatStateEntered" : "InCombatStateExited", 
+                    new StateChangeData(StateType.InCombat)
+                
+                );
+            
+            }
+        
+        }
+    
+    }
+    public bool IsInvincible {
+        
+        get => _isInvincible;
+        private set {
+            
+            if (_isInvincible != value) {
+                
+                _isInvincible = value;
+                EventManager.Instance.TriggerEvent(
+                    
+                    value ? "InvincibleStateEntered" : "InvincibleStateExited", 
+                    new StateChangeData(StateType.Invincible)
+                
+                );
+            
+            }
+        
+        }
+    
+    }
+
+    public bool IsAttackIncreased {
+        
+        get => _isAttackIncreased;
+        private set {
+            
+            if (_isAttackIncreased != value) {
+                
+                _isAttackIncreased = value;
+                EventManager.Instance.TriggerEvent(
+                    
+                    value ? "AttackIncreasedStateEntered" : "AttackIncreasedStateExited", 
+                    new StateChangeData(StateType.IsAttackIncreased)
+                
+                );
+            
+            }
+        
+        }
+    
+    }
+
+    public bool HasShield {
+        
+        get => _hasShield;
+        private set {
+            
+            if (_hasShield != value) {
+                
+                _hasShield = value;
+                EventManager.Instance.TriggerEvent(
+                    
+                    value ? "ShieldStateEntered" : "ShieldStateExited", 
+                    new StateChangeData(StateType.IsShield)
+                
+                );
+            
+            }
+        
+        }
+    
+    }
 
     //操作方法
     //使用方式：PlayerAttributes.Instance.Takedamege(damage)
     public void TakeDamage(int amount) {
 
-        if (IsDead) return;
+        if (IsDead || IsInvincible) return;
 
-        Health -= amount;
+        if (Shield > 0) {
+
+            Shield = (Shield - amount) >= 0 ? (Shield - amount) : 0;
+
+        } else {
+
+            Health -= amount;
+            EnableInvincibleForDuration(GetDamageInvincibleDuration);
+
+        } 
 
     }
 
+    //属性操作方法
     public void Heal(int amount) {
 
         Health += amount;
@@ -154,7 +353,51 @@ public class PlayerAttributes : MonoBehaviour {
         Mana += amount;
 
     }
-        
+
+    public void GenerateShield() {
+
+        Shield = _MaxShield;
+
+    }
+
+    public void VanishShield() {
+
+        _currentShield = 0;
+
+    }
+
+    //状态操作方法
+    public void EnterCombat() => IsInCombat = true;
+    public void ExitCombat() => IsInCombat = false;
+
+    public void EnableInvincible() => IsInvincible = true;
+    public void DisableInvincible() => IsInvincible = false;
+
+    public void EnableInvincibleForDuration(float duration) {
+
+        //如果已经有正在持续的无敌协程，先停止
+        if (_invincibleCoroutine != null) {
+
+            StopCoroutine(_invincibleCoroutine);
+
+        }
+
+        _invincibleCoroutine = StartCoroutine(InvincibleDurationRoutine(duration));
+
+    }
+
+    private IEnumerator InvincibleDurationRoutine(float duration) {
+
+        EnableInvincible();
+
+        yield return new WaitForSeconds(duration);
+
+        DisableInvincible();
+
+        _invincibleCoroutine = null;
+
+    }
+
     private void Update() {
 
         if (ShouldRegenerateMana()) {
@@ -214,18 +457,18 @@ public class PlayerAttributes : MonoBehaviour {
 
     }
     
-    public struct DeathData {
+    //状态更新数据类
+    public struct StateChangeData {
+        public readonly StateType StateType;
+        public readonly DateTime ChangeTime;
 
-        public readonly int FinalHealth;
-        public readonly System.DateTime DeathTime;
-
-        public DeathData(int health) {
-
-            FinalHealth = health;
-            DeathTime = System.DateTime.Now;
-
+        public StateChangeData(StateType type) {
+            
+            StateType = type;
+            ChangeTime = DateTime.Now;
+        
         }
-
+    
     }
 
 }
