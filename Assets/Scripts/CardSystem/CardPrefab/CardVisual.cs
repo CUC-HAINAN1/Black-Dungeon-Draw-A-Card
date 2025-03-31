@@ -19,24 +19,26 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private Ease hoverEase = Ease.OutBack;
 
     private Vector3 originalScale;
-    private CardQueueSystem queueSystem;
     private void Awake() {
        
         originalScale = Vector3.one;
-        queueSystem = FindObjectOfType<CardQueueSystem>();
 
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
     
-        if (queueSystem == null) return;
+        if (CardQueueSystem.Instance == null || 
+            CardStateManager.Instance.GetCardState(gameObject).IsDragging ||
+            CardStateManager.Instance.GetCardState(gameObject).IsUsing ||
+            CardQueueSystem.Instance.IsAnyCardDragging
+        ) return;
         
         // 放大当前卡牌
         transform.DOScale(originalScale * hoverScale, hoverDuration)
             .SetEase(hoverEase);
 
         // 缩小其他卡牌
-        foreach (var cardInfo in queueSystem.currentCards) {
+        foreach (var cardInfo in CardQueueSystem.Instance.currentCards) {
             
             if (cardInfo.cardInstance != null && cardInfo.cardInstance != gameObject) {
                 
@@ -49,14 +51,18 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (queueSystem == null) return;
+        if (CardQueueSystem.Instance == null || 
+            CardStateManager.Instance.GetCardState(gameObject).IsDragging ||
+            CardStateManager.Instance.GetCardState(gameObject).IsUsing ||
+            CardQueueSystem.Instance.IsAnyCardDragging
+        ) return;
 
         // 恢复当前卡牌大小
         transform.DOScale(originalScale, hoverDuration)
             .SetEase(hoverEase);
 
         // 恢复其他卡牌大小
-        foreach (var cardInfo in queueSystem.currentCards) {
+        foreach (var cardInfo in CardQueueSystem.Instance.currentCards) {
         
             if (cardInfo.cardInstance != null && cardInfo.cardInstance != gameObject) {
             

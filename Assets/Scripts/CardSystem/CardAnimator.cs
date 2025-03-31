@@ -1,7 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 
-[RequireComponent(typeof(CardQueueSystem))]
 public class CardAnimator : MonoBehaviour 
 {
     [Header("入场动画参数")] 

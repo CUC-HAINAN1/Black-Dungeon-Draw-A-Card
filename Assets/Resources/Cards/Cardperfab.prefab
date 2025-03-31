@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 4240625212514205353}
   - component: {fileID: 3948993627597596959}
   - component: {fileID: 5695007675399531952}
+  - component: {fileID: -275702274811762584}
   m_Layer: 5
   m_Name: Cardperfab
   m_TagString: Untagged
@@ -366,6 +367,22 @@ MonoBehaviour:
   ZoomScale: 0.85
   hoverDuration: 0.3
   hoverEase: 27
+--- !u!114 &-275702274811762584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7893060465467734075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8841a7f8ad64b2990eaa6a56880169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playArea: {fileID: 9119286461952609563}
+  returnDuration: 0.3
+  moveEase: 27
+  rotationDuration: 0.2
 --- !u!1 &7981382271883884452
 GameObject:
   m_ObjectHideFlags: 0

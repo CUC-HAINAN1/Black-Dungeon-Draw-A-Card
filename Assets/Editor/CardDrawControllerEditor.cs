@@ -13,11 +13,11 @@ public class CardDrawControllerEditor : Editor
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("当前卡牌信息", EditorStyles.boldLabel);
         
-        for (int i = 0; i < controller.queueSystem.currentCards.Length; i++) {
+        for (int i = 0; i < CardQueueSystem.Instance.currentCards.Length; i++) {
         
             EditorGUILayout.BeginVertical("Box");
             
-            var cardInfo = controller.queueSystem.currentCards[i];
+            var cardInfo = CardQueueSystem.Instance.currentCards[i];
             
             string status = cardInfo.cardData != null ? 
                 $"Slot {i}: {cardInfo.cardData.displayName}" : 

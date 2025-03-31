@@ -1,7 +1,13 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using System;
 
-public class CardQueueSystem : MonoBehaviour
-{
+public class CardQueueSystem : MonoBehaviour {
+
+    public static CardQueueSystem Instance {get; private set;}
+
     [Header("卡牌位置配置")]
     public Transform[] cardSlots = new Transform[4];
     
@@ -10,13 +16,46 @@ public class CardQueueSystem : MonoBehaviour
     
         public CardDataBase cardData;
         public GameObject cardInstance;
-    
+
+        public bool IsDragging {
+        
+            get => CardStateManager.Instance.GetCardState(cardInstance)?.IsDragging ?? false;
+            set => CardStateManager.Instance.SetDraggingState(cardInstance, value);
+        
+        }
+
+        public bool IsUsing {
+        
+            get => CardStateManager.Instance.GetCardState(cardInstance)?.IsUsing ?? false;
+            set => CardStateManager.Instance.SetUsingState(cardInstance, value);
+        }
+
     }
 
     [Header("当前卡牌状态")]
     [SerializeField] public ActiveCardInfo[] currentCards = new ActiveCardInfo[4];
     
     public int currentSlotIndex = 0;
+    public bool IsAnyCardDragging {get; private set;}
+
+    private void Awake() {
+        
+        if (Instance != this && Instance != null) {
+
+            Destroy(gameObject);
+
+        }
+
+        else {
+
+            Instance = this;
+            Initialize();
+
+        }
+
+    }
+
+
     public void Initialize() {
     
         ClearAllSlots();
@@ -33,12 +72,8 @@ public class CardQueueSystem : MonoBehaviour
     
         int slotIndex = System.Array.IndexOf(cardSlots, targetSlot);
         
-        if (slotIndex == -1) {
-        
-            Debug.LogError("Target slot not found!");
-            return;
-        }
-        
+        Debug.Log(slotIndex);
+
         ClearSlot(targetSlot);
 
         GameObject newCard = Instantiate(
@@ -58,15 +93,66 @@ public class CardQueueSystem : MonoBehaviour
             cardInstance = newCard
         
         };
+
+        // 注册新卡牌状态
+        CardStateManager.Instance.RegisterCard(newCard);
+
+        Debug.Log(newCard == null);
+        
+        // 初始化状态
+        currentCards[slotIndex].IsDragging = false;
+        currentCards[slotIndex].IsUsing = false;
+
     }
 
     public Transform GetNextSlot() {
-    
-        Transform slot = cardSlots[currentSlotIndex];
-        currentSlotIndex = (currentSlotIndex + 1) % cardSlots.Length;
-        return slot;
+        
+        int nextIndex = -1;
+        for (int i = 0; i < currentCards.Length; i++) {
+
+            if (currentCards[i] == null || currentCards[i].cardInstance == null) {
+
+                nextIndex = i;
+                break;
+
+            }
+
+        }
+
+        return nextIndex == -1 ? null : cardSlots[nextIndex];
+
+    }
+
+    public bool TryUseCard(CardDragHandler draggedCard) {
+
+        // 获取卡牌数据
+        int slotIndex = System.Array.FindIndex(currentCards, 
+            c => c.cardInstance == draggedCard.gameObject);
+
+        if (slotIndex == -1) return false;
+
+        // 执行卡牌使用逻辑
+        StartCoroutine(ProcessCardUse(currentCards[slotIndex]));
+        return true;
     
     }
+
+    private IEnumerator ProcessCardUse(ActiveCardInfo usedCard) {
+
+        CardStateManager.Instance.SetUsingState(usedCard.cardInstance, true);
+
+        //todo
+        // 1. 播放使用动画
+        // 2. 应用卡牌效果
+        // 3. 清除卡牌实例
+        yield return new WaitForSeconds(0.2f);
+        
+        CardStateManager.Instance.SetUsingState(usedCard.cardInstance, false);
+        ClearSlot(cardSlots[System.Array.IndexOf(currentCards, usedCard)]);
+
+    }
+
+
 
     private void ClearAllSlots() {
     
@@ -78,14 +164,26 @@ public class CardQueueSystem : MonoBehaviour
     }
 
     private void ClearSlot(Transform slot) {
-    
-        foreach(Transform child in slot) {
         
-            Destroy(child.gameObject);
+        int slotIndex = System.Array.IndexOf(cardSlots, slot);
+
+        if (slotIndex != -1) {
+
+            foreach(Transform child in slot) {
+            
+                Destroy(child.gameObject);
+            
+            }
         
         }
-    
     }
+
+    public void SetCardQueueDraggingState(bool isAnyCardDragging) {
+
+        IsAnyCardDragging = isAnyCardDragging;
+
+    }
+
 
     [Header("基础配置")]
     public GameObject cardPrefab;
