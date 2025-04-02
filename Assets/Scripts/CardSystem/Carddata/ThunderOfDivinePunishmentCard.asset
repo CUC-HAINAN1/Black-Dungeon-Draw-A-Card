@@ -15,10 +15,11 @@ MonoBehaviour:
   cardID: 5
   displayName: "\u795E\u7F5A\u96F7\u9706"
   description: "\u9501\u5B9A\u6307\u5B9A\u654C\u4EBA\u540E\uFF0C\u964D\u4E0B\u4E00\u9053\u96F7\u9706\u5288\u5411\u6307\u5B9A\u654C\u4EBA\uFF0C\u9020\u6210\u5927\u91CF\u4F24\u5BB3"
-  cardIcon: {fileID: 0}
+  cardIcon: {fileID: 6515741899584178625, guid: 6ef137cefe8b8cf47a11958d684b7d90, type: 3}
   rarity: 1
   manaCost: 40
   cooldown: 1
+  Owned: 0
   skillType: 2
   inputMode: 1
   behaviorConfig:

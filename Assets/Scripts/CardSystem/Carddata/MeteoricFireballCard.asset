@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: MeteoricFireballCard
   m_EditorClassIdentifier: 
   cardID: 3
-  displayName: "\u5F15\u706B\u5929\u964D"
-  description: "\u53EC\u5524\u4E00\u4E2A\u5DE8\u5927\u706B\u7403\uFF0C\u7838\u5411\u6307\u5B9A\u5706\u5F62\u8303\u56F4\uFF0C\u5BF9\u8303\u56F4\u5185\u654C\u4EBA\u9020\u6210\u4F24\u5BB3"
-  cardIcon: {fileID: 0}
+  displayName: MeteoricFireball
+  description: Summons a huge fireball, which hits the designated circular area and
+    causes damage to enemies within the area.
+  cardIcon: {fileID: 8148999554338074490, guid: 3fc58eed6b83ada4aa0b0e550aab1f8d, type: 3}
   rarity: 0
   manaCost: 30
   cooldown: 1
+  Owned: 1
   skillType: 3
   inputMode: 2
   behaviorConfig:
