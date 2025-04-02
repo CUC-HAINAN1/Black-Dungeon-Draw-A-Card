@@ -96,20 +96,20 @@ namespace Pathfinding {
 		/// This info can be updated when a check for new versions is done to ensure that there are no invalid links.
 		/// </summary>
 		static Dictionary<string, string> astarServerData = new Dictionary<string, string> {
-			{ "URL:modifiers", "http://www.arongranberg.com/astar/docs/modifiers.php" },
-			{ "URL:astarpro", "http://arongranberg.com/unity/a-pathfinding/astarpro/" },
-			{ "URL:documentation", "http://arongranberg.com/astar/docs/" },
-			{ "URL:findoutmore", "http://arongranberg.com/astar" },
-			{ "URL:download", "http://arongranberg.com/unity/a-pathfinding/download" },
-			{ "URL:changelog", "http://arongranberg.com/astar/docs/changelog.php" },
-			{ "URL:tags", "http://arongranberg.com/astar/docs/tags.php" },
-			{ "URL:homepage", "http://arongranberg.com/astar/" }
+			{ "URL:modifiers", "https://www.arongranberg.com/astar/docs/modifiers.php" },
+			{ "URL:astarpro", "https://arongranberg.com/unity/a-pathfinding/astarpro/" },
+			{ "URL:documentation", "https://arongranberg.com/astar/docs/" },
+			{ "URL:findoutmore", "https://arongranberg.com/astar" },
+			{ "URL:download", "https://arongranberg.com/unity/a-pathfinding/download" },
+			{ "URL:changelog", "https://arongranberg.com/astar/docs/changelog.php" },
+			{ "URL:tags", "https://arongranberg.com/astar/docs/tags.php" },
+			{ "URL:homepage", "https://arongranberg.com/astar/" }
 		};
 
 		static AstarUpdateChecker() {
 			// Add a callback so that we can parse the message when it has been downloaded
-			EditorApplication.update += UpdateCheckLoop;
-			EditorBase.getDocumentationURL = () => GetURL("documentation");
+			//EditorApplication.update += UpdateCheckLoop;
+			//EditorBase.getDocumentationURL = () => GetURL("documentation");
 		}
 
 
@@ -136,22 +136,22 @@ namespace Pathfinding {
 			lastUpdateCheck = System.DateTime.UtcNow.AddDays(-5);
 
 			// Remove the callback if it already exists
-			EditorApplication.update -= UpdateCheckLoop;
+			//EditorApplication.update -= UpdateCheckLoop;
 
 			// Add a callback so that we can parse the message when it has been downloaded
-			EditorApplication.update += UpdateCheckLoop;
+			//EditorApplication.update += UpdateCheckLoop;
 		}
 
 		/// <summary>
 		/// Checking for updates...
 		/// Should be called from EditorApplication.update
 		/// </summary>
-		static void UpdateCheckLoop () {
+		//static void UpdateCheckLoop () {
 			// Go on until the update check has been completed
-			if (!CheckForUpdates()) {
-				EditorApplication.update -= UpdateCheckLoop;
-			}
-		}
+			//if (!CheckForUpdates()) {
+				//EditorApplication.update -= UpdateCheckLoop;
+			//}
+		//}
 
 		/// <summary>
 		/// Checks for updates if there was some time since last check.
