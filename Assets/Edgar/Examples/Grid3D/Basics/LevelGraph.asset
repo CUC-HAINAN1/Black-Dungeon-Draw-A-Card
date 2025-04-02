@@ -55,7 +55,7 @@ MonoBehaviour:
     PanOffset: {x: -44.771347, y: -62.41932}
     Zoom: 0.877521
   RoomType: Edgar.Unity.Room
-  ConnectionType: Edgar.Unity.Connection
+  ConnectionType: CustomConnection
   IsDirected: 0
 --- !u!114 &114028387989203944
 MonoBehaviour:

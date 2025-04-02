@@ -460,13 +460,11 @@ public class PlayerAttributes : MonoBehaviour {
     //状态更新数据类
     public struct StateChangeData {
         public readonly StateType StateType;
-        public readonly DateTime ChangeTime;
+       public float ChangeTime { get; set; }
 
         public StateChangeData(StateType type) {
-            
             StateType = type;
-            ChangeTime = DateTime.Now;
-        
+           ChangeTime = Time.time;
         }
     
     }

@@ -4,7 +4,22 @@ using System.Linq;
 using UnityEngine;
 [CreateAssetMenu(fileName = "GungeonCustomInput", menuName = "ScriptableObjects/GungeonCustomInput")]
 public class GungeonCustomInput : DungeonGeneratorInputBaseGrid2D
-{
+{//初始化customRoom
+    void Awake()
+    {
+        if (customRoom == null)
+        {
+            Debug.LogWarning("！ customRoom 是 null，现在创建一个默认 CustomRoom");
+            customRoom = ScriptableObject.CreateInstance<CustomRoom>();
+            customRoom.RoomType = RoomType.BirthRoom; // 设置一个默认房间类型
+        }
+        if (roomConfig == null)
+        {
+            Debug.LogError("× roomConfig 为空，请检查 Inspector 中是否正确赋值！");
+        }
+    }
+
+    public CustomRoom customRoom;
     public IRoomConfig roomConfig;
     private LevelGraph selectLevelGraph;
     //private List<RoomInfo> AllRooms;
@@ -15,7 +30,12 @@ public class GungeonCustomInput : DungeonGeneratorInputBaseGrid2D
     //}
     protected override LevelDescriptionGrid2D GetLevelDescription()
     {
-
+        if (customRoom == null)
+        {
+            Debug.LogError("GungeonCustomInput: customRoom 对象为 null，请检查 CustomRoom 的赋值！");
+            return null; // 或者做其他处理
+        }
+        Debug.Log("GungeonCustomInput: customRoom 已经赋值，模板数量: " + customRoom.GetRoomTemplates().Count);
         //AllRooms = new List<RoomInfo>();
         var levelDescription = new LevelDescriptionGrid2D();
         if (!roomConfig.UseRandomLevelGraph)
@@ -31,7 +51,27 @@ public class GungeonCustomInput : DungeonGeneratorInputBaseGrid2D
         // Manually add all the rooms to the level description
         foreach (var room in selectLevelGraph.Rooms.Cast<CustomRoom>())
         {
-            levelDescription.AddRoom(room, roomConfig.RoomTemplates.GetRoomTemplates(room).ToList());
+
+            if (room == null)
+            {
+                Debug.LogError("× GetLevelDescription: 遇到了 null room，请检查 LevelGraph 是否正确设置！");
+                continue;
+            }
+
+            var templates = roomConfig.RoomTemplates.GetRoomTemplates(room);
+
+            if (templates == null)
+            {
+                Debug.LogError($"× GetLevelDescription: Room '{room.name}' 的 GetRoomTemplates 返回了 null！");
+                continue;
+            }
+
+            if (templates == null || templates.Length == 0)
+            {
+                Debug.LogError($"× GetLevelDescription: Room '{room.name}' 没有找到任何模板！");
+            }
+
+            levelDescription.AddRoom(room, templates.ToList());
         }
 
         // Go through individual connections between basic rooms to add corridor rooms

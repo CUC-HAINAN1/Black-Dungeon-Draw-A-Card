@@ -1,3 +1,5 @@
+using Edgar.Legacy.Core.MapDescriptions;
+using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
 public class RoomTamplatesConfig
@@ -29,8 +31,23 @@ public class RoomTamplatesConfig
     /// </summary>
     /// <param name="room"></param>
     /// <returns></returns>
+    
+
     public GameObject[] GetRoomTemplates(CustomRoom room)
     {
+        if (room == null)
+        {
+            Debug.LogError("× GetRoomTemplates 里 room 是 null，请检查 room 是否正确赋值！");
+            return new GameObject[0]; // 返回空数组，防止崩溃
+        }
+
+        if (room.RoomType == null)
+        {
+            Debug.LogError("× GetRoomTemplates 里 room.RoomType 是 null，请检查是否正确赋值！");
+            return new GameObject[0]; // 返回空数组
+        }
+
+        Debug.Log("√ room 和 room.RoomType 都已正确赋值: " + room.RoomType);
         switch (room.RoomType)
         {
             case RoomType.BossRoom:
@@ -60,5 +77,6 @@ public class RoomTamplatesConfig
             default:
                 return BasicRoomTemplates;
         }
+      
     }
 }

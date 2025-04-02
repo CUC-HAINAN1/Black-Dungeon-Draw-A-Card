@@ -23279,7 +23279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomInstance:
-    room: {fileID: -2957706961243653206, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+    room: {fileID: 0}
     isCorridor: 0
     connection: {fileID: 0}
     roomTemplatePrefab: {fileID: 2313339408895456413, guid: 2c6e98c612bf54845b36cbecca2bb02f, type: 3}
@@ -23580,6 +23580,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RepeatMode: 0
+--- !u!1 &612262218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 612262219}
+  m_Layer: 0
+  m_Name: Base_ObstacleLayout
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &612262219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612262218}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &643381843
 GameObject:
   m_ObjectHideFlags: 0
@@ -28161,7 +28192,7 @@ MonoBehaviour:
       - {x: 114, y: 42}
       - {x: 114, y: 26}
       - {x: 88, y: 26}
-  - room: {fileID: -2957706961243653206, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - room: {fileID: 0}
     isCorridor: 0
     connection: {fileID: 0}
     roomTemplatePrefab: {fileID: 2313339408895456413, guid: 2c6e98c612bf54845b36cbecca2bb02f, type: 3}
@@ -28353,7 +28384,7 @@ MonoBehaviour:
       - {x: 151, y: 43}
       - {x: 151, y: 30}
       - {x: 139, y: 30}
-  - room: {fileID: 855480009325652737, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - room: {fileID: 0}
     isCorridor: 0
     connection: {fileID: 0}
     roomTemplatePrefab: {fileID: 2313339408895456413, guid: 2c6e98c612bf54845b36cbecca2bb02f, type: 3}
@@ -28715,7 +28746,7 @@ MonoBehaviour:
       - {x: 63, y: 27}
   - room: {fileID: 132536021}
     isCorridor: 1
-    connection: {fileID: -8489583730173020329, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+    connection: {fileID: 0}
     roomTemplatePrefab: {fileID: 5447453318837841858, guid: 238c6b2fdf0b182418778cec52468e17, type: 3}
     roomTemplateInstance: {fileID: 926922127}
     position: {x: 116, y: 39, z: 0}
@@ -28729,7 +28760,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: -2957706961243653206, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+      connectedRoom: {fileID: 0}
       socket: {fileID: 0}
       direction: 0
     - doorLine:
@@ -28765,7 +28796,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: -2957706961243653206, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+        connectedRoom: {fileID: 0}
         socket: {fileID: 0}
         direction: 0
     - doorLine:
@@ -28799,7 +28830,7 @@ MonoBehaviour:
       - {x: 114, y: 34}
   - room: {fileID: 228965851}
     isCorridor: 1
-    connection: {fileID: 7226712344124758273, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+    connection: {fileID: 0}
     roomTemplatePrefab: {fileID: 1705957584681248660, guid: 3e7e0fdbc0cac444ea18890cf78ce795, type: 3}
     roomTemplateInstance: {fileID: 762068752}
     position: {x: 98, y: 62, z: 0}
@@ -28813,7 +28844,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 0, y: 1}
       isHorizontal: 1
-      connectedRoom: {fileID: 855480009325652737, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+      connectedRoom: {fileID: 0}
       socket: {fileID: 0}
       direction: 0
     - doorLine:
@@ -28849,7 +28880,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 0, y: 1}
         isHorizontal: 1
-        connectedRoom: {fileID: 855480009325652737, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+        connectedRoom: {fileID: 0}
         socket: {fileID: 0}
         direction: 0
     - doorLine:
@@ -29300,7 +29331,7 @@ MonoBehaviour:
   RoomInstance:
     room: {fileID: 228965851}
     isCorridor: 1
-    connection: {fileID: 7226712344124758273, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+    connection: {fileID: 0}
     roomTemplatePrefab: {fileID: 1705957584681248660, guid: 3e7e0fdbc0cac444ea18890cf78ce795, type: 3}
     roomTemplateInstance: {fileID: 762068752}
     position: {x: 98, y: 62, z: 0}
@@ -29314,7 +29345,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 0, y: 1}
       isHorizontal: 1
-      connectedRoom: {fileID: 855480009325652737, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+      connectedRoom: {fileID: 0}
       socket: {fileID: 0}
       direction: 0
     - doorLine:
@@ -29350,7 +29381,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 0, y: 1}
         isHorizontal: 1
-        connectedRoom: {fileID: 855480009325652737, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+        connectedRoom: {fileID: 0}
         socket: {fileID: 0}
         direction: 0
     - doorLine:
@@ -33491,7 +33522,7 @@ MonoBehaviour:
   RoomInstance:
     room: {fileID: 132536021}
     isCorridor: 1
-    connection: {fileID: -8489583730173020329, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+    connection: {fileID: 0}
     roomTemplatePrefab: {fileID: 5447453318837841858, guid: 238c6b2fdf0b182418778cec52468e17, type: 3}
     roomTemplateInstance: {fileID: 926922127}
     position: {x: 116, y: 39, z: 0}
@@ -33505,7 +33536,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: -2957706961243653206, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+      connectedRoom: {fileID: 0}
       socket: {fileID: 0}
       direction: 0
     - doorLine:
@@ -33541,7 +33572,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: -2957706961243653206, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+        connectedRoom: {fileID: 0}
         socket: {fileID: 0}
         direction: 0
     - doorLine:
@@ -86459,7 +86490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomInstance:
-    room: {fileID: 855480009325652737, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+    room: {fileID: 0}
     isCorridor: 0
     connection: {fileID: 0}
     roomTemplatePrefab: {fileID: 2313339408895456413, guid: 2c6e98c612bf54845b36cbecca2bb02f, type: 3}
@@ -98531,6 +98562,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1137803918095305931, guid: 8e004c59c8c3644e7b5bac4c876519ca, type: 3}
+      propertyPath: EnableDiagnostics
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137803918095305931, guid: 8e004c59c8c3644e7b5bac4c876519ca, type: 3}
+      propertyPath: DisableCustomPostProcessing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3806258953977329366, guid: 8e004c59c8c3644e7b5bac4c876519ca, type: 3}
       propertyPath: m_Name
       value: RoomGenerator
@@ -98586,3 +98625,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 3366991631497245770}
   - {fileID: 736515857}
+  - {fileID: 612262219}
