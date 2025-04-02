@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 38465529565879652}
   - component: {fileID: 3803311319067940501}
   - component: {fileID: 3046872577395242599}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Other 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 476032942481222556}
   - component: {fileID: 439315970323753339}
   - component: {fileID: 8944756717152913924}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Outline Override
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2538,7 +2538,7 @@ GameObject:
   - component: {fileID: 390408212830206583}
   - component: {fileID: 5535680156375426916}
   - component: {fileID: 272569005093338652}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Other 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2661,7 +2661,7 @@ GameObject:
   - component: {fileID: 6214815534520469735}
   - component: {fileID: 7036379952788875412}
   - component: {fileID: 3671845889063056653}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4618,7 +4618,7 @@ GameObject:
   - component: {fileID: 5773674204996175142}
   - component: {fileID: 2947754614518119151}
   - component: {fileID: 7683021543254859811}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collideable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5485,7 +5485,7 @@ GameObject:
   - component: {fileID: 5550214392743288727}
   - component: {fileID: 6877843567670593735}
   - component: {fileID: 3484512181346553125}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5713,7 +5713,7 @@ GameObject:
   - component: {fileID: 1531172988541510146}
   - component: {fileID: 7811859705166309477}
   - component: {fileID: 2520189469507421207}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 13x13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5915,7 +5915,7 @@ GameObject:
   - component: {fileID: 4488325720827647763}
   - component: {fileID: 8809391613444411987}
   - component: {fileID: 7089623245348298828}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Other 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6142,7 +6142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5775757253246202289}
   - component: {fileID: 5543524372657060033}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}

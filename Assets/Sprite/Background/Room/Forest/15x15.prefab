@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5189277903554109947}
   - component: {fileID: 5701714781275408563}
   - component: {fileID: 2074454040544503086}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 4044973204277153204}
   - component: {fileID: 7605322852119650762}
   - component: {fileID: 8593611434300949280}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Outline Override
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3313,7 +3313,7 @@ GameObject:
   - component: {fileID: 1216371375532540460}
   - component: {fileID: 6535455514990040224}
   - component: {fileID: 4321502922017076787}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Other 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3433,7 +3433,7 @@ GameObject:
   - component: {fileID: 7973823637625925148}
   - component: {fileID: 210922414380682544}
   - component: {fileID: 3127038682658692323}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 15x15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3667,7 +3667,7 @@ GameObject:
   - component: {fileID: 913077841963734438}
   - component: {fileID: 2900234738517729839}
   - component: {fileID: 4132932568698681518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collideable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4610,7 +4610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9094360876484674537}
   - component: {fileID: 715986444419553320}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4662,7 +4662,7 @@ GameObject:
   - component: {fileID: 4098844202793044133}
   - component: {fileID: 7120577655147821058}
   - component: {fileID: 741136735943219491}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Other 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4782,7 +4782,7 @@ GameObject:
   - component: {fileID: 5220253141645483949}
   - component: {fileID: 8029831486342553252}
   - component: {fileID: 4440456914784752672}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7176,7 +7176,7 @@ GameObject:
   - component: {fileID: 4448159847860219585}
   - component: {fileID: 3534723533720124095}
   - component: {fileID: 1984267971588528035}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Other 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

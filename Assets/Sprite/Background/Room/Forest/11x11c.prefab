@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7676303531619988821}
   - component: {fileID: 4925997988533116890}
   - component: {fileID: 1816551482770178588}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Other 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 4434458652809767434}
   - component: {fileID: 4984613904400103860}
   - component: {fileID: 6178284724809461758}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Other 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 8485309316714587885}
   - component: {fileID: 2699117261123255350}
   - component: {fileID: 5702808716894132183}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 11x11c
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 8107299436856113821}
   - component: {fileID: 2247808217437462843}
   - component: {fileID: 8411131266359396298}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collideable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1318,7 +1318,7 @@ GameObject:
   - component: {fileID: 4287905223114702417}
   - component: {fileID: 2644441705044925709}
   - component: {fileID: 8388640125303318537}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2795,7 +2795,7 @@ GameObject:
   - component: {fileID: 3509055664341200842}
   - component: {fileID: 165190462269949647}
   - component: {fileID: 155681296525109152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3022,7 +3022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7488031902676513042}
   - component: {fileID: 1407412005437148969}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3075,7 +3075,7 @@ GameObject:
   - component: {fileID: 154044634573509101}
   - component: {fileID: 4899966618994600976}
   - component: {fileID: 5835713658389212460}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Outline Override
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5051,7 +5051,7 @@ GameObject:
   - component: {fileID: 6736396553238215784}
   - component: {fileID: 6151497920098406111}
   - component: {fileID: 1306083554217985154}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Other 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

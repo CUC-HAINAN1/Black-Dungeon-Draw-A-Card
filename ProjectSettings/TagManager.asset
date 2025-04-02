@@ -17,9 +17,9 @@ TagManager:
   - UI
   - Colliddable
   - 
-  - 
-  - 
-  - 
+  - Other1
+  - Player1
+  - ENEMY
   - 
   - 
   - 
@@ -50,4 +50,7 @@ TagManager:
     locked: 0
   - name: Bullet
     uniqueID: 1964112229
+    locked: 0
+  - name: Characters
+    uniqueID: 2495451267
     locked: 0
