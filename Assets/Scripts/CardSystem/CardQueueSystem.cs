@@ -118,11 +118,9 @@ public class CardQueueSystem : MonoBehaviour {
     private IEnumerator ProcessCardUse(ActiveCardInfo usedCard) {
 
         CardStateManager.Instance.SetUsingState(usedCard.cardInstance, true);
+        
 
         //todo
-        // 1. 播放使用动画
-        // 2. 应用卡牌效果
-        // 3. 清除卡牌实例
         yield return new WaitForSeconds(0.2f);
         
         CardStateManager.Instance.SetUsingState(usedCard.cardInstance, false);

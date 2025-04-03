@@ -59,6 +59,15 @@ public class CardStateManager : MonoBehaviour
         return cardStates.ContainsKey(cardInstance) ? cardStates[cardInstance] : null;
     
     }
+
+    public bool IsCardUsable(GameObject cardInstance) {
+        
+        if (!cardStates.ContainsKey(cardInstance)) return false;
+
+        return PlayerAttributes.Instance.Mana >= cardStates[cardInstance].CardData.manaCost;
+
+    }
+
 }
 
 // 卡牌状态数据类

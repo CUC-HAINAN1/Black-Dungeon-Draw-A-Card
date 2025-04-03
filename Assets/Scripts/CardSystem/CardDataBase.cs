@@ -71,6 +71,7 @@ public class CardDataBase : ScriptableObject
         AreaSelection,
         HoldRelease }
 
+
     [Serializable]
     public struct ProjectileParams
     {
@@ -79,9 +80,6 @@ public class CardDataBase : ScriptableObject
         
         [Tooltip("同时发射数量")]
         public int projectileCount;
-        
-        [Tooltip("散射角度(0为直线)")]
-        [Range(0, 180)] public float spreadAngle;
         
         [Tooltip("最大射程")]
         public float maxRange;
@@ -119,11 +117,9 @@ public class CardDataBase : ScriptableObject
     [Serializable]
     public struct AreaParams
     {
-        [Tooltip("区域形状")]
-        public AreaShape shape;
         
-        [Tooltip("圆形半径/矩形尺寸")]
-        public Vector2 size;
+        [Tooltip("圆形半径")]
+        public float radius;
         
         [Tooltip("持续时间")]
         public float duration;
@@ -169,11 +165,11 @@ public class CardDataBase : ScriptableObject
         //public Material rangeIndicatorMat;
         
         [Header("施法效果")]
-        public ParticleSystem castEffect;
+        public AnimationClip castEffect;
         public AudioClip castSound;
         
         [Header("命中效果")]
-        public ParticleSystem hitEffect;
+        public AnimationClip hitEffect;
         public AudioClip hitSound;
     }
 

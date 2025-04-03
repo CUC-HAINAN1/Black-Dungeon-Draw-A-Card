@@ -1,15 +1,14 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class CardAnimator : MonoBehaviour 
-{
-    [Header("入场动画参数")] 
+public class CardAnimator : MonoBehaviour {
+    [Header("入场动画参数")]
     [SerializeField] private float slideDuration = 0.5f;
     [SerializeField] private Ease positionEase = Ease.OutBack;
     [SerializeField] private float startYOffset = 1000f; // 正数 = 从下方开始
 
-    public void PlayCardEntrance(GameObject cardObject, Transform targetSlot) 
-    {
+    public void PlayCardEntrance(GameObject cardObject, Transform targetSlot) {
+        
         RectTransform rt = cardObject.GetComponent<RectTransform>();
         RectTransform targetRT = targetSlot.GetComponent<RectTransform>();
 
@@ -23,10 +22,10 @@ public class CardAnimator : MonoBehaviour
 
         // 计算起始位置（基于父级坐标系，Y轴向下偏移）
         Vector2 startPos = new Vector2(
-            
+
             rt.anchoredPosition.x,
             rt.anchoredPosition.y - startYOffset // 下方起始点
-        
+
         );
 
         // 设置初始位置
@@ -39,8 +38,9 @@ public class CardAnimator : MonoBehaviour
     }
 
     private void FinalizeCardPosition(RectTransform rt) {
-    
+
         rt.anchoredPosition = Vector2.zero;
+    
     }
 
 }

@@ -84,10 +84,11 @@ public class PlayerMovement: MonoBehaviour {
         if (movementInput.magnitude > 0.1f) lastNonZeroMovementInput = newInput.normalized;
 
         //翻滚输入检测
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > lastRollTime + rollCoolDown) {
-
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > lastRollTime + rollCoolDown && playerAttributes.Mana >= 2) {
+            
+            playerAttributes.UseMana(2);
             StartCoroutine(PerformRoll());
-
+            
         }
         
         //水平移动时改变角色朝向
