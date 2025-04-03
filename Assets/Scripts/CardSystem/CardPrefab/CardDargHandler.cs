@@ -6,7 +6,11 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
-{
+{   
+    private CardStateManager cardStateManager;
+    private CardQueueSystem cardQueueSystem;
+    private RangeIndicatorManager rangeIndicatorManager;
+
     private Vector3 startPosition;
     private Transform originalParent;
     private CanvasGroup canvasGroup;
@@ -14,8 +18,12 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private UnityEngine.UI.Image invalidplayAreaImage;
     private Vector3 originalScale;
     private Vector3 originalRotation;
-    private bool isInPlayArea;
+    private bool isInPlayArea = false;
     private bool isAnimating = false;
+
+    //处理范围指示器的部分
+    private CardDataBase cardData;
+    private Vector2 startDragPosition;
 
     [Header("动画设置")]
     public float returnDuration = 0.3f;
@@ -29,6 +37,10 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void Awake() {
         
+        cardStateManager = CardStateManager.Instance;
+        cardQueueSystem = CardQueueSystem.Instance;
+        rangeIndicatorManager = RangeIndicatorManager.Instance;
+
         originalScale = Vector3.one;
 
         GameObject playAreaObj = GameObject.Find("PlayArea");
@@ -43,9 +55,10 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
-        
-        CardStateManager.Instance.SetDraggingState(gameObject, true);
-        CardQueueSystem.Instance.SetCardQueueDraggingState(true);
+
+        cardData = cardStateManager.GetCardState(gameObject).CardData;
+        cardStateManager.SetDraggingState(gameObject, true);
+        cardQueueSystem.SetCardQueueDraggingState(true);
 
         if (isAnimating) return;    
 
@@ -58,7 +71,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
-        
+
     }
 
     public void OnDrag(PointerEventData eventData) {
@@ -70,9 +83,14 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 transform.DOScale(originalScale * zoomScale, hoverDuration)
             .SetEase(hoverEase);
 
+                rangeIndicatorManager.CreateIndicator(cardData);
+                startDragPosition = eventData.position;
+
             }
 
             isInPlayArea = true;
+            Vector2 delta = eventData.position - startDragPosition;
+            rangeIndicatorManager.UpdateIndicator(delta);
 
         } else {
 
@@ -84,6 +102,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
 
             isInPlayArea = false;
+            rangeIndicatorManager.ClearIndicator();
 
         }
 
@@ -93,8 +112,8 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData) {
         
-        CardStateManager.Instance.SetDraggingState(gameObject, false);
-        CardQueueSystem.Instance.SetCardQueueDraggingState(false);
+        cardStateManager.SetDraggingState(gameObject, false);
+        cardQueueSystem.SetCardQueueDraggingState(false);
 
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
@@ -105,12 +124,29 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         // 判断是否在有效区域
         if (IsInPlayArea()) {
         
-            CardQueueSystem.Instance.TryUseCard(this);
-        
+            cardQueueSystem.TryUseCard(this);
+
+            // 将最终参数传递给技能系统
+            Vector3 direction = (eventData.position - startDragPosition).normalized;
+            //SkillSystem.Instance.ExecuteSkill(cardData, direction);
+
         }
         else {
         
             ReturnToOriginalPosition();
+        
+        }
+
+        
+        //恢复其他卡牌大小
+        foreach (var cardInfo in cardQueueSystem.currentCards) {
+        
+            if (cardInfo.cardInstance != null && cardInfo.cardInstance != gameObject) {
+            
+                cardInfo.cardInstance.transform.DOScale(originalScale, hoverDuration)
+                    .SetEase(hoverEase);
+            
+            }
         
         }
     

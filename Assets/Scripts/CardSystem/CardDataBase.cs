@@ -165,8 +165,8 @@ public class CardDataBase : ScriptableObject
     public struct VisualFeedback
     {
         [Header("预览效果")]
-        public GameObject dragPreviewPrefab;
-        public Material rangeIndicatorMat;
+        public GameObject rangeIndicatorPrefab;
+        //public Material rangeIndicatorMat;
         
         [Header("施法效果")]
         public ParticleSystem castEffect;

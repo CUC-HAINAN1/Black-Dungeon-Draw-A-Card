@@ -18,7 +18,7 @@ MonoBehaviour:
     for a period of time.
   cardIcon: {fileID: 156347195121582194, guid: 62d839ef54107b44fb11001a8541bedf, type: 3}
   rarity: 0
-  manaCost: 15
+  manaCost: 3
   cooldown: 1
   Owned: 1
   skillType: 4
@@ -50,8 +50,7 @@ MonoBehaviour:
       amount: 0
       duration: 0
   visualConfig:
-    dragPreviewPrefab: {fileID: 0}
-    rangeIndicatorMat: {fileID: 0}
+    rangeIndicatorPrefab: {fileID: 0}
     castEffect: {fileID: 0}
     castSound: {fileID: 0}
     hitEffect: {fileID: 0}

@@ -17,19 +17,6 @@ public class CardQueueSystem : MonoBehaviour {
         public CardDataBase cardData;
         public GameObject cardInstance;
 
-        public bool IsDragging {
-        
-            get => CardStateManager.Instance.GetCardState(cardInstance)?.IsDragging ?? false;
-            set => CardStateManager.Instance.SetDraggingState(cardInstance, value);
-        
-        }
-
-        public bool IsUsing {
-        
-            get => CardStateManager.Instance.GetCardState(cardInstance)?.IsUsing ?? false;
-            set => CardStateManager.Instance.SetUsingState(cardInstance, value);
-        }
-
     }
 
     [Header("当前卡牌状态")]
@@ -55,7 +42,6 @@ public class CardQueueSystem : MonoBehaviour {
 
     }
 
-
     public void Initialize() {
     
         ClearAllSlots();
@@ -71,8 +57,6 @@ public class CardQueueSystem : MonoBehaviour {
     public void CreateCard(CardDataBase data, Transform targetSlot) {
     
         int slotIndex = System.Array.IndexOf(cardSlots, targetSlot);
-        
-        Debug.Log(slotIndex);
 
         ClearSlot(targetSlot);
 
@@ -95,14 +79,8 @@ public class CardQueueSystem : MonoBehaviour {
         };
 
         // 注册新卡牌状态
-        CardStateManager.Instance.RegisterCard(newCard);
-
-        Debug.Log(newCard == null);
+        CardStateManager.Instance.RegisterCard(newCard, false, false, data);
         
-        // 初始化状态
-        currentCards[slotIndex].IsDragging = false;
-        currentCards[slotIndex].IsUsing = false;
-
     }
 
     public Transform GetNextSlot() {
@@ -152,8 +130,6 @@ public class CardQueueSystem : MonoBehaviour {
 
     }
 
-
-
     private void ClearAllSlots() {
     
         foreach(Transform slot in cardSlots) {
@@ -183,7 +159,6 @@ public class CardQueueSystem : MonoBehaviour {
         IsAnyCardDragging = isAnyCardDragging;
 
     }
-
 
     [Header("基础配置")]
     public GameObject cardPrefab;

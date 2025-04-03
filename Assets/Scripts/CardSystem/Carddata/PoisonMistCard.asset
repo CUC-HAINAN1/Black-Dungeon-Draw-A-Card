@@ -18,7 +18,7 @@ MonoBehaviour:
     damage to enemies within the range.
   cardIcon: {fileID: -500802331796180063, guid: 4e215710d4850a74c8b2e6c6c75857fa, type: 3}
   rarity: 0
-  manaCost: 20
+  manaCost: 5
   cooldown: 1
   Owned: 1
   skillType: 3
@@ -50,8 +50,7 @@ MonoBehaviour:
       amount: 0
       duration: 0
   visualConfig:
-    dragPreviewPrefab: {fileID: 0}
-    rangeIndicatorMat: {fileID: 0}
+    rangeIndicatorPrefab: {fileID: 0}
     castEffect: {fileID: 0}
     castSound: {fileID: 0}
     hitEffect: {fileID: 0}

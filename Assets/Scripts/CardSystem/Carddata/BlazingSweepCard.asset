@@ -18,7 +18,7 @@ MonoBehaviour:
     to enemies within the area.
   cardIcon: {fileID: -3573070616845171490, guid: 6cb1b072edcfbf146b89f17951ae5c35, type: 3}
   rarity: 0
-  manaCost: 20
+  manaCost: 4
   cooldown: 0
   Owned: 1
   skillType: 1
@@ -50,8 +50,7 @@ MonoBehaviour:
       amount: 0
       duration: 0
   visualConfig:
-    dragPreviewPrefab: {fileID: 0}
-    rangeIndicatorMat: {fileID: 0}
+    rangeIndicatorPrefab: {fileID: 0}
     castEffect: {fileID: 0}
     castSound: {fileID: 0}
     hitEffect: {fileID: 0}

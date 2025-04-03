@@ -17,8 +17,10 @@ public enum StateType {
     InCombat,
     Invincible,
     IsShield,
+    IsRolling,
     IsDead,
-    IsAttackIncreased
+    IsAttackIncreased,
+
 
 }
 public class PlayerAttributes : MonoBehaviour {
@@ -48,6 +50,7 @@ public class PlayerAttributes : MonoBehaviour {
     private bool _deathEventTriggered;
     [SerializeField] private bool _inCombat;
     [SerializeField] private bool _isInvincible;
+    [SerializeField] private bool _isRolling;
     
     private Coroutine _invincibleCoroutine;
     [SerializeField] private bool _hasShield;
@@ -82,6 +85,7 @@ public class PlayerAttributes : MonoBehaviour {
 
         _isInvincible = false;
         _inCombat = false;
+        _isRolling = false;
 
     }
 
@@ -200,6 +204,9 @@ public class PlayerAttributes : MonoBehaviour {
 
     }
 
+    //获取Transform组件，位置/旋转信息
+    public Transform PlayerTransform => GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Transform>();
+    
     //状态访问器
     public bool IsDead {
 
@@ -316,11 +323,32 @@ public class PlayerAttributes : MonoBehaviour {
     
     }
 
+    public bool IsRolling {
+        
+        get => _isRolling;
+        private set {
+            
+            if (_isRolling != value) {
+                
+                _isRolling = value;
+                EventManager.Instance.TriggerEvent(
+                    
+                    value ? "RollingStateEntered" : "RollingStateExited", 
+                    new StateChangeData(StateType.IsRolling)
+                
+                );
+            
+            }
+        
+        }
+    
+    }
+
     //操作方法
     //使用方式：PlayerAttributes.Instance.Takedamege(damage)
     public void TakeDamage(int amount) {
 
-        if (IsDead || IsInvincible) return;
+        if (IsDead || IsInvincible || IsRolling) return;
 
         if (Shield > 0) {
 
@@ -372,7 +400,8 @@ public class PlayerAttributes : MonoBehaviour {
 
     public void EnableInvincible() => IsInvincible = true;
     public void DisableInvincible() => IsInvincible = false;
-
+    public void StartRolling()  => IsRolling = true;
+    public void EndRolling() => IsRolling = false;
     public void EnableInvincibleForDuration(float duration) {
 
         //如果已经有正在持续的无敌协程，先停止

@@ -7,41 +7,45 @@ public class CardStateManager : MonoBehaviour
     // 存储所有卡牌状态 <实例ID, 状态>
     private Dictionary<GameObject, CardState> cardStates = new Dictionary<GameObject, CardState>();
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
+    private void Awake() {
+    
+        if (Instance != null && Instance != this) {
+        
             Destroy(gameObject);
+        
         }
-        else
-        {
+        else {
+        
             Instance = this;
+        
         }
     }
 
     // 注册新卡牌
-    public void RegisterCard(GameObject cardInstance)
-    {
-        if (!cardStates.ContainsKey(cardInstance))
-        {
-            cardStates.Add(cardInstance, new CardState());
+    public void RegisterCard(GameObject cardInstance, bool isDragging, bool isUsing, CardDataBase cardData) {
+    
+        if (!cardStates.ContainsKey(cardInstance)) {
+        
+            cardStates.Add(cardInstance, new CardState(isDragging, isUsing, cardData));
+        
         }
+    
     }
 
     // 更新拖拽状态
-    public void SetDraggingState(GameObject cardInstance, bool isDragging)
-    {
+    public void SetDraggingState(GameObject cardInstance, bool isDragging) {
+    
         if (cardStates.ContainsKey(cardInstance)) {
         
             cardStates[cardInstance].IsDragging = isDragging;
+        
         }
     
     }
 
     // 更新使用状态
-    public void SetUsingState(GameObject cardInstance, bool isUsing)
-    {
-
+    public void SetUsingState(GameObject cardInstance, bool isUsing) {
+    
         if (cardStates.ContainsKey(cardInstance)) {
         
             cardStates[cardInstance].IsUsing = isUsing;
@@ -51,8 +55,7 @@ public class CardStateManager : MonoBehaviour
 
     // 获取完整状态
     public CardState GetCardState(GameObject cardInstance) {
-    
-        int instanceID = cardInstance.GetInstanceID();
+        
         return cardStates.ContainsKey(cardInstance) ? cardStates[cardInstance] : null;
     
     }
@@ -61,7 +64,17 @@ public class CardStateManager : MonoBehaviour
 // 卡牌状态数据类
 [System.Serializable]
 public class CardState {
+
+    public CardState(bool isDragging, bool isUsing, CardDataBase cardData) {
+
+        IsDragging= isDragging;
+        IsUsing = isUsing;
+        CardData = cardData;
+
+    }
+
     public bool IsDragging;
     public bool IsUsing;
+    public CardDataBase CardData;
 
 }

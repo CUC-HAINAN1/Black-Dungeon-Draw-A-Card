@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
-
+using System;
 
 public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
@@ -11,6 +11,7 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private Image cardImage; 
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI ManaCostText;
 
     [Header("基于鼠标放置的放大与缩放设置")]
     [SerializeField] private float hoverScale = 1.2f;
@@ -28,9 +29,11 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData eventData) {
     
         if (CardQueueSystem.Instance == null || 
+            
             CardStateManager.Instance.GetCardState(gameObject).IsDragging ||
             CardStateManager.Instance.GetCardState(gameObject).IsUsing ||
             CardQueueSystem.Instance.IsAnyCardDragging
+        
         ) return;
         
         // 放大当前卡牌
@@ -52,9 +55,11 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerExit(PointerEventData eventData)
     {
         if (CardQueueSystem.Instance == null || 
+            
             CardStateManager.Instance.GetCardState(gameObject).IsDragging ||
             CardStateManager.Instance.GetCardState(gameObject).IsUsing ||
             CardQueueSystem.Instance.IsAnyCardDragging
+        
         ) return;
 
         // 恢复当前卡牌大小
@@ -76,17 +81,12 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
 
     public void Initialize(CardDataBase data) {
-    
         
         cardImage.sprite = data.cardIcon;
         nameText.text = data.displayName;
         descriptionText.text = data.description;
+        ManaCostText.text = Convert.ToString(data.manaCost);
         
-        // 根据稀有度改变边框颜色
-        GetComponent<Image>().color = data.rarity == CardDataBase.Rarity.Rare 
-            ? Color.yellow 
-            : Color.white;
-    
     }
 
 }
