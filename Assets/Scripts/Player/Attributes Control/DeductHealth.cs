@@ -14,7 +14,7 @@ public class DeductHealth : MonoBehaviour {
 
         if (PlayerAttributes.Instance != null) {
 
-            _dudectCoroutine = StartCoroutine(DeductManaPeriodically());
+            _dudectCoroutine = StartCoroutine(DeductHealthPeriodically());
 
         } else {
 
@@ -24,7 +24,7 @@ public class DeductHealth : MonoBehaviour {
 
     }
 
-    System.Collections.IEnumerator DeductManaPeriodically() {
+    System.Collections.IEnumerator DeductHealthPeriodically() {
 
         WaitForSeconds wait = new WaitForSeconds(interval);
 
