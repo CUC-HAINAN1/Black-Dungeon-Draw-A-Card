@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Weapon
   - Pet
+  - OpenDoor
+  - CloseDoor
   layers:
   - Default
   - TransparentFX

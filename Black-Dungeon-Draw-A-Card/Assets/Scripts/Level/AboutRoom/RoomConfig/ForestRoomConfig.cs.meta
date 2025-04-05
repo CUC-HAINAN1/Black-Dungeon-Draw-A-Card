@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 92ef4bd1c2d696e47950b4a4a8069709
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - LevelGraph: {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - LevelGraphBoss: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

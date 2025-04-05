@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Google.Api.CommonProtos</id>
+    <version>2.16.0</version>
+    <title>Google API Common Protos</title>
+    <authors>Google LLC</authors>
+    <license type="expression">BSD-3-Clause</license>
+    <licenseUrl>https://licenses.nuget.org/BSD-3-Clause</licenseUrl>
+    <icon>NuGetIcon.png</icon>
+    <projectUrl>https://github.com/googleapis/gax-dotnet</projectUrl>
+    <iconUrl>https://www.gstatic.com/images/branding/product/1x/google_developers_64dp.png</iconUrl>
+    <description>Common Protocol Buffer messages for Google APIs</description>
+    <copyright>Copyright 2020 Google LLC</copyright>
+    <tags>Google</tags>
+    <repository type="git" url="https://github.com/googleapis/gax-dotnet" commit="1b3c62c8b728e70e7b61368c77594628dbdcbe57" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="Google.Protobuf" version="[3.28.2, 4.0.0)" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Google.Protobuf" version="[3.28.2, 4.0.0)" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

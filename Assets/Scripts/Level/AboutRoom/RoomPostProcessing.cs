@@ -7,36 +7,67 @@ using UnityEngine.Tilemaps;
 public class RoomPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D
 {
     private List<RoomInstanceGrid2D> roomInstances;
+
     public override void Run(DungeonGeneratorLevelGrid2D level)
     {
-        roomInstances = level.RoomInstances;
-        foreach (var roomInstance in level.RoomInstances)
+        if (level == null || level.RoomInstances == null)
         {
-            var roomTemplateInstance = roomInstance.RoomTemplateInstance;
+            Debug.LogError("Invalid level data");
+            return;
+        }
 
-            // Find floor tilemap layer
-            var tilemaps = RoomTemplateUtilsGrid2D.GetTilemaps(roomTemplateInstance);
-            var floor = tilemaps.Single(x => x.name == "Floor").gameObject;
-            // Add floor collider
-            AddFloorCollider(floor);
-            //floor.AddComponent<CurrentRoomDetectionTriggerHandler>();
+        roomInstances = level.RoomInstances;
 
+        foreach (var roomInstance in roomInstances)
+        {
+            if (roomInstance?.RoomTemplateInstance == null)
+            {
+                Debug.LogWarning("Skipping invalid room instance");
+                continue;
+            }
+
+            ProcessFloor(roomInstance.RoomTemplateInstance);
         }
     }
 
-    private void AddFloorCollider(GameObject floor)
+    private void ProcessFloor(GameObject roomTemplate)
     {
-        var tilemapCollider2D = floor.AddComponent<TilemapCollider2D>();
-        tilemapCollider2D.usedByComposite = true;
+        var tilemaps = RoomTemplateUtilsGrid2D.GetTilemaps(roomTemplate);
+        var floorTilemap = tilemaps.FirstOrDefault(x => x.name == "Floor");
 
-        var compositeCollider2d = floor.AddComponent<CompositeCollider2D>();
-        compositeCollider2d.geometryType = CompositeCollider2D.GeometryType.Polygons;
-        compositeCollider2d.isTrigger = true;
-        compositeCollider2d.generationType = CompositeCollider2D.GenerationType.Synchronous;
-        floor.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        if (floorTilemap == null)
+        {
+            Debug.LogError($"Floor tilemap not found in room: {roomTemplate.name}");
+            return;
+        }
+
+        var floor = floorTilemap.gameObject;
+        ConfigureFloorCollider(floor);
     }
-    public List<RoomInstanceGrid2D> GetRoomInstances()
+
+    private void ConfigureFloorCollider(GameObject floor)
     {
-        return roomInstances;
+        var rb = floor.GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            rb = floor.AddComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Static; // 确保设置BodyType
+            Debug.LogWarning($"自动为 {floor.name} 添加了Rigidbody2D");
+        }
+
+        // 确保必要的组件存在
+        var rigidbody = floor.GetComponent<Rigidbody2D>() ?? floor.AddComponent<Rigidbody2D>();
+        rigidbody.bodyType = RigidbodyType2D.Static;
+
+        // 配置碰撞器
+        var tilemapCollider = floor.GetComponent<TilemapCollider2D>() ?? floor.AddComponent<TilemapCollider2D>();
+        tilemapCollider.usedByComposite = true;
+
+        var compositeCollider = floor.GetComponent<CompositeCollider2D>() ?? floor.AddComponent<CompositeCollider2D>();
+        compositeCollider.geometryType = CompositeCollider2D.GeometryType.Polygons;
+        compositeCollider.isTrigger = true;
+        compositeCollider.generationType = CompositeCollider2D.GenerationType.Synchronous;
     }
+
+    public List<RoomInstanceGrid2D> GetRoomInstances() => roomInstances;
 }
