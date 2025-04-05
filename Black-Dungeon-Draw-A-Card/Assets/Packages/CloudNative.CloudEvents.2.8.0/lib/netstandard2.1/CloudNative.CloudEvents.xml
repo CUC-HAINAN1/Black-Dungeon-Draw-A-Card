@@ -1,0 +1,1466 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CloudNative.CloudEvents</name>
+    </assembly>
+    <members>
+        <member name="T:CloudNative.CloudEvents.CloudEvent">
+            <summary>
+            Represents a CloudEvent.
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.CloudEvent.attributeValues">
+            <summary>
+            Values for all attributes other than spec version.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEvent.#ctor">
+            <summary>
+            Creates a new instance, using the default <see cref="T:CloudNative.CloudEvents.CloudEventsSpecVersion"/>
+            and no initial extension attributes.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEvent.#ctor(CloudNative.CloudEvents.CloudEventsSpecVersion)">
+            <summary>
+            Creates a new instance, using the specified <see cref="T:CloudNative.CloudEvents.CloudEventsSpecVersion"/>
+            and no initial extension attributes.
+            </summary>
+            <param name="specVersion">CloudEvents Specification version for this instance. Must not be null.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEvent.#ctor(System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Creates a new instance, using the default <see cref="T:CloudNative.CloudEvents.CloudEventsSpecVersion"/>
+            and the specified initial extension attributes.
+            </summary>
+            <param name="extensionAttributes">Initial extension attributes. May be null, which is equivalent
+            to an empty sequence.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEvent.#ctor(CloudNative.CloudEvents.CloudEventsSpecVersion,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Creates a new instance, using the specified <see cref="T:CloudNative.CloudEvents.CloudEventsSpecVersion"/>
+            and the specified initial extension attributes.
+            </summary>
+            <param name="specVersion">CloudEvents Specification version for this instance. Must not be null.</param>
+            <param name="extensionAttributes">Initial extension attributes. May be null, which is equivalent
+            to an empty sequence.</param>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.SpecVersion">
+            <summary>
+            The CloudEvents specification version for this event.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.Item(CloudNative.CloudEvents.CloudEventAttribute)">
+            <summary>
+            Sets or fetches the value associated with the given attribute.
+            If the attribute is not known in this event, fetching the value always returns null, and
+            setting the value adds the attribute, which must be an extension attribute with a name which is
+            not otherwise present known to the event.
+            </summary>
+            <remarks>
+            <para>
+            If non-null, the value must be compatible with the type of the attribute. For example, an attempt
+            to store a Time context attribute with a string value will fail with an <see cref="T:System.ArgumentException"/>.
+            </para>
+            <para>
+            The the value being set is null, any existing value is removed from the event.
+            </para>
+            <para>
+            The indexer cannot be used to access the 'specversion' attribute. Use <see cref="P:CloudNative.CloudEvents.CloudEvent.SpecVersion"/>
+            for that purpose.
+            </para>
+            </remarks>
+            <param name="attribute">The attribute whose value should be set or fetched.</param>
+            <returns>The fetched attribute value, or null if the attribute has no value in this event.</returns>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.Item(System.String)">
+            <summary>
+            Sets or fetches the value associated with the given attribute name.
+            Setting a value of null removes the value from the event, if it exists.
+            If the attribute is not known in this event, fetching the value always returns null, and
+            setting the value add a new extension attribute with the given name, and a type of string.
+            (The value for an unknown attribute must be a string or null.)
+            </summary>
+            <remarks>
+            The indexer cannot be used to access the 'specversion' attribute. Use <see cref="P:CloudNative.CloudEvents.CloudEvent.SpecVersion"/>
+            for that purpose.
+            </remarks>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.Data">
+            <summary>
+            CloudEvent 'data' content.  The event payload. The payload depends on the type
+            and the 'schemaurl'. It is encoded into a media format which is specified by the
+            'contenttype' attribute (e.g. application/json).
+            </summary>
+            <see href="https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#event-data"/>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.DataContentType">
+            <summary>
+            CloudEvent <see href="https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#datacontenttype">'datacontenttype'</see> attribute.
+            This is the content type of the <see cref="P:CloudNative.CloudEvents.CloudEvent.Data"/> property.
+            This attribute enables the data attribute to carry any type of content, where the
+            format and encoding might differ from that of the chosen event format.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.Id">
+            <summary>
+            CloudEvent <see href="https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#id">'id'</see> attribute,
+            This is the ID of the event. When combined with <see cref="P:CloudNative.CloudEvents.CloudEvent.Source"/>, this enables deduplication.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.DataSchema">
+            <summary>
+            CloudEvents <see href="https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#dataschema">'dataschema'</see> attribute.
+            A link to the schema that the data attribute adheres to.
+            Incompatible changes to the schema SHOULD be reflected by a different URI.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.Source">
+            <summary>
+            CloudEvents <see href="https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#source">'source'</see> attribute.
+            This describes the event producer. Often this will include information such as the type of the event source, the
+            organization publishing the event, the process that produced the event, and some unique identifiers.
+            When combined with <see cref="P:CloudNative.CloudEvents.CloudEvent.Id"/>, this enables deduplication.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.Subject">
+            <summary>
+            CloudEvents <see href="https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#subject">'subject'</see> attribute.
+            This describes the subject of the event in the context of the event producer (identified by <see cref="P:CloudNative.CloudEvents.CloudEvent.Source"/>).
+            In publish-subscribe scenarios, a subscriber will typically subscribe to events emitted by a source,
+            but the source identifier alone might not be sufficient as a qualifier for any specific event if the source context has
+            internal sub-structure.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.Time">
+            <summary>
+            CloudEvents <see href="https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#time">'time'</see> attribute.
+            Timestamp of when the occurrence happened.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.Type">
+            <summary>
+            CloudEvents <see href="https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#type">'type'</see> attribute.
+            Type of occurrence which has happened.
+            Often this attribute is used for routing, observability, policy enforcement, etc.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEvent.GetAttribute(System.String)">
+            <summary>
+            Returns the attribute with the given name, which may be a standard
+            context attribute or an extension. Note that this returns the attribute
+            definition, not the value of the attribute.
+            </summary>
+            <param name="name">The attribute name to look up.</param>
+            <returns>The attribute with the given name, or null if no this event
+            does not know of such an attribute.</returns>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.ExtensionAttributes">
+            <summary>
+            Returns the extension attributes known to this event, regardless of whether or not
+            they're populated. Currently the order in which the attributes is returned is not guaranteed.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEvent.GetPopulatedAttributes">
+            <summary>
+            Returns a sequence of attributes and their values, for values which are populated in this event.
+            This does not include the CloudEvents spec version attribute.
+            Currently the order in which the attributes is returned is not guaranteed.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEvent.SetAttributeFromString(System.String,System.String)">
+            <summary>
+            Sets the value for the attribute with the given name, based on its string value which is
+            expected to be the CloudEvents canonical representation of the value.
+            The value will be parsed and converted for non-string attributes. Unknown attributes are
+            assumed to be string-values extension attributes.
+            </summary>
+            <param name="name">The name of the attribute to set. Must not be null.</param>
+            <param name="value">The value of the attribute to set. Must not be null.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEvent.Validate">
+            <summary>
+            Validates that this CloudEvent is valid in the same way as <see cref="P:CloudNative.CloudEvents.CloudEvent.IsValid"/>,
+            but throwing an <see cref="T:System.InvalidOperationException"/> if the event is invalid.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">The event is invalid.</exception>
+            <returns>A reference to the same object, for simplicity of method chaining.</returns>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEvent.IsValid">
+            <summary>
+            Returns whether this CloudEvent is valid, i.e. whether all required attributes have
+            values.
+            </summary>
+        </member>
+        <member name="T:CloudNative.CloudEvents.CloudEventAttribute">
+            <summary>
+            An attribute that can be associated with a <see cref="T:CloudNative.CloudEvents.CloudEvent"/>.
+            This may be a context attribute or an extension attribute.
+            This class represents the abstract concept of an attribute, rather than
+            an attribute value.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttribute.Type">
+            <summary>
+            The type of the attribute. All values provided must be compatible with this.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttribute.Name">
+            <summary>
+            The name of the attribute. Instances of this class associated with different
+            versions of the specification may use different names for the same concept.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttribute.IsRequired">
+            <summary>
+            Indicates whether this attribute is a required attribute.
+            Extension attributes are never required.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttribute.IsExtension">
+            <summary>
+            Indicates whether this attribute is an extension attribute.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventAttribute.CreateExtension(System.String,CloudNative.CloudEvents.CloudEventAttributeType)">
+            <summary>
+            Creates an extension attribute with the given name and type.
+            </summary>
+            <param name="name">The extension attribute name. Must not be null, and must not be 'specversion'.</param>
+            <param name="type">The extension attribute type. Must not be null.</param>
+            <returns>The extension attribute represented as a <see cref="T:CloudNative.CloudEvents.CloudEventAttribute"/>.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventAttribute.CreateExtension(System.String,CloudNative.CloudEvents.CloudEventAttributeType,System.Action{System.Object})">
+            <summary>
+            Creates an extension attribute with a custom validator.
+            </summary>
+            <param name="name">The extension attribute name. Must not be null, and must not be 'specversion'.</param>
+            <param name="type">The extension attribute type. Must not be null.</param>
+            <param name="validator">Validator to use when parsing or formatting values. May be null.
+            This delegate is only ever called with a non-null value which can be cast to the attribute type's corresponding
+            CLR type. If the validator throws any exception, it is wrapped in an ArgumentException containing the
+            attribute details.</param>
+            <returns>The extension attribute represented as a <see cref="T:CloudNative.CloudEvents.CloudEventAttribute"/>.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventAttribute.ToString">
+            <summary>
+            Returns the name of the attribute.
+            </summary>
+            <returns>The name of the attribute.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventAttribute.ValidateName(System.String)">
+            <summary>
+            Validates that the given name is valid for an attribute. It must be non-empty,
+            and consist entirely of lower-case ASCII letters or digits. While the specification recommends
+            that attribute names should be at most 20 characters long, this method does not validate that.
+            </summary>
+            <param name="name">The name to validate.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="name"/> is not a valid argument name.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="name"/> is null.</exception>
+            <returns><paramref name="name"/>, for convenience.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventAttribute.Parse(System.String)">
+            <summary>
+            Parses the given string representation of an attribute value into a suitable CLR representation.
+            </summary>
+            <param name="text">The text representation to parse. Must not be null, and must be a valid value for this attribute.</param>
+            <returns>The CLR representation of the given textual value for this attribute.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventAttribute.Format(System.Object)">
+            <summary>
+            Formats the given value for this attribute as a string.
+            </summary>
+            <param name="value">The value to format. Must not be null, and must be a suitable value for this attribute.</param>
+            <returns>The string representation of this attribute.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventAttribute.Validate(System.Object)">
+            <summary>
+            Validates that the given value is appropriate for this attribute.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> is invalid for this attribute.</exception>
+            <returns>The value, for simple method chaining.</returns>
+        </member>
+        <member name="T:CloudNative.CloudEvents.CloudEventAttributeType">
+            <summary>
+            The type of an event attribute, providing simple formatting and parsing functionality.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttributeType.Boolean">
+            <summary>
+            A Boolean value of "true" or "false".
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttributeType.Integer">
+            <summary>
+            A whole number in the range -2,147,483,648 to +2,147,483,647 inclusive.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttributeType.String">
+            <summary>
+            A sequence of allowable Unicode characters.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttributeType.Binary">
+            <summary>
+            A sequence of bytes.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttributeType.Uri">
+            <summary>
+            An absolute uniform resource identifier.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttributeType.UriReference">
+            <summary>
+            A uniform resource identifier reference.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttributeType.Timestamp">
+            <summary>
+            A date and time expression using the Gregorian calendar.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttributeType.Ordinal">
+            <summary>
+            The <see cref="P:CloudNative.CloudEvents.CloudEventAttributeType.Ordinal"/> value for this type.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttributeType.Name">
+            <summary>
+            The name of the type, as it is written in the CloudEvents specification.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventAttributeType.ClrType">
+            <summary>
+            CLR type used to represent a value of this attribute type.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventAttributeType.ToString">
+            <summary>
+            Returns the name of the type.
+            </summary>
+            <returns>The name of the type.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventAttributeType.Format(System.Object)">
+            <summary>
+            Converts the given value to its canonical string representation.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventAttributeType.Parse(System.String)">
+            <summary>
+            Converts the given value from its canonical string representation
+            into <see cref="P:CloudNative.CloudEvents.CloudEventAttributeType.ClrType"/>.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventAttributeType.Validate(System.Object)">
+            <summary>
+            Validates that the given value is valid for this type.
+            </summary>
+            <param name="value">The value to validate. Must be non-null, and suitable for this attribute type.</param>
+        </member>
+        <member name="T:CloudNative.CloudEvents.CloudEventFormatter">
+            <summary>
+            Performs CloudEvent conversions as part of encoding and decoding messages for protocol bindings.
+            </summary>
+            <remarks>
+            <para>
+            Event formatters are responsible for complete CloudEvent encoding and decoding for structured-mode messages (where
+            all the CloudEvent information is represented within the message body), and data-only encoding and decoding
+            for binary-mode messages (where CloudEvent attributes are represented in message metadata, and the CloudEvent data
+            is represented in the message body).
+            </para>
+            <para>
+            Each event formatter type is responsible for documenting what types of value are acceptable for the <see cref="P:CloudNative.CloudEvents.CloudEvent.Data"/>
+            property in CloudEvents it is asked to encode, and likewise what types of value will be present in the same property
+            when it is asked to decode a message. Event formatters should aim to be as consistent as possible with respect to data handling
+            between structured and binary modes, although this is not always possible as the structured mode representation may contain
+            more hints around how to interpret the data than the binary mode representation. Inconsistencies should be carefully
+            noted so that consumers can write robust code.
+            </para>
+            <para>
+            An event format is often naturally associated with a particular kind of data, but it is not limited to working with
+            that kind. For example, the JSON event format allows JSON data to be stored particularly naturally within the structured-mode
+            message body (which is itself JSON), but it is still able to handle arbitrary binary or text data.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.DecodeStructuredModeMessage(System.ReadOnlyMemory{System.Byte},System.Net.Mime.ContentType,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Decodes a CloudEvent from a structured-mode message body, represented as a read-only memory segment.
+            </summary>
+            <param name="body">The message body (content).</param>
+            <param name="contentType">The content type of the message, or null if no content type is known.
+            Typically this is a content type with a media type of "application/cloudevents"; the additional
+            information such as the charset parameter may be needed in order to decode the message body.</param>
+            <param name="extensionAttributes">The extension attributes to use when populating the CloudEvent. May be null.</param>
+            <returns>The CloudEvent derived from the structured message body.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.DecodeStructuredModeMessage(System.IO.Stream,System.Net.Mime.ContentType,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Decodes a CloudEvent from a structured-mode message body, represented as a stream. The default implementation copies the
+            content of the stream into a read-only memory segment before passing it to <see cref="M:CloudNative.CloudEvents.CloudEventFormatter.DecodeStructuredModeMessage(System.ReadOnlyMemory{System.Byte},System.Net.Mime.ContentType,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})"/>
+            but this can be overridden by event formatters that can decode a stream more efficiently.
+            </summary>
+            <param name="messageBody">The message body (content). Must not be null.</param>
+            <param name="contentType">The content type of the message, or null if no content type is known.
+            Typically this is a content type with a media type of "application/cloudevents"; the additional
+            information such as the charset parameter may be needed in order to decode the message body.</param>
+            <param name="extensionAttributes">The extension attributes to use when populating the CloudEvent. May be null.</param>
+            <returns>The decoded CloudEvent.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.DecodeStructuredModeMessageAsync(System.IO.Stream,System.Net.Mime.ContentType,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Asynchronously decodes a CloudEvent from a structured-mode message body, represented as a stream. The default implementation asynchronously copies the
+            content of the stream into a read-only memory segment before passing it to <see cref="M:CloudNative.CloudEvents.CloudEventFormatter.DecodeStructuredModeMessage(System.ReadOnlyMemory{System.Byte},System.Net.Mime.ContentType,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})"/>
+            but this can be overridden by event formatters that can decode a stream more efficiently.
+            </summary>
+            <param name="body">The message body (content). Must not be null.</param>
+            <param name="contentType">The content type of the message, or null if no content type is known.
+            Typically this is a content type with a media type of "application/cloudevents"; the additional
+            information such as the charset parameter may be needed in order to decode the message body.</param>
+            <param name="extensionAttributes">The extension attributes to use when populating the CloudEvent. May be null.</param>
+            <returns>The CloudEvent derived from the structured message body.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.EncodeStructuredModeMessage(CloudNative.CloudEvents.CloudEvent,System.Net.Mime.ContentType@)">
+            <summary>
+            Encodes a CloudEvent as the body of a structured-mode message.
+            </summary>
+            <param name="cloudEvent">The CloudEvent to encode. Must not be null.</param>
+            <param name="contentType">On successful return, the content type of the structured-mode message body.
+            Must not be null (on return).</param>
+            <returns>The structured-mode representation of the CloudEvent.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.DecodeBinaryModeEventData(System.ReadOnlyMemory{System.Byte},CloudNative.CloudEvents.CloudEvent)">
+            <summary>
+            Decodes the given data obtained from a binary-mode message, populating the <see cref="P:CloudNative.CloudEvents.CloudEvent.Data"/>
+            property of <paramref name="cloudEvent"/>. Other attributes within the CloudEvent may be used to inform
+            the interpretation of the message body. This method is expected to be called after all other aspects of the CloudEvent
+            have been populated.
+            </summary>
+            <param name="body">The message body (content). Must not be null, but may be empty.</param>
+            <param name="cloudEvent">The CloudEvent whose Data property should be populated. Must not be null.</param>
+            <exception cref="T:System.ArgumentException">The data in the given CloudEvent cannot be decoded by this
+            event formatter.</exception>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.EncodeBinaryModeEventData(CloudNative.CloudEvents.CloudEvent)">
+            <summary>
+            Encodes the data from <paramref name="cloudEvent"/> in a manner suitable for a binary mode message.
+            </summary>
+            <exception cref="T:System.ArgumentException">The data in the given CloudEvent cannot be encoded by this
+            event formatter.</exception>
+            <returns>The binary-mode representation of the CloudEvent.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.DecodeBatchModeMessage(System.ReadOnlyMemory{System.Byte},System.Net.Mime.ContentType,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Decodes a collection CloudEvents from a batch-mode message body, represented as a read-only memory segment.
+            </summary>
+            <param name="body">The message body (content).</param>
+            <param name="contentType">The content type of the message, or null if no content type is known.
+            Typically this is a content type with a media type with a prefix of "application/cloudevents-batch"; the additional
+            information such as the charset parameter may be needed in order to decode the message body.</param>
+            <param name="extensionAttributes">The extension attributes to use when populating the CloudEvent. May be null.</param>
+            <returns>The collection of CloudEvents derived from the batch message body.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.DecodeBatchModeMessage(System.IO.Stream,System.Net.Mime.ContentType,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Decodes a collection CloudEvents from a batch-mode message body, represented as a stream. The default implementation copies the
+            content of the stream into a read-only memory segment before passing it to <see cref="M:CloudNative.CloudEvents.CloudEventFormatter.DecodeBatchModeMessage(System.ReadOnlyMemory{System.Byte},System.Net.Mime.ContentType,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})"/>
+            but this can be overridden by event formatters that can decode a stream more efficiently.
+            </summary>
+            <param name="body">The message body (content). Must not be null.</param>
+            <param name="contentType">The content type of the message, or null if no content type is known.
+            Typically this is a content type with a media type with a prefix of "application/cloudevents"; the additional
+            information such as the charset parameter may be needed in order to decode the message body.</param>
+            <param name="extensionAttributes">The extension attributes to use when populating the CloudEvent. May be null.</param>
+            <returns>The collection of CloudEvents derived from the batch message body.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.DecodeBatchModeMessageAsync(System.IO.Stream,System.Net.Mime.ContentType,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Asynchronously decodes a collection CloudEvents from a batch-mode message body, represented as a stream. The default implementation asynchronously copies the
+            content of the stream into a read-only memory segment before passing it to <see cref="M:CloudNative.CloudEvents.CloudEventFormatter.DecodeBatchModeMessage(System.ReadOnlyMemory{System.Byte},System.Net.Mime.ContentType,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})"/>
+            but this can be overridden by event formatters that can decode a stream more efficiently.
+            </summary>
+            <param name="body">The message body (content). Must not be null.</param>
+            <param name="contentType">The content type of the message, or null if no content type is known.
+            Typically this is a content type with a media type with a prefix of "application/cloudevents"; the additional
+            information such as the charset parameter may be needed in order to decode the message body.</param>
+            <param name="extensionAttributes">The extension attributes to use when populating the CloudEvent. May be null.</param>
+            <returns>The collection of CloudEvents derived from the batch message body.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.EncodeBatchModeMessage(System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEvent},System.Net.Mime.ContentType@)">
+            <summary>
+            Encodes a sequence of CloudEvents as the body of a message.
+            </summary>
+            <param name="cloudEvents">The CloudEvents to encode. Must not be null.</param>
+            <param name="contentType">On successful return, the content type of the batch message body.
+            Must not be null (on return).</param>
+            <returns>The batch representation of the CloudEvent.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.GetOrInferDataContentType(CloudNative.CloudEvents.CloudEvent)">
+            <summary>
+            Determines the effective data content type of the given CloudEvent.
+            </summary>
+            <remarks>
+            <para>
+            This implementation validates that <paramref name="cloudEvent"/> is not null,
+            returns the existing <see cref="P:CloudNative.CloudEvents.CloudEvent.DataContentType"/> if that's not null,
+            and otherwise returns null if <see cref="P:CloudNative.CloudEvents.CloudEvent.Data"/> is null or
+            delegates to <see cref="M:CloudNative.CloudEvents.CloudEventFormatter.InferDataContentType(System.Object)"/> to infer the data content type
+            from the actual data.
+            </para>
+            <para>
+            Derived classes may override this if additional information is needed from the CloudEvent
+            in order to determine the effective data content type, but most cases can be handled by
+            simply overriding <see cref="M:CloudNative.CloudEvents.CloudEventFormatter.InferDataContentType(System.Object)"/>.
+            </para>
+            </remarks>
+            <param name="cloudEvent">The CloudEvent to get or infer the data content type from. Must not be null.</param>
+            <returns>The data content type of the CloudEvent, or null for no data content type.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatter.InferDataContentType(System.Object)">
+            <summary>
+            Infers the effective data content type based on the actual data. This base implementation
+            always returns null, but derived classes may override this method to effectively provide
+            a default data content type based on the in-memory data type.
+            </summary>
+            <param name="data">The data within a CloudEvent. Should not be null.</param>
+            <returns>The inferred content type, or null if no content type is inferred.</returns>
+        </member>
+        <member name="T:CloudNative.CloudEvents.CloudEventFormatterAttribute">
+            <summary>
+            Indicates the <see cref="T:CloudNative.CloudEvents.CloudEventFormatter"/> type for the "target" type on which this attribute is placed.
+            The formatter type is expected to be a concrete type derived from <see cref="T:CloudNative.CloudEvents.CloudEventFormatter"/>,
+            and must have a public parameterless constructor. It should ensure that any decoded CloudEvents
+            populate the <see cref="P:CloudNative.CloudEvents.CloudEvent.Data"/> property with an instance of the target type (or leave it
+            as null if the CloudEvent has no data).
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventFormatterAttribute.FormatterType">
+            <summary>
+            The type to use for CloudEvent formatting. Must not be null.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatterAttribute.#ctor(System.Type)">
+            <summary>
+            Constructs an instance of the attribute for the specified formatter type.
+            </summary>
+            <param name="formatterType">The type performing the data conversions.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventFormatterAttribute.CreateFormatter(System.Type)">
+            <summary>
+            Creates a <see cref="T:CloudNative.CloudEvents.CloudEventFormatter"/> based on <see cref="P:CloudNative.CloudEvents.CloudEventFormatterAttribute.FormatterType"/> if
+            the specified target type (or an ancestor) has the attribute applied to it. This method does not
+            perform any caching; callers may wish to cache the results themselves.
+            </summary>
+            <param name="targetType">The type for which to create a formatter if possible. Must not be null</param>
+            <exception cref="T:System.InvalidOperationException">The target type is decorated with this attribute, but the
+            type cannot be instantiated or does not derive from <see cref="T:CloudNative.CloudEvents.CloudEventFormatter"/>.</exception>
+            <returns>A new instance of the specified formatter, or null if the type is not decorated with this attribute.</returns>
+        </member>
+        <member name="T:CloudNative.CloudEvents.CloudEventsSpecVersion">
+            <summary>
+            Represents a version of the CloudEvents specification, including
+            the context attribute values known to that version.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.SpecVersionAttribute">
+            <summary>
+            The attribute used to indicate the version of the CloudEvents specification being used.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.Default">
+            <summary>
+            The default <see cref="T:CloudNative.CloudEvents.CloudEventsSpecVersion"/> produced by this version of the library.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.V1_0">
+            <summary>
+            The <see cref="T:CloudNative.CloudEvents.CloudEventsSpecVersion"/> for version 1.0 of the CloudEvents specification.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.VersionId">
+            <summary>
+            The ID of the spec version, in its canonical serialized form,
+            such as "1.0".
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.IdAttribute">
+            <summary>
+            The attribute for the <see cref="P:CloudNative.CloudEvents.CloudEvent.Id"/> property.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.DataContentTypeAttribute">
+            <summary>
+            The attribute for the <see cref="P:CloudNative.CloudEvents.CloudEvent.DataContentType"/> property.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.DataSchemaAttribute">
+            <summary>
+            The attribute for the <see cref="P:CloudNative.CloudEvents.CloudEvent.DataSchema"/> property.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.SourceAttribute">
+            <summary>
+            The attribute for the <see cref="P:CloudNative.CloudEvents.CloudEvent.Source"/> property.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.SubjectAttribute">
+            <summary>
+            The attribute for the <see cref="P:CloudNative.CloudEvents.CloudEvent.Subject"/> property.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.TimeAttribute">
+            <summary>
+            The attribute for the <see cref="P:CloudNative.CloudEvents.CloudEvent.Time"/> property.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.TypeAttribute">
+            <summary>
+            The attribute for the <see cref="P:CloudNative.CloudEvents.CloudEvent.Type"/> property.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventsSpecVersion.FromVersionId(System.String)">
+            <summary>
+            Returns the CloudEvents spec version for the given version ID (e.g. "1.0"),
+            or null if no such version is known.
+            </summary>
+            <param name="versionId">The version ID to check. May be null, in which case the result will be null.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.CloudEventsSpecVersion.GetAttributeByName(System.String)">
+            <summary>
+            Returns the attribute with the given name, or null if this
+            spec version does not contain any such attribute.
+            </summary>
+            <param name="name">The name of the attribute to find.</param>
+            <returns>The attribute with the given name, or null if this spec version does not contain any such attribute.</returns>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.RequiredAttributes">
+            <summary>
+            Returns all required attributes in this version of the CloudEvents specification.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.OptionalAttributes">
+            <summary>
+            Returns all optional, non-extension attributes in this version of the CloudEvents specification.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.CloudEventsSpecVersion.AllAttributes">
+            <summary>
+            Returns all the non-extension attributes in this version of the CloudEvents specification.
+            All required attributes are returned before optional attributes.
+            </summary>
+        </member>
+        <member name="T:CloudNative.CloudEvents.CollectionExtensions">
+            <summary>
+            Extension methods on collections. Some of these already exist in newer
+            framework versions.
+            </summary>
+        </member>
+        <member name="T:CloudNative.CloudEvents.ContentMode">
+            <summary>
+            ContentMode enumeration for protocol bindings.
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.ContentMode.Structured">
+            <summary>
+            Structured mode. The complete CloudEvent is contained in the transport body
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.ContentMode.Binary">
+            <summary>
+            Binary mode. The CloudEvent is projected onto the transport frame
+            </summary>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Core.BinaryDataUtilities">
+            <summary>
+            Utilities methods for dealing with binary data, converting between
+            streams, arrays, Memory{T} etc.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.BinaryDataUtilities.ToReadOnlyMemoryAsync(System.IO.Stream)">
+            <summary>
+            Asynchronously consumes the remaining content of the given stream, returning
+            it as a read-only memory segment.
+            </summary>
+            <param name="stream">The stream to read from. Must not be null.</param>
+            <returns>The content of the stream (from its original position), as a read-only memory segment.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.BinaryDataUtilities.ToReadOnlyMemory(System.IO.Stream)">
+            <summary>
+            Consumes the remaining content of the given stream, returning
+            it as a read-only memory segment.
+            </summary>
+            <param name="stream">The stream to read from. Must not be null.</param>
+            <returns>The content of the stream (from its original position), as a read-only memory segment.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.BinaryDataUtilities.AsStream(System.ReadOnlyMemory{System.Byte})">
+            <summary>
+            Returns a read-only <see cref="T:System.IO.MemoryStream"/> view over the given memory where
+            possible, or over a copy of the data if the memory cannot be read as an array segment.
+            This method should be used with care, due to the "sometimes shared, sometimes not"
+            nature of the result.
+            </summary>
+            <param name="memory">The memory to create a stream view over.</param>
+            <returns>A read-only stream view over <paramref name="memory"/>.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.BinaryDataUtilities.GetString(System.ReadOnlyMemory{System.Byte},System.Text.Encoding)">
+            <summary>
+            Decodes the given memory as a string, using the specified encoding.
+            </summary>
+            <param name="memory">The memory to decode.</param>
+            <param name="encoding">The encoding to use. Must not be null.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.BinaryDataUtilities.CopyToStreamAsync(System.ReadOnlyMemory{System.Byte},System.IO.Stream)">
+            <summary>
+            Copies the given memory to a stream, asynchronously.
+            </summary>
+            <param name="source">The source memory to copy from.</param>
+            <param name="destination">The stream to copy to. Must not be null.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.BinaryDataUtilities.AsArray(System.ReadOnlyMemory{System.Byte})">
+            <summary>
+            Returns the data from <paramref name="memory"/> as a byte array, return the underlying array
+            if there is one, or creating a copy otherwise. This method should be used with care, due to the
+            "sometimes shared, sometimes not" nature of the result. (It is generally safe to use this with the result
+            of encoding a CloudEvent, assuming the same memory is not used elsewhere.)
+            </summary>
+            <param name="memory">The memory to obtain the data from.</param>
+            <returns>The data in <paramref name="memory"/> as an array.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.BinaryDataUtilities.GetArraySegment(System.ReadOnlyMemory{System.Byte})">
+            <summary>
+            Returns the data from <paramref name="memory"/> as a byte array, return the underlying array
+            if there is one, or creating a copy otherwise. This method should be used with care, due to the
+            "sometimes shared, sometimes not" nature of the result. (It is generally safe to use this with the result
+            of encoding a CloudEvent, assuming the same memory is not used elsewhere.)
+            </summary>
+            <param name="memory">The memory to obtain the data from.</param>
+            <returns>The data in <paramref name="memory"/> as an array segment.</returns>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Core.CloudEventAttributeTypeOrdinal">
+            <summary>
+            Enum of attribute types, to allow efficient switching over <see cref="T:CloudNative.CloudEvents.CloudEventAttributeType"/>.
+            Each attribute type has a unique value, returned by <see cref="P:CloudNative.CloudEvents.CloudEventAttributeType.Ordinal"/>.
+            </summary>
+            <remarks>
+            This type is in the "Core" namespace and exposed via CloudEventAttributeTypes as relatively few consumers will need to use it.
+            </remarks>
+        </member>
+        <member name="F:CloudNative.CloudEvents.Core.CloudEventAttributeTypeOrdinal.Binary">
+            <summary>
+            Ordinal for <see cref="P:CloudNative.CloudEvents.CloudEventAttributeType.Binary"/>
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.Core.CloudEventAttributeTypeOrdinal.Boolean">
+            <summary>
+            Ordinal for <see cref="P:CloudNative.CloudEvents.CloudEventAttributeType.Boolean"/>
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.Core.CloudEventAttributeTypeOrdinal.Integer">
+            <summary>
+            Ordinal for <see cref="P:CloudNative.CloudEvents.CloudEventAttributeType.Integer"/>
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.Core.CloudEventAttributeTypeOrdinal.String">
+            <summary>
+            Ordinal for <see cref="P:CloudNative.CloudEvents.CloudEventAttributeType.String"/>
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.Core.CloudEventAttributeTypeOrdinal.Uri">
+            <summary>
+            Ordinal for <see cref="P:CloudNative.CloudEvents.CloudEventAttributeType.Uri"/>
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.Core.CloudEventAttributeTypeOrdinal.UriReference">
+            <summary>
+            Ordinal for <see cref="P:CloudNative.CloudEvents.CloudEventAttributeType.UriReference"/>
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.Core.CloudEventAttributeTypeOrdinal.Timestamp">
+            <summary>
+            Ordinal for <see cref="P:CloudNative.CloudEvents.CloudEventAttributeType.Timestamp"/>
+            </summary>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Core.CloudEventAttributeTypes">
+            <summary>
+            Utility methods for working with <see cref="T:CloudNative.CloudEvents.CloudEventAttributeType"/>, in contexts
+            where the functionality is required by formatter/protocol binding implementations,
+            but we want to obscure it from other users.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.CloudEventAttributeTypes.GetOrdinal(CloudNative.CloudEvents.CloudEventAttributeType)">
+            <summary>
+            Returns the <see cref="T:CloudNative.CloudEvents.Core.CloudEventAttributeTypeOrdinal"/> associated with <paramref name="type"/>,
+            for convenient switching over attribute types.
+            </summary>
+            <param name="type">The attribute type. Must not be null.</param>
+            <returns>The ordinal enum value associated with the attribute type.</returns>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Core.MimeUtilities">
+            <summary>
+            Utility methods around MIME.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Core.MimeUtilities.MediaType">
+            <summary>
+            The media type (also known as MIME type) for CloudEvents. Related media types
+            (e.g. for a batch of CloudEvents, or with a specific format) usually begin with this string.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Core.MimeUtilities.BatchMediaType">
+            <summary>
+            The media type to use for batch mode. This is usually suffixed with a format-specific
+            type, e.g. "+json".
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.MimeUtilities.GetEncoding(System.Net.Mime.ContentType)">
+            <summary>
+            Returns an encoding from a content type, defaulting to UTF-8.
+            </summary>
+            <param name="contentType">The content type, or null if no content type is known.</param>
+            <returns>An encoding suitable for the charset specified in <paramref name="contentType"/>,
+            or UTF-8 if no charset has been specified.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.MimeUtilities.ToContentType(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Converts a <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue"/> into a <see cref="T:System.Net.Mime.ContentType"/>.
+            </summary>
+            <param name="headerValue">The header value to convert. May be null.</param>
+            <returns>The converted content type, or null if <paramref name="headerValue"/> is null.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.MimeUtilities.ToMediaTypeHeaderValue(System.Net.Mime.ContentType)">
+            <summary>
+            Converts a <see cref="T:System.Net.Mime.ContentType"/> into a <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue"/>.
+            </summary>
+            <param name="contentType">The content type to convert. May be null.</param>
+            <returns>The converted media type header value, or null if <paramref name="contentType"/> is null.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.MimeUtilities.CreateContentTypeOrNull(System.String)">
+            <summary>
+            Creates a <see cref="T:System.Net.Mime.ContentType"/> from the given value, or returns null
+            if the input is null.
+            </summary>
+            <param name="contentType">The content type textual value. May be null.</param>
+            <returns>The converted content type, or null if <paramref name="contentType"/> is null.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.MimeUtilities.IsCloudEventsContentType(System.String)">
+            <summary>
+            Determines whether the given content type denotes a (non-batch) CloudEvent.
+            </summary>
+            <param name="contentType">The content type to check. May be null, in which case the result is false.</param>
+            <returns>true if the given content type denotes a (non-batch) CloudEvent; false otherwise</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.MimeUtilities.IsCloudEventsBatchContentType(System.String)">
+            <summary>
+            Determines whether the given content type denotes a CloudEvent batch.
+            </summary>
+            <param name="contentType">The content type to check. May be null, in which case the result is false.</param>
+            <returns>true if the given content type represents a CloudEvent batch; false otherwise</returns>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Core.Validation">
+            <summary>
+            Validation methods which are typically convenient for implementers of CloudEvent formatters
+            and protocol bindings.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.Validation.CheckNotNull``1(``0,System.String)">
+            <summary>
+            Validates that the given reference is non-null.
+            </summary>
+            <typeparam name="T">Type of the value to check</typeparam>
+            <param name="value">The reference to check for nullity</param>
+            <param name="paramName">The parameter name to use in the exception if <paramref name="value"/> is null.
+            May be null.</param>
+            <returns>The value of <paramref name="value"/>, for convenient method chaining or assignment.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.Validation.CheckArgument(System.Boolean,System.String,System.String)">
+            <summary>
+            Validates an argument-dependent condition, throwing an exception if the check fails.
+            </summary>
+            <param name="condition">The condition to validate; this method will throw an <see cref="T:System.ArgumentException"/> if this is false.</param>
+            <param name="paramName">The name of the parameter being validated. May be null.</param>
+            <param name="message">The message to use in the exception, if one is thrown.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.Validation.CheckArgument(System.Boolean,System.String,System.Func{System.String})">
+            <summary>
+            Validates an argument-dependent condition, throwing an exception if the check fails.
+            </summary>
+            <param name="condition">The condition to validate; this method will throw an <see cref="T:System.ArgumentException"/> if this is false.</param>
+            <param name="paramName">The name of the parameter being validated. May be null.</param>
+            <param name="messageFunc">A func that returns the message to use in the exception, if one is thrown.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.Validation.CheckArgument(System.Boolean,System.String,System.String,System.Object)">
+            <summary>
+            Validates an argument-dependent condition, throwing an exception if the check fails.
+            </summary>
+            <param name="condition">The condition to validate; this method will throw an <see cref="T:System.ArgumentException"/> if this is false.</param>
+            <param name="paramName">The name of the parameter being validated. May be null.</param>
+            <param name="messageFormat">The string format to use in the exception message, if one is thrown.</param>
+            <param name="arg1">The first argument in the string format.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.Validation.CheckArgument(System.Boolean,System.String,System.String,System.Object,System.Object)">
+            <summary>
+            Validates an argument-dependent condition, throwing an exception if the check fails.
+            </summary>
+            <param name="condition">The condition to validate; this method will throw an <see cref="T:System.ArgumentException"/> if this is false.</param>
+            <param name="paramName">The name of the parameter being validated. May be null.</param>
+            <param name="messageFormat">The string format to use in the exception message, if one is thrown.</param>
+            <param name="arg1">The first argument in the string format.</param>
+            <param name="arg2">The second argument in the string format.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.Validation.CheckCloudEventArgument(CloudNative.CloudEvents.CloudEvent,System.String)">
+            <summary>
+            Validates that the specified CloudEvent is valid in the same way as <see cref="P:CloudNative.CloudEvents.CloudEvent.IsValid"/>,
+            but throwing an <see cref="T:System.ArgumentException"/> using the given parameter name
+            if the event is invalid. This is typically used within protocol bindings or event formatters
+            as the last step in decoding an event, or as the first step when encoding an event.
+            </summary>
+            <param name="cloudEvent">The event to validate.</param>
+            <param name="paramName">The parameter name to use in the exception if <paramref name="cloudEvent"/> is null or invalid.
+            May be null.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="cloudEvent"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">The event is invalid.</exception>
+            <returns>A reference to the same object, for simplicity of method chaining.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Core.Validation.CheckCloudEventBatchArgument(System.Collections.Generic.IReadOnlyList{CloudNative.CloudEvents.CloudEvent},System.String)">
+            <summary>
+            Validates that the specified batch is valid, by asserting that it is non-null,
+            and that it only contains non-null references to valid CloudEvents.
+            </summary>
+            <param name="cloudEvents">The event batch to validate.</param>
+            <param name="paramName">The parameter name to use in the exception if <paramref name="cloudEvents"/> is null or invalid.
+            May be null.</param>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Extensions.Partitioning">
+            <summary>
+            Support for the <see href="https://github.com/cloudevents/spec/tree/main/cloudevents/extensions/partitioning.md">partitioning</see>
+            CloudEvent extension.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Extensions.Partitioning.PartitionKeyAttribute">
+            <summary>
+            <see cref="T:CloudNative.CloudEvents.CloudEventAttribute"/> representing the 'partitionkey' extension attribute.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Extensions.Partitioning.AllAttributes">
+            <summary>
+            A read-only sequence of all attributes related to the partitioning extension.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Extensions.Partitioning.SetPartitionKey(CloudNative.CloudEvents.CloudEvent,System.String)">
+            <summary>
+            Sets the <see cref="P:CloudNative.CloudEvents.Extensions.Partitioning.PartitionKeyAttribute"/> on the given <see cref="T:CloudNative.CloudEvents.CloudEvent"/>.
+            </summary>
+            <param name="cloudEvent">The CloudEvent on which to set the attribute. Must not be null.</param>
+            <param name="partitionKey">The partition key to set. May be null, in which case the attribute is
+            removed from <paramref name="cloudEvent"/>.</param>
+            <returns><paramref name="cloudEvent"/>, for convenient method chaining.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Extensions.Partitioning.GetPartitionKey(CloudNative.CloudEvents.CloudEvent)">
+            <summary>
+            Retrieves the <see cref="P:CloudNative.CloudEvents.Extensions.Partitioning.PartitionKeyAttribute"/> from the given <see cref="T:CloudNative.CloudEvents.CloudEvent"/>.
+            </summary>
+            <param name="cloudEvent">The CloudEvent from which to retrieve the attribute. Must not be null.</param>
+            <returns>The partition key, or null if <paramref name="cloudEvent"/> does not have a partition key set.</returns>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Extensions.Sampling">
+            <summary>
+            Support for the <see href="https://github.com/cloudevents/spec/tree/main/cloudevents/extensions/sampledrate.md">sampling</see>
+            CloudEvent extension.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Extensions.Sampling.SampledRateAttribute">
+            <summary>
+            <see cref="T:CloudNative.CloudEvents.CloudEventAttribute"/> representing the 'sampledrate' extension attribute.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Extensions.Sampling.AllAttributes">
+            <summary>
+            A read-only sequence of all attributes related to the sampling extension.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Extensions.Sampling.SetSampledRate(CloudNative.CloudEvents.CloudEvent,System.Nullable{System.Int32})">
+            <summary>
+            Sets the <see cref="P:CloudNative.CloudEvents.Extensions.Sampling.SampledRateAttribute"/> on the given <see cref="T:CloudNative.CloudEvents.CloudEvent"/>.
+            </summary>
+            <param name="cloudEvent">The CloudEvent on which to set the attribute. Must not be null.</param>
+            <param name="sampledRate">The sampled rate to set. May be null, in which case the attribute is
+            removed from <paramref name="cloudEvent"/>. If this value is non-null, it must be positive.</param>
+            <returns><paramref name="cloudEvent"/>, for convenient method chaining.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Extensions.Sampling.GetSampledRate(CloudNative.CloudEvents.CloudEvent)">
+            <summary>
+            Retrieves the <see cref="P:CloudNative.CloudEvents.Extensions.Sampling.SampledRateAttribute"/> from the given <see cref="T:CloudNative.CloudEvents.CloudEvent"/>.
+            </summary>
+            <param name="cloudEvent">The CloudEvent from which to retrieve the attribute. Must not be null.</param>
+            <returns>The sampled rate, or null if <paramref name="cloudEvent"/> does not have a sampled rate set.</returns>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Extensions.Sequence">
+            <summary>
+            Support for the <see href="https://github.com/cloudevents/spec/tree/main/cloudevents/extensions/sequence.md">sequence</see>
+            CloudEvent extension.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceAttribute">
+            <summary>
+            <see cref="T:CloudNative.CloudEvents.CloudEventAttribute"/> representing the 'sequence' extension attribute.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceTypeAttribute">
+            <summary>
+            <see cref="T:CloudNative.CloudEvents.CloudEventAttribute"/> representing the 'sequencetype' extension attribute.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Extensions.Sequence.AllAttributes">
+            <summary>
+            A read-only sequence of all attributes related to the sequence extension.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Extensions.Sequence.SetSequence(CloudNative.CloudEvents.CloudEvent,System.Object)">
+            <summary>
+            Sets both <see cref="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceAttribute"/> and <see cref="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceTypeAttribute"/> attributes based on the specified value.
+            </summary>
+            <param name="cloudEvent">The CloudEvent on which to set the attributes. Must not be null.</param>
+            <param name="value">The sequence value to set. May be null, in which case both attributes are removed from
+            <paramref name="cloudEvent"/>.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> is a non-null value for an unsupported sequence type.</exception>
+            <returns><paramref name="cloudEvent"/>, for convenient method chaining.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Extensions.Sequence.GetSequenceString(CloudNative.CloudEvents.CloudEvent)">
+            <summary>
+            Retrieves the <see cref="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceAttribute"/> value from the event, without any
+            further transformation.
+            </summary>
+            <param name="cloudEvent">The CloudEvent from which to retrieve the attribute. Must not be null.</param>
+            <returns>The <see cref="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceAttribute"/> value, as a string, or null if the attribute is not set.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Extensions.Sequence.GetSequenceType(CloudNative.CloudEvents.CloudEvent)">
+            <summary>
+            Retrieves the <see cref="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceTypeAttribute"/> value from the event, without any
+            further transformation.
+            </summary>
+            <param name="cloudEvent">The CloudEvent from which to retrieve the attribute. Must not be null.</param>
+            <returns>The <see cref="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceTypeAttribute"/> value, as a string, or null if the attribute is not set.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Extensions.Sequence.GetSequenceValue(CloudNative.CloudEvents.CloudEvent)">
+            <summary>
+            Retrieves the <see cref="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceAttribute"/> value from the event,
+            parsing it according to the value of <see cref="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceTypeAttribute"/>.
+            If no type is present in the event, the string value is
+            returned without further transformation.
+            </summary>
+            <param name="cloudEvent"></param>
+            <returns>The value of <see cref="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceAttribute"/> from <paramref name="cloudEvent"/>, transformed
+            based on the value of <see cref="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceTypeAttribute"/>, or null if the attribute is not set.</returns>
+            <exception cref="T:System.InvalidOperationException">The <see cref="P:CloudNative.CloudEvents.Extensions.Sequence.SequenceTypeAttribute"/> is present, but unknown to this library.</exception>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Http.HttpClientExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Net.Http.HttpClient"/> and related classes
+            (<see cref="T:System.Net.Http.HttpRequestMessage"/>, <see cref="T:System.Net.Http.HttpResponseMessage"/>, <see cref="T:System.Net.Http.HttpContent"/> etc).
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.IsCloudEvent(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Indicates whether this <see cref="T:System.Net.Http.HttpRequestMessage"/> holds a single CloudEvent.
+            </summary>
+            <remarks>
+            This method returns false for batch requests, as they need to be parsed differently.
+            </remarks>
+            <param name="httpRequestMessage">The message to check for the presence of a CloudEvent. Must not be null.</param>
+            <returns>true, if the request is a CloudEvent</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.IsCloudEvent(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Indicates whether this <see cref="T:System.Net.Http.HttpResponseMessage"/> holds a single CloudEvent.
+            </summary>
+            <param name="httpResponseMessage">The message to check for the presence of a CloudEvent. Must not be null.</param>
+            <returns>true, if the response is a CloudEvent</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.IsCloudEventBatch(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Indicates whether this <see cref="T:System.Net.Http.HttpRequestMessage"/> holds a batch of CloudEvents.
+            </summary>
+            <param name="httpRequestMessage">The message to check for the presence of a CloudEvent batch. Must not be null.</param>
+            <returns>true, if the request is a CloudEvent batch</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.IsCloudEventBatch(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Indicates whether this <see cref="T:System.Net.Http.HttpResponseMessage"/> holds a batch of CloudEvents.
+            </summary>
+            <param name="httpResponseMessage">The message to check for the presence of a CloudEvent batch. Must not be null.</param>
+            <returns>true, if the response is a CloudEvent batch</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.ToCloudEventAsync(System.Net.Http.HttpResponseMessage,CloudNative.CloudEvents.CloudEventFormatter,CloudNative.CloudEvents.CloudEventAttribute[])">
+            <summary>
+            Converts this HTTP response message into a CloudEvent object
+            </summary>
+            <param name="httpResponseMessage">The HTTP response message to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvent. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvent. May be null.</param>
+            <returns>A reference to a validated CloudEvent instance.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.ToCloudEventAsync(System.Net.Http.HttpResponseMessage,CloudNative.CloudEvents.CloudEventFormatter,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Converts this HTTP response message into a CloudEvent object
+            </summary>
+            <param name="httpResponseMessage">The HTTP response message to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvent. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvent. May be null.</param>
+            <returns>A reference to a validated CloudEvent instance.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.ToCloudEventAsync(System.Net.Http.HttpRequestMessage,CloudNative.CloudEvents.CloudEventFormatter,CloudNative.CloudEvents.CloudEventAttribute[])">
+            <summary>
+            Converts this HTTP request message into a CloudEvent object.
+            </summary>
+            <param name="httpRequestMessage">The HTTP request message to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvent. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvent. May be null.</param>
+            <returns>A reference to a validated CloudEvent instance.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.ToCloudEventAsync(System.Net.Http.HttpRequestMessage,CloudNative.CloudEvents.CloudEventFormatter,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Converts this HTTP request message into a CloudEvent object.
+            </summary>
+            <param name="httpRequestMessage">The HTTP request message to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvent. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvent. May be null.</param>
+            <returns>A reference to a validated CloudEvent instance.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.ToCloudEventBatchAsync(System.Net.Http.HttpResponseMessage,CloudNative.CloudEvents.CloudEventFormatter,CloudNative.CloudEvents.CloudEventAttribute[])">
+            <summary>
+            Converts this HTTP response message into a CloudEvent batch.
+            </summary>
+            <param name="httpResponseMessage">The HTTP response message to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvents. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvents. May be null.</param>
+            <returns>The decoded batch of CloudEvents.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.ToCloudEventBatchAsync(System.Net.Http.HttpResponseMessage,CloudNative.CloudEvents.CloudEventFormatter,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Converts this HTTP response message into a CloudEvent batch.
+            </summary>
+            <param name="httpResponseMessage">The HTTP response message to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvents. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvents. May be null.</param>
+            <returns>The decoded batch of CloudEvents.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.ToCloudEventBatchAsync(System.Net.Http.HttpRequestMessage,CloudNative.CloudEvents.CloudEventFormatter,CloudNative.CloudEvents.CloudEventAttribute[])">
+            <summary>
+            Converts this HTTP request message into a CloudEvent batch.
+            </summary>
+            <param name="httpRequestMessage">The HTTP request message to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvents. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvents. May be null.</param>
+            <returns>The decoded batch of CloudEvents.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.ToCloudEventBatchAsync(System.Net.Http.HttpRequestMessage,CloudNative.CloudEvents.CloudEventFormatter,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Converts this HTTP request message into a CloudEvent batch.
+            </summary>
+            <param name="httpRequestMessage">The HTTP request message to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvents. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvents. May be null.</param>
+            <returns>The decoded batch of CloudEvents.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.ToHttpContent(CloudNative.CloudEvents.CloudEvent,CloudNative.CloudEvents.ContentMode,CloudNative.CloudEvents.CloudEventFormatter)">
+            <summary>
+            Converts a CloudEvent to <see cref="T:System.Net.Http.HttpContent"/>.
+            </summary>
+            <param name="cloudEvent">The CloudEvent to convert. Must not be null, and must be a valid CloudEvent.</param>
+            <param name="contentMode">Content mode. Structured or binary.</param>
+            <param name="formatter">The formatter to use within the conversion. Must not be null.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpClientExtensions.ToHttpContent(System.Collections.Generic.IReadOnlyList{CloudNative.CloudEvents.CloudEvent},CloudNative.CloudEvents.CloudEventFormatter)">
+            <summary>
+            Converts a CloudEvent batch to <see cref="T:System.Net.Http.HttpContent"/>.
+            </summary>
+            <param name="cloudEvents">The CloudEvent batch to convert. Must not be null, and every element must be non-null reference to a valid CloudEvent.</param>
+            <param name="formatter">The formatter to use within the conversion. Must not be null.</param>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Http.HttpListenerExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Net.HttpListener"/> and related classes
+            (<see cref="T:System.Net.HttpListenerResponse"/> etc).
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.CopyToHttpListenerResponseAsync(CloudNative.CloudEvents.CloudEvent,System.Net.HttpListenerResponse,CloudNative.CloudEvents.ContentMode,CloudNative.CloudEvents.CloudEventFormatter)">
+            <summary>
+            Copies a <see cref="T:CloudNative.CloudEvents.CloudEvent"/> into an <see cref="T:System.Net.HttpListenerResponse" />.
+            </summary>
+            <param name="cloudEvent">The CloudEvent to copy. Must not be null, and must be a valid CloudEvent.</param>
+            <param name="destination">The response to copy the CloudEvent to. Must not be null.</param>
+            <param name="contentMode">Content mode (structured or binary)</param>
+            <param name="formatter">The formatter to use within the conversion. Must not be null.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.CopyToHttpListenerResponseAsync(System.Collections.Generic.IReadOnlyList{CloudNative.CloudEvents.CloudEvent},System.Net.HttpListenerResponse,CloudNative.CloudEvents.CloudEventFormatter)">
+            <summary>
+            Copies a <see cref="T:CloudNative.CloudEvents.CloudEvent"/> batch into an <see cref="T:System.Net.HttpListenerResponse" />.
+            </summary>
+            <param name="cloudEvents">The CloudEvent batch to copy. Must not be null, and must be a valid CloudEvent.</param>
+            <param name="destination">The response to copy the CloudEvent to. Must not be null.</param>
+            <param name="formatter">The formatter to use within the conversion. Must not be null.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.IsCloudEvent(System.Net.HttpListenerRequest)">
+            <summary>
+            Indicates whether this HttpListenerRequest holds a single CloudEvent.
+            </summary>
+            <param name="httpListenerRequest">The request to check for the presence of a single CloudEvent. Must not be null.</param>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.IsCloudEventBatch(System.Net.HttpListenerRequest)">
+            <summary>
+            Indicates whether this <see cref="T:System.Net.HttpListenerRequest"/> holds a batch of CloudEvents.
+            </summary>
+            <param name="httpListenerRequest">The message to check for the presence of a CloudEvent batch. Must not be null.</param>
+            <returns>true, if the request is a CloudEvent batch</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.ToCloudEventAsync(System.Net.HttpListenerRequest,CloudNative.CloudEvents.CloudEventFormatter,CloudNative.CloudEvents.CloudEventAttribute[])">
+            <summary>
+            Converts this listener request into a CloudEvent object, with the given extension attributes.
+            </summary>
+            <param name="httpListenerRequest">The listener request to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvent. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvent. May be null.</param>
+            <returns>A reference to a validated CloudEvent instance.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.ToCloudEventAsync(System.Net.HttpListenerRequest,CloudNative.CloudEvents.CloudEventFormatter,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Converts this listener request into a CloudEvent object, with the given extension attributes.
+            </summary>
+            <param name="httpListenerRequest">The listener request to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvent. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvent. May be null.</param>
+            <returns>A reference to a validated CloudEvent instance.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.ToCloudEvent(System.Net.HttpListenerRequest,CloudNative.CloudEvents.CloudEventFormatter,CloudNative.CloudEvents.CloudEventAttribute[])">
+            <summary>
+            Converts this listener request into a CloudEvent object, with the given extension attributes.
+            </summary>
+            <param name="httpListenerRequest">The listener request to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvent. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvent. May be null.</param>
+            <returns>A reference to a validated CloudEvent instance.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.ToCloudEvent(System.Net.HttpListenerRequest,CloudNative.CloudEvents.CloudEventFormatter,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Converts this listener request into a CloudEvent object, with the given extension attributes.
+            </summary>
+            <param name="httpListenerRequest">The listener request to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvent. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvent. May be null.</param>
+            <returns>A reference to a validated CloudEvent instance.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.ToCloudEventBatchAsync(System.Net.HttpListenerRequest,CloudNative.CloudEvents.CloudEventFormatter,CloudNative.CloudEvents.CloudEventAttribute[])">
+            <summary>
+            Converts this HTTP request message into a CloudEvent batch.
+            </summary>
+            <param name="httpListenerRequest">The HTTP request to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvents. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvents. May be null.</param>
+            <returns>The decoded batch of CloudEvents.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.ToCloudEventBatchAsync(System.Net.HttpListenerRequest,CloudNative.CloudEvents.CloudEventFormatter,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Converts this HTTP request message into a CloudEvent batch.
+            </summary>
+            <param name="httpListenerRequest">The HTTP request to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvent. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvent. May be null.</param>
+            <returns>The decoded batch of CloudEvents.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.ToCloudEventBatch(System.Net.HttpListenerRequest,CloudNative.CloudEvents.CloudEventFormatter,CloudNative.CloudEvents.CloudEventAttribute[])">
+            <summary>
+            Converts this HTTP request message into a CloudEvent batch.
+            </summary>
+            <param name="httpListenerRequest">The HTTP request to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvents. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvents. May be null.</param>
+            <returns>The decoded batch of CloudEvents.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpListenerExtensions.ToCloudEventBatch(System.Net.HttpListenerRequest,CloudNative.CloudEvents.CloudEventFormatter,System.Collections.Generic.IEnumerable{CloudNative.CloudEvents.CloudEventAttribute})">
+            <summary>
+            Converts this HTTP request message into a CloudEvent batch.
+            </summary>
+            <param name="httpListenerRequest">The HTTP request to convert. Must not be null.</param>
+            <param name="formatter">The event formatter to use to parse the CloudEvents. Must not be null.</param>
+            <param name="extensionAttributes">The extension attributes to use when parsing the CloudEvents. May be null.</param>
+            <returns>The decoded batch of CloudEvents.</returns>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Http.HttpUtilities">
+            <summary>
+            Common functionality used by all HTTP code. This is public to enable reuse by other packages,
+            e.g. ASP.NET Core code.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Http.HttpUtilities.HttpHeaderPrefix">
+            <summary>
+            The prefix used by all CloudEvents HTTP headers.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Http.HttpUtilities.SpecVersionHttpHeader">
+            <summary>
+            The name of the HTTP header used to specify the CloudEvents specification version in an HTTP message.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpUtilities.GetAttributeNameFromHeaderName(System.String)">
+            <summary>
+            Checks whether the given HTTP header name starts with "ce-", and if so, converts it into
+            a lower-case attribute name.
+            </summary>
+            <param name="headerName">The name of the header to check. Must not be null.</param>
+            <returns>The corresponding attribute name if the header name matches the CloudEvents header prefix;
+            null otherwise.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpUtilities.EncodeHeaderValue(System.String)">
+            <summary>
+            Encodes the given value so that it is suitable to use as a header encoding,
+            using percent-encoding for all non-ASCII values, as well as space, percent and double-quote.
+            </summary>
+            <param name="value">The header value to encode. Must not be null.</param>
+            <returns>The encoded header value.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpUtilities.DecodeHeaderValue(System.String)">
+            <summary>
+            Decodes the given HTTP header value, first decoding any double-quoted strings,
+            then performing percent-decoding.
+            </summary>
+            <param name="value">The header value to decode. Must not be null.</param>
+            <returns>The decoded header value.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpUtilities.DecodeDoubleQuoted(System.String)">
+            <summary>
+            Applies the double-quoting part of https://tools.ietf.org/html/rfc7230#section-3.2.6 in reverse.
+            </summary>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Http.HttpWebExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Net.HttpWebRequest"/> and related types.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpWebExtensions.CopyToHttpWebRequestAsync(CloudNative.CloudEvents.CloudEvent,System.Net.HttpWebRequest,CloudNative.CloudEvents.ContentMode,CloudNative.CloudEvents.CloudEventFormatter)">
+            <summary>
+            Copies a <see cref="T:CloudNative.CloudEvents.CloudEvent"/> into the specified <see cref="T:System.Net.HttpWebRequest"/>.
+            </summary>
+            <param name="cloudEvent">CloudEvent to copy. Must not be null, and must be a valid CloudEvent.</param>
+            <param name="destination">The request to populate. Must not be null.</param>
+            <param name="contentMode">Content mode (structured or binary)</param>
+            <param name="formatter">The formatter to use within the conversion. Must not be null.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Http.HttpWebExtensions.CopyToHttpWebRequestAsync(System.Collections.Generic.IReadOnlyList{CloudNative.CloudEvents.CloudEvent},System.Net.HttpWebRequest,CloudNative.CloudEvents.CloudEventFormatter)">
+            <summary>
+            Copies a <see cref="T:CloudNative.CloudEvents.CloudEvent"/> batch into the specified <see cref="T:System.Net.HttpWebRequest"/>.
+            </summary>
+            <param name="cloudEvents">CloudEvent batch to copy. Must not be null, and must be a valid CloudEvent.</param>
+            <param name="destination">The request to populate. Must not be null.</param>
+            <param name="formatter">The formatter to use within the conversion. Must not be null.</param>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Strings.ErrorCannotIndexBySpecVersionAttribute">
+            <summary>
+              Looks up a localized string similar to The &apos;specversion&apos; attribute cannot be used as an indexer key for CloudEvent.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Strings.ErrorContentTypeIsNotRFC2046">
+            <summary>
+              Looks up a localized string similar to The &apos;datacontenttype&apos; attribute value must be a content-type expression compliant with RFC2046.
+            </summary>
+        </member>
+        <member name="P:CloudNative.CloudEvents.Strings.ErrorContentTypeUnspecified">
+            <summary>
+              Looks up a localized string similar to The &apos;datacontenttype&apos; attribute value must be specified.
+            </summary>
+        </member>
+        <member name="T:CloudNative.CloudEvents.Timestamps">
+            <summary>
+            Helper methods for CloudEvent timestamp attributes, which are represented
+            as <see cref="T:System.DateTimeOffset"/> values within the SDK, and use RFC-3339
+            for string representations (e.g. in headers).
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.Timestamps.MinLength">
+            <summary>
+            Length of shortest valid value ("yyyy-MM-ddTHH:mm:ssZ")
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.Timestamps.MinOffsetIndex">
+            <summary>
+            Earliest position of UTC offset indicator in a valid timestamp.
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.Timestamps.MaxDateTimeParseLength">
+            <summary>
+            Length of longest the date/time part of valid value that we'll actually parse
+            ("yyyy-MM-ddTHH:mm:ss.FFFFFFF"). Further subsecond digits may be present, but
+            we'll ignore them.
+            </summary>
+        </member>
+        <member name="F:CloudNative.CloudEvents.Timestamps.MaxOffsetMinutes">
+            <summary>
+            Maximum number of minutes in an offset: DateTimeOffset only handles up to +/- 14 hours.
+            </summary>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Timestamps.TryParse(System.String,System.DateTimeOffset@)">
+            <summary>
+            Attempts to parse a string as an RFC-3339-formatted date/time and UTC offset.
+            </summary>
+            <param name="input">A string to be parsed as a <see cref="T:System.DateTimeOffset"/>.</param>
+            <param name="result">A <see cref="T:System.DateTimeOffset"/> parsed from the <paramref name="input"/>.</param>
+            <returns><see langword="true"/> if <paramref name="input"/> was parsed successfully, <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Timestamps.Parse(System.String)">
+            <summary>
+            Parses a string as an RFC-3339-formatted date/time and UTC offset.
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CloudNative.CloudEvents.Timestamps.Format(System.DateTimeOffset)">
+            <summary>
+            Converts a <see cref="T:System.DateTimeOffset"/> value to a string using RFC-3339 format.
+            </summary>
+            <remarks>
+            <para>
+            The sub-second precision in the result is determined by the first of the following conditions
+            to be met:
+            If the value is a whole number of seconds, the result contains no fractional-second
+            indicator at all.
+            If the sub-second value is a whole number of milliseconds, the result will contain three
+            digits of sub-second precision.
+            If the sub-second value is a whole number of microseconds, the result will contain six
+            digits of sub-second precision.
+            Otherwise, the result will contain 7 digits of sub-second precision. (This is the maximum
+            precision of <see cref="T:System.DateTimeOffset"/>.)
+            </para>
+            <para>
+            If the UTC offset is zero, this is represented as a suffix of 'Z';
+            otherwise, the offset is represented in the "+HH:mm" or "-HH:mm" format.
+            </para>
+            </remarks>
+            <param name="value">The value to convert to an RFC-3339 format string.</param>
+            <returns>The formatted string.</returns>
+        </member>
+    </members>
+</doc>
