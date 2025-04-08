@@ -22,11 +22,11 @@ public class CardStateManager : MonoBehaviour
     }
 
     // 注册新卡牌
-    public void RegisterCard(GameObject cardInstance, bool isDragging, bool isUsing, CardDataBase cardData) {
+    public void RegisterCard(GameObject cardInstance, bool isDragging, bool isUsing, bool isHovering, CardDataBase cardData) {
     
         if (!cardStates.ContainsKey(cardInstance)) {
         
-            cardStates.Add(cardInstance, new CardState(isDragging, isUsing, cardData));
+            cardStates.Add(cardInstance, new CardState(isDragging, isUsing, isHovering, cardData));
         
         }
     
@@ -38,6 +38,17 @@ public class CardStateManager : MonoBehaviour
         if (cardStates.ContainsKey(cardInstance)) {
         
             cardStates[cardInstance].IsDragging = isDragging;
+        
+        }
+    
+    }
+    
+    // 更新拖拽状态
+    public void SetHoveringState(GameObject cardInstance, bool isHovering) {
+    
+        if (cardStates.ContainsKey(cardInstance)) {
+        
+            cardStates[cardInstance].IsHovering = isHovering;
         
         }
     
@@ -74,16 +85,18 @@ public class CardStateManager : MonoBehaviour
 [System.Serializable]
 public class CardState {
 
-    public CardState(bool isDragging, bool isUsing, CardDataBase cardData) {
+    public CardState(bool isDragging, bool isUsing, bool isHovering, CardDataBase cardData) {
 
         IsDragging= isDragging;
         IsUsing = isUsing;
         CardData = cardData;
+        IsHovering = isHovering;
 
     }
 
     public bool IsDragging;
     public bool IsUsing;
+    public bool IsHovering;
     public CardDataBase CardData;
 
 }

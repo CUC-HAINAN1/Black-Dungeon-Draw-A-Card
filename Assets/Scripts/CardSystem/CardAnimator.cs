@@ -19,7 +19,6 @@ public class CardAnimator : MonoBehaviour {
         rt.localScale = Vector3.one;
         rt.localRotation = targetRT.localRotation;
 
-
         // 计算起始位置（基于父级坐标系，Y轴向下偏移）
         Vector2 startPos = new Vector2(
 
@@ -35,6 +34,9 @@ public class CardAnimator : MonoBehaviour {
         rt.DOAnchorPos(Vector2.zero, slideDuration)
             .SetEase(positionEase)
             .OnComplete(() => FinalizeCardPosition(rt));
+        
+        CardQueueSystem.Instance.RefreshAllCardsHover();
+        
     }
 
     private void FinalizeCardPosition(RectTransform rt) {

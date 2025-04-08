@@ -24,6 +24,7 @@ public class CardQueueSystem : MonoBehaviour {
     
     public int currentSlotIndex = 0;
     public bool IsAnyCardDragging {get; private set;}
+    public bool IsAnyCardHovering {get; private set;}
 
     private void Awake() {
         
@@ -79,7 +80,7 @@ public class CardQueueSystem : MonoBehaviour {
         };
 
         // 注册新卡牌状态
-        CardStateManager.Instance.RegisterCard(newCard, false, false, data);
+        CardStateManager.Instance.RegisterCard(newCard, false, false, false, data);
         
     }
 
@@ -107,7 +108,11 @@ public class CardQueueSystem : MonoBehaviour {
         int slotIndex = System.Array.FindIndex(currentCards, 
             c => c.cardInstance == draggedCard.gameObject);
 
-        if (slotIndex == -1) return false;
+        if (slotIndex == -1 || 
+            PlayerAttributes.Instance.Mana < currentCards[slotIndex].cardData.manaCost) 
+            return false;
+        
+        PlayerAttributes.Instance.UseMana(currentCards[slotIndex].cardData.manaCost);
 
         // 执行卡牌使用逻辑
         StartCoroutine(ProcessCardUse(currentCards[slotIndex]));
@@ -119,13 +124,12 @@ public class CardQueueSystem : MonoBehaviour {
 
         CardStateManager.Instance.SetUsingState(usedCard.cardInstance, true);
         
-
         //todo
         yield return new WaitForSeconds(0.2f);
         
         CardStateManager.Instance.SetUsingState(usedCard.cardInstance, false);
         ClearSlot(cardSlots[System.Array.IndexOf(currentCards, usedCard)]);
-
+        
     }
 
     private void ClearAllSlots() {
@@ -157,6 +161,25 @@ public class CardQueueSystem : MonoBehaviour {
         IsAnyCardDragging = isAnyCardDragging;
 
     }
+
+    public void SetCardQueueHoveringState(bool isAnyCardHovering) {
+
+        IsAnyCardHovering = isAnyCardHovering;
+
+    }
+
+    public void RefreshAllCardsHover() {
+        
+        foreach (var card in currentCards) {
+            
+            if (card?.cardInstance == null) continue;
+            
+            card.cardInstance.GetComponent<CardVisual>()?.CheckHoverAfterAnimation();
+        
+        }
+    
+    }
+
 
     [Header("基础配置")]
     public GameObject cardPrefab;

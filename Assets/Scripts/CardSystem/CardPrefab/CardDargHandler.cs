@@ -3,12 +3,8 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using UnityEngine.UI;
 
-<<<<<<< HEAD
-public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
-{   
-=======
 public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
->>>>>>> caf4e57 (In card use and indicators developing)
+
     private CardStateManager cardStateManager;
     private CardQueueSystem cardQueueSystem;
     private RangeIndicatorManager rangeIndicatorManager;
@@ -18,24 +14,13 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private CanvasGroup canvasGroup;
     private Vector3 originalScale;
     private Vector3 originalRotation;
-<<<<<<< HEAD
-    private bool isInPlayArea = false;
-=======
->>>>>>> caf4e57 (In card use and indicators developing)
     private bool isAnimating = false;
     private bool isValidDrag = false;
 
-<<<<<<< HEAD
     //处理范围指示器的部分
     private CardDataBase cardData;
-    private Vector2 startDragPosition;
 
     [Header("动画设置")]
-=======
-    private CardDataBase cardData;
-
-    [Header("Animation Settings")]
->>>>>>> caf4e57 (In card use and indicators developing)
     public float returnDuration = 0.3f;
     public Ease moveEase = Ease.OutBack;
     public float rotationDuration = 0.2f;
@@ -44,11 +29,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     [SerializeField] private Ease hoverEase = Ease.OutBack;
 
     private void Awake() {
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> caf4e57 (In card use and indicators developing)
         cardStateManager = CardStateManager.Instance;
         cardQueueSystem = CardQueueSystem.Instance;
         rangeIndicatorManager = RangeIndicatorManager.Instance;
@@ -59,13 +40,12 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
-<<<<<<< HEAD
+
+        if (!cardStateManager.IsCardUsable(gameObject)) return;
 
         cardData = cardStateManager.GetCardState(gameObject).CardData;
         cardStateManager.SetDraggingState(gameObject, true);
         cardQueueSystem.SetCardQueueDraggingState(true);
-=======
->>>>>>> caf4e57 (In card use and indicators developing)
 
         if (eventData.button != PointerEventData.InputButton.Left || 
             !cardStateManager.IsCardUsable(gameObject)) {
@@ -92,12 +72,10 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
 
-<<<<<<< HEAD
-=======
+
         rangeIndicatorManager.CreateIndicator(cardData);
         transform.DOScale(originalScale * zoomScale, hoverDuration).SetEase(hoverEase);
 
->>>>>>> caf4e57 (In card use and indicators developing)
     }
 
     public void OnDrag(PointerEventData eventData) {}
@@ -119,48 +97,14 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             transform.position = Input.mousePosition;
             rangeIndicatorManager.UpdateIndicator();
         
-<<<<<<< HEAD
-        if (IsInPlayArea()) {
-
-            if (!isInPlayArea) {
-
-                transform.DOScale(originalScale * zoomScale, hoverDuration)
-            .SetEase(hoverEase);
-
-                rangeIndicatorManager.CreateIndicator(cardData);
-                startDragPosition = eventData.position;
-
-            }
-
-            isInPlayArea = true;
-            Vector2 delta = eventData.position - startDragPosition;
-            rangeIndicatorManager.UpdateIndicator(delta);
-
-        } else {
-
-            if (isInPlayArea) {
-
-                transform.DOScale(originalScale, hoverDuration)
-            .SetEase(hoverEase);
-
-            }
-
-            isInPlayArea = false;
-            rangeIndicatorManager.ClearIndicator();
-
-=======
->>>>>>> caf4e57 (In card use and indicators developing)
         }
 
     }
 
     public void OnEndDrag(PointerEventData eventData) {
-<<<<<<< HEAD
-        
-=======
 
         if (!isValidDrag || eventData.button != PointerEventData.InputButton.Left) {
-           
+            
             eventData.pointerDrag = null;
             return;
 
@@ -175,51 +119,20 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void CompleteCardUse() {
 
->>>>>>> caf4e57 (In card use and indicators developing)
         cardStateManager.SetDraggingState(gameObject, false);
         cardQueueSystem.SetCardQueueDraggingState(false);
 
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
-        cardQueueSystem.TryUseCard(this);
+        if (!cardQueueSystem.TryUseCard(this)) ReturnToOriginalPosition();
 
+        //技能使用！
+        SkillSystem.Instance.ExecuteSkill(cardStateManager.GetCardState(gameObject).CardData);
 
         rangeIndicatorManager.ClearIndicator();
         RestoreOtherCards();
 
-<<<<<<< HEAD
-        // 判断是否在有效区域
-        if (IsInPlayArea()) {
-        
-            cardQueueSystem.TryUseCard(this);
-
-            // 将最终参数传递给技能系统
-            Vector3 direction = (eventData.position - startDragPosition).normalized;
-            //SkillSystem.Instance.ExecuteSkill(cardData, direction);
-
-        }
-        else {
-        
-            ReturnToOriginalPosition();
-        
-        }
-
-        
-        //恢复其他卡牌大小
-        foreach (var cardInfo in cardQueueSystem.currentCards) {
-        
-            if (cardInfo.cardInstance != null && cardInfo.cardInstance != gameObject) {
-            
-                cardInfo.cardInstance.transform.DOScale(originalScale, hoverDuration)
-                    .SetEase(hoverEase);
-            
-            }
-        
-        }
-    
-=======
->>>>>>> caf4e57 (In card use and indicators developing)
     }
 
     private void CancelDrag() {
@@ -255,13 +168,18 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 canvasGroup.blocksRaycasts = true;
                 isAnimating = false;
             });
+    
     }
 
     private void RestoreOtherCards() {
+        
         foreach (var cardInfo in cardQueueSystem.currentCards) {
+            
             if (cardInfo.cardInstance != null && cardInfo.cardInstance != gameObject) {
+                
                 cardInfo.cardInstance.transform.DOScale(originalScale, hoverDuration)
                     .SetEase(hoverEase);
+            
             }
         }
     }
