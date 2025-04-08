@@ -27,7 +27,6 @@ MonoBehaviour:
     projectile:
       speed: 0
       projectileCount: 0
-      spreadAngle: 0
       maxRange: 0
       damage: 0
     sweep:
@@ -38,8 +37,7 @@ MonoBehaviour:
       maxTargets: 0
       damage: 0
     area:
-      shape: 0
-      size: {x: 15, y: 0}
+      radius: 0.5
       duration: 5
       tickRate: 0.5
       damage: 3
@@ -50,7 +48,7 @@ MonoBehaviour:
       amount: 0
       duration: 0
   visualConfig:
-    rangeIndicatorPrefab: {fileID: 0}
+    rangeIndicatorPrefab: {fileID: 7113470609297474002, guid: 31706bc3d63b9499d98f9aefe88b7053, type: 3}
     castEffect: {fileID: 0}
     castSound: {fileID: 0}
     hitEffect: {fileID: 0}
