@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class ShieldAnimatorShifter : MonoBehaviour {
     private Animator _animator;
+    private int shieldHash = Animator.StringToHash("IsShield");
 
     private void OnEnable() {
         
-        EventManager.Instance.Subscribe("ShieldStateEntered", OnShieldStart);
-        EventManager.Instance.Subscribe("ShieldStateExited", OnShieldEnd);
+        _animator = gameObject.GetComponent<Animator>();
+
+        EventManager.Instance.Subscribe("ShieldStateEntered", HandleShieldStart);
+        EventManager.Instance.Subscribe("ShieldStateExited", HandleShieldEnd);
     
     }
 
-    private void OnShieldStart(object data) => _animator.SetBool("IsShield", true);
-    private void OnShieldEnd(object data) => _animator.SetBool("IsShield", false);
+    private void HandleShieldStart(object eventData) => _animator.SetBool(shieldHash, true);
+    private void HandleShieldEnd(object eventData) => _animator.SetBool(shieldHash, false);
+
 
 }

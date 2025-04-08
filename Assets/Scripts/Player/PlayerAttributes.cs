@@ -17,8 +17,10 @@ public enum StateType {
     InCombat,
     Invincible,
     IsShield,
+    IsRolling,
     IsDead,
-    IsAttackIncreased
+    IsAttackIncreased,
+
 
 }
 public class PlayerAttributes : MonoBehaviour {
@@ -48,6 +50,7 @@ public class PlayerAttributes : MonoBehaviour {
     private bool _deathEventTriggered;
     [SerializeField] private bool _inCombat;
     [SerializeField] private bool _isInvincible;
+    [SerializeField] private bool _isRolling;
     
     private Coroutine _invincibleCoroutine;
     [SerializeField] private bool _hasShield;
@@ -64,7 +67,7 @@ public class PlayerAttributes : MonoBehaviour {
         }
 
         _instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         _currentHealth = _MaxHealth;
         
@@ -82,6 +85,7 @@ public class PlayerAttributes : MonoBehaviour {
 
         _isInvincible = false;
         _inCombat = false;
+        _isRolling = false;
 
     }
 
@@ -196,10 +200,24 @@ public class PlayerAttributes : MonoBehaviour {
             
             );
 
+            if (previous > 0 && _currentAttackPowerInCreased == 0) {
+
+                IsAttackIncreased = false;
+
+            } 
+
+            else if (previous == 0 && _currentAttackPowerInCreased > 0) {
+
+                IsAttackIncreased = true;
+            
+            }
         }
 
     }
 
+    //获取Transform组件，位置/旋转信息
+    public Transform PlayerTransform => GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Transform>();
+    
     //状态访问器
     public bool IsDead {
 
@@ -304,9 +322,29 @@ public class PlayerAttributes : MonoBehaviour {
                 
                 _hasShield = value;
                 EventManager.Instance.TriggerEvent(
-                    
                     value ? "ShieldStateEntered" : "ShieldStateExited", 
                     new StateChangeData(StateType.IsShield)
+                
+                );
+            
+            }
+        
+        }
+    
+    }
+
+    public bool IsRolling {
+        
+        get => _isRolling;
+        private set {
+            
+            if (_isRolling != value) {
+                
+                _isRolling = value;
+                EventManager.Instance.TriggerEvent(
+                    
+                    value ? "RollingStateEntered" : "RollingStateExited", 
+                    new StateChangeData(StateType.IsRolling)
                 
                 );
             
@@ -320,7 +358,7 @@ public class PlayerAttributes : MonoBehaviour {
     //使用方式：PlayerAttributes.Instance.Takedamege(damage)
     public void TakeDamage(int amount) {
 
-        if (IsDead || IsInvincible) return;
+        if (IsDead || IsInvincible || IsRolling) return;
 
         if (Shield > 0) {
 
@@ -338,20 +376,44 @@ public class PlayerAttributes : MonoBehaviour {
     //属性操作方法
     public void Heal(int amount) {
 
-        Health += amount;
+        if (Health + amount > _MaxHealth) {
+
+            Health = _MaxHealth;
+
+        } else {
+
+            Health += amount;
+
+        }
 
     }
 
     public void UseMana(int amount) {
 
-        Mana -= amount;
+        if (Mana - amount < 0) {
+
+            Mana = 0;
+
+        } else {
+
+            Mana -= amount;
+
+        }
 
     }
 
     public void RestoreMana(int amount) {
 
-        Mana += amount;
+        if (Mana + amount > _MaxMana) {
 
+            Mana = _MaxMana;
+
+        } else {
+
+            Mana += amount;
+
+        }
+    
     }
 
     public void GenerateShield() {
@@ -362,7 +424,30 @@ public class PlayerAttributes : MonoBehaviour {
 
     public void VanishShield() {
 
-        _currentShield = 0;
+        Shield = 0;
+
+    }
+
+    public void IncreaseAttackPower(int amount) {
+
+        if (AttackPowerIncreased + amount >= _MaxAttackPowerInCreased) {
+
+            AttackPowerIncreased = _MaxAttackPowerInCreased;
+
+        }
+
+        AttackPowerIncreased += amount;
+
+    }
+    public void DecreaseAttackPower(int amount) {
+
+        if (AttackPowerIncreased - amount <= 0) {
+
+            AttackPowerIncreased = 0;
+
+        }
+
+        AttackPowerIncreased -= amount;
 
     }
 
@@ -372,6 +457,8 @@ public class PlayerAttributes : MonoBehaviour {
 
     public void EnableInvincible() => IsInvincible = true;
     public void DisableInvincible() => IsInvincible = false;
+    public void StartRolling()  => IsRolling = true;
+    public void EndRolling() => IsRolling = false;
 
     public void EnableInvincibleForDuration(float duration) {
 
@@ -424,7 +511,7 @@ public class PlayerAttributes : MonoBehaviour {
     private void ApplyManaRegeneration() {
 
         int actualRegen = Mathf.RoundToInt(_manaRegenBase * _manaRegenMutiplier);
-        _currentMana += actualRegen;
+        RestoreMana(actualRegen);
 
     }
 

@@ -3,13 +3,15 @@ using UnityEngine;
 public class CardDrawController : MonoBehaviour {
 
     public CardAnimator _cardAnimator;
-    private CardQueueSystem _cardSystem;
+    private CardQueueSystem _cardQueueSystem;
+    private CardStateManager _cardStateManger;
 
     private void Start() {
     
         _cardAnimator = GetComponent<CardAnimator>();
-        _cardSystem = CardQueueSystem.Instance;
-        CardQueueSystem.Instance.Initialize();
+        _cardQueueSystem = CardQueueSystem.Instance;
+        _cardStateManger = CardStateManager.Instance;
+        _cardQueueSystem.Initialize();
     
     }
 
@@ -23,7 +25,7 @@ public class CardDrawController : MonoBehaviour {
 
     private void DrawAndCreateCard()
     {
-        Transform targetSlot = _cardSystem.GetNextSlot();
+        Transform targetSlot = _cardQueueSystem.GetNextSlot();
         if (targetSlot == null) {
         
             Debug.LogWarning("没有可用卡槽");
@@ -48,12 +50,10 @@ public class CardDrawController : MonoBehaviour {
         _cardAnimator.PlayCardEntrance(
             
                 cardInfo.cardInstance, 
-                _cardSystem.cardSlots[System.Array.IndexOf(_cardSystem.currentCards, cardInfo)]
+                _cardQueueSystem.cardSlots[System.Array.IndexOf(_cardQueueSystem.currentCards, cardInfo)]
             
         );
 
-        // 更新状态管理器
-        CardStateManager.Instance.RegisterCard(cardInfo.cardInstance);
     }
 
     private bool TryCreateCard(Transform targetSlot, out CardQueueSystem.ActiveCardInfo cardInfo) {
@@ -61,14 +61,14 @@ public class CardDrawController : MonoBehaviour {
         cardInfo = null;
         
         // 抽卡逻辑
-        CardDataBase cardData = _cardSystem.DrawCard();
+        CardDataBase cardData = _cardQueueSystem.DrawCard();
 
         // 创建卡牌
-        _cardSystem.CreateCard(cardData, targetSlot);
+        _cardQueueSystem.CreateCard(cardData, targetSlot);
         
         // 获取新卡信息
-        int slotIndex = System.Array.IndexOf(_cardSystem.cardSlots, targetSlot);
-        cardInfo = _cardSystem.currentCards[slotIndex];
+        int slotIndex = System.Array.IndexOf(_cardQueueSystem.cardSlots, targetSlot);
+        cardInfo = _cardQueueSystem.currentCards[slotIndex];
         
         // 初始化视觉组件
         CardVisual visual = cardInfo.cardInstance.GetComponent<CardVisual>();

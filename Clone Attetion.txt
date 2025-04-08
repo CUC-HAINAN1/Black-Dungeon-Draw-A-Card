@@ -1,7 +1,7 @@
 #克隆dev库流程
 
-# 创建项目文件夹
-cd 你的项目目录
+# 创建项目文件夹,预计路径：Projects/Black...
+cd 你的项目目录（Projects）
 
 # 大文件处理（LFS）​
 git lfs install    # 首次克隆前需安装 LFS

@@ -9,10 +9,10 @@ public class PlayerAnimatorShifter : MonoBehaviour
     [SerializeField] private Animator shieldAnimator;
     
     // 使用哈希存储动画参数
-    private int _isMovingHash = Animator.StringToHash("IsMoving");
-    private int _deathHash = Animator.StringToHash("IsDead");
-    private int _ShieldHash = Animator.StringToHash("IsShield");
-    private int _InvincibleHash = Animator.StringToHash("IsInvincible");        
+    private int isMovingHash = Animator.StringToHash("IsMoving");
+    private int deathHash = Animator.StringToHash("IsDead");
+    private int invincibleHash = Animator.StringToHash("IsInvincible");
+    private int rollingHash = Animator.StringToHash("IsRolling");        
     
     private void OnEnable() {
     
@@ -36,11 +36,11 @@ public class PlayerAnimatorShifter : MonoBehaviour
         //无敌状态进入与退出事件
         EventManager.Instance.Subscribe("InvincibleStateEntered", HandleInvincibleStart);
         EventManager.Instance.Subscribe("InvincibleStateExited", HandleInvincibleEnd);
-        
-        //护盾状态进入与退出事件
-        EventManager.Instance.Subscribe("ShieldStateEntered", HandleShieldStart);
-        EventManager.Instance.Subscribe("ShieldStateExited", HandleShieldEnd);
-    
+
+        //翻滚进入与退出事件
+        EventManager.Instance.Subscribe("RollingStateEntered", HandleRollingStart);
+        EventManager.Instance.Subscribe("RollingStateExited", HandleRollingEnd);
+
     }
 
     private void UnsubscribeEvents() {
@@ -52,28 +52,21 @@ public class PlayerAnimatorShifter : MonoBehaviour
         EventManager.Instance.Unsubscribe("InvincibleStateEntered", HandleInvincibleStart);
         EventManager.Instance.Unsubscribe("InvincibleStateExited", HandleInvincibleEnd);
         
-        //护盾状态进入与退出事件
-        EventManager.Instance.Unsubscribe("ShieldStateEntered", HandleShieldStart);
-        EventManager.Instance.Unsubscribe("ShieldStateExited", HandleShieldEnd);
+        //翻滚进入与退出事件
+        EventManager.Instance.Unsubscribe("RollingStateEntered", HandleRollingStart);
+        EventManager.Instance.Unsubscribe("RollingStateExited", HandleRollingEnd);
     
     }
 
-    private void HandleMovement(Vector2 input) {
+    private void HandleMovement(Vector2 input) => animator.SetBool(isMovingHash, input.magnitude > 0.1f);
 
-        animator.SetBool(_isMovingHash, input.magnitude > 0.1f);
+    private void HandleDeath(object eventData) => animator.SetBool(deathHash, true);
 
-    }
+    private void HandleInvincibleStart(object eventData) => animator.SetBool(invincibleHash, true);
+    private void HandleInvincibleEnd(object eventData) => animator.SetBool(invincibleHash, false);
 
-    private void HandleDeath(object eventData) {
-    
-        animator.SetBool(_deathHash, true);
-    
-    }
+    private void HandleRollingStart(object eventData) => animator.SetBool(rollingHash, true);
+    private void HandleRollingEnd(object eventData) => animator.SetBool(rollingHash, false);
 
-    private void HandleShieldStart(object eventData) => shieldAnimator.SetBool(_ShieldHash, true);
-    private void HandleShieldEnd(object eventData) => shieldAnimator.SetBool(_ShieldHash, false);
-
-    private void HandleInvincibleStart(object eventData) => animator.SetBool(_InvincibleHash, true);
-    private void HandleInvincibleEnd(object eventData) => animator.SetBool(_InvincibleHash, false);
 
 }

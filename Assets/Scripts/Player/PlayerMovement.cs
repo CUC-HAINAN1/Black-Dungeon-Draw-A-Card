@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PlayerMovement: MonoBehaviour {
 
+    PlayerAttributes playerAttributes;
+
     public event Action<Vector2> OnMovementInputChanged;
 
     [Header("Movement")]
@@ -42,26 +44,26 @@ public class PlayerMovement: MonoBehaviour {
     private Animator animator;
     private float defaultDrag; //默认阻力
     private bool isFacingRight = true;
-    private bool isRolling = false;
     private float lastRollTime = -999f;
 
 
     void Start()
     {
         
+        playerAttributes = PlayerAttributes.Instance;
+        
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        rb.drag = drag;
         
-        //存储初始阻力
-        defaultDrag = rb.drag;
+        rb.drag = drag;
+        defaultDrag = rb.drag; //存储初始阻力
 
     }
 
     void Update() {
 
         //假如死亡直接返回，翻滚时禁用常规移动
-        if (!CheckAndHandleDeath() || isRolling) return;
+        if (!CheckAndHandleDeath() || playerAttributes.IsRolling) return;
 
         Vector2 newInput = new Vector2(
             
@@ -82,10 +84,11 @@ public class PlayerMovement: MonoBehaviour {
         if (movementInput.magnitude > 0.1f) lastNonZeroMovementInput = newInput.normalized;
 
         //翻滚输入检测
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > lastRollTime + rollCoolDown) {
-
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > lastRollTime + rollCoolDown && playerAttributes.Mana >= 2) {
+            
+            playerAttributes.UseMana(2);
             StartCoroutine(PerformRoll());
-
+            
         }
         
         //水平移动时改变角色朝向
@@ -100,7 +103,7 @@ public class PlayerMovement: MonoBehaviour {
     void FixedUpdate() {
     
         //处于翻滚或死亡状态直接返回
-        if (isRolling || PlayerAttributes.Instance.IsDead) return;
+        if (playerAttributes.IsRolling || playerAttributes.IsDead) return;
 
         if (movementInput.magnitude > 0.1f) {
 
@@ -124,8 +127,7 @@ public class PlayerMovement: MonoBehaviour {
     //翻滚动作
     IEnumerator PerformRoll() {
 
-        isRolling = true;
-        PlayerAttributes.Instance.EnableInvincible();
+        playerAttributes.StartRolling();
         
         lastRollTime = Time.time;
         
@@ -178,8 +180,7 @@ public class PlayerMovement: MonoBehaviour {
         rb.drag = originalDrag;
         
         //重置翻滚状态
-        PlayerAttributes.Instance.DisableInvincible();
-        isRolling = false;
+        playerAttributes.EndRolling();
 
     }
 
@@ -231,7 +232,7 @@ public class PlayerMovement: MonoBehaviour {
 
         movementInput = Vector2.zero;
         StopAllCoroutines();
-        isRolling = false;
+        playerAttributes.EndRolling();
 
     }
 

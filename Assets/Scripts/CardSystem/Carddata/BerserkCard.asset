@@ -18,7 +18,7 @@ MonoBehaviour:
     for a period of time.
   cardIcon: {fileID: 156347195121582194, guid: 62d839ef54107b44fb11001a8541bedf, type: 3}
   rarity: 0
-  manaCost: 15
+  manaCost: 3
   cooldown: 1
   Owned: 1
   skillType: 4
@@ -27,19 +27,17 @@ MonoBehaviour:
     projectile:
       speed: 0
       projectileCount: 0
-      spreadAngle: 0
       maxRange: 0
       damage: 0
     sweep:
-      angle: 0
+      angle: 5
       radius: 0
       damage: 0
     lockOn:
       maxTargets: 0
       damage: 0
     area:
-      shape: 0
-      size: {x: 0, y: 0}
+      radius: 0
       duration: 0
       tickRate: 0
       damage: 0
@@ -50,8 +48,7 @@ MonoBehaviour:
       amount: 0
       duration: 0
   visualConfig:
-    dragPreviewPrefab: {fileID: 0}
-    rangeIndicatorMat: {fileID: 0}
+    rangeIndicatorPrefab: {fileID: 0}
     castEffect: {fileID: 0}
     castSound: {fileID: 0}
     hitEffect: {fileID: 0}

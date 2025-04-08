@@ -17,19 +17,6 @@ public class CardQueueSystem : MonoBehaviour {
         public CardDataBase cardData;
         public GameObject cardInstance;
 
-        public bool IsDragging {
-        
-            get => CardStateManager.Instance.GetCardState(cardInstance)?.IsDragging ?? false;
-            set => CardStateManager.Instance.SetDraggingState(cardInstance, value);
-        
-        }
-
-        public bool IsUsing {
-        
-            get => CardStateManager.Instance.GetCardState(cardInstance)?.IsUsing ?? false;
-            set => CardStateManager.Instance.SetUsingState(cardInstance, value);
-        }
-
     }
 
     [Header("当前卡牌状态")]
@@ -37,6 +24,7 @@ public class CardQueueSystem : MonoBehaviour {
     
     public int currentSlotIndex = 0;
     public bool IsAnyCardDragging {get; private set;}
+    public bool IsAnyCardHovering {get; private set;}
 
     private void Awake() {
         
@@ -55,7 +43,6 @@ public class CardQueueSystem : MonoBehaviour {
 
     }
 
-
     public void Initialize() {
     
         ClearAllSlots();
@@ -71,8 +58,6 @@ public class CardQueueSystem : MonoBehaviour {
     public void CreateCard(CardDataBase data, Transform targetSlot) {
     
         int slotIndex = System.Array.IndexOf(cardSlots, targetSlot);
-        
-        Debug.Log(slotIndex);
 
         ClearSlot(targetSlot);
 
@@ -95,14 +80,8 @@ public class CardQueueSystem : MonoBehaviour {
         };
 
         // 注册新卡牌状态
-        CardStateManager.Instance.RegisterCard(newCard);
-
-        Debug.Log(newCard == null);
+        CardStateManager.Instance.RegisterCard(newCard, false, false, false, data);
         
-        // 初始化状态
-        currentCards[slotIndex].IsDragging = false;
-        currentCards[slotIndex].IsUsing = false;
-
     }
 
     public Transform GetNextSlot() {
@@ -129,7 +108,11 @@ public class CardQueueSystem : MonoBehaviour {
         int slotIndex = System.Array.FindIndex(currentCards, 
             c => c.cardInstance == draggedCard.gameObject);
 
-        if (slotIndex == -1) return false;
+        if (slotIndex == -1 || 
+            PlayerAttributes.Instance.Mana < currentCards[slotIndex].cardData.manaCost) 
+            return false;
+        
+        PlayerAttributes.Instance.UseMana(currentCards[slotIndex].cardData.manaCost);
 
         // 执行卡牌使用逻辑
         StartCoroutine(ProcessCardUse(currentCards[slotIndex]));
@@ -140,19 +123,14 @@ public class CardQueueSystem : MonoBehaviour {
     private IEnumerator ProcessCardUse(ActiveCardInfo usedCard) {
 
         CardStateManager.Instance.SetUsingState(usedCard.cardInstance, true);
-
+        
         //todo
-        // 1. 播放使用动画
-        // 2. 应用卡牌效果
-        // 3. 清除卡牌实例
         yield return new WaitForSeconds(0.2f);
         
         CardStateManager.Instance.SetUsingState(usedCard.cardInstance, false);
         ClearSlot(cardSlots[System.Array.IndexOf(currentCards, usedCard)]);
-
+        
     }
-
-
 
     private void ClearAllSlots() {
     
@@ -182,6 +160,24 @@ public class CardQueueSystem : MonoBehaviour {
 
         IsAnyCardDragging = isAnyCardDragging;
 
+    }
+
+    public void SetCardQueueHoveringState(bool isAnyCardHovering) {
+
+        IsAnyCardHovering = isAnyCardHovering;
+
+    }
+
+    public void RefreshAllCardsHover() {
+        
+        foreach (var card in currentCards) {
+            
+            if (card?.cardInstance == null) continue;
+            
+            card.cardInstance.GetComponent<CardVisual>()?.CheckHoverAfterAnimation();
+        
+        }
+    
     }
 
 
