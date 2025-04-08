@@ -47,8 +47,8 @@ public class RectRangeIndicator : MonoBehaviour, IRangeIndicator {
     
     }
 
-    public T GetContext<T>() where T : struct {
-
+    public T GetContext<T>() {
+        
         if (typeof(T) == typeof(Vector3)) {
         
             return (T)(object)_direction; // 通过装箱转换类型

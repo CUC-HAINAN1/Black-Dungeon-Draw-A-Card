@@ -74,7 +74,7 @@ public class RangeIndicatorManager : MonoBehaviour {
     
     }
 
-    public T GetContext <T> () where T: struct {
+    public T GetContext <T> () {
 
         return currentIndicator.GetContext<T>();
 

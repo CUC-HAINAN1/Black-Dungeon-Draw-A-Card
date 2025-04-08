@@ -45,7 +45,7 @@ public class CircleRangeIndicator : MonoBehaviour, IRangeIndicator
     
     }
 
-    public T GetContext<T>() where T : struct {
+    public T GetContext<T>() {
 
         if (typeof(T) == typeof(Vector3)) {
         
