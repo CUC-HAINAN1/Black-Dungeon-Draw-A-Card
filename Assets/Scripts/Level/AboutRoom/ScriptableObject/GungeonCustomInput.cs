@@ -28,6 +28,7 @@ public class GungeonCustomInput : DungeonGeneratorInputBaseGrid2D
     //    public CustomRoom room;
     //    public List<CustomRoom> neighbors = new List<CustomRoom>();
     //}
+
     protected override LevelDescriptionGrid2D GetLevelDescription()
     {
         if (customRoom == null)
@@ -49,7 +50,7 @@ public class GungeonCustomInput : DungeonGeneratorInputBaseGrid2D
         }
 
         // Manually add all the rooms to the level description
-        foreach (var room in selectLevelGraph.Rooms.Cast<CustomRoom>())
+        foreach (var room in selectLevelGraph.Rooms.OfType<CustomRoom>())
         {
 
             if (room == null)
@@ -59,10 +60,16 @@ public class GungeonCustomInput : DungeonGeneratorInputBaseGrid2D
             }
 
             var templates = roomConfig.RoomTemplates.GetRoomTemplates(room);
-
             if (templates == null)
             {
                 Debug.LogError($"× GetLevelDescription: Room '{room.name}' 的 GetRoomTemplates 返回了 null！");
+                continue;
+            }
+            // 过滤无效引用
+            var validTemplates = templates.Where(t => t != null).ToList();
+            if (validTemplates.Count == 0)
+            {
+                Debug.LogError($"房间 {room.name} 所有模板都无效!");
                 continue;
             }
 

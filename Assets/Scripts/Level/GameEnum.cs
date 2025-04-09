@@ -1,5 +1,6 @@
 ﻿public enum RoomType
 {
+    Unassigned, // 新增
     BirthRoom,
     EnemyRoom,
     EliteEnemyRoom,
@@ -9,6 +10,7 @@
     TreasureRoom,
     ShopRoom,
     Corridor,
+    BasicRoom,
 }
 public enum BuffType
 {

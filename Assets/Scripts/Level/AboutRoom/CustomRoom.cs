@@ -23,7 +23,12 @@ public class CustomRoom : RoomBase
 
     // 在启用时，确保所有模板数组都不为 null
     private void OnEnable()
-    {
+    { // 设置默认值
+        if (RoomType == RoomType.Unassigned)
+        {
+            Debug.LogWarning($"未初始化的房间类型，自动设置为默认值");
+            RoomType = RoomType.BasicRoom; // ← 正確引用
+        }
         if (BossRoomTemplates == null) BossRoomTemplates = new GameObject[0];
         if (EnemyRoomTemplates == null) EnemyRoomTemplates = new GameObject[0];
         if (EliteEnemyRoomTemplates == null) EliteEnemyRoomTemplates = new GameObject[0];

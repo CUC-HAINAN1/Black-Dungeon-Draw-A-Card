@@ -21,7 +21,6 @@ MonoBehaviour:
   - {fileID: 2313339408895456413, guid: 5ef4a7f68e09e2b4fb17cfb7924170ac, type: 3}
   - {fileID: 2313339408895456413, guid: e06c60cb60e154d4e816bd643f5cb437, type: 3}
   - {fileID: 2313339408895456413, guid: 231fcd8cc1f752949b9fdafb2c4cb158, type: 3}
-  - {fileID: 2313339408895456413, guid: 2c6e98c612bf54845b36cbecca2bb02f, type: 3}
   - {fileID: 4879955875728917644, guid: 7725c1d66bac6c4428b1e7734b9d3e1d, type: 3}
   EliteEnemyRoomTemplates:
   - {fileID: 4879955875728917644, guid: 7725c1d66bac6c4428b1e7734b9d3e1d, type: 3}

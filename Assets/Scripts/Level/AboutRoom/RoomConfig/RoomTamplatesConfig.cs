@@ -41,12 +41,6 @@ public class RoomTamplatesConfig
             return new GameObject[0]; // 返回空数组，防止崩溃
         }
 
-        if (room.RoomType == null)
-        {
-            Debug.LogError("× GetRoomTemplates 里 room.RoomType 是 null，请检查是否正确赋值！");
-            return new GameObject[0]; // 返回空数组
-        }
-
         Debug.Log("√ room 和 room.RoomType 都已正确赋值: " + room.RoomType);
         switch (room.RoomType)
         {
