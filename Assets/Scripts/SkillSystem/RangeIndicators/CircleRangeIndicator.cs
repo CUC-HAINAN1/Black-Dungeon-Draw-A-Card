@@ -37,10 +37,13 @@ public class CircleRangeIndicator : MonoBehaviour, IRangeIndicator
             smoothTime
         );
 
+        //Debug.Log($"MousePos: {_mouseWorldPos}, RadiusScale: {circleTransform.localScale.x / 2}");
+
     }
 
     public void Terminate() {
-    
+        
+        Debug.Log($"MousePos: {_mouseWorldPos}, RadiusScale: {circleTransform.localScale.x / 2}");
         Destroy(gameObject);
     
     }

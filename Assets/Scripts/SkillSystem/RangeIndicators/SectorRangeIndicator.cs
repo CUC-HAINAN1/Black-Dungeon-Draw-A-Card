@@ -3,7 +3,7 @@ public class SectorRangeIndicator : MonoBehaviour, IRangeIndicator {
     [SerializeField] private Transform rangeSector;
     private CardDataBase.SweepParams config;
     [SerializeField] public Color color;
-
+    
     private Transform playerTransform;
     private Vector3 _direction;
 

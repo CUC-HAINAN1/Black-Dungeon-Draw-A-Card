@@ -1,26 +1,26 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using Pathfinding;
 
 [RequireComponent(typeof(Seeker), typeof(AIPath))]
 public class EnemyStateMachine : MonoBehaviour
 {
-    [Header("×´Ì¬²ÎÊı")]
+    [Header("çŠ¶æ€å‚æ•°")]
     [Header("Detection Ranges")]
     [SerializeField] public float chaseRange = 5f;
     [SerializeField] private float attackRange = 2f;
-    // Í¨¹ıÊôĞÔ·â×°Ë½ÓĞ×Ö¶Î£¨ÍÆ¼ö·½Ê½£©
+    // é€šè¿‡å±æ€§å°è£…ç§æœ‰å­—æ®µï¼ˆæ¨èæ–¹å¼ï¼‰
     public float AttackRange => attackRange;
 
     [Header("Movement Settings")]
     [SerializeField] private float patrolSpeed = 2f;
     [SerializeField] private float chaseSpeed = 4f;
 
-    [Header("ÒıÓÃ")]
+    [Header("å¼•ç”¨")]
     [SerializeField] private Animator animator;
     [SerializeField] private Transform player;
     [SerializeField] private Transform[] patrolPoints;
 
-    // ¶¯»­²ÎÊı¹şÏ£
+    // åŠ¨ç”»å‚æ•°å“ˆå¸Œ
     private int isMovingHash = Animator.StringToHash("IsMoving");
     private int isChasingHash = Animator.StringToHash("IsChasing");
     private int attackHash = Animator.StringToHash("Attack");
@@ -29,7 +29,7 @@ public class EnemyStateMachine : MonoBehaviour
     private AIPath aiPath;
     private int currentPatrolIndex;
     private bool isDead;
-    // ÔÚ³õÊ¼»¯Ê±×¢²áÊÂ¼ş
+    // åœ¨åˆå§‹åŒ–æ—¶æ³¨å†Œäº‹ä»¶
     void Start()
     {
         EventManager.Instance.Subscribe("EnemyStateChanged", HandleStateChange);
@@ -37,7 +37,7 @@ public class EnemyStateMachine : MonoBehaviour
     private void HandleStateChange(object eventData)
     {
         var data = (EnemyStateEventData)eventData;
-        Debug.Log($"State Changed: {data.PreviousState} ¡ú {data.NewState}");
+        Debug.Log($"State Changed: {data.PreviousState} â†’ {data.NewState}");
 
         switch (data.NewState)
         {
@@ -61,7 +61,7 @@ public class EnemyStateMachine : MonoBehaviour
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // ×´Ì¬ÇĞ»»Âß¼­
+        // çŠ¶æ€åˆ‡æ¢é€»è¾‘
         if (distanceToPlayer <= chaseRange)
         {
             EnterChaseState();
@@ -108,7 +108,7 @@ public class EnemyStateMachine : MonoBehaviour
     public void TriggerAttack()
     {
         animator.SetTrigger(attackHash);
-        // Êµ¼Ê¹¥»÷Âß¼­
+        // å®é™…æ”»å‡»é€»è¾‘
     }
 
     public void TriggerDeath()

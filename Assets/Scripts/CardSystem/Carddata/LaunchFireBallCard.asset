@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d803099e8c1f740eaa0d90776048ac4e, type: 3}
-  m_Name: LaunchFireBallCard
+  m_Name: LaunchFireballCard
   m_EditorClassIdentifier: 
   cardID: 1
-  displayName: LaunchFireBall
+  displayName: LaunchFireball
   description: Fires a series of fireballs in the specified direction, hitting enemies
     and causing damage
   cardIcon: {fileID: -7564434034282203093, guid: 897ad0c9a36ee354d8eed4613741515d, type: 3}
@@ -25,14 +25,18 @@ MonoBehaviour:
   inputMode: 0
   behaviorConfig:
     projectile:
-      speed: 4
-      projectileCount: 3
+      speed: 7
+      projectileCount: 4
       maxRange: 30
+      interval: 0.4
       damage: 10
     sweep:
       angle: 5
       radius: 0
       damage: 0
+      delay: 0
+      pivotOffsetY: 0
+      pivotOffsetX: 0
     lockOn:
       maxTargets: 0
       damage: 0
@@ -47,11 +51,15 @@ MonoBehaviour:
     generateShield:
       amount: 0
       duration: 0
+    burstAoE:
+      amount: 0
+      delay: 0
+      radius: 0
   visualConfig:
     rangeIndicatorPrefab: {fileID: 7927778565557261215, guid: 30df1196d2da144d4bb5a0ef2ddb19d9, type: 3}
-    castEffect: {fileID: 0}
+    castEffect: {fileID: 4241109729317024547, guid: 8b9bb4c4881d64fdeac558ed06386018, type: 3}
     castSound: {fileID: 0}
-    hitEffect: {fileID: 0}
+    hitEffect: {fileID: 8018359907108877938, guid: ea40806c20cca4a8ab8e86b16dbac036, type: 3}
     hitSound: {fileID: 0}
   upgradableParams:
   - displayName: "\u706B\u7403\u4F24\u5BB3\u589E\u52A0"

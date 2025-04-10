@@ -12,8 +12,15 @@ public class CameraFollow : MonoBehaviour
     public float followSpeed = 5f;
     public Vector3 offset = new Vector3(0, 0, -10);
 
-    void LateUpdate()
-    {
+    void Start() {
+        
+        var pos = PlayerAttributes.Instance.PlayerTransform.position;
+        gameObject.transform.position = pos;
+        
+    }
+
+    void LateUpdate() {
+    
         if (target != null) {
 
             Vector3 targetPosition = target.position + offset;

@@ -3,28 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Obstacles
-  - Enemy
-  - Weapon
-  - Pet
-  - OpenDoor
-  - CloseDoor
-  - Door
-  - BirthRoom
-  - Floor
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Effect
+  - 
   - Water
   - UI
-  - Colliddable
-  - Doors
-  - Other1
-  - Player1
-  - ENEMY
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -49,16 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Floor
-    uniqueID: 2873756935
-    locked: 0
-  - name: Bullet
-    uniqueID: 1964112229
-    locked: 0
-  - name: Characters
-    uniqueID: 2495451267
-    locked: 0
-  - name: UI_Overlay
-    uniqueID: 3018587409
     locked: 0

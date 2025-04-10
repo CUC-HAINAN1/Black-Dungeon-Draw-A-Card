@@ -13,7 +13,7 @@ public class SkillSystem : MonoBehaviour {
         public Vector3 direction;
         public Vector3 position;
         public GameObject target;
-        public Transform casterTransform;
+    
     }
 
     private void Awake() {
@@ -29,7 +29,12 @@ public class SkillSystem : MonoBehaviour {
             // 后续补齐
             { CardDataBase.SkillType.GenerateShield, gameObject.AddComponent<GenerateShieldSkill>() },
             { CardDataBase.SkillType.InceaseAttck, gameObject.AddComponent<IncreaseAttackPowerSkill>() },
-        
+            {CardDataBase.SkillType.Projectile, gameObject.AddComponent<LaunchFireBallSkill>()},
+            {CardDataBase.SkillType.Sweep, gameObject.AddComponent<SweepSkill>()},
+            {CardDataBase.SkillType.Area, gameObject.AddComponent<PoisonMistSkill>()},
+            {CardDataBase.SkillType.BurstAOE, gameObject.AddComponent<MeteoricFireballSkill>()},
+            {CardDataBase.SkillType.LockOn, gameObject.AddComponent<LightningSkill>()},
+
         };
     }
 
@@ -43,6 +48,7 @@ public class SkillSystem : MonoBehaviour {
         GameObject target = null;
 
         switch (cardData.inputMode) {
+            
             case CardDataBase.InputMode.AreaSelection:
                 
                 pos = rangeIndicator.GetContext<Vector3>();
@@ -57,6 +63,7 @@ public class SkillSystem : MonoBehaviour {
                
                 target = rangeIndicator.GetContext<GameObject>();
                 break;
+        
         }
 
         return new ExecutionContext {
@@ -65,7 +72,6 @@ public class SkillSystem : MonoBehaviour {
             direction = dir,
             position = pos,
             target = target,
-            casterTransform = playerAttributes.PlayerTransform
         
         };
     }
