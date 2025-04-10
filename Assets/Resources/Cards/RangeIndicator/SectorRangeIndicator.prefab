@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3280a4574a87147c4ba2ceeec56d417d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 120
+  angle: 40
   radius: 1
   segments: 20
 --- !u!114 &4704962472355248130

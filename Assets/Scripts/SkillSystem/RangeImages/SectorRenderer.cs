@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer), typeof(MeshFilter))]
 public class SectorMeshGenerator : MonoBehaviour {
-    public float angle = 120f; 
+    [SerializeField] public float angle; 
     public float radius = 1f; 
     public int segments = 20; // 细分段数
 

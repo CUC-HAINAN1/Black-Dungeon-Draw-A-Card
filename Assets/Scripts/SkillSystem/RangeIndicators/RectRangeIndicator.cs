@@ -38,7 +38,7 @@ public class RectRangeIndicator : MonoBehaviour, IRangeIndicator {
         // 计算旋转角度（绕Z轴）
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         rangeRect.rotation = Quaternion.Euler(0, 0, angle);
-
+        
     }
 
     public void Terminate() {
