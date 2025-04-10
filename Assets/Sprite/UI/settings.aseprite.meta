@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9950003c1e13c014c963153bf131d30a
+guid: 38e2508240482b646a18ee28b78e8a9e
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -122,7 +122,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: ui_0
+  - name: settings
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -133,7 +133,7 @@ ScriptedImporter:
       y: 4
       width: 30
       height: 30
-    spriteID: c7767166dbd52c941b89857ef24f3426
+    spriteID: 262646cc519c04249aba10d069022e17
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -145,13 +145,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 298499963
-    name: ui_0
+    guid: 680599737
+    name: settings
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: ui_0
+    - name: settings
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -159,7 +159,7 @@ ScriptedImporter:
         y: 0
         width: 30
         height: 30
-      spriteId: c7767166dbd52c941b89857ef24f3426
+      spriteId: 262646cc519c04249aba10d069022e17
     linkedCells: []
     parentIndex: -1
   platformSettings:
