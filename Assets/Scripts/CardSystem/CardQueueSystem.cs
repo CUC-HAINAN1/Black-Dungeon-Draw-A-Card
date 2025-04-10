@@ -23,8 +23,8 @@ public class CardQueueSystem : MonoBehaviour {
     [SerializeField] public ActiveCardInfo[] currentCards = new ActiveCardInfo[4];
     
     public int currentSlotIndex = 0;
-    public bool IsAnyCardDragging {get; private set;}
-    public bool IsAnyCardHovering {get; private set;}
+    [SerializeField] public bool IsAnyCardDragging {get; private set;}
+    [SerializeField] public bool IsAnyCardHovering {get; private set;}
 
     private void Awake() {
         
@@ -115,20 +115,20 @@ public class CardQueueSystem : MonoBehaviour {
         PlayerAttributes.Instance.UseMana(currentCards[slotIndex].cardData.manaCost);
 
         // 执行卡牌使用逻辑
-        StartCoroutine(ProcessCardUse(currentCards[slotIndex]));
+        ProcessCardUse(currentCards[slotIndex]);
         return true;
     
     }
 
-    private IEnumerator ProcessCardUse(ActiveCardInfo usedCard) {
+    private void ProcessCardUse(ActiveCardInfo usedCard) {
 
         CardStateManager.Instance.SetUsingState(usedCard.cardInstance, true);
         
-        //todo
-        yield return new WaitForSeconds(0.2f);
+        var cardVisual = usedCard.cardInstance.GetComponent<CardVisual>();
+        cardVisual.AnimateAndDestroy();
         
-        CardStateManager.Instance.SetUsingState(usedCard.cardInstance, false);
-        ClearSlot(cardSlots[System.Array.IndexOf(currentCards, usedCard)]);
+        //CardStateManager.Instance.SetUsingState(usedCard.cardInstance, false);
+        //ClearSlot(cardSlots[System.Array.IndexOf(currentCards, usedCard)]);
         
     }
 
@@ -149,8 +149,9 @@ public class CardQueueSystem : MonoBehaviour {
 
             foreach(Transform child in slot) {
             
-                Destroy(child.gameObject);
-            
+                if (child.gameObject != null)
+                    Destroy(child.gameObject);
+
             }
         
         }
@@ -172,14 +173,13 @@ public class CardQueueSystem : MonoBehaviour {
         
         foreach (var card in currentCards) {
             
-            if (card?.cardInstance == null) continue;
+            if (card?.cardInstance.gameObject == null) continue;
             
             card.cardInstance.GetComponent<CardVisual>()?.CheckHoverAfterAnimation();
         
         }
     
     }
-
 
     [Header("基础配置")]
     public GameObject cardPrefab;

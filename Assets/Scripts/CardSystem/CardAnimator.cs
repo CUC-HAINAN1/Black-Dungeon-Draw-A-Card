@@ -26,7 +26,7 @@ public class CardAnimator : MonoBehaviour {
             rt.anchoredPosition.y - startYOffset // 下方起始点
 
         );
-
+        
         // 设置初始位置
         rt.anchoredPosition = startPos;
 

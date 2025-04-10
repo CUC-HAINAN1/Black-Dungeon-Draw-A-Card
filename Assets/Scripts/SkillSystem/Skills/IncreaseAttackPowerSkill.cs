@@ -8,11 +8,11 @@ public class IncreaseAttackPowerSkill : SkillBase {
         int increaseAmount = atteckPowerConfig.amount;
         float duration = atteckPowerConfig.duration;
 
-        StartCoroutine(ShieldRoutine(increaseAmount, duration));
+        StartCoroutine(IncreaseAttackRoutine(increaseAmount, duration));
     
     }
 
-    private IEnumerator ShieldRoutine(int amount, float duration) {
+    private IEnumerator IncreaseAttackRoutine(int amount, float duration) {
         
         PlayerAttributes playerAttributes = PlayerAttributes.Instance;
 

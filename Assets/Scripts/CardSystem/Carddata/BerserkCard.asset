@@ -28,11 +28,15 @@ MonoBehaviour:
       speed: 0
       projectileCount: 0
       maxRange: 0
+      interval: 0
       damage: 0
     sweep:
       angle: 5
       radius: 0
       damage: 0
+      delay: 0
+      pivotOffsetY: 0
+      pivotOffsetX: 0
     lockOn:
       maxTargets: 0
       damage: 0
@@ -47,8 +51,12 @@ MonoBehaviour:
     generateShield:
       amount: 0
       duration: 0
+    burstAOE:
+      amount: 0
+      delay: 0
+      radius: 0
   visualConfig:
-    rangeIndicatorPrefab: {fileID: 0}
+    rangeIndicatorPrefab: {fileID: 7982603594435453850, guid: 1b41597000285411abbe5de50cfc1803, type: 3}
     castEffect: {fileID: 0}
     castSound: {fileID: 0}
     hitEffect: {fileID: 0}

@@ -10,8 +10,11 @@ TagManager:
   - Pet
   - OpenDoor
   - CloseDoor
+  - Effect
+  - Floor
   - Door
   - BirthRoom
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - Water
   - UI
   - Colliddable
-  - Doors
+  - 
   - Other1
   - Player1
   - ENEMY
@@ -57,7 +60,4 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 2495451267
-    locked: 0
-  - name: UI_Overlay
-    uniqueID: 3018587409
     locked: 0

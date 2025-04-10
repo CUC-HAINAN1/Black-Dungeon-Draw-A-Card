@@ -75,6 +75,7 @@ public class CardDrawController : MonoBehaviour {
         visual.Initialize(cardData);
 
         return true;
+    
     }
 
 }
