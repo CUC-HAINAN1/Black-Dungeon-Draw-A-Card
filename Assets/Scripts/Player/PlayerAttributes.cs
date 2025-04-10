@@ -21,7 +21,6 @@ public enum StateType {
     IsDead,
     IsAttackIncreased,
 
-
 }
 public class PlayerAttributes : MonoBehaviour {
 
@@ -31,9 +30,9 @@ public class PlayerAttributes : MonoBehaviour {
 
     [SerializeField] public int _MaxHealth = 100;
     [SerializeField] public float GetDamageInvincibleDuration = 1f;
-    [SerializeField] public int _MaxMana = 100;
-    [SerializeField] public float _manaRegenInterval = 1f;
-    [SerializeField] public int _manaRegenBase = 5;
+    [SerializeField] public int _MaxMana = 15;
+    [SerializeField] public float _manaRegenInterval = 1.25f;
+    [SerializeField] public int _manaRegenBase = 2;
     [SerializeField] public int _MaxShield = 25;
     [SerializeField] public int _MaxAttackPowerInCreased = 100;
     private float _manaRegenTimer;
