@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using Pathfinding;
 
 public class EnemyProperty : MonoBehaviour
 {
@@ -31,6 +32,12 @@ public class EnemyProperty : MonoBehaviour
     // 血条UI组件
     private EnemyHealthUI healthUI;
 
+    [Header("动画控制")]
+    [SerializeField] private Animator animator;
+
+    [Header("状态管理")]
+    [SerializeField] private EnemyStateMachine stateMachine;
+
     void Awake()
     {
         currentHealth = maxHealth;
@@ -41,10 +48,16 @@ public class EnemyProperty : MonoBehaviour
     void Start()
     {
         StartPatrol();
+        if (animator == null) animator = GetComponentInChildren<Animator>();
     }
-
     void Update()
-    {
+    { // 根据移动状态更新参数
+        if (IsAlive())
+        {
+            // 根据移动状态更新参数
+            bool isMoving = GetComponent<AIPath>().remainingDistance > 0.1f;
+            animator.SetBool("IsMoving", isMoving);
+        }
         if (isPatrolling)
         {
             PatrolMovement();
@@ -62,14 +75,37 @@ public class EnemyProperty : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            
             Die();
+        }
+    }
+    private void HandlePlayerDetection()
+    {
+        // 与状态机联动的检测逻辑
+        float distance = Vector3.Distance(transform.position,
+            PlayerAttributes.Instance.PlayerTransform.position);
+
+        if (distance < stateMachine.chaseRange)
+        {
+            EventManager.Instance.TriggerEvent("EnemyStateChanged",
+                new EnemyStateEventData(EnemyStateType.Patrol, EnemyStateType.Chase));
         }
     }
     [Header("受击效果")]
     [SerializeField] private ParticleSystem hitEffect;
-
-    private void Die()
+    // 在EnemyProperty.cs中添加
+    public void OnDeathAnimationEnd()
     {
+        Destroy(gameObject);
+    }
+    private void Die()
+    {// 触发死亡动画
+        animator.SetTrigger("Die");
+
+        // 禁用其他组件
+        GetComponent<AIPath>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+
         OnDeath?.Invoke(this);
         StopAllCoroutines();
         GetComponent<Collider2D>().enabled = false;
@@ -123,6 +159,12 @@ public class EnemyProperty : MonoBehaviour
         yield return new WaitForSeconds(waitDuration);
         currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
         isPatrolling = true;
+    }
+    public void TriggerDeath()
+    {
+        animator.SetTrigger("Die"); // 触发死亡动画
+                                    // 禁用其他组件
+        GetComponent<AIPath>().enabled = false;
     }
     public bool IsAlive()
     {

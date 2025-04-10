@@ -12,6 +12,7 @@ TagManager:
   - CloseDoor
   - Door
   - BirthRoom
+  - Floor
   layers:
   - Default
   - TransparentFX
