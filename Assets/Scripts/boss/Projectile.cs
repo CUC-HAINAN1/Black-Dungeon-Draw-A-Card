@@ -1,4 +1,7 @@
-public class Projectile : MonoBehavior
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Projectile : MonoBehaviour
 {
     public float speed =10f;
     public int damage = 10;
@@ -14,9 +17,9 @@ public class Projectile : MonoBehavior
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerHealth>().TakeDamage(damage);
+            PlayerAttributes.Instance.TakeDamage(damage);
 
-            Destory(gameObject);
+            Destroy(gameObject);
         }
     }
 }
