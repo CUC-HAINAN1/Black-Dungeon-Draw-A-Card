@@ -22,6 +22,7 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private Vector3 originalScale;
     private bool isHovering;
     private bool wasUsableLastFrame;
+    private Tween hoverTween;
 
     private void Awake() {
         
@@ -60,6 +61,7 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (CardQueueSystem.Instance.IsAnyCardDragging ||
             (CardQueueSystem.Instance.IsAnyCardHovering && 
             !CardStateManager.Instance.GetCardState(gameObject).IsHovering)
+        
         ) return;
         
         if (ShouldIgnoreHover()) {
@@ -95,14 +97,29 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         CardQueueSystem.Instance.SetCardQueueHoveringState(true);
         CardStateManager.Instance.SetHoveringState(gameObject, true);
 
-        // 放大当前卡牌
-        transform.DOScale(originalScale * hoverScale, hoverDuration)
-            .SetEase(hoverEase);
+        if(transform == null) {
+            
+            Debug.LogError("目标 Transform 为空，无法启动动画！");
+            return;
+        
+        }
 
+        //hoverTween?.Kill();
+
+        // 放大当前卡牌
+        if (this != null && transform != null && !CardStateManager.Instance.GetCardState(gameObject).IsUsing ) {
+
+            hoverTween = transform.DOScale(originalScale * hoverScale, hoverDuration)
+                .SetEase(hoverEase).SetLink(gameObject);
+        
+        }
         // 缩小其他卡牌
         foreach (var cardInfo in CardQueueSystem.Instance.currentCards) {
-            if (cardInfo.cardInstance != null && cardInfo.cardInstance != gameObject) {
-                
+            if (cardInfo != null && 
+                cardInfo.cardInstance != null && 
+                cardInfo.cardInstance.transform != null && 
+                cardInfo.cardInstance != gameObject) {
+
                 cardInfo.cardInstance.transform.DOScale(originalScale * otherCardScale, hoverDuration)
                     .SetEase(hoverEase);
             
@@ -115,12 +132,21 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         CardQueueSystem.Instance.SetCardQueueHoveringState(false);
         CardStateManager.Instance.SetHoveringState(gameObject, false);
 
-        // 恢复所有卡牌尺寸
-        transform.DOScale(originalScale, hoverDuration).SetEase(hoverEase);
+        //hoverTween?.Kill();
+
+        if (transform != null) {
+        
+            // 恢复卡牌尺寸
+            hoverTween = transform.DOScale(originalScale, hoverDuration).SetEase(hoverEase).SetLink(gameObject);
+        
+        }
         
         foreach (var cardInfo in CardQueueSystem.Instance.currentCards) {
-            if (cardInfo.cardInstance != null && cardInfo.cardInstance != gameObject) {
-                
+            if (cardInfo != null && 
+            cardInfo.cardInstance != null && 
+            cardInfo.cardInstance.transform != null &&
+            cardInfo.cardInstance != gameObject) {
+
                 cardInfo.cardInstance.transform.DOScale(originalScale, hoverDuration)
                     .SetEase(hoverEase);
             
@@ -138,17 +164,29 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
 
     public void CheckHoverAfterAnimation() {
-    
-    bool isMouseOver = RectTransformUtility.RectangleContainsScreenPoint(
         
-        (RectTransform)transform,
-        Input.mousePosition,
-        null 
+        if (transform == null) return;
+
+        bool isMouseOver = RectTransformUtility.RectangleContainsScreenPoint(
+            
+            (RectTransform)transform,
+            Input.mousePosition,
+            null 
+        
+        );
+        
+            isHovering = isMouseOver;
+            UpdateHoverState();
     
-    );
-    
-        isHovering = isMouseOver;
-        UpdateHoverState();
+    }
+
+    public void AnimateAndDestroy() {
+        
+        transform.DOScale(Vector3.zero, 0.25f)
+            .SetEase(Ease.InBack)
+            .OnComplete(() => {
+                Destroy(gameObject); 
+            });
     
     }
 

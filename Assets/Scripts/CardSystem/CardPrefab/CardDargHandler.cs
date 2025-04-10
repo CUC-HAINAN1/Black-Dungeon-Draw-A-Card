@@ -43,10 +43,6 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (!cardStateManager.IsCardUsable(gameObject)) return;
 
-        cardData = cardStateManager.GetCardState(gameObject).CardData;
-        cardStateManager.SetDraggingState(gameObject, true);
-        cardQueueSystem.SetCardQueueDraggingState(true);
-
         if (eventData.button != PointerEventData.InputButton.Left || 
             !cardStateManager.IsCardUsable(gameObject)) {
             
@@ -72,6 +68,12 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
 
+        if(transform == null) {
+            
+            Debug.LogError("目标 Transform 为空，无法启动动画！");
+            return;
+        
+        }
 
         rangeIndicatorManager.CreateIndicator(cardData);
         transform.DOScale(originalScale * zoomScale, hoverDuration).SetEase(hoverEase);
@@ -82,7 +84,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void Update() {
 
-        if ((isValidDrag && cardStateManager.GetCardState(gameObject).IsDragging && Input.GetMouseButtonDown(1)) ||
+        if ((gameObject != null && isValidDrag && cardStateManager.GetCardState(gameObject).IsDragging && Input.GetMouseButtonDown(1)) ||
             !cardStateManager.IsCardUsable(gameObject)
         ) {
             
@@ -155,6 +157,13 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         
         transform.SetParent(originalParent);
 
+        if(transform == null) {
+            
+            Debug.LogError("目标 Transform 为空，无法启动动画！");
+            return;
+        
+        }
+
         Sequence returnSequence = DOTween.Sequence();
         returnSequence
             .Append(transform.DOMove(startPosition, returnDuration).SetEase(moveEase))
@@ -175,8 +184,10 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         
         foreach (var cardInfo in cardQueueSystem.currentCards) {
             
-            if (cardInfo.cardInstance != null && cardInfo.cardInstance != gameObject) {
-                
+            if (cardInfo.cardInstance != null && 
+                cardInfo.cardInstance.transform != null && 
+                cardInfo.cardInstance != gameObject) {
+
                 cardInfo.cardInstance.transform.DOScale(originalScale, hoverDuration)
                     .SetEase(hoverEase);
             
