@@ -3,59 +3,59 @@ using System.Collections;
 
 public class DoorStateController : MonoBehaviour
 {
-    [Header("³ß´çÐ£×¼")]
-    [SerializeField] private Vector2 referenceSize = new Vector2(1.0f, 5.0f); // ±ê×¼ÃÅ³ß´ç
-    [Header("Åö×²ÌåÅäÖÃ")]
-    [SerializeField] private Collider2D physicsCollider; // ÊÖ¶¯°ó¶¨·ÇTriggerÅö×²Ìå
+    [Header("ï¿½ß´ï¿½Ð£×¼")]
+    [SerializeField] private Vector2 referenceSize = new Vector2(1.0f, 5.0f); // ï¿½ï¿½×¼ï¿½Å³ß´ï¿½
+    [Header("ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    [SerializeField] private Collider2D physicsCollider; // ï¿½Ö¶ï¿½ï¿½ó¶¨·ï¿½Triggerï¿½ï¿½×²ï¿½ï¿½
 
-    [Header("Edgar ÃÅ×é¼þ°ó¶¨")]
-    public GameObject upDoor;   // ÍÏÈëUpDoor×Ó¶ÔÏó
-    public GameObject downDoor; // ÍÏÈëDownDoor×Ó¶ÔÏó
+    [Header("Edgar ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public GameObject upDoor;   // ï¿½ï¿½ï¿½ï¿½UpDoorï¿½Ó¶ï¿½ï¿½ï¿½
+    public GameObject downDoor; // ï¿½ï¿½ï¿½ï¿½DownDoorï¿½Ó¶ï¿½ï¿½ï¿½
 
-    [Header("³õÊ¼×´Ì¬")]
+    [Header("ï¿½ï¿½Ê¼×´Ì¬")]
     public bool startOpen = true;
 
-    // ÐÂÔöEdgar·½ÏòÊÊÅä·½·¨
+    // ï¿½ï¿½ï¿½ï¿½Edgarï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä·½ï¿½ï¿½
     public void AlignWithEdgar()
     {
-        // ÊÊÅä½ØÍ¼ÖÐµÄDirection=Reset²ÎÊý
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½Ðµï¿½Direction=Resetï¿½ï¿½ï¿½ï¿½
         transform.rotation = Quaternion.identity;
 
-        // ÊÊÅäScale=2²ÎÊý
+        // ï¿½ï¿½ï¿½ï¿½Scale=2ï¿½ï¿½ï¿½ï¿½
         //transform.localScale = new Vector3(2, 2, 1);
 
-        // ÊÊÅä2000×ø±êÏµ
+        // ï¿½ï¿½ï¿½ï¿½2000ï¿½ï¿½ï¿½ï¿½Ïµ
         transform.position = new Vector2(
             Mathf.Round(transform.position.x * 500f) / 500f,
             Mathf.Round(transform.position.y * 500f) / 500f
         );
     }
     void Start()
-    { 
-        // ÓÅÏÈ´¦Àí×ßÀÈÃÅ
+    {
+        // ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (IsCorridorDoor())
         {
             ForceOpenCorridorDoor();
             return;
         }
-        // ÆÕÍ¨ÃÅ³õÊ¼»¯
+        // ï¿½ï¿½Í¨ï¿½Å³ï¿½Ê¼ï¿½ï¿½
         InitializeNormalDoor();
     }
 
-    // Íâ²¿µ÷ÓÃ£º¹ØÃÅ
+    // ï¿½â²¿ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½
     public void CloseDoor(bool instant = false)
     {
         try
         {
             if (!instant)
             {
-                // µÚÒ»½×¶Î£ºÊÓ¾õ¹Ø±Õ
+                // ï¿½ï¿½Ò»ï¿½×¶Î£ï¿½ï¿½Ó¾ï¿½ï¿½Ø±ï¿½
                 SetDoorState(false);
                 StartCoroutine(DelayedColliderEnable());
             }
             else
             {
-                // Á¢¼´ÍêÈ«¹Ø±Õ
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½Ø±ï¿½
                 physicsCollider.isTrigger = false;
                 SetDoorState(false);
             }
@@ -64,20 +64,20 @@ public class DoorStateController : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"¹ØÃÅÊ§°Ü {name}: {e.Message}");
+            Debug.LogError($"ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ {name}: {e.Message}");
         }
     }
 
     IEnumerator DelayedColliderEnable()
     {
-        // ±£³ÖÅö×²Ìå¿É´©Í¸0.5Ãë
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½É´ï¿½Í¸0.5ï¿½ï¿½
         physicsCollider.isTrigger = true;
         yield return new WaitForSeconds(0.5f);
 
-        // µÚ¶þ½×¶Î£ºÎïÀí×èµ²
+        // ï¿½Ú¶ï¿½ï¿½×¶Î£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½èµ²
         physicsCollider.isTrigger = false;
     }
-    // Íâ²¿µ÷ÓÃ£º¿ªÃÅ
+    // ï¿½â²¿ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½
     public void OpenDoor()
     {
         try
@@ -88,11 +88,11 @@ public class DoorStateController : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"¿ªÃÅÊ§°Ü {name}: {e.Message}");
+            Debug.LogError($"ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ {name}: {e.Message}");
         }
     }
 
-    #region ÄÚ²¿ÊµÏÖ
+    #region ï¿½Ú²ï¿½Êµï¿½ï¿½
     private bool IsCorridorDoor()
     {
         return transform.parent != null &&
@@ -125,7 +125,7 @@ public class DoorStateController : MonoBehaviour
         foreach (var collider in target.GetComponentsInChildren<Collider2D>())
         {
             collider.enabled = enable;
-            collider.isTrigger = !enable; // ·Ç¿ªÃÅ×´Ì¬Ê±×÷ÎªÎïÀíÅö×²
+            collider.isTrigger = !enable; // ï¿½Ç¿ï¿½ï¿½ï¿½×´Ì¬Ê±ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²
         }
     }
 
@@ -158,7 +158,8 @@ public class DoorStateController : MonoBehaviour
     }
     void Awake()
     {
-        // ÐÂÔö¸¸¼¶Ëõ·ÅÖØÖÃ
+
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (transform.parent != null)
         {
             transform.parent.localScale = Vector3.one;
@@ -166,14 +167,14 @@ public class DoorStateController : MonoBehaviour
         if (physicsCollider == null)
         {
             physicsCollider = GetComponentInChildren<Collider2D>(includeInactive: true);
-            Debug.LogWarning($"ÊÖ¶¯°ó¶¨Åö×²Ìåµ½ {name}", this);
+            Debug.LogWarning($"ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½åµ½ {name}", this);
         }
     }
     public void UpdateNavigationGraph(GameObject activePart)
     {
         if (AstarPath.active == null)
         {
-            Debug.LogWarning("A* Pathfinding Î´³õÊ¼»¯");
+            Debug.LogWarning("A* Pathfinding Î´ï¿½ï¿½Ê¼ï¿½ï¿½");
             return;
         }
 
@@ -184,18 +185,18 @@ public class DoorStateController : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"µ¼º½¸üÐÂÊ§°Ü: {activePart?.name} È±ÉÙCollider2D×é¼þ");
+            //Debug.LogError($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½: {activePart?.name} È±ï¿½ï¿½Collider2Dï¿½ï¿½ï¿½");
         }
     }
     #endregion
-    // Ìí¼Ó±à¼­Æ÷³õÊ¼»¯·½·¨
+    // ï¿½ï¿½ï¿½Ó±à¼­ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #if UNITY_EDITOR
     [ContextMenu("Init Doors")]
     private void EditorInitialize()
     {
-        Start(); // ÔÊÐíÔÚ±à¼­Æ÷ÊÖ¶¯³õÊ¼»¯
+        Start(); // ï¿½ï¿½ï¿½ï¿½ï¿½Ú±à¼­ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
     }
-    [ContextMenu("¿ìËÙÐÞ¸´×é¼þ")]
+    [ContextMenu("ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½")]
     private void FixComponents()
     {
         var colliders = GetComponentsInChildren<Collider2D>();

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class DoorManager : MonoBehaviour
 {
@@ -14,14 +14,14 @@ public class DoorManager : MonoBehaviour
             string directionName = doorDirection.name;
             if (!directionName.Contains("VerDownDoor")) continue;
 
-            // Ìí¼ÓÃÅ¿ØÖÆÆ÷
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Å¿ï¿½ï¿½ï¿½ï¿½ï¿½
             DoorStateController controller = doorDirection.gameObject.AddComponent<DoorStateController>();
-
-            // °ó¶¨×é¼þ
+            
+            // ï¿½ï¿½ï¿½ï¿½ï¿½
             controller.upDoor = FindChild(doorDirection, "UpDoors");
             controller.downDoor = FindChild(doorDirection, "DownDoors");
 
-            // ÒÆ³ýÁË Start() µÄÊÖ¶¯µ÷ÓÃ£¬ÒòÎª Unity »á×Ô¶¯µ÷ÓÃ MonoBehaviour µÄÉúÃüÖÜÆÚ·½·¨
+            // ï¿½Æ³ï¿½ï¿½ï¿½ Start() ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½Îª Unity ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ MonoBehaviour ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½
         }
     }
 
@@ -32,7 +32,7 @@ public class DoorManager : MonoBehaviour
             if (child.name.Equals(name))
                 return child.gameObject;
         }
-        Debug.LogError($"×Ó¶ÔÏóÈ±Ê§: {parent.name}/{name}");
+        Debug.LogError($"ï¿½Ó¶ï¿½ï¿½ï¿½È±Ê§: {parent.name}/{name}");
         return null;
     }
 }
