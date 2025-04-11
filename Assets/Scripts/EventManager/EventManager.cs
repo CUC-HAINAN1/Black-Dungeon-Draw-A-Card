@@ -42,7 +42,7 @@ public class EventManager : MonoBehaviour {
 
         _instance = this;
         _eventDictionary = new Dictionary<string, Action<object>>();
-        Debug.Log("123");
+
     }
 
     //在unity完全退出前触发
