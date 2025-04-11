@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Projectile : MonoBehaviour
+
 {
     public float speed =10f;
     public int damage = 10;

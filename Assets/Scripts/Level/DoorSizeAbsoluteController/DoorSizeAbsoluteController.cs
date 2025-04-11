@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class DoorSizeAbsoluteController : MonoBehaviour
 {
-    [Header("Ç¿ÖÆ²ÎÊý")]
-    [SerializeField] private Vector2 targetColliderSize = new Vector2(1f, 5f); // ¿í1¸ß5
-    [SerializeField] private float parentScaleOverride = 1f; // Ç¿ÖÆ¸¸¼¶Ëõ·Å
+    [Header("Ç¿ï¿½Æ²ï¿½ï¿½ï¿½")]
+    [SerializeField] private Vector2 targetColliderSize = new Vector2(1f, 5f); // ï¿½ï¿½1ï¿½ï¿½5
+    [SerializeField] private float parentScaleOverride = 1f; // Ç¿ï¿½Æ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     void Start()
     {
@@ -20,15 +20,15 @@ public class DoorSizeAbsoluteController : MonoBehaviour
         Transform parent = GameObject.Find(parentName)?.transform;
         if (parent == null) return;
 
-        // Ç¿ÖÆ¸¸¼¶Ëõ·Å
+        // Ç¿ï¿½Æ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         parent.localScale = Vector3.one * parentScaleOverride;
 
         foreach (Transform door in parent)
         {
-            // ÖØÖÃÃÅ×ÔÉíËõ·Å
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             door.localScale = Vector3.one;
 
-            // Ç¿ÖÆÅö×²Ìå³ß´ç
+            // Ç¿ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½ß´ï¿½
             var collider = door.GetComponent<BoxCollider2D>();
             if (collider != null)
             {
@@ -40,7 +40,7 @@ public class DoorSizeAbsoluteController : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    [ContextMenu("Á¢¼´Ö´ÐÐÐ£×¼")]
+    [ContextMenu("ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½Ð£×¼")]
     public void ForceCalibrate()
     {
         Start();

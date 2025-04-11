@@ -72,12 +72,12 @@ public class SkillSystem : MonoBehaviour {
             direction = dir,
             position = pos,
             target = target,
-        
+
         };
     }
 
     public void ExecuteSkill(CardDataBase cardData) {
-        
+
         if (!skillHandlers.TryGetValue(cardData.skillType, out var handler)) {
             
             Debug.LogWarning($"No handler found for skill type: {cardData.skillType}");

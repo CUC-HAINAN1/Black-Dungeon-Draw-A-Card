@@ -5,12 +5,12 @@ using System.Collections;
 [RequireComponent(typeof(Seeker), typeof(AIPath), typeof(AIDestinationSetter))]
 public class EnemyAI : MonoBehaviour
 {
-    [Header("Ñ²ÂßÉèÖÃ")]
+    [Header("Ñ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private Transform[] patrolPoints;
     [SerializeField] private float patrolSpeed = 2f;
     [SerializeField] private float switchWaitTime = 1f;
 
-    [Header("×·»÷ÉèÖÃ")]
+    [Header("×·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private float chaseSpeed = 4f;
     [SerializeField] private float chaseRange = 5f;
     [SerializeField] private float stopChaseRange = 7f;
@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         CheckPlayerDistance();
-        UpdateAnimation(); // µ÷ÓÃ¶¯»­¸üÐÂ
+        UpdateAnimation(); // ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
     private IEnumerator PatrolRoutine()
@@ -47,7 +47,7 @@ public class EnemyAI : MonoBehaviour
                 currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
                 destinationSetter.target = patrolPoints[currentPatrolIndex];
 
-                // µÈ´ýµ½´ïÄ¿±êµã
+                // ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½
                 yield return new WaitUntil(() => aiPath.reachedEndOfPath);
                 yield return new WaitForSeconds(switchWaitTime);
             }
@@ -98,7 +98,7 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, stopChaseRange);
     }
-    [Header("¶¯»­¿ØÖÆ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private Animator animator;
     [SerializeField] private string patrolAnim = "Walk";
     [SerializeField] private string chaseAnim = "Run";

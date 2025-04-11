@@ -1,4 +1,5 @@
 using System.Collections;
+
 using UnityEngine;
 
 public class MeteoricFireballSkill : SkillBase {
@@ -19,9 +20,9 @@ public class MeteoricFireballSkill : SkillBase {
         var config = cardData.behaviorConfig.burstAOE;
 
         float radius = config.radius;
-        
+
         int bonusDamage = playerAttributes.AttackPowerIncreased;
-        int damage = config.amount + bonusDamage;
+        int damage = config.damage + bonusDamage;
         float hitDelay = config.delay;
 
         aoeEffectPrefab = cardData.visualConfig.castEffect;
@@ -42,7 +43,7 @@ public class MeteoricFireballExplosion : MonoBehaviour {
     private GameObject effectObject;
 
     public void Initialize(float rad, int dmg, float delay, CardDataBase data, GameObject effect) {
-        
+
         radius = rad;
         damage = dmg;
         hitDelay = delay;
@@ -57,23 +58,23 @@ public class MeteoricFireballExplosion : MonoBehaviour {
         yield return new WaitForSeconds(hitDelay);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, radius * 6f);
-        
-        Debug.Log($"实际攻击半径: {radius * 5f}");
-        
+
+        Debug.Log($"实际攻击半径: {radius * 6f}");
+
         foreach (var enemyCol in hitEnemies) {
-            
+
             Debug.Log(enemyCol.tag);
 
-             if (enemyCol.CompareTag("Enemy")) {
-                
+            if (enemyCol.CompareTag("Enemy")) {
+
                 EnemyProperty enemy = enemyCol.GetComponent<EnemyProperty>();
-                
+
                 if (enemy != null) {
                     enemy.TakeDamage(damage);
                 }
-            
-            } 
-        
+
+            }
+
         }
 
         yield return new WaitForSeconds(0.5f);

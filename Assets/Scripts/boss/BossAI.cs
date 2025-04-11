@@ -104,7 +104,7 @@ public class BossAI : MonoBehaviour
             if (hit.CompareTag("Player"))
             {
                 // 对玩家造成伤害
-                hit.GetComponent< DeductHealth>().TakeDamage(20);
+                PlayerAttributes.Instance.TakeDamage(20);
             }
         }
     }

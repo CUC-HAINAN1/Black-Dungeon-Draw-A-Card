@@ -69,8 +69,9 @@ public class SectorHitbox : MonoBehaviour {
     private IEnumerator DelayAndHit() {
         
         yield return new WaitForSeconds(delay);
-
-        Collider2D[] hitEnemys = Physics2D.OverlapCircleAll(origin, radius * 5);
+        
+        Vector2 currentOrigin = transform.position;
+        Collider2D[] hitEnemys = Physics2D.OverlapCircleAll(currentOrigin, radius * 5);
         float halfAngle = angle * 0.5f;
 
         foreach (var enemyCol in hitEnemys) {
@@ -97,11 +98,11 @@ public class SectorHitbox : MonoBehaviour {
             
             }
         }
-
+        
         // 延迟一点再销毁自身，确保特效完整播放
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(20f);
         Destroy(gameObject);
-    
+
     }
 
 }

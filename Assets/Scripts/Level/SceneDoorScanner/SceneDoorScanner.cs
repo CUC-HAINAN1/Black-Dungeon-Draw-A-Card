@@ -4,7 +4,7 @@ public class SceneDoorScanner : MonoBehaviour
 {
     public static SceneDoorScanner Instance;
 
-    [Header("É¨ÃèÉèÖÃ")]
+    [Header("É¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private float initDelay = 0.5f;
     private DoorStateController[] allDoors;
 

@@ -5,39 +5,39 @@ using UnityEngine;
 public class CardDrawControllerEditor : Editor
 {
     public override void OnInspectorGUI() {
-    
+
         base.OnInspectorGUI();
-        
+
         CardDrawController controller = (CardDrawController)target;
-        
+
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("当前卡牌信息", EditorStyles.boldLabel);
-        
+
         for (int i = 0; i < CardQueueSystem.Instance.currentCards.Length; i++) {
-        
+
             EditorGUILayout.BeginVertical("Box");
-            
+
             var cardInfo = CardQueueSystem.Instance.currentCards[i];
-            
-            string status = cardInfo.cardData != null ? 
-                $"Slot {i}: {cardInfo.cardData.displayName}" : 
+
+            string status = cardInfo.cardData != null ?
+                $"Slot {i}: {cardInfo.cardData.displayName}" :
                 $"Slot {i}: 空";
-            
+
             EditorGUILayout.LabelField(status);
-            
+
             if (cardInfo.cardData != null) {
-            
+
                 EditorGUI.indentLevel++;
                 EditorGUILayout.ObjectField("卡牌数据", cardInfo.cardData, typeof(CardDataBase), false);
                 EditorGUILayout.ObjectField("实例", cardInfo.cardInstance, typeof(GameObject), true);
                 EditorGUI.indentLevel--;
-            
+
             }
-            
+
             EditorGUILayout.EndVertical();
-        
+
         }
-    
+
     }
 
 }

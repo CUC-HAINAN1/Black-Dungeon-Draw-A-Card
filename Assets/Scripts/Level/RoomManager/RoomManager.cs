@@ -7,41 +7,41 @@ using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class RoomManager : MonoBehaviour
-{ // ÐÂÔö×´Ì¬ÊôÐÔ
+{ // ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½
 
-    [Header("Õ½¶·ÅäÖÃ")]
-    [SerializeField] private bool isCombatRoom; // ÔÚEdgarÄ£°åÖÐÉèÖÃ
+    [Header("Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    [SerializeField] private bool isCombatRoom; // ï¿½ï¿½EdgarÄ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private EnemySpawner enemySpawner;
 
-    [Header("·¿¼ä³ß´ç")]
-    [SerializeField] public Vector2 roomSize = new Vector2(11, 11); // ÊÖ¶¯ÉèÖÃ³ß´ç
+    [Header("ï¿½ï¿½ï¿½ï¿½ß´ï¿½")]
+    [SerializeField] public Vector2 roomSize = new Vector2(11, 11); // ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½Ã³ß´ï¿½
 
 
-    [Header("ÃÅ¿ØÖÆ")]
+    [Header("ï¿½Å¿ï¿½ï¿½ï¿½")]
     [SerializeField] public DoorStateController[] doors;
-    [Header("·¿¼ä×´Ì¬")]
-    [SerializeField] private bool isCleared; // ÐÂÔö·¿¼äÇåÀí×´Ì¬±ê¼Ç
+    [Header("ï¿½ï¿½ï¿½ï¿½×´Ì¬")]
+    [SerializeField] private bool isCleared; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½
 
     private bool hasActiveEnemies;
     private BoxCollider2D roomTrigger;
-    private bool isRoomCleared; // ÐÂÔö·¿¼ä×´Ì¬±ê¼Ç
+    private bool isRoomCleared; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½
 
-    [ContextMenu("´òÓ¡Éú³ÉÆ÷×´Ì¬")]
+    [ContextMenu("ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬")]
     void DebugSpawnerStatus()
     {
         if (enemySpawner == null)
-            Debug.LogError("EnemySpawnerÎ´°ó¶¨");
+            Debug.LogError("EnemySpawnerÎ´ï¿½ï¿½");
         else
-            Debug.Log($"ÒÑ°ó¶¨Éú³ÉÆ÷£¬°üº¬{enemySpawner.spawnPoints.Length}¸öÉú³Éµã");
+            Debug.Log($"ï¿½Ñ°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½{enemySpawner.spawnPoints.Length}ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½");
     }
     void AutoFindDoors()
     {
         var doorList = new List<DoorStateController>();
-        // ·½°¸2£ºÍ¨¹ý±êÇ©²éÕÒ
+        // ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½
         GameObject[] doorObjs = GameObject.FindGameObjectsWithTag("Door");
         foreach (var obj in doorObjs)
         {
-            if (obj.transform.IsChildOf(transform)) // È·±£ÊÇ±¾·¿¼äµÄ×Ó¶ÔÏó
+            if (obj.transform.IsChildOf(transform)) // È·ï¿½ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
             {
                 var controller = obj.GetComponent<DoorStateController>();
                 if (controller != null)
@@ -53,20 +53,20 @@ public class RoomManager : MonoBehaviour
 
         doors = doorList.ToArray();
     }
-        void Awake()
+    void Awake()
     {
         AutoFindDoors();
 
         foreach (var door in doors)
         {
-            door.InitDoorState(); // È·±£ÃÅ·½ÏòÕýÈ·
+            door.InitDoorState(); // È·ï¿½ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½È·
         }
-        // ÊÊÅäEdgarµÄ11x11·¿¼ä³ß´ç
+        // ï¿½ï¿½ï¿½ï¿½Edgarï¿½ï¿½11x11ï¿½ï¿½ï¿½ï¿½ß´ï¿½
         roomTrigger = GetComponent<BoxCollider2D>();
         roomTrigger.size = roomSize;
         roomTrigger.isTrigger = true;
 
-        // ×Ô¶¯ÊÊÅäEdgarÉú³ÉµÄÃÅ£¨¶ÔÓ¦VerDownDoorÇ°×º£©
+        // ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½Edgarï¿½ï¿½ï¿½Éµï¿½ï¿½Å£ï¿½ï¿½ï¿½Ó¦VerDownDoorÇ°×ºï¿½ï¿½
         doors = GetComponentsInChildren<DoorStateController>(true);
     }
 
@@ -75,10 +75,10 @@ public class RoomManager : MonoBehaviour
     {
         foreach (var door in doors)
         {
-            // ÊÊÅäEdgarµÄScale=2²ÎÊý
+            // ï¿½ï¿½ï¿½ï¿½Edgarï¿½ï¿½Scale=2ï¿½ï¿½ï¿½ï¿½
             door.transform.localScale = Vector3.one;
             door.CloseDoor();
-        
+
         }
     }
 
@@ -86,17 +86,17 @@ public class RoomManager : MonoBehaviour
     {
         if (enemySpawner != null)
         {
-            // ÊÊÅäEdgarµÄScale²ÎÊý
+            // ï¿½ï¿½ï¿½ï¿½Edgarï¿½ï¿½Scaleï¿½ï¿½ï¿½ï¿½
             enemySpawner.transform.localScale = Vector3.one * 2;
 
-            // µ÷ÕûÉú³Éµã×ø±ê
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½ï¿½ï¿½
             foreach (Transform point in enemySpawner.spawnPoints)
             {
                 point.position = enemySpawner.GetEdgarAdjustedPosition(point.position);
             }
             enemySpawner.StartSpawning();
             enemySpawner.AllWavesClearedEvent += OnEnemiesCleared;
-            // Í¬²½ÃÅ×´Ì¬
+            // Í¬ï¿½ï¿½ï¿½ï¿½×´Ì¬
             enemySpawner.SyncWithDoors(doors);
         }
     }
@@ -109,17 +109,17 @@ public class RoomManager : MonoBehaviour
             0,
             LayerMask.GetMask("Enemy")
         );
-        // ¸ÄÓÃÊÂ¼þÇý¶¯¼ì²â
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         return enemySpawner != null && enemySpawner.activeEnemies.Count > 0;
     }
 
     void OnEnemiesCleared()
     {
-        isCleared = true; // ±ê¼Ç·¿¼äÎªÒÑÇåÀí
-        isRoomCleared = true; // ³Ö¾Ã»¯×´Ì¬
+        isCleared = true; // ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        isRoomCleared = true; // ï¿½Ö¾Ã»ï¿½×´Ì¬
         hasActiveEnemies = false;
         OpenAllDoors();
-        // ´¥·¢È«¾ÖÏµÍ³¸üÐÂ£¨ÊÊÅä½ØÍ¼ÖÐµÄ2000×ø±ê·¶Î§£©
+        // ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½Ðµï¿½2000ï¿½ï¿½ï¿½ê·¶Î§ï¿½ï¿½
         GlobalRoomSystem.UpdateConnectedRooms(transform.position * 1000f);
     }
 
@@ -131,24 +131,24 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    // Edgar×ø±ê×ª»»£¨ÊÊÅä2000×ø±êÏµ£©
+    // Edgarï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2000ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½
     public Vector2 GetGridPosition()
     {
         return new Vector2(
-            Mathf.RoundToInt(transform.position.x*1000 ),
-            Mathf.RoundToInt(transform.position.y*1000 )
+            Mathf.RoundToInt(transform.position.x * 1000),
+            Mathf.RoundToInt(transform.position.y * 1000)
         );
     }
-    // ÔÚÔ­ÓÐÀàÖÐÌí¼ÓÒÔÏÂ·½·¨
+    // ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½
     private void StartBattle()
     {
         if (!isCombatRoom || isCleared) return;
 
-        // ¹Ø±Õ±¾·¿¼äËùÓÐÃÅ
+        // ï¿½Ø±Õ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         //SceneDoorScanner.Instance.ToggleRoomDoors(this, false);
 
-        // ¹Ø±ÕÈ«³¡¾°ÃÅ£¨¸ù¾ÝÐèÇóÑ¡ÔñÆäÖÐÒ»ÖÖ£©
-         SceneDoorScanner.Instance.SetAllDoorsOpenState(false);
+        // ï¿½Ø±ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö£ï¿½
+        SceneDoorScanner.Instance.SetAllDoorsOpenState(false);
 
         StartCoroutine(CombatProcess());
     }
@@ -174,11 +174,11 @@ public class RoomManager : MonoBehaviour
         isCleared = true;
         //SceneDoorScanner.Instance.ToggleRoomDoors(this, true);
 
-        // ¿ªÆôÈ«³¡¾°ÃÅ£¨¸ù¾ÝÐèÇóÑ¡Ôñ£©
-         SceneDoorScanner.Instance.SetAllDoorsOpenState(true);
+        // ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½
+        SceneDoorScanner.Instance.SetAllDoorsOpenState(true);
     }
 
-    // ÐÞ¸ÄÔ­ÓÐOnTriggerEnter2D
+    // ï¿½Þ¸ï¿½Ô­ï¿½ï¿½OnTriggerEnter2D
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player") || isCleared) return;
@@ -188,8 +188,8 @@ public class RoomManager : MonoBehaviour
 
     IEnumerator DelayedDoorClose()
     {
-        // ±£³Ö¿ªÃÅ×´Ì¬µÈ´ýÍæ¼Ò½øÈë
-        yield return new WaitForSeconds(0.2f); // 0.2Ãë»º³åÊ±¼ä
+        // ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½×´Ì¬ï¿½È´ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½
+        yield return new WaitForSeconds(0.2f); // 0.2ï¿½ë»ºï¿½ï¿½Ê±ï¿½ï¿½
 
         CloseAllDoors();
         StartBattle();

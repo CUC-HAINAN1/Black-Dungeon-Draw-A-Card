@@ -9,7 +9,6 @@ public class BossHealth : MonoBehaviour
     public Slider healthSlider;
     public float flashDuration = 0.1f;
     public Color flashColor = Color.red;
-
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
