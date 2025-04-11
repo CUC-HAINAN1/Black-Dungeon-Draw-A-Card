@@ -4,9 +4,9 @@ using UnityEditor.EditorTools;
 
 [CreateAssetMenu(menuName = "Card System/Card Data", order = 1)]
 public class CardDataBase : ScriptableObject {
-    
+
     [Header("基础设置")]
-    public string cardID;
+    public int cardID;
     public string displayName;
     [TextArea(3, 5)] public string description;
     public Sprite cardIcon;
@@ -25,7 +25,7 @@ public class CardDataBase : ScriptableObject {
 
     [Serializable]
     public struct SkillBehaviorConfig {
-        
+
         [Header("弹道类设置")]
         public ProjectileParams projectile;
 
@@ -39,11 +39,11 @@ public class CardDataBase : ScriptableObject {
         public AreaParams area;
 
         [Header("伤害增益类设置")]
-        public InceaseAttck inceaseAttck;
+        public InceaseAttck increaseAttack;
 
         [Header("护盾生成设置")]
         public GenerateShield generateShield;
-        
+
         [Header("单次群体AOE类设置")]
         public BurstAOE burstAOE;
 
@@ -82,7 +82,7 @@ public class CardDataBase : ScriptableObject {
 
     [Serializable]
     public struct ProjectileParams {
-        
+
         [Tooltip("飞行速度(米/秒)")]
         public float speed;
 
@@ -102,7 +102,7 @@ public class CardDataBase : ScriptableObject {
 
     [Serializable]
     public struct SweepParams {
-        
+
         [Tooltip("扇形角度")]
         [Range(5, 360)] public float angle;
 
@@ -125,7 +125,7 @@ public class CardDataBase : ScriptableObject {
 
     [Serializable]
     public struct LockOnParams {
-        
+
         [Tooltip("最大锁定目标数")]
         public int maxTargets;
 
@@ -180,8 +180,8 @@ public class CardDataBase : ScriptableObject {
     public struct BurstAOE {
 
         [Tooltip("伤害")]
-        public int amount;
-        
+        public int damage;
+
         [Tooltip("关键帧等待时间")]
         public float delay;
 
@@ -194,7 +194,7 @@ public class CardDataBase : ScriptableObject {
     [Serializable]
     public struct VisualFeedback {
         [Header("预览效果")]
-        public GameObject rangeIndicatorPrefab; 
+        public GameObject rangeIndicatorPrefab;
 
         [Header("施法效果")]
         public GameObject castEffect;
