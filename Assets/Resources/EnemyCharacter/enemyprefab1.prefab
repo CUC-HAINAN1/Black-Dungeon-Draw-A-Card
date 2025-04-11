@@ -73,6 +73,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6132114952807277421, guid: 0ff2f966e416f7d45a1576fd775295d6, type: 3}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: patrolSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: destroyDelay
       value: 0
       objectReference: {fileID: 0}

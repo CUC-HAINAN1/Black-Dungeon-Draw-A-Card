@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: ThunderOfDivinePunishmentCard
   m_EditorClassIdentifier: 
   cardID: 5
-  displayName: Thunder Of Divine Punishment
-  description: Locks onto a target enemy and calls down a thunderbolt, dealing massive
-    damage.
+  displayName: "\u795E\u7F5A\u96F7\u9706"
+  description: "\u9501\u5B9A\u4E00\u4E2A\u76EE\u6807\u654C\u4EBA\u540E\u964D\u4E0B\u96F7\u9706\uFF0C\u5BF9\u6307\u5B9A\u654C\u4EBA\u9020\u6210\u5927\u91CF\u4F24\u5BB3"
   cardIcon: {fileID: 6515741899584178625, guid: 6ef137cefe8b8cf47a11958d684b7d90, type: 3}
   rarity: 1
   manaCost: 7
   cooldown: 1
-  Owned: 1
+  Owned: 0
   skillType: 2
   inputMode: 1
   behaviorConfig:
@@ -53,7 +52,7 @@ MonoBehaviour:
       amount: 0
       duration: 0
     burstAOE:
-      amount: 0
+      damage: 0
       delay: 0
       radius: 0
   visualConfig:
@@ -62,4 +61,8 @@ MonoBehaviour:
     castSound: {fileID: 0}
     hitEffect: {fileID: 0}
     hitSound: {fileID: 0}
-  upgradableParams: []
+  upgradableParams:
+  - displayName: "\u96F7\u7535\u4F24\u5BB3\u589E\u52A030\u70B9"
+    paramPath: behaviorConfig.lockOn.damage
+    upgradeType: 0
+    value: 30

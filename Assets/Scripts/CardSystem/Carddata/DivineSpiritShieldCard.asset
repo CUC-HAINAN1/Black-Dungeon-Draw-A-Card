@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: DivineSpiritShieldCard
   m_EditorClassIdentifier: 
   cardID: 7
-  displayName: DivineSpiritShield
-  description: After being released, it grants the player a shield that can resist
-    damage, which lasts for a period of time or disappears after being broken.
+  displayName: "\u5723\u7075\u62A4\u76FE"
+  description: "\u8D4B\u4E88\u4E3B\u89D2\u4E00\u4E2A\u53EF\u4EE5\u62B5\u6321\u4F24\u5BB3\u7684\u62A4\u76FE\uFF0C\u62A4\u76FE\u88AB\u6253\u7834\u6216\u6301\u7EED\u4E00\u6BB5\u65F6\u95F4\u540E\u6D88\u5931"
   cardIcon: {fileID: 3333558624019564704, guid: 6d454674dd86d274f8bce2e8872cdafc, type: 3}
   rarity: 0
   manaCost: 3
@@ -40,6 +39,7 @@ MonoBehaviour:
     lockOn:
       maxTargets: 0
       damage: 0
+      delay: 0
     area:
       radius: 0
       duration: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
       amount: 25
       duration: 10
     burstAOE:
-      amount: 0
+      damage: 0
       delay: 0
       radius: 0
   visualConfig:
