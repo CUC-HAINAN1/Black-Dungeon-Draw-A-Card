@@ -5,12 +5,12 @@ using System.Collections;
 [RequireComponent(typeof(Seeker), typeof(AIPath), typeof(AIDestinationSetter))]
 public class EnemyAI : MonoBehaviour
 {
-    [Header("Ѳ������")]
+    [Header("PatrolSet")]
     [SerializeField] private Transform[] patrolPoints;
     [SerializeField] private float patrolSpeed = 2f;
     [SerializeField] private float switchWaitTime = 1f;
 
-    [Header("׷������")]
+    [Header("ChaseSet")]
     [SerializeField] private float chaseSpeed = 4f;
     [SerializeField] private float chaseRange = 5f;
     [SerializeField] private float stopChaseRange = 7f;

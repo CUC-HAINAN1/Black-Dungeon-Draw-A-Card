@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8531669023716811771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3119282476523643344}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3119282476523643344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8531669023716811771}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.026, y: 0.121, z: 0.24997999}
+  m_LocalScale: {x: 0.18491024, y: 0.17817524, z: 2.1291547}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2809876576523805762}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1953346777770289269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 4659797695007276786, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: e544c1b658cacc44f98714f928c5203c, type: 2}
     - target: {fileID: 4659797695007276786, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -67,7 +98,11 @@ PrefabInstance:
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6607136736947558023}
+    - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 3119282476523643344}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: deathEffect
       value: 
@@ -79,6 +114,14 @@ PrefabInstance:
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: destroyDelay
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: attackFrames.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: patrolPoints.Array.size
@@ -110,12 +153,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4459972450872101943, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3119282476523643344}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3461293253058700370, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       insertIndex: 3
       addedObject: {fileID: 6329633280263819461}
   m_SourcePrefab: {fileID: 100100000, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+--- !u!4 &2809876576523805762 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4459972450872101943, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+  m_PrefabInstance: {fileID: 1953346777770289269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3103918389335411751 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3461293253058700370, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
