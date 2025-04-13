@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using System.Collections;
 using Pathfinding;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 public class EnemyProperty : MonoBehaviour
 {
@@ -29,7 +30,6 @@ public class EnemyProperty : MonoBehaviour
     [SerializeField] private float attackRange = 2f;       // 近战攻击范围
     [SerializeField] private float projectileSpeed = 10f;   // 远程投射速度
     [SerializeField] private Transform weaponPivot;         // 武器旋转支点
-    [SerializeField] private GameObject projectilePrefab;   // 远程投射物
     [SerializeField] private float attackInterval = 2f;     // 远程攻击间隔
 
     //混合攻击模式设置
@@ -49,6 +49,11 @@ public class EnemyProperty : MonoBehaviour
     [SerializeField][Range(0.1f, 1f)] private float pathRefreshRate = 0.5f; // 新增：路径刷新频率
     [SerializeField] private float predictionFactor = 0.3f;   // 新增：玩家移动预测系数
     [SerializeField] private float chaseStoppingDistance = 0.5f; // 新增：追击停止距离
+
+    [Header("远程攻击配置")]
+    public GameObject arrowPrefab;
+    public Transform shootPoint; // 箭矢生成点
+    public LayerMask obstacleLayers;
 
     private SpriteRenderer effectRenderer;
     private Coroutine attackEffectCoroutine;
@@ -152,11 +157,20 @@ public class EnemyProperty : MonoBehaviour
         var aiPath = GetComponent<AIPath>();
         if (aiPath == null) return;
 
+        // 强制重置路径
+        if (aiPath.isStopped)
+        {
+            aiPath.canMove = true;
+            aiPath.SearchPath();
+        }
+
         // 根据距离动态调整速度
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
         float speedFactor = speedCurve.Evaluate(distanceToPlayer / detectionRange);
 
         aiPath.maxSpeed = patrolSpeed * (currentAIState == AIState.Chasing ? 2f : 1f) * speedFactor;
+        // 添加调试信息
+        Debug.Log($"移动状态: {aiPath.canMove} | 速度: {aiPath.maxSpeed} | 目标: {aiPath.destination}");
     }
 
     void Awake()
@@ -312,6 +326,15 @@ public class EnemyProperty : MonoBehaviour
     {
 
         var aiPath = GetComponent<AIPath>();
+        // 强制保持移动能力
+        aiPath.canMove = true;
+        // 强制刷新路径（原逻辑有缺陷）
+        Vector3 predictedPos = PlayerAttributes.Instance.PlayerTransform.position;
+        if (PlayerAttributes.Instance.TryGetComponent<Rigidbody2D>(out var rb))
+        {
+            predictedPos += (Vector3)(rb.velocity * 0.5f); // 增加预测系数
+        }
+
         if (aiPath == null) return;
         // 设置绝对追击速度（不受其他系统影响）
         float targetSpeed = patrolSpeed * 2f;
@@ -337,7 +360,6 @@ public class EnemyProperty : MonoBehaviour
                             (Vector3)(playerRb != null ? 
                              playerRb.velocity * predictionFactor : // 使用预测系数
                              Vector2.zero);
-         aiPath.destination = predictPos;
         if (Vector3.Distance(aiPath.destination, predictPos) > 0.5f)
         {
             aiPath.destination = predictPos;
@@ -352,7 +374,6 @@ public class EnemyProperty : MonoBehaviour
         }
         // 设置加速参数（需在Animator中添加SpeedMultiplier参数）
         animator.SetFloat("SpeedMultiplier", chaseSpeedMultiplier);
-        aiPath.destination = playerTransform.position;
         // 调试日志
         Debug.Log($"进入追击状态，当前速度: {aiPath.maxSpeed}", gameObject);
 
@@ -593,18 +614,107 @@ public class EnemyProperty : MonoBehaviour
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         weaponPivot.rotation = Quaternion.Euler(0, 0, angle);
     }
-    private void PerformRangedAttack()
-    {
-        if (projectilePrefab == null) return;
 
-        GameObject projectile = Instantiate(
-            projectilePrefab,
-            weaponPivot.position,
-            weaponPivot.rotation
+#if UNITY_EDITOR
+    void OnValidate()
+    {
+        if (arrowPrefab == null)
+        {
+            Debug.LogError($"敌人 {gameObject.name} 未配置箭矢预制体!", this);
+        }
+
+        // 自动查找武器节点
+        if (shootPoint == null)
+        {
+            Transform weapon = transform.Find("WeaponPivot");
+            if (weapon != null) shootPoint = weapon;
+        }
+    }
+#endif
+    public void PerformRangedAttack()
+    {
+        // 输入验证
+        if (arrowPrefab == null)
+        {
+            Debug.LogError("箭矢预制体未分配!", gameObject);
+            return;
+        }
+        if (shootPoint == null)
+        {
+            Debug.LogError("攻击点未配置!", gameObject);
+            return;
+        }
+        if (PlayerAttributes.Instance == null)
+        {
+            Debug.LogError("玩家属性实例未找到!", gameObject);
+            return;
+        }
+
+        // 计算预测位置（带提前量）
+        Vector3 playerVelocity = Vector3.zero;
+        Rigidbody2D playerRb = PlayerAttributes.Instance.GetComponent<Rigidbody2D>();
+        if (playerRb != null)
+        {
+            playerVelocity = playerRb.velocity;
+        }
+        Vector3 predictedPosition = PlayerAttributes.Instance.PlayerTransform.position +
+                                   playerVelocity * 0.3f;
+
+        // 计算发射方向
+        Vector2 shootDirection = (predictedPosition - shootPoint.position).normalized;
+
+        // 生成箭矢
+        GameObject arrow = Instantiate(
+            arrowPrefab,
+            shootPoint.position,
+            Quaternion.identity
         );
 
-        Vector2 direction = (playerTransform.position - weaponPivot.position).normalized;
-        projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+        // 获取弹道组件
+        ArrowProjectile projectile = arrow.GetComponent<ArrowProjectile>();
+        if (projectile == null)
+        {
+            Debug.LogError("箭矢预制体缺少 ArrowProjectile 组件!", arrow);
+            Destroy(arrow);
+            return;
+        }
+
+        // 初始化弹道
+        try
+        {
+            projectile.Initialize(predictedPosition);
+            projectile.obstacleLayer = obstacleLayers;
+
+            // 调试可视化
+            Debug.DrawLine(shootPoint.position, predictedPosition, Color.red, 1f);
+            Debug.Log($"箭矢已生成 | 位置: {shootPoint.position} | 目标: {predictedPosition}");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"弹道初始化失败: {e.Message}", arrow);
+            Destroy(arrow);
+        }
+
+        // 触发攻击冷却
+        StartCoroutine(AttackCooldownRoutine());
+    }
+
+    private IEnumerator AttackCooldownRoutine()
+    {
+        canAttack = false;
+        Debug.Log($"攻击冷却开始 | 持续时间: {attackInterval}秒");
+        // 添加冷却计时可视化
+
+        float timer = 0;
+        while (timer < attackInterval)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(attackInterval);
+        canAttack = true;
+        Debug.Log("攻击冷却结束");
     }
 
     private void TransitionToState(AIState newState)

@@ -103,6 +103,9 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 3150268982325456569, guid: 5971b503915215c47aab537db7212a32, type: 3}
     enemyCount: 3
     spawnInterval: 0
+  - enemyPrefab: {fileID: 8174397343277129669, guid: b33033a3bb4f93c4880bf13bbdb738f6, type: 3}
+    enemyCount: 3
+    spawnInterval: 0
   spawnPoints:
   - {fileID: 8383204857704470244}
   - {fileID: 5812980941917024263}

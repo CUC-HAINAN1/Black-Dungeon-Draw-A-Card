@@ -105,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 3119282476523643344}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: attackRange
-      value: 2.48
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: deathEffect
@@ -113,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 6132114952807277421, guid: 0ff2f966e416f7d45a1576fd775295d6, type: 3}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: patrolSpeed
-      value: 0.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: attackDamage
@@ -125,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: detectionRange
-      value: 5.13
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: playerLayer.m_Bits

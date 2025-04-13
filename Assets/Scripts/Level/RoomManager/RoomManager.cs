@@ -7,7 +7,12 @@ using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class RoomManager : MonoBehaviour
-{ // ����״̬����
+{
+    public event System.Action OnRoomCleared; // 添加事件声明
+    // ����״̬����
+    // 改用HashSet生成房间
+    private static HashSet<Vector3Int> spawnedRooms = new HashSet<Vector3Int>();
+    private Vector3Int roomCoordinate;
 
     [Header("ս������")]
     [SerializeField] private bool isCombatRoom; // ��Edgarģ��������
@@ -53,6 +58,8 @@ public class RoomManager : MonoBehaviour
 
         doors = doorList.ToArray();
     }
+
+
     void Awake()
     {
         AutoFindDoors();
@@ -84,6 +91,13 @@ public class RoomManager : MonoBehaviour
 
     void StartEnemySpawning()
     {
+        if (enemySpawner == null) return;
+
+        // 先取消旧订阅
+        enemySpawner.AllWavesClearedEvent -= OnEnemiesCleared;
+        // 再添加新订阅
+        enemySpawner.AllWavesClearedEvent += OnEnemiesCleared;
+
         if (enemySpawner != null)
         {
             // ����Edgar��Scale����
@@ -95,7 +109,6 @@ public class RoomManager : MonoBehaviour
                 point.position = enemySpawner.GetEdgarAdjustedPosition(point.position);
             }
             enemySpawner.StartSpawning();
-            enemySpawner.AllWavesClearedEvent += OnEnemiesCleared;
             // ͬ����״̬
             enemySpawner.SyncWithDoors(doors);
         }
@@ -119,17 +132,23 @@ public class RoomManager : MonoBehaviour
         isRoomCleared = true; // �־û�״̬
         hasActiveEnemies = false;
         OpenAllDoors();
+        // 触发宝箱显示事件
+        Debug.Log("即将触发OnRoomCleared事件");
+        OnRoomCleared?.Invoke(); // 新增触发代码
+        // 添加调试日志
         // ����ȫ��ϵͳ���£������ͼ�е�2000���귶Χ��
         GlobalRoomSystem.UpdateConnectedRooms(transform.position * 1000f);
     }
-
-    void OpenAllDoors()
-    {
-        foreach (var door in doors)
+    // 新增宝箱生成方法
+    
+        void OpenAllDoors()
         {
-            door.OpenDoor();
+            foreach (var door in doors)
+            {
+                door.OpenDoor();
+            }
         }
-    }
+    
 
     // Edgar����ת��������2000����ϵ��
     public Vector2 GetGridPosition()
