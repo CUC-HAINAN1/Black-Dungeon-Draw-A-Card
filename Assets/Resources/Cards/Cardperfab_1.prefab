@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 7
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
-  m_sharedMaterial: {fileID: 5963667120265547421, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d3c8dc4e93644679af110ad2af93e8c, type: 2}
+  m_sharedMaterial: {fileID: 341361784378901113, guid: 3d3c8dc4e93644679af110ad2af93e8c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -201,8 +201,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u9501\u5B9A\u4E00\u4E2A\u76EE\u6807\u654C\u4EBA\u540E\u964D\u4E0B\u96F7\u9706\uFF0C\u5BF9\u6307\u5B9A\u654C\u4EBA\u9020\u6210\u5927\u91CF\u4F24\u5BB3"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
-  m_sharedMaterial: {fileID: 5963667120265547421, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d3c8dc4e93644679af110ad2af93e8c, type: 2}
+  m_sharedMaterial: {fileID: 341361784378901113, guid: 3d3c8dc4e93644679af110ad2af93e8c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -335,8 +335,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u795E\u7F5A\u96F7\u9706"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
-  m_sharedMaterial: {fileID: 5963667120265547421, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d3c8dc4e93644679af110ad2af93e8c, type: 2}
+  m_sharedMaterial: {fileID: 341361784378901113, guid: 3d3c8dc4e93644679af110ad2af93e8c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -488,10 +488,9 @@ GameObject:
   - component: {fileID: 9119286461952609563}
   - component: {fileID: 4240625212514205353}
   - component: {fileID: 5695007675399531952}
-  - component: {fileID: -275702274811762584}
   - component: {fileID: -9144810484310032751}
   m_Layer: 5
-  m_Name: Cardperfab
+  m_Name: Cardperfab_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,24 +546,6 @@ MonoBehaviour:
   ManaCostText: {fileID: 573504713322525825}
   hoverScale: 1.3
   otherCardScale: 0.9
-  hoverDuration: 0.3
-  hoverEase: 27
---- !u!114 &-275702274811762584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7893060465467734075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb8841a7f8ad64b2990eaa6a56880169, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  returnDuration: 0.3
-  moveEase: 27
-  rotationDuration: 0.2
-  zoomScale: 0.3
   hoverDuration: 0.3
   hoverEase: 27
 --- !u!225 &-9144810484310032751

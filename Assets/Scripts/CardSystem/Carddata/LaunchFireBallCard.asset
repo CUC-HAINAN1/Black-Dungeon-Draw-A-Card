@@ -45,7 +45,7 @@ MonoBehaviour:
       duration: 0
       tickRate: 0
       damage: 0
-    inceaseAttck:
+    increaseAttack:
       amount: 0
       duration: 0
     generateShield:
@@ -63,6 +63,6 @@ MonoBehaviour:
     hitSound: {fileID: 0}
   upgradableParams:
   - displayName: "\u706B\u7403\u4F24\u5BB3\u589E\u52A05\u70B9"
-    paramPath: behaviorConfig.projectile.damege
+    paramPath: behaviorConfig.projectile.damage
     upgradeType: 0
     value: 5

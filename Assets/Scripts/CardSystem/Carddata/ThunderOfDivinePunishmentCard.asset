@@ -45,7 +45,7 @@ MonoBehaviour:
       duration: 0
       tickRate: 0
       damage: 0
-    inceaseAttck:
+    increaseAttack:
       amount: 0
       duration: 0
     generateShield:
