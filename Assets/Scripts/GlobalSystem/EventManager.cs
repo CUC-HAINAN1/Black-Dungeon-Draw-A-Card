@@ -21,7 +21,7 @@ public class EventManager : MonoBehaviour {
 
                 GameObject go = new GameObject("EventManager");
                 _instance = go.AddComponent<EventManager>();
-                //DontDestroyOnLoad(go);
+                DontDestroyOnLoad(go);
 
             }
 
@@ -32,15 +32,16 @@ public class EventManager : MonoBehaviour {
 
     //单例初始化
     private void Awake() {
-        
+
         if (_instance != null && _instance != this) {
-            
+
             Destroy(gameObject);
             return;
-        
+
         }
 
         _instance = this;
+        DontDestroyOnLoad(gameObject);
         _eventDictionary = new Dictionary<string, Action<object>>();
 
     }
@@ -56,39 +57,39 @@ public class EventManager : MonoBehaviour {
 
     //订阅事件
     public void Subscribe(string eventName, Action<object> listener) {
-        
+
         if (_eventDictionary.TryGetValue(eventName, out Action<object> existingEvent)) {
-            
+
             existingEvent += listener;
             _eventDictionary[eventName] = existingEvent;
-        
+
         }
 
         else {
-            
+
             _eventDictionary.Add(eventName, listener);
-        
+
         }
 
     }
 
     //取消订阅
     public void Unsubscribe(string eventName, Action<object> listener) {
-        
+
         if (_eventDictionary.TryGetValue(eventName, out Action<object> existingEvent)) {
 
             existingEvent -= listener;
 
             if (existingEvent == null) {
-                
+
                 _eventDictionary.Remove(eventName);
-            
+
             }
 
             else {
-                
+
                 _eventDictionary[eventName] = existingEvent;
-            
+
             }
 
         }
@@ -99,9 +100,9 @@ public class EventManager : MonoBehaviour {
     public void TriggerEvent(string eventName, object parameter = null) {
 
         if (_eventDictionary.TryGetValue(eventName, out Action<object> thisEvent)) {
-            
+
             thisEvent?.Invoke(parameter);
-        
+
         }
 
     }
