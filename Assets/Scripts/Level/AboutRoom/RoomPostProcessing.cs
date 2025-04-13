@@ -59,9 +59,6 @@ public class RoomPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D
         var rigidbody = floor.GetComponent<Rigidbody2D>() ?? floor.AddComponent<Rigidbody2D>();
         rigidbody.bodyType = RigidbodyType2D.Static;
 
-        // ÅäÖÃÅö×²Æ÷
-        var tilemapCollider = floor.GetComponent<TilemapCollider2D>() ?? floor.AddComponent<TilemapCollider2D>();
-        tilemapCollider.usedByComposite = true;
 
         var compositeCollider = floor.GetComponent<CompositeCollider2D>() ?? floor.AddComponent<CompositeCollider2D>();
         compositeCollider.geometryType = CompositeCollider2D.GeometryType.Polygons;
