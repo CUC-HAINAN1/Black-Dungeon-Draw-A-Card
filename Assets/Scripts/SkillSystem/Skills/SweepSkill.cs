@@ -24,6 +24,7 @@ public class SweepSkill : SkillBase {
         sectorPrefab = cardData.visualConfig.castEffect;
 
         Vector3 spawnPos = playerAttributes.PlayerTransform.position;
+        spawnPos += direction * 0.5f;
 
         GameObject sectorEffect = Instantiate(
             sectorPrefab,
@@ -42,7 +43,7 @@ public class SweepSkill : SkillBase {
             finalDamage,
             config.delay
         );
-    
+
     }
 }
 
@@ -67,9 +68,9 @@ public class SectorHitbox : MonoBehaviour {
     }
 
     private IEnumerator DelayAndHit() {
-        
+
         yield return new WaitForSeconds(delay);
-        
+
         Vector2 currentOrigin = transform.position;
         Collider2D[] hitEnemys = Physics2D.OverlapCircleAll(currentOrigin, radius * 5);
         float halfAngle = angle * 0.5f;
@@ -78,29 +79,29 @@ public class SectorHitbox : MonoBehaviour {
 
             if (!enemyCol.CompareTag("Enemy"))
                 continue;
-            
+
             //扇形区域检测
             Vector2 toTarget = (Vector2)enemyCol.transform.position - origin;
-            
+
             if (toTarget.sqrMagnitude == 0)
                 continue;
 
             float angleBetween = Vector2.Angle(direction, toTarget.normalized);
             if (angleBetween <= halfAngle) {
-                 
+
                  EnemyProperty enemy = enemyCol.GetComponent<EnemyProperty>();
-                 
+
                  if (enemy != null) {
-                     
+
                      enemy.TakeDamage(damage);
-                 
+
                  }
-            
+
             }
         }
-        
+
         // 延迟一点再销毁自身，确保特效完整播放
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
 
     }

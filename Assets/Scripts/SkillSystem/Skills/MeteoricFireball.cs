@@ -15,7 +15,7 @@ public class MeteoricFireballSkill : SkillBase {
         var playerAttributes = PlayerAttributes.Instance;
         var cardData = context.cardData;
         Vector3 targetPosition = context.position;
-        targetPosition.y -= 2.7f;
+        targetPosition.y += 1.6f;
 
         var config = cardData.behaviorConfig.burstAOE;
 
