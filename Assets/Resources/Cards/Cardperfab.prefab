@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 7
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5f4e390f4cfbf42df9a249ef18dd52ac, type: 2}
-  m_sharedMaterial: {fileID: -934090022356771274, guid: 5f4e390f4cfbf42df9a249ef18dd52ac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
+  m_sharedMaterial: {fileID: 5963667120265547421, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -199,10 +199,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Desciption
+  m_text: "\u9501\u5B9A\u4E00\u4E2A\u76EE\u6807\u654C\u4EBA\u540E\u964D\u4E0B\u96F7\u9706\uFF0C\u5BF9\u6307\u5B9A\u654C\u4EBA\u9020\u6210\u5927\u91CF\u4F24\u5BB3"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5f4e390f4cfbf42df9a249ef18dd52ac, type: 2}
-  m_sharedMaterial: {fileID: -934090022356771274, guid: 5f4e390f4cfbf42df9a249ef18dd52ac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
+  m_sharedMaterial: {fileID: 5963667120265547421, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -333,10 +333,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u706B\u7403\u672F"
+  m_text: "\u795E\u7F5A\u96F7\u9706"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5f4e390f4cfbf42df9a249ef18dd52ac, type: 2}
-  m_sharedMaterial: {fileID: -934090022356771274, guid: 5f4e390f4cfbf42df9a249ef18dd52ac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
+  m_sharedMaterial: {fileID: 5963667120265547421, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -644,7 +644,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 6515741899584178625, guid: 6ef137cefe8b8cf47a11958d684b7d90, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

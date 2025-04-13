@@ -16,6 +16,9 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Vector3 originalRotation;
     private bool isAnimating = false;
     private bool isValidDrag = false;
+    public bool IsDestroyed { get; private set; }
+
+    private bool IsComponentAlive => !IsDestroyed && this != null;
 
     //处理范围指示器的部分
     private CardDataBase cardData;
@@ -41,14 +44,15 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData) {
 
-        if (!cardStateManager.IsCardUsable(gameObject)) return;
+        if (! IsComponentAlive || !cardStateManager.IsCardUsable(gameObject) || IsDestroyed)
+            return;
 
-        if (eventData.button != PointerEventData.InputButton.Left || 
+        if (eventData.button != PointerEventData.InputButton.Left ||
             !cardStateManager.IsCardUsable(gameObject)) {
-            
+
             eventData.pointerDrag = null; // 阻止事件传递
             return;
-        
+
         }
 
         // 标记有效拖拽开始
@@ -59,7 +63,8 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         cardStateManager.SetDraggingState(gameObject, true);
         cardQueueSystem.SetCardQueueDraggingState(true);
 
-        if (isAnimating) return;
+        if (isAnimating)
+            return;
 
         startPosition = transform.position;
         originalRotation = transform.localEulerAngles;
@@ -68,11 +73,11 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
 
-        if(transform == null) {
-            
+        if (transform == null) {
+
             Debug.LogError("目标 Transform 为空，无法启动动画！");
             return;
-        
+
         }
 
         rangeIndicatorManager.CreateIndicator(cardData);
@@ -80,33 +85,39 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     }
 
-    public void OnDrag(PointerEventData eventData) {}
+    public void OnDrag(PointerEventData eventData) { }
 
     private void Update() {
 
-        if ((gameObject != null && isValidDrag && cardStateManager.GetCardState(gameObject).IsDragging && Input.GetMouseButtonDown(1)) ||
+        if (!IsComponentAlive || IsDestroyed)
+            return;
+
+        if ((isValidDrag && cardStateManager.GetCardState(gameObject).IsDragging && Input.GetMouseButtonDown(1)) ||
             !cardStateManager.IsCardUsable(gameObject)
         ) {
-            
+
             Time.timeScale = 1;
             CancelDrag();
             isValidDrag = false;
-        
+
         }
 
         if (isValidDrag && cardStateManager.GetCardState(gameObject).IsDragging) {
-            
+
             transform.position = Input.mousePosition;
             rangeIndicatorManager.UpdateIndicator();
-        
+
         }
 
     }
 
     public void OnEndDrag(PointerEventData eventData) {
 
+        if (!IsComponentAlive || IsDestroyed)
+            return;
+
         if (!isValidDrag || eventData.button != PointerEventData.InputButton.Left) {
-            
+
             eventData.pointerDrag = null;
             return;
 
@@ -127,7 +138,8 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
-        if (!cardQueueSystem.TryUseCard(this)) ReturnToOriginalPosition();
+        if (!cardQueueSystem.TryUseCard(this))
+            ReturnToOriginalPosition();
 
         //技能使用！
         SkillSystem.Instance.ExecuteSkill(cardStateManager.GetCardState(gameObject).CardData);
@@ -138,6 +150,11 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     private void CancelDrag() {
+
+        if (!IsComponentAlive || IsDestroyed)
+            return;
+
+        Debug.Log(IsDestroyed);
 
         if (!cardStateManager.GetCardState(gameObject).IsDragging)
             return;
@@ -154,14 +171,14 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     private void ReturnToOriginalPosition() {
-        
+
         transform.SetParent(originalParent);
 
-        if(transform == null) {
-            
+        if (transform == null) {
+
             Debug.LogError("目标 Transform 为空，无法启动动画！");
             return;
-        
+
         }
 
         Sequence returnSequence = DOTween.Sequence();
@@ -177,22 +194,40 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 canvasGroup.blocksRaycasts = true;
                 isAnimating = false;
             });
-    
+
     }
 
     private void RestoreOtherCards() {
-        
+
         foreach (var cardInfo in cardQueueSystem.currentCards) {
-            
-            if (cardInfo.cardInstance != null && 
-                cardInfo.cardInstance.transform != null && 
+
+            if (cardInfo.cardInstance != null &&
+                cardInfo.cardInstance.transform != null &&
                 cardInfo.cardInstance != gameObject) {
 
                 cardInfo.cardInstance.transform.DOScale(originalScale, hoverDuration)
                     .SetEase(hoverEase);
-            
+
             }
         }
+    }
+
+    public void DestroyThis() {
+
+        IsDestroyed = true;
+
+        if (TryGetComponent<CanvasGroup>(out var cg))
+            cg.blocksRaycasts = true;
+            
+    }
+
+    private void OnDestroy() {
+
+        // 确保所有引用置空
+        cardStateManager = null;
+        cardQueueSystem = null;
+        rangeIndicatorManager = null;
+
     }
 
 }

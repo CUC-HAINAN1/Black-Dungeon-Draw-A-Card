@@ -6,7 +6,7 @@ public class BossAI : MonoBehaviour
     [Header("距离设置")]
     public float meleeRange = 3f;
     public float rangedRange = 8f;
-    
+
     [Header("技能设置")]
     public float skillCooldown = 2f;
     public GameObject projectilePrefab;
@@ -29,7 +29,7 @@ public class BossAI : MonoBehaviour
         if (!isCooldown)
         {
             float distance = Vector2.Distance(transform.position, player.position);
-            
+
             if (distance <= meleeRange)
             {
                 PerformMeleeAttack();
@@ -64,13 +64,13 @@ public class BossAI : MonoBehaviour
     private System.Collections.IEnumerator Dash(Vector2 direction)
     {
         float startTime = Time.time;
-        
+
         while (Time.time < startTime + dashDuration)
         {
             rb.velocity = direction * dashSpeed;
             yield return null;
         }
-        
+
         rb.velocity = Vector2.zero;
     }
 

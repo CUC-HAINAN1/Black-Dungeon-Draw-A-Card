@@ -1,0 +1,84 @@
+using System.Collections;
+using UnityEngine;
+
+public class SceneTransitionManager : MonoBehaviour {
+
+    [Header("配置参数")]
+    public float delayBeforeSceneLoad = 2f;
+    private bool hasTriggeredSceneLoad = false;
+    public CardDataBase lightningCard;
+
+    public static SceneTransitionManager Instance { get; private set; }
+
+    private void Awake() {
+
+        if (Instance != null && Instance != this) {
+
+            Destroy(gameObject);
+            return;
+
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+    }
+
+    private void OnEnable() {
+
+        EventManager.Instance.Subscribe("PlayerDied", OnPlayerDied);
+        EventManager.Instance.Subscribe("BossDied", OnBossDied);
+
+    }
+
+     private void OnDisable() {
+
+        if (EventManager.Instance != null) {
+
+            EventManager.Instance.Unsubscribe("PlayerDied", OnPlayerDied);
+            EventManager.Instance.Unsubscribe("BossDied", OnBossDied);
+
+        }
+    }
+
+    private void OnPlayerDied(object eventData) {
+
+        TriggerSceneSwitch("DefeatScene", () => {
+            Debug.Log("玩家死亡 - 即将切换到死亡场景");
+
+        });
+
+    }
+    
+    private void OnBossDied(object eventData) {
+
+        lightningCard.Owned = true;
+
+        TriggerSceneSwitch("CompleteScene", () => {
+            Debug.Log("Boss 死亡 - 即将切换到通关场景");
+
+        });
+
+    }
+
+    private void TriggerSceneSwitch(string sceneName, System.Action beforeLoadAction = null) {
+
+        if (hasTriggeredSceneLoad) return;
+
+        hasTriggeredSceneLoad = true;
+        StartCoroutine(DelayThenLoadScene(sceneName, beforeLoadAction));
+
+    }
+
+    private IEnumerator DelayThenLoadScene(string sceneName, System.Action beforeLoadAction) {
+
+        yield return new WaitForSeconds(delayBeforeSceneLoad);
+
+        beforeLoadAction?.Invoke();
+
+        hasTriggeredSceneLoad = false;
+
+        SceneTransitionHelper.Instance.LoadSceneWithTransition(sceneName);
+
+    }
+}
