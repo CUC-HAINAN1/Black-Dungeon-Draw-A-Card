@@ -169,8 +169,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u6309E\u6253\u5F00"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5f4e390f4cfbf42df9a249ef18dd52ac, type: 2}
-  m_sharedMaterial: {fileID: -934090022356771274, guid: 5f4e390f4cfbf42df9a249ef18dd52ac, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
+  m_sharedMaterial: {fileID: 5963667120265547421, guid: 3bab95a18373d45079fbd3a11c3dbad7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
