@@ -36,7 +36,7 @@ public class PlayerAttributes : MonoBehaviour {
     [SerializeField] public int _MaxShield = 25;
     [SerializeField] public int _MaxAttackPowerInCreased = 100;
     private float _manaRegenTimer;
-    
+
     private float _manaRegenMutiplier = 1f;
     private bool _isManaRegenPaused;
 
@@ -44,17 +44,17 @@ public class PlayerAttributes : MonoBehaviour {
     [SerializeField] public int _currentMana;
     [SerializeField] public int _currentShield;
     [SerializeField] public int _currentAttackPowerInCreased;
-    
+
     [SerializeField] public bool _isDead;
     private bool _deathEventTriggered;
     [SerializeField] private bool _inCombat;
     [SerializeField] private bool _isInvincible;
     [SerializeField] private bool _isRolling;
-    
+
     private Coroutine _invincibleCoroutine;
     [SerializeField] private bool _hasShield;
     [SerializeField] public bool _isAttackIncreased;
-    
+
     private void Awake() {
 
         //单例初始化
@@ -69,16 +69,16 @@ public class PlayerAttributes : MonoBehaviour {
         //DontDestroyOnLoad(gameObject);
 
         _currentHealth = _MaxHealth;
-        
+
         _currentMana = _MaxMana;
         _isManaRegenPaused = false;
-        
+
         _currentShield = 0;
         _hasShield = false;
 
         _currentAttackPowerInCreased = 0;
         _isAttackIncreased = false;
-        
+
         IsDead = false;
         _deathEventTriggered = false;
 
@@ -97,23 +97,23 @@ public class PlayerAttributes : MonoBehaviour {
 
             var previous = _currentHealth;
             _currentHealth = Mathf.Clamp(value, 0, _MaxHealth);
-            
-            EventManager.Instance.TriggerEvent("HealthChanged", 
+
+            EventManager.Instance.TriggerEvent("HealthChanged",
                     new AttributeChangeData(
-                        
+
                         AttributeType.Health,
                         _currentHealth,
                         _currentHealth - previous
-                    
+
                     )
-            
+
             );
 
             if (_currentHealth <= 0 && previous > 0) {
 
                 IsDead = true;
 
-            }   
+            }
 
         }
 
@@ -127,7 +127,7 @@ public class PlayerAttributes : MonoBehaviour {
 
             var previous = _currentMana;
             _currentMana = Mathf.Clamp(value, 0, _MaxMana);
-            
+
             EventManager.Instance.TriggerEvent("ManaChanged",
                     new AttributeChangeData(
 
@@ -136,7 +136,7 @@ public class PlayerAttributes : MonoBehaviour {
                         _currentMana - previous
 
                     )
-            
+
             );
 
         }
@@ -144,39 +144,39 @@ public class PlayerAttributes : MonoBehaviour {
     }
 
     public int Shield {
-        
+
         get => _currentShield;
         private set {
-            
+
             var previous = _currentShield;
             _currentShield = Mathf.Clamp(value, 0, _MaxShield);
-            
+
             // 自动更新护盾状态
             if (previous > 0 && _currentShield == 0) {
-                
+
                 HasShield = false;
-            
-            } 
-            
-            else if (previous == 0 && _currentShield > 0) {
-                
-                HasShield = true;
-            
+
             }
 
-            EventManager.Instance.TriggerEvent("ShieldChanged", 
+            else if (previous == 0 && _currentShield > 0) {
+
+                HasShield = true;
+
+            }
+
+            EventManager.Instance.TriggerEvent("ShieldChanged",
                     new AttributeChangeData(
-                        
+
                         AttributeType.Shield,
                         _currentShield,
                         _currentShield - previous
-                
+
                     )
-            
+
             );
-        
+
         }
-    
+
     }
 
     public int AttackPowerIncreased {
@@ -187,7 +187,7 @@ public class PlayerAttributes : MonoBehaviour {
 
             var previous = _currentAttackPowerInCreased;
             _currentAttackPowerInCreased = Mathf.Clamp(value, 0, _MaxAttackPowerInCreased);
-            
+
             EventManager.Instance.TriggerEvent("AttackPowerCoefficientChanged",
                     new AttributeChangeData(
 
@@ -196,19 +196,20 @@ public class PlayerAttributes : MonoBehaviour {
                         _currentAttackPowerInCreased - previous
 
                     )
-            
+
             );
 
             if (previous > 0 && _currentAttackPowerInCreased == 0) {
 
                 IsAttackIncreased = false;
 
-            } 
+            }
 
             else if (previous == 0 && _currentAttackPowerInCreased > 0) {
 
+                Debug.Log("Setpower!");
                 IsAttackIncreased = true;
-            
+
             }
         }
 
@@ -216,7 +217,7 @@ public class PlayerAttributes : MonoBehaviour {
 
     //获取Transform组件，位置/旋转信息
     public Transform PlayerTransform => GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Transform>();
-    
+
     //状态访问器
     public bool IsDead {
 
@@ -226,15 +227,15 @@ public class PlayerAttributes : MonoBehaviour {
             if (_isDead != value) {
 
                 _isDead = value;
-                
+
                 if (_isDead && !_deathEventTriggered) {
 
                     _deathEventTriggered = true;
                     EventManager.Instance.TriggerEvent(
-                        
-                    "PlayerDied", 
+
+                    "PlayerDied",
                     new StateChangeData(StateType.IsDead)
-                    
+
                     );
 
                     Mana = 0;
@@ -251,106 +252,106 @@ public class PlayerAttributes : MonoBehaviour {
 
     }
     public bool IsInCombat {
-        
+
         get => _inCombat;
         private set {
-            
+
             if (_inCombat != value) {
-                
+
                 _inCombat = value;
                 EventManager.Instance.TriggerEvent(
-                    
-                    value ? "InCombatStateEntered" : "InCombatStateExited", 
+
+                    value ? "InCombatStateEntered" : "InCombatStateExited",
                     new StateChangeData(StateType.InCombat)
-                
+
                 );
-            
+
             }
-        
+
         }
-    
+
     }
     public bool IsInvincible {
-        
+
         get => _isInvincible;
         private set {
-            
+
             if (_isInvincible != value) {
-                
+
                 _isInvincible = value;
                 EventManager.Instance.TriggerEvent(
-                    
-                    value ? "InvincibleStateEntered" : "InvincibleStateExited", 
+
+                    value ? "InvincibleStateEntered" : "InvincibleStateExited",
                     new StateChangeData(StateType.Invincible)
-                
+
                 );
-            
+
             }
-        
+
         }
-    
+
     }
 
     public bool IsAttackIncreased {
-        
+
         get => _isAttackIncreased;
         private set {
-            
+
             if (_isAttackIncreased != value) {
-                
+
                 _isAttackIncreased = value;
                 EventManager.Instance.TriggerEvent(
-                    
-                    value ? "AttackIncreasedStateEntered" : "AttackIncreasedStateExited", 
+
+                    value ? "AttackIncreasedStateEntered" : "AttackIncreasedStateExited",
                     new StateChangeData(StateType.IsAttackIncreased)
-                
+
                 );
-            
+
             }
-        
+
         }
-    
+
     }
 
     public bool HasShield {
-        
+
         get => _hasShield;
         private set {
-            
+
             if (_hasShield != value) {
-                
+
                 _hasShield = value;
                 EventManager.Instance.TriggerEvent(
-                    value ? "ShieldStateEntered" : "ShieldStateExited", 
+                    value ? "ShieldStateEntered" : "ShieldStateExited",
                     new StateChangeData(StateType.IsShield)
-                
+
                 );
-            
+
             }
-        
+
         }
-    
+
     }
 
     public bool IsRolling {
-        
+
         get => _isRolling;
         private set {
-            
+
             if (_isRolling != value) {
-                
+
                 _isRolling = value;
                 EventManager.Instance.TriggerEvent(
-                    
-                    value ? "RollingStateEntered" : "RollingStateExited", 
+
+                    value ? "RollingStateEntered" : "RollingStateExited",
                     new StateChangeData(StateType.IsRolling)
-                
+
                 );
-            
+
             }
-        
+
         }
-    
+
     }
 
     //操作方法
@@ -368,7 +369,7 @@ public class PlayerAttributes : MonoBehaviour {
             Health -= amount;
             EnableInvincibleForDuration(GetDamageInvincibleDuration);
 
-        } 
+        }
 
     }
 
@@ -412,7 +413,7 @@ public class PlayerAttributes : MonoBehaviour {
             Mana += amount;
 
         }
-    
+
     }
 
     public void GenerateShield() {
@@ -519,7 +520,7 @@ public class PlayerAttributes : MonoBehaviour {
         _manaRegenMutiplier = Mathf.Clamp(Mutiplier, 0f, 5f);
 
     }
-    
+
     public void PauseManaRegen(bool pause) {
 
         _isManaRegenPaused = pause;
@@ -542,7 +543,7 @@ public class PlayerAttributes : MonoBehaviour {
         }
 
     }
-    
+
     //状态更新数据类
     public struct StateChangeData {
         public readonly StateType StateType;
@@ -552,7 +553,7 @@ public class PlayerAttributes : MonoBehaviour {
             StateType = type;
            ChangeTime = Time.time;
         }
-    
+
     }
 
 }

@@ -6,13 +6,13 @@ public class Projectile : MonoBehaviour
 {
     public float speed =10f;
     public int damage = 10;
-    void Start ()
+    void Start()
     {
-        Destroy(this.gameObject,3f);
+        Destroy(this.gameObject, 3f);
     }
-    void Update ()
+    void Update()
     {
-        transform.Translate(Vector2.right*speed*Time.deltaTime);
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
     void OnTriggerEnter2D(Collider2D other)
     {
