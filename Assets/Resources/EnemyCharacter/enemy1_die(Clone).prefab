@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1769822099452023872}
   - component: {fileID: 705008775073583329}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: enemy1_die(Clone)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1799516029
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -3075337878714221787, guid: 8064e1b96f999d14598a366e001ee860, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

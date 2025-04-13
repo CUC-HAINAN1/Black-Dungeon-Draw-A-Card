@@ -43,6 +43,13 @@ public class EnemyProperty : MonoBehaviour
     [SerializeField] private float frameRate = 12f;     // 每秒播放帧数
     [SerializeField] private bool loopAttackEffect;     // 是否循环播放
 
+    [Header("追击设置")]
+    [SerializeField] private float chaseSpeed = 6f;          // 新增：独立追击速度
+    [SerializeField] private float chaseRotationSpeed = 360f; // 新增：追击转向速度
+    [SerializeField][Range(0.1f, 1f)] private float pathRefreshRate = 0.5f; // 新增：路径刷新频率
+    [SerializeField] private float predictionFactor = 0.3f;   // 新增：玩家移动预测系数
+    [SerializeField] private float chaseStoppingDistance = 0.5f; // 新增：追击停止距离
+
     private SpriteRenderer effectRenderer;
     private Coroutine attackEffectCoroutine;
     private int currentFrame;
@@ -133,6 +140,25 @@ public class EnemyProperty : MonoBehaviour
     [Header("状态管理")]
     [SerializeField] private EnemyStateMachine stateMachine;
 
+    // 新增速度曲线控制（在类中添加）
+    [Header("移动曲线")]
+    [SerializeField]
+    private AnimationCurve speedCurve = new AnimationCurve(
+        new Keyframe(0, 0),
+        new Keyframe(1, 1)
+    );
+    private void UpdateMovement()
+    {
+        var aiPath = GetComponent<AIPath>();
+        if (aiPath == null) return;
+
+        // 根据距离动态调整速度
+        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        float speedFactor = speedCurve.Evaluate(distanceToPlayer / detectionRange);
+
+        aiPath.maxSpeed = patrolSpeed * (currentAIState == AIState.Chasing ? 2f : 1f) * speedFactor;
+    }
+
     void Awake()
     {
         currentHealth = maxHealth;
@@ -141,7 +167,33 @@ public class EnemyProperty : MonoBehaviour
     }
 
     void Start()
-    {
+    { // 确保AIPath组件存在
+        if (GetComponent<AIPath>() == null)
+        {
+            gameObject.AddComponent<AIPath>();
+            Debug.Log("已自动添加AIPath组件");
+        }
+        // 延迟初始化玩家坐标
+        StartCoroutine(DelayedInit());
+        GeneratePatrolPoints(); // 新增此行
+        // 确保playerTransform正确初始化
+        if (PlayerAttributes.Instance == null)
+        {
+            Debug.LogError("PlayerAttributes实例未找到!");
+            return;
+        }
+        playerTransform = PlayerAttributes.Instance.PlayerTransform;
+
+        // 初始化特效系统
+        InitializeEffectSystem();
+
+        // 初始化动画组件
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+            if (animator == null)
+                Debug.LogError("Animator组件未找到!", gameObject);
+        }
         StartPatrol();
         if (effectContainer == null)
         {
@@ -163,6 +215,32 @@ public class EnemyProperty : MonoBehaviour
             effectRenderer = effectContainer.AddComponent<SpriteRenderer>();
             effectRenderer.enabled = false;
         }
+    }
+    private IEnumerator DelayedInit()
+    {
+        yield return new WaitUntil(() => PlayerAttributes.Instance != null);
+        playerTransform = PlayerAttributes.Instance.PlayerTransform;
+
+        // 强制初始状态
+        TransitionToState(AIState.Patrolling);
+    }
+    // 新增特效初始化方法
+    private void InitializeEffectSystem()
+    {
+        if (effectContainer == null)
+        {
+            effectContainer = new GameObject("AttackEffect");
+            effectContainer.transform.SetParent(transform);
+            effectContainer.transform.localPosition = Vector3.zero;
+        }
+
+        effectRenderer = effectContainer.GetComponent<SpriteRenderer>();
+        if (effectRenderer == null)
+        {
+            effectRenderer = effectContainer.AddComponent<SpriteRenderer>();
+            effectRenderer.sortingOrder = 10;
+        }
+        effectRenderer.enabled = false;
     }
     // 攻击动画播放方法（通过条件直接调用）
     private void PlayAttackEffect()
@@ -200,16 +278,142 @@ public class EnemyProperty : MonoBehaviour
         {
             PatrolMovement();
         }
+        // 动画混合控制
+        HandleAnimationBlending();
+
+        UpdateMovement(); // 新增此行
+    }
+
+    private void HandleAnimationBlending()
+    {
+        // 攻击状态时禁用其他混合逻辑
+        if (currentAIState == AIState.Attacking) return;
+        // 根据移动速度调整动画混合
+        var aiPath = GetComponent<AIPath>();
+        if (aiPath != null)
+        {
+            float speedRatio = aiPath.velocity.magnitude / aiPath.maxSpeed;
+            animator.SetFloat("MoveSpeed", speedRatio);
+        }
+
+        // 攻击动画强制播放
+        if (currentAIState == AIState.Attacking)
+        {
+            animator.Play("Attack", 0, 0);
+        }
+    }
+    // 在动画最后一帧添加事件
+    public void OnAttackEnd()
+    {
+        TransitionToState(AIState.Chasing);
     }
     //追击行为实现
     private void ChaseBehavior()
     {
-        GetComponent<AIPath>().maxSpeed = patrolSpeed * 2;
-        GetComponent<AIPath>().destination = playerTransform.position;
+
+        var aiPath = GetComponent<AIPath>();
+        if (aiPath == null) return;
+        // 设置绝对追击速度（不受其他系统影响）
+        float targetSpeed = patrolSpeed * 2f;
+        // 动态计算速度系数
+        float chaseSpeedMultiplier = 2f;
+
+    if (Vector3.Distance(aiPath.destination, playerTransform.position) > 0.5f)
+        {
+            aiPath.destination = playerTransform.position;
+            aiPath.SearchPath(); // 强制刷新路径
+        }
+        // 移除速度曲线干扰
+        aiPath.maxSpeed = chaseSpeed; // 修改：使用独立速度
+        aiPath.rotationSpeed = chaseRotationSpeed; // 新增：应用转向速度
+        aiPath.endReachedDistance = chaseStoppingDistance; // 修改：使用配置的停止距离
+        aiPath.slowdownDistance = attackRange * 0.8f;     // 开始减速距离
+         // 按频率刷新路径（优化性能）
+    if (Time.frameCount % Mathf.RoundToInt(pathRefreshRate * 60) == 0) // 新增：按频率刷新
+    {
+        // 预测玩家移动轨迹
+        Rigidbody2D playerRb = playerTransform.GetComponent<Rigidbody2D>();
+        Vector3 predictPos = playerTransform.position + 
+                            (Vector3)(playerRb != null ? 
+                             playerRb.velocity * predictionFactor : // 使用预测系数
+                             Vector2.zero);
+         aiPath.destination = predictPos;
+        if (Vector3.Distance(aiPath.destination, predictPos) > 0.5f)
+        {
+            aiPath.destination = predictPos;
+            aiPath.SearchPath();
+        }
     }
+        // 强制刷新路径
+        if (!aiPath.hasPath)
+        {
+            aiPath.destination = playerTransform.position;
+            aiPath.SearchPath();
+        }
+        // 设置加速参数（需在Animator中添加SpeedMultiplier参数）
+        animator.SetFloat("SpeedMultiplier", chaseSpeedMultiplier);
+        aiPath.destination = playerTransform.position;
+        // 调试日志
+        Debug.Log($"进入追击状态，当前速度: {aiPath.maxSpeed}", gameObject);
+
+    }
+    // 新增巡逻点生成方法（在EnemyProperty类中添加）
+    private void GeneratePatrolPoints()
+    {
+        // 如果已有预设点则跳过
+        if (patrolPoints != null && patrolPoints.Length > 0) return;
+
+        // 方式1：查找场景中带Waypoint标签的对象
+        var waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+        if (waypoints.Length >= 2)
+        {
+            patrolPoints = new Transform[waypoints.Length];
+            for (int i = 0; i < waypoints.Length; i++)
+            {
+                patrolPoints[i] = waypoints[i].transform;
+            }
+            Debug.Log($"从场景中找到{waypoints.Length}个巡逻点");
+            return;
+        }
+
+        if (patrolPoints.Length == 0)
+        {
+            // 自动查找场景中的巡逻点
+            patrolPoints = new Transform[waypoints.Length];
+            for (int i = 0; i < waypoints.Length; i++)
+            {
+                patrolPoints[i] = waypoints[i].transform;
+            }
+
+            // 或生成随机路径
+            if (waypoints.Length == 0)
+            {
+                GenerateRandomPath(3, 5f); // 生成3个点，范围5米
+            }
+        }
+    }
+
+    // 随机路径生成算法
+    private void GenerateRandomPath(int pointCount, float radius)
+    {
+        patrolPoints = new Transform[pointCount];
+        for (int i = 0; i < pointCount; i++)
+        {
+            GameObject point = new GameObject($"PatrolPoint_{i}");
+            point.transform.position = transform.position + new Vector3(
+                Random.Range(-radius, radius),
+                Random.Range(-radius, radius),
+                0
+            );
+            patrolPoints[i] = point.transform;
+        }
+    }
+
+
     //巡逻系统优化
     private void PatrolBehavior()
     {
+        if (currentAIState != AIState.Patrolling) return; // 状态保护
         if (!isPatrolling) return;
 
         Transform target = patrolPoints[currentPatrolIndex];
@@ -225,32 +429,73 @@ public class EnemyProperty : MonoBehaviour
     //状态转换管理
     private void UpdateAIState()
     {
+        if (playerTransform == null) return;
+
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        // 添加空引用保护
+        if (playerTransform == null)
+        {
+            Debug.LogWarning("玩家Transform未初始化!");
+            return;
+        }
+        // 调试可视化
+        Debug.DrawLine(transform.position, playerTransform.position,
+                     currentAIState == AIState.Attacking ? Color.red : Color.yellow);
 
-        // 添加状态切换保护
-        if (currentAIState == AIState.Attacking && !canAttack) return;
-
-        // 状态切换逻辑
         switch (currentAIState)
         {
             case AIState.Patrolling:
-                PatrolBehavior();
+                // 明确追击条件：必须在检测范围内且不在冷却中
                 if (distanceToPlayer <= detectionRange)
+                {
                     TransitionToState(AIState.Chasing);
+                    StopAllCoroutines(); // 确保停止所有协程
+                    isPatrolling = false;
+                    GetComponent<AIPath>().destination = playerTransform.position; // 立即更新目标
+                }
                 break;
 
             case AIState.Chasing:
-                ChaseBehavior();
-                if (distanceToPlayer <= attackRange) TransitionToState(AIState.Attacking);
-                else if (distanceToPlayer > detectionRange * 1.2f)
+                // 双重退出条件：超出追出范围或有攻击机会
+                if (distanceToPlayer > detectionRange * 1.5f)
+                {
                     TransitionToState(AIState.Patrolling);
+                    StartPatrol(); // 重新开始巡逻
+                }
+                else if (distanceToPlayer <= attackRange && canAttack)
+                {
+                    TransitionToState(AIState.Attacking);
+                }
                 break;
 
             case AIState.Attacking:
-                if (distanceToPlayer > attackRange * 1.1f)
+                // 增加双重退出条件
+                bool animEnded = animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f;
+                if (distanceToPlayer > attackRange * 1.2f || animEnded)
+                {
                     TransitionToState(AIState.Chasing);
+                }
                 break;
         }
+
+        // 添加调试信息
+        Debug.Log($"当前状态: {currentAIState} | 玩家距离: {distanceToPlayer} | 检测范围: {detectionRange}");
+
+        // 添加状态切换保护
+        if (currentAIState == AIState.Attacking && !canAttack) return;
+        switch (currentAIState)
+        {
+            case AIState.Chasing:
+                ChaseBehavior();
+                break;
+            case AIState.Patrolling:
+                PatrolBehavior();
+                break;
+            case AIState.Attacking:
+                // 攻击行为已通过动画事件处理
+                break;
+        }
+
     }
     private void SetStateImmediate(AIState newState)
     {
@@ -277,11 +522,16 @@ public class EnemyProperty : MonoBehaviour
     //攻击行为实现
     private void PerformMeleeAttack()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(
+        // 强制重置动画状态
+        animator.Play("Attack", 0, 0f);
+        animator.Update(0); // 立即更新
+                            // 扩展有效攻击范围（三维检测）
+        Vector3 detectSize = new Vector3(attackRadius * 2, attackRadius * 2, 1f);
+        Collider2D[] hits = Physics2D.OverlapBoxAll(
             attackPoint.position,
-            attackRadius,
-            playerLayer
-        );
+            detectSize,
+            0f,
+            playerLayer);
         // 新增动画触发
         if (effectRenderer != null)
         {
@@ -294,6 +544,44 @@ public class EnemyProperty : MonoBehaviour
                 PlayerAttributes.Instance.TakeDamage(attackDamage);
                 Debug.Log($"近战攻击造成 {attackDamage} 点伤害");
             }
+        }
+        // 添加动画事件监听
+        StartCoroutine(CheckAttackAnimationProgress());
+        // 添加攻击延迟补偿（解决动画同步问题）
+        StartCoroutine(DelayedDamage(hits, 0.2f)); // 延迟0.2秒生效
+    }
+
+    private IEnumerator DelayedDamage(Collider2D[] hits, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("Player"))
+            {
+                PlayerAttributes.Instance.TakeDamage(attackDamage);
+                Debug.Log($"延迟伤害生效: {attackDamage}");
+            }
+        }
+    }
+    private IEnumerator CheckAttackAnimationProgress()
+    {
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.95f)
+        {
+            yield return null;
+        }
+        TransitionToState(AIState.Chasing);
+    }
+
+    // 新增动画结束回调
+    private IEnumerator ResetAttackState(float delay)
+    {
+        yield return new WaitForSeconds(delay * 0.9f); // 提前10%退出状态
+
+        if (currentAIState == AIState.Attacking)
+        {
+            TransitionToState(AIState.Chasing);
+            Debug.Log("攻击动画结束，返回追击状态");
         }
     }
     //武器方向控制
@@ -321,9 +609,50 @@ public class EnemyProperty : MonoBehaviour
 
     private void TransitionToState(AIState newState)
     {
+        // 在状态切换时应用参数
+        var aiPath = GetComponent<AIPath>();
+        // 需要增加动画触发器重置
+        animator.ResetTrigger("Chase");
+        animator.ResetTrigger("Attack");
+        // 状态重复检查
+        if (currentAIState == newState) return;
+        // 退出当前状态处理
+        switch (currentAIState)
+        {
+            case AIState.Attacking:
+                animator.ResetTrigger("Attack");
+                break;
+        }
+        // 进入新状态处理
+        switch (newState)
+        {
+            case AIState.Attacking:
+                animator.SetTrigger("AttackTrigger");
+                GetComponent<AIPath>().canMove = false; // 攻击时停止移动
+                break;
+            case AIState.Chasing:
+                aiPath.slowdownDistance = attackRange * 0.8f; // 修改：关联攻击范围
+                aiPath.rotationSpeed = chaseRotationSpeed;    // 新增：确保转向速度生效
+                GetComponent<AIPath>().canMove = true;
+                break;
+        }
+
+        Debug.Log($"状态切换: {currentAIState} -> {newState}");
         currentAIState = newState;
-        animator.SetBool("IsChasing", newState == AIState.Chasing);
-        animator.SetBool("IsAttacking", newState == AIState.Attacking);
+        // 应改为使用Trigger驱动：
+        switch (newState)
+        {
+            case AIState.Chasing:
+                animator.ResetTrigger("Attack");
+                animator.SetTrigger("Chase");
+                break;
+            case AIState.Attacking:
+                animator.ResetTrigger("Chase");
+                animator.SetTrigger("Attack");
+                break;
+        }
+        // 立即应用状态变化
+        animator.Update(0);
     }
     public void TakeDamage(int damage)
     {
@@ -380,9 +709,17 @@ public class EnemyProperty : MonoBehaviour
 
     private void StartPatrol()
     {
+        if (currentAIState != AIState.Patrolling) return; // 状态保护
+        // 确保至少有两个巡逻点才会开始巡逻
+        if (patrolPoints.Length < 2)
+        {
+            Debug.LogWarning("巡逻点不足，无法开始巡逻");
+            return;
+        }
         if (patrolPoints.Length < 2) return;
-        isPatrolling = true;
         currentPatrolIndex = 0;
+        isPatrolling = true;
+
     }
 
     private void PatrolMovement()

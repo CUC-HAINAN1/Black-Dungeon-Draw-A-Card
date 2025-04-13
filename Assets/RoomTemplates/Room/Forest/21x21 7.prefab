@@ -7956,7 +7956,7 @@ GameObject:
   - component: {fileID: 8943689613148330168}
   m_Layer: 8
   m_Name: 21x21 7
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8032,7 +8032,23 @@ MonoBehaviour:
   version: 2
   DistanceFromCorners: 1
   DoorLength: 1
-  DoorsList: []
+  DoorsList:
+  - From: {x: 6, y: 2, z: 0}
+    To: {x: 10, y: 2, z: 0}
+    Direction: 0
+    Socket: {fileID: 0}
+  - From: {x: 7, y: -20, z: 0}
+    To: {x: 11, y: -20, z: 0}
+    Direction: 0
+    Socket: {fileID: 0}
+  - From: {x: 18, y: -7, z: 0}
+    To: {x: 18, y: -11, z: 0}
+    Direction: 0
+    Socket: {fileID: 0}
+  - From: {x: -4, y: -7, z: 0}
+    To: {x: -4, y: -11, z: 0}
+    Direction: 0
+    Socket: {fileID: 0}
   Socket: {fileID: 0}
   SelectedMode: 1
   HybridDoorModeData:

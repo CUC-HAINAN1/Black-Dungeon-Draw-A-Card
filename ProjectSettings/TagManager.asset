@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - BirthRoom
   - Bullet
+  - Effect
+  - Room
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Floor
+  - Door
   - 
   - 
   - 
