@@ -105,7 +105,11 @@ PrefabInstance:
       objectReference: {fileID: 3119282476523643344}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: attackRange
+<<<<<<< HEAD
       value: 3
+=======
+      value: 2.48
+>>>>>>> bossline
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: deathEffect
@@ -120,12 +124,20 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: attackDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: destroyDelay
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: detectionRange
+<<<<<<< HEAD
       value: 6
+=======
+      value: 5.13
+>>>>>>> bossline
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: playerLayer.m_Bits
