@@ -6,7 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Sang test scene.unity
+    path: Assets/Scenes/SangTestScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/DefeatScene.unity
+    guid: be370531d3fb54e3b83dc42decb5ed14
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: c22cb454e6bfd4884aba05a2fca60470
+  - enabled: 1
+    path: Assets/Scenes/CompleteScene.unity
+    guid: f0fc8e73750794133adf9d6282996a1c
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 1db683b8ea4fe47198cb39b227e57cdf, type: 2}
