@@ -2,20 +2,28 @@ using UnityEditor.Animations;
 using UnityEngine;
 
 public class ShieldAnimatorShifter : MonoBehaviour {
-    private Animator _animator;
+    public Animator animator;
     private int shieldHash = Animator.StringToHash("IsShield");
 
     private void OnEnable() {
-        
-        _animator = gameObject.GetComponent<Animator>();
 
         EventManager.Instance.Subscribe("ShieldStateEntered", HandleShieldStart);
         EventManager.Instance.Subscribe("ShieldStateExited", HandleShieldEnd);
-    
+
     }
 
-    private void HandleShieldStart(object eventData) => _animator.SetBool(shieldHash, true);
-    private void HandleShieldEnd(object eventData) => _animator.SetBool(shieldHash, false);
+    private void OnDisable() {
+
+        if (EventManager.Instance != null) {
+
+            EventManager.Instance?.Unsubscribe("ShieldStateEntered", HandleShieldStart);
+            EventManager.Instance?.Unsubscribe("ShieldStateExited", HandleShieldEnd);
+
+        }
+    }
+
+    private void HandleShieldStart(object eventData) => animator.SetBool(shieldHash, true);
+    private void HandleShieldEnd(object eventData) => animator.SetBool(shieldHash, false);
 
 
 }
