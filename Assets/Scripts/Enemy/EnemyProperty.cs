@@ -226,7 +226,7 @@ public class EnemyProperty : MonoBehaviour
         currentAIState = AIState.Patrolling;
         if (effectContainer != null)
         {
-            effectRenderer = effectContainer.AddComponent<SpriteRenderer>();
+            //effectRenderer = effectContainer.AddComponent<SpriteRenderer>();
             effectRenderer.enabled = false;
         }
     }
@@ -279,7 +279,7 @@ public class EnemyProperty : MonoBehaviour
     }
     void Update()
     { // 根据移动状态更新参数
-        if (!IsAlive()) return; // 原条件写反了
+        if (!IsAlive() || playerTransform == null) return; // 原条件写反了
 
         UpdateAIState();
         HandleWeaponRotation();
@@ -356,8 +356,8 @@ public class EnemyProperty : MonoBehaviour
     {
         // 预测玩家移动轨迹
         Rigidbody2D playerRb = playerTransform.GetComponent<Rigidbody2D>();
-        Vector3 predictPos = playerTransform.position + 
-                            (Vector3)(playerRb != null ? 
+        Vector3 predictPos = playerTransform.position +
+                            (Vector3)(playerRb != null ?
                              playerRb.velocity * predictionFactor : // 使用预测系数
                              Vector2.zero);
         if (Vector3.Distance(aiPath.destination, predictPos) > 0.5f)
@@ -578,8 +578,10 @@ public class EnemyProperty : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if (hit.CompareTag("Player"))
-            {
+            if (hit == null)
+                continue;
+
+            if (hit.CompareTag("Player")) {
                 PlayerAttributes.Instance.TakeDamage(attackDamage);
                 Debug.Log($"延迟伤害生效: {attackDamage}");
             }
@@ -608,7 +610,7 @@ public class EnemyProperty : MonoBehaviour
     //武器方向控制
     private void HandleWeaponRotation()
     {
-        if (attackType != EnemyAttackType.Ranged || weaponPivot == null) return;
+        if (attackType != EnemyAttackType.Ranged || weaponPivot == null || playerTransform == null) return;
 
         Vector2 lookDirection = playerTransform.position - weaponPivot.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
@@ -618,10 +620,6 @@ public class EnemyProperty : MonoBehaviour
 #if UNITY_EDITOR
     void OnValidate()
     {
-        if (arrowPrefab == null)
-        {
-            Debug.LogError($"敌人 {gameObject.name} 未配置箭矢预制体!", this);
-        }
 
         // 自动查找武器节点
         if (shootPoint == null)
