@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4659797695007276786, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_Controller
-      value: 
+      value:
       objectReference: {fileID: 9100000, guid: e544c1b658cacc44f98714f928c5203c, type: 2}
     - target: {fileID: 4659797695007276786, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -97,23 +97,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: animator
-      value: 
+      value:
       objectReference: {fileID: 6607136736947558023}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: attackPoint
-      value: 
+      value:
       objectReference: {fileID: 3119282476523643344}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: attackRange
-<<<<<<< HEAD
       value: 3
-=======
-      value: 2.48
->>>>>>> bossline
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: deathEffect
-      value: 
+      value:
       objectReference: {fileID: 6132114952807277421, guid: 0ff2f966e416f7d45a1576fd775295d6, type: 3}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: patrolSpeed
@@ -133,11 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: detectionRange
-<<<<<<< HEAD
       value: 6
-=======
-      value: 5.13
->>>>>>> bossline
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: playerLayer.m_Bits
@@ -153,19 +145,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: attackFrames.Array.data[0]
-      value: 
+      value:
       objectReference: {fileID: -5755133307839664624, guid: 0497ee9b1ba6c934eae822c0de53abe9, type: 3}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: attackFrames.Array.data[1]
-      value: 
+      value:
       objectReference: {fileID: 5101313320089549554, guid: 0497ee9b1ba6c934eae822c0de53abe9, type: 3}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: attackFrames.Array.data[2]
-      value: 
+      value:
       objectReference: {fileID: 5101313320089549554, guid: 0497ee9b1ba6c934eae822c0de53abe9, type: 3}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: attackFrames.Array.data[3]
-      value: 
+      value:
       objectReference: {fileID: 5101313320089549554, guid: 0497ee9b1ba6c934eae822c0de53abe9, type: 3}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: speedCurve.m_Curve.Array.data[0].value
