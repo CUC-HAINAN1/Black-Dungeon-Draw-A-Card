@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 73a733acf729c4f3c898b6a414046a9d
+<<<<<<<< HEAD:Assets/Scripts/GlobalSystem.meta
+guid: 1b3fe2127be65314da459364a35854ef
+========
+guid: 7aa23621c2c78984ab0a7439cd08bec7
+>>>>>>>> bossline:Assets/Resources/boss/bossanimation.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

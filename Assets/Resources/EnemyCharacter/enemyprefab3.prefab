@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
+=======
+--- !u!1 &5358327569287663386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4900441299883295784}
+  m_Layer: 0
+  m_Name: Attackpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4900441299883295784
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5358327569287663386}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.1482, y: 0.1071, z: 0}
+  m_LocalScale: {x: 0.4924358, y: 0.50291765, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2762389362316871388}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> bossline
 --- !u!1 &7264619349926132557
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,7 +59,11 @@ Transform:
   m_GameObject: {fileID: 7264619349926132557}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 0.083, y: 0.0068, z: 0}
+=======
+  m_LocalPosition: {x: 0.0605, y: 0.123, z: 0}
+>>>>>>> bossline
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +94,11 @@ Transform:
   m_GameObject: {fileID: 9220245905033193545}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -0.007, y: 0.1208, z: 0}
+=======
+  m_LocalPosition: {x: 0.0104, y: 0.0017, z: 0}
+>>>>>>> bossline
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -197,7 +239,11 @@ PrefabInstance:
     - target: {fileID: 1160356261127867848, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
       propertyPath: m_Controller
       value: 
+<<<<<<< HEAD
       objectReference: {fileID: 9100000, guid: 363cbacbe519e3840b7d197d966ccd36, type: 2}
+=======
+      objectReference: {fileID: 9100000, guid: ae8f85f52a28507418fcddc86098fa20, type: 2}
+>>>>>>> bossline
     - target: {fileID: 3626916397498700004, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -266,10 +312,17 @@ PrefabInstance:
       addedObject: {fileID: 2017902666885025135}
     - targetCorrespondingSourceObject: {fileID: 7878350319992209165, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
       insertIndex: -1
+<<<<<<< HEAD
       addedObject: {fileID: 7258074428513927462}
     - targetCorrespondingSourceObject: {fileID: 7878350319992209165, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4983699122591901451}
+=======
+      addedObject: {fileID: 4900441299883295784}
+    - targetCorrespondingSourceObject: {fileID: 7878350319992209165, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7258074428513927462}
+>>>>>>> bossline
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
       insertIndex: 2
@@ -320,7 +373,11 @@ MonoBehaviour:
   waitDuration: 1
   deathEffect: {fileID: 6792669813534318278, guid: 993e93022b964da45be42ca94c5f2670, type: 3}
   destroyDelay: 2
+<<<<<<< HEAD
   attackPoint: {fileID: 2832779292747404388}
+=======
+  attackPoint: {fileID: 4900441299883295784}
+>>>>>>> bossline
   attackRadius: 1
   playerLayer:
     serializedVersion: 2
@@ -330,6 +387,10 @@ MonoBehaviour:
   attackRange: 8
   projectileSpeed: 15
   weaponPivot: {fileID: 7258074428513927462}
+<<<<<<< HEAD
+=======
+  projectilePrefab: {fileID: -2253911629886400664, guid: 709e22f4cc6ef3e4cbe3b89c1751d6da, type: 3}
+>>>>>>> bossline
   attackInterval: 2
   enableHybridAttack: 0
   hybridRangeThreshold: 3
@@ -342,11 +403,14 @@ MonoBehaviour:
   pathRefreshRate: 0.5
   predictionFactor: 0.3
   chaseStoppingDistance: 0.5
+<<<<<<< HEAD
   arrowPrefab: {fileID: 2625410062066113412, guid: 7d35aacc17c14d6419eb799876561f11, type: 3}
   shootPoint: {fileID: 2971611185721001686}
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 1
+=======
+>>>>>>> bossline
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -531,6 +595,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1160356261127867848, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
   m_PrefabInstance: {fileID: 5404459889543051729}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1001 &8430225127100020215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -626,6 +691,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3591491939722744572, guid: 9eec554fc30b29143aabb1270a6830bc, type: 3}
   m_PrefabInstance: {fileID: 8430225127100020215}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> bossline
 --- !u!1001 &8976978376107912368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -638,6 +705,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: weapons0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 3626916397498700004, guid: e07e10cb000381249a3597c7730e021e, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -649,6 +717,15 @@ PrefabInstance:
     - target: {fileID: 7878350319992209165, guid: e07e10cb000381249a3597c7730e021e, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.0505
+=======
+    - target: {fileID: 7878350319992209165, guid: e07e10cb000381249a3597c7730e021e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.07349999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: e07e10cb000381249a3597c7730e021e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.056700006
+>>>>>>> bossline
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: e07e10cb000381249a3597c7730e021e, type: 3}
       propertyPath: m_LocalPosition.z

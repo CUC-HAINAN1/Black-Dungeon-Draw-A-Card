@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sprite/New Animator Controller.controller.meta
+guid: b395c24b9b33a2f499d846f627d874a5
+========
+guid: bdf4415bfedbcb74ebc7dd0a4400cd54
+>>>>>>>> bossline:Assets/Resources/boss/bossanimation/bossdash/boss_anim_dash.anim.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

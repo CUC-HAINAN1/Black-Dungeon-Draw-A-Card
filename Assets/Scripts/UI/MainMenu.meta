@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 89ecb1542d44540ed9ba9c186f9a962a
+<<<<<<<< HEAD:Assets/Scripts/UI/MainMenu.meta
+guid: 0123ca391d5f1784fa27d6261f02a68c
+========
+guid: 1348dc8e3be674d4480ece2b2874420f
+>>>>>>>> bossline:Assets/Resources/boss/bossanimation/bossdash.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
