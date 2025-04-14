@@ -226,6 +226,7 @@ MonoBehaviour:
   autoAdjustSpawnPoints: 1
   waves:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - enemyPrefab: {fileID: 3103918389335411751, guid: 2d861c13977539746b7b0335d7a0ca02, type: 3}
     enemyCount: 3
     spawnInterval: 0
@@ -236,13 +237,30 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 8174397343277129669, guid: b33033a3bb4f93c4880bf13bbdb738f6, type: 3}
     enemyCount: 3
 =======
+=======
+>>>>>>> reboss
   - enemyPrefabs:
     - {fileID: 3103918389335411751, guid: 2d861c13977539746b7b0335d7a0ca02, type: 3}
     - {fileID: 3150268982325456569, guid: 5971b503915215c47aab537db7212a32, type: 3}
     - {fileID: 8174397343277129669, guid: b33033a3bb4f93c4880bf13bbdb738f6, type: 3}
     enemyCount: 6
+<<<<<<< HEAD
 >>>>>>> cc5a7cc4901fd49200a1d86f3258b4daa7dfa91b
     spawnInterval: 0
+=======
+=======
+  - enemyPrefab: {fileID: 3103918389335411751, guid: 2d861c13977539746b7b0335d7a0ca02, type: 3}
+    enemyCount: 3
+    spawnInterval: 0
+  - enemyPrefab: {fileID: 3150268982325456569, guid: 5971b503915215c47aab537db7212a32, type: 3}
+    enemyCount: 3
+    spawnInterval: 0
+<<<<<<< HEAD
+  - enemyPrefab: {fileID: 8174397343277129669, guid: b33033a3bb4f93c4880bf13bbdb738f6, type: 3}
+    enemyCount: 3
+>>>>>>> 36fd46b (完成boss动画状态机与animationcontroller的编写)
+    spawnInterval: 0
+>>>>>>> reboss
 =======
 >>>>>>> bossline
   spawnPoints:

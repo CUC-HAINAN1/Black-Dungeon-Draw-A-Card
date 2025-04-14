@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/boss/Boss.prefab.meta
 guid: f7f05cca198805947a54a0ed81851950
+========
+guid: a4ca0d7c3110acb44a5a42a69bbdaa40
+>>>>>>>> reboss:Assets/Resources/boss/prefab/boss.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
