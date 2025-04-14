@@ -8,6 +8,11 @@ using System.Collections;
 [RequireComponent(typeof(BoxCollider2D))]
 public class RoomManager : MonoBehaviour
 {
+    [Header("宝箱生成设置")]
+    [SerializeField] private GameObject chestPrefab;  // 宝箱预制体
+    [SerializeField] private Transform[] chestSpawnPoints; // 生成点数组
+    private bool chestSpawned; // 防止重复生成
+        
     public event System.Action OnRoomCleared; // 添加事件声明
     // ����״̬����
     // 改用HashSet生成房间
@@ -38,6 +43,30 @@ public class RoomManager : MonoBehaviour
             Debug.LogError("EnemySpawnerδ��");
         else
             Debug.Log($"�Ѱ�������������{enemySpawner.spawnPoints.Length}�����ɵ�");
+    }
+
+
+    void SpawnChest()
+    {
+        // 防止重复生成
+        if (chestSpawned || chestPrefab == null || chestSpawnPoints.Length == 0) return;
+
+        // 随机选择生成点
+        int randomIndex = Random.Range(0, chestSpawnPoints.Length);
+        Transform spawnPoint = chestSpawnPoints[randomIndex];
+
+        // 物理检测防止卡墙
+        Collider2D hit = Physics2D.OverlapCircle(spawnPoint.position, 0.5f);
+        if (hit == null)
+        {
+            Instantiate(chestPrefab, spawnPoint.position, Quaternion.identity);
+            chestSpawned = true;
+            Debug.Log($"宝箱生成成功！位置：{spawnPoint.position}");
+        }
+        else
+        {
+            Debug.LogWarning($"生成点 {spawnPoint.name} 被 {hit.name} 阻挡");
+        }
     }
     void AutoFindDoors()
     {
@@ -138,6 +167,7 @@ public class RoomManager : MonoBehaviour
         // 添加调试日志
         // ����ȫ��ϵͳ���£������ͼ�е�2000���귶Χ��
         GlobalRoomSystem.UpdateConnectedRooms(transform.position * 1000f);
+        SpawnChest(); // 添加生成调用
     }
     // 新增宝箱生成方法
     
