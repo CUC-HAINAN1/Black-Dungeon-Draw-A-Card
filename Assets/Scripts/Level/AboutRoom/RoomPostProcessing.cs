@@ -51,19 +51,19 @@ public class RoomPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D
         if (rb == null)
         {
             rb = floor.AddComponent<Rigidbody2D>();
-            rb.bodyType = RigidbodyType2D.Static; // È·±£ÉèÖÃBodyType
-            Debug.LogWarning($"×Ô¶¯Îª {floor.name} Ìí¼ÓÁËRigidbody2D");
+            rb.bodyType = RigidbodyType2D.Static; // È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½BodyType
+            Debug.LogWarning($"ï¿½Ô¶ï¿½Îª {floor.name} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Rigidbody2D");
         }
 
-        // È·±£±ØÒªµÄ×é¼þ´æÔÚ
+        // È·ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         var rigidbody = floor.GetComponent<Rigidbody2D>() ?? floor.AddComponent<Rigidbody2D>();
         rigidbody.bodyType = RigidbodyType2D.Static;
 
 
-        var compositeCollider = floor.GetComponent<CompositeCollider2D>() ?? floor.AddComponent<CompositeCollider2D>();
+        /* var compositeCollider = floor.GetComponent<CompositeCollider2D>() ?? floor.AddComponent<CompositeCollider2D>();
         compositeCollider.geometryType = CompositeCollider2D.GeometryType.Polygons;
         compositeCollider.isTrigger = true;
-        compositeCollider.generationType = CompositeCollider2D.GenerationType.Synchronous;
+        compositeCollider.generationType = CompositeCollider2D.GenerationType.Synchronous; */
     }
 
     public List<RoomInstanceGrid2D> GetRoomInstances() => roomInstances;
