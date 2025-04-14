@@ -11,8 +11,8 @@ public class SweepSkill : SkillBase {
         Vector3 direction = context.direction.normalized;
 
         float parentScaleSign = Mathf.Sign(playerAttributes.PlayerTransform.localScale.x);
-        direction.x *= parentScaleSign;
-        direction.y *= parentScaleSign;
+        //direction.x *= parentScaleSign;
+        //direction.y *= parentScaleSign;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
@@ -24,7 +24,7 @@ public class SweepSkill : SkillBase {
         sectorPrefab = cardData.visualConfig.castEffect;
 
         Vector3 spawnPos = playerAttributes.PlayerTransform.position;
-        spawnPos += direction * 0.5f;
+        spawnPos += parentScaleSign * direction * 0.5f;
 
         GameObject sectorEffect = Instantiate(
             sectorPrefab,
