@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1606657980834641388}
   - component: {fileID: 7690767135304446610}
   - component: {fileID: 568826968820869784}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 8111147967282189423}
   - component: {fileID: 4755577710074075702}
   - component: {fileID: 6516534554653247848}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Other 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,7 +895,7 @@ GameObject:
   - component: {fileID: 3880424225652114432}
   - component: {fileID: 6254992410825622168}
   - component: {fileID: -334856808974895486}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Corridor
   m_TagString: Room
   m_Icon: {fileID: 0}
@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 7210576397229512524}
   - component: {fileID: 6061416209024100962}
   - component: {fileID: 736614060538255529}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Other 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1130,7 +1130,7 @@ GameObject:
   - component: {fileID: 3699278193672571577}
   - component: {fileID: 2513041639196387937}
   - component: {fileID: 7100301808128638474}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Other 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1253,7 +1253,7 @@ GameObject:
   - component: {fileID: 8057388004169761178}
   - component: {fileID: 15951224419690483}
   - component: {fileID: 9065557542872354808}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Floor
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -3332,7 +3332,7 @@ GameObject:
   - component: {fileID: 6218192171505027326}
   - component: {fileID: 872330908766752985}
   - component: {fileID: 8809884352204698474}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collideable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3996,7 +3996,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -4147,7 +4147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5613325039191506951}
   - component: {fileID: 396440784616474909}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Tilemaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}

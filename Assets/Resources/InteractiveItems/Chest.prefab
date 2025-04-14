@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3814892179416996707}
   - component: {fileID: 83598546240058020}
   - component: {fileID: 7632889855348501884}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: InteractiveUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 8022483580727220180}
   - component: {fileID: 4323553489137787093}
   - component: {fileID: 8994109130779561507}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4222057294695070984}
   - component: {fileID: 2849065833893297192}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 7769943948462478798}
   - component: {fileID: 1975365188411905840}
   - component: {fileID: 899787293908920482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChestModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

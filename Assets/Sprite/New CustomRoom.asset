@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: New CustomRoom
   m_EditorClassIdentifier: 
   Position: {x: 0, y: 0}
-  RoomType: 0
+  RoomType: 10
   BossRoomTemplates:
-  - {fileID: 7097105974615416691, guid: 5ec40cf2a3e6c4944afa20ac003687a3, type: 3}
+  - {fileID: 6235581845726293211, guid: d97241329d6e1c04da7e3907b7f2b031, type: 3}
   EnemyRoomTemplates:
   - {fileID: 2313339408895456413, guid: e4da1f35d5f2e204e9ce772e301749bf, type: 3}
   - {fileID: 2313339408895456413, guid: 5ef4a7f68e09e2b4fb17cfb7924170ac, type: 3}
@@ -43,7 +43,7 @@ MonoBehaviour:
   ShopRoomTemplates:
   - {fileID: 2313339408895456413, guid: fb971506bf43a55499cb88a82562deb3, type: 3}
   TreasureRoomTemplates:
-  - {fileID: 2313339408895456413, guid: fb971506bf43a55499cb88a82562deb3, type: 3}
+  - {fileID: 6582014518909201663, guid: 68dc68a3d72eda0418ed8d094087d01d, type: 3}
   BirthRoomTemplates:
   - {fileID: 2313339408895456413, guid: fb971506bf43a55499cb88a82562deb3, type: 3}
   TeleportRoomTemplates:
@@ -51,4 +51,4 @@ MonoBehaviour:
   SecretRoomTemplates:
   - {fileID: 2313339408895456413, guid: fb971506bf43a55499cb88a82562deb3, type: 3}
   BasicRoomTemplates:
-  - {fileID: 2313339408895456413, guid: fb971506bf43a55499cb88a82562deb3, type: 3}
+  - {fileID: 6582014518909201663, guid: 68dc68a3d72eda0418ed8d094087d01d, type: 3}
