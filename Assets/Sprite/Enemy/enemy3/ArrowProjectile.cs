@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ArrowProjectile : MonoBehaviour
 {
-    [Header("µ¯µÀ²ÎÊý")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public float speed = 15f;
     public int damage = 10;
     public LayerMask obstacleLayer;
@@ -17,7 +17,7 @@ public class ArrowProjectile : MonoBehaviour
 
     public void Initialize(Vector3 targetPos)
     {
-        Debug.Log($"µ¯µÀ·½Ïò¼ÆËã | ÆðÊ¼Î»ÖÃ: {transform.position} | Ä¿±êÎ»ÖÃ: {targetPos}");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ | ï¿½ï¿½Ê¼Î»ï¿½ï¿½: {transform.position} | Ä¿ï¿½ï¿½Î»ï¿½ï¿½: {targetPos}");
 
         moveDirection = (targetPos - transform.position).normalized;
         float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
@@ -36,26 +36,27 @@ public class ArrowProjectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Ìí¼Óµ÷ÊÔÐÅÏ¢
-        Debug.Log($"¼ýÊ¸Åö×²¶ÔÏó: {other.name} | ²ã¼¶: {LayerMask.LayerToName(other.gameObject.layer)}");
+        // ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+        Debug.Log($"ï¿½ï¿½Ê¸ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½: {other.name} | ï¿½ã¼¶: {LayerMask.LayerToName(other.gameObject.layer)}");
 
-        // ºöÂÔÓÑ¾üºÍ´¥·¢Æ÷
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½Í´ï¿½ï¿½ï¿½ï¿½ï¿½
         if (other.CompareTag("Enemy") || other.isTrigger) return;
-
-        // Åö×²ÕÏ°­Îï
-        if (((1 << other.gameObject.layer) & obstacleLayer) != 0)
+        
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò£ï¿½ï¿½ï¿½ï¿½ï¿½PlayerAttributesï¿½ï¿½ï¿½Þ¸Ä£ï¿½
+        else if (other.CompareTag("Player"))
         {
+
+            // Ê¹ï¿½ï¿½ï¿½ï¿½È·ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½Ê½
+            PlayerAttributes.Instance.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+
+        // ï¿½ï¿½×²ï¿½Ï°ï¿½ï¿½ï¿½
+        else if (((1 << other.gameObject.layer) & obstacleLayer) != 0) {
             StopArrow();
             return;
         }
 
-        // »÷ÖÐÍæ¼Ò£¨¸ù¾ÝPlayerAttributesÀàÐÞ¸Ä£©
-        if (other.CompareTag("Player"))
-        {
-            // Ê¹ÓÃÕýÈ·µÄµ¥Àýµ÷ÓÃ·½Ê½
-            PlayerAttributes.Instance.TakeDamage(damage);
-            Destroy(gameObject);
-        }
     }
 
     void StopArrow()
