@@ -50,14 +50,12 @@ public class EnemyProperty : MonoBehaviour
     [SerializeField] private float predictionFactor = 0.3f;   // 新增：玩家移动预测系数
     [SerializeField] private float chaseStoppingDistance = 0.5f; // 新增：追击停止距离
 
-<<<<<<< HEAD
+
     [Header("远程攻击配置")]
     public GameObject arrowPrefab;
     public Transform shootPoint; // 箭矢生成点
     public LayerMask obstacleLayers;
 
-=======
->>>>>>> bossline
     private SpriteRenderer effectRenderer;
     private Coroutine attackEffectCoroutine;
     private int currentFrame;
@@ -160,7 +158,7 @@ public class EnemyProperty : MonoBehaviour
         var aiPath = GetComponent<AIPath>();
         if (aiPath == null) return;
 
-<<<<<<< HEAD
+
         // 强制重置路径
         if (aiPath.isStopped)
         {
@@ -168,18 +166,13 @@ public class EnemyProperty : MonoBehaviour
             aiPath.SearchPath();
         }
 
-=======
->>>>>>> bossline
         // 根据距离动态调整速度
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
         float speedFactor = speedCurve.Evaluate(distanceToPlayer / detectionRange);
 
         aiPath.maxSpeed = patrolSpeed * (currentAIState == AIState.Chasing ? 2f : 1f) * speedFactor;
-<<<<<<< HEAD
         // 添加调试信息
         Debug.Log($"移动状态: {aiPath.canMove} | 速度: {aiPath.maxSpeed} | 目标: {aiPath.destination}");
-=======
->>>>>>> bossline
     }
 
     void Awake()
@@ -335,7 +328,6 @@ public class EnemyProperty : MonoBehaviour
     {
 
         var aiPath = GetComponent<AIPath>();
-<<<<<<< HEAD
         // 强制保持移动能力
         aiPath.canMove = true;
         // 强制刷新路径（原逻辑有缺陷）
@@ -345,8 +337,6 @@ public class EnemyProperty : MonoBehaviour
             predictedPos += (Vector3)(rb.velocity * 0.5f); // 增加预测系数
         }
 
-=======
->>>>>>> bossline
         if (aiPath == null) return;
         // 设置绝对追击速度（不受其他系统影响）
         float targetSpeed = patrolSpeed * 2f;
@@ -372,10 +362,8 @@ public class EnemyProperty : MonoBehaviour
                             (Vector3)(playerRb != null ?
                              playerRb.velocity * predictionFactor : // 使用预测系数
                              Vector2.zero);
-<<<<<<< HEAD
-=======
          aiPath.destination = predictPos;
->>>>>>> bossline
+
         if (Vector3.Distance(aiPath.destination, predictPos) > 0.5f)
         {
             aiPath.destination = predictPos;
@@ -390,10 +378,9 @@ public class EnemyProperty : MonoBehaviour
         }
         // 设置加速参数（需在Animator中添加SpeedMultiplier参数）
         animator.SetFloat("SpeedMultiplier", chaseSpeedMultiplier);
-<<<<<<< HEAD
-=======
+
         aiPath.destination = playerTransform.position;
->>>>>>> bossline
+
         // 调试日志
         Debug.Log($"进入追击状态，当前速度: {aiPath.maxSpeed}", gameObject);
 

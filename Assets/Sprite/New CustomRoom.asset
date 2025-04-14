@@ -25,7 +25,6 @@ MonoBehaviour:
   EliteEnemyRoomTemplates:
   - {fileID: 4879955875728917644, guid: 7725c1d66bac6c4428b1e7734b9d3e1d, type: 3}
   - {fileID: 5472003485922369130, guid: 6dfff7fb45cbd8547a4914b6b3d1faf7, type: 3}
-  - {fileID: 3950535977017496297, guid: 91ca6061fa65427449692427d1eabd93, type: 3}
   - {fileID: 7097105974615416691, guid: 6ce261f7e27d59f46a9a432db454c9e5, type: 3}
   - {fileID: 7097105974615416691, guid: 5ec40cf2a3e6c4944afa20ac003687a3, type: 3}
   - {fileID: 7097105974615416691, guid: 6270302babb2061449eefd6eab8176a3, type: 3}
