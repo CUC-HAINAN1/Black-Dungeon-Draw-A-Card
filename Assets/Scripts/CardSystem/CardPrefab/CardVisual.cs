@@ -62,7 +62,8 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             (CardQueueSystem.Instance.IsAnyCardHovering &&
             !CardStateManager.Instance.GetCardState(gameObject).IsHovering)
 
-        ) return;
+        )
+            return;
 
         if (ShouldIgnoreHover()) {
 
@@ -75,7 +76,8 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
             ApplyHoverEffect();
 
-        } else {
+        }
+        else {
 
             ResetHoverEffect();
 
@@ -97,7 +99,7 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         CardQueueSystem.Instance.SetCardQueueHoveringState(true);
         CardStateManager.Instance.SetHoveringState(gameObject, true);
 
-        if(transform == null) {
+        if (transform == null) {
 
             CustomLogger.LogError("目标 Transform 为空，无法启动动画！");
             return;
@@ -107,7 +109,7 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         //hoverTween?.Kill();
 
         // 放大当前卡牌
-        if (this != null && transform != null && !CardStateManager.Instance.GetCardState(gameObject).IsUsing ) {
+        if (this != null && transform != null && !CardStateManager.Instance.GetCardState(gameObject).IsUsing) {
 
             hoverTween = transform.DOScale(originalScale * hoverScale, hoverDuration)
                 .SetEase(hoverEase).SetLink(gameObject);
@@ -165,7 +167,8 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void CheckHoverAfterAnimation() {
 
-        if (transform == null) return;
+        if (transform == null)
+            return;
 
         bool isMouseOver = RectTransformUtility.RectangleContainsScreenPoint(
 
@@ -175,8 +178,8 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         );
 
-            isHovering = isMouseOver;
-            UpdateHoverState();
+        isHovering = isMouseOver;
+        UpdateHoverState();
 
     }
 
@@ -187,6 +190,13 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             .OnComplete(() => {
                 Destroy(gameObject);
             });
+
+    }
+
+    void OnDestroy() {
+
+        isHovering = false;
+        UpdateHoverState();
 
     }
 
