@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Reflection;
+using System.Collections;
 
 public class ChestInteraction : MonoBehaviour {
     public Animator animator;
@@ -15,6 +16,7 @@ public class ChestInteraction : MonoBehaviour {
     void Start() {
 
         animator = gameObject.GetComponentInChildren<Animator>();
+        animator.enabled = false;
 
         if (interactionUI != null) {
 
@@ -49,7 +51,7 @@ public class ChestInteraction : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.E)) {
 
-                OpenChest();
+                StartCoroutine(OpenChestCoroutine());
 
             }
         }
@@ -65,11 +67,16 @@ public class ChestInteraction : MonoBehaviour {
     }
 
 
-    void OpenChest() {
+    IEnumerator OpenChestCoroutine() {
 
         isOpened = true;
+        animator.enabled = true;
 
         animator.Play(openAnimationName);
+
+        yield return new WaitForSeconds(0.4f);
+        animator.enabled = false;
+
 
         GetReward();
 
@@ -96,6 +103,7 @@ public class ChestInteraction : MonoBehaviour {
                 CardPoolManager.Instance.AddCardToPool(reward.card);
 
                 Debug.Log("首次获得雷电卡牌！");
+                RewardUIManager.Instance.ShowNewCardUI(reward.card);
 
             }
 
@@ -120,6 +128,8 @@ public class ChestInteraction : MonoBehaviour {
         var upgrade = card.upgradableParams[0];
 
         Debug.Log($"强化：{upgrade.paramPath} -> {upgrade.upgradeType} {upgrade.value}");
+
+        RewardUIManager.Instance.ShowUpgradeUI(card, upgrade);
 
         UpgradeHelper(card, upgrade);
 

@@ -33,7 +33,6 @@ MonoBehaviour:
   EliteEnemyRoomTemplates:
   - {fileID: 4879955875728917644, guid: 7725c1d66bac6c4428b1e7734b9d3e1d, type: 3}
   - {fileID: 5472003485922369130, guid: 6dfff7fb45cbd8547a4914b6b3d1faf7, type: 3}
-  - {fileID: 3950535977017496297, guid: 91ca6061fa65427449692427d1eabd93, type: 3}
   - {fileID: 7097105974615416691, guid: 6ce261f7e27d59f46a9a432db454c9e5, type: 3}
   - {fileID: 7097105974615416691, guid: 5ec40cf2a3e6c4944afa20ac003687a3, type: 3}
   - {fileID: 7097105974615416691, guid: 6270302babb2061449eefd6eab8176a3, type: 3}
@@ -48,6 +47,30 @@ MonoBehaviour:
   - {fileID: 7464359385853432558, guid: 98b258fe4a188c443b2a917934b99fbc, type: 3}
   - {fileID: 5478839578470467124, guid: 74a3245f7b851e6428b067dd1a451f7b, type: 3}
   - {fileID: 6235581845726293211, guid: 2fbfd855ccc5c3e4e837eecf6870e9fd, type: 3}
+  ShopRoomTemplates: []
+  TreasureRoomTemplates: []
+  BirthRoomTemplates: []
+  TeleportRoomTemplates: []
+  SecretRoomTemplates: []
+  BasicRoomTemplates: []
+--- !u!114 &-7909391635289328325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498bfbe1ed4958b40bac428ce40eeb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: {x: 480, y: 112}
+  RoomType: 4
+  BossRoomTemplates:
+  - {fileID: 6235581845726293211, guid: d97241329d6e1c04da7e3907b7f2b031, type: 3}
+  EnemyRoomTemplates: []
+  EliteEnemyRoomTemplates: []
   ShopRoomTemplates: []
   TreasureRoomTemplates: []
   BirthRoomTemplates: []
@@ -96,6 +119,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: {fileID: 5799884493794773418}
   To: {fileID: -123155952941457501}
+--- !u!114 &-3526534428316963871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498bfbe1ed4958b40bac428ce40eeb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: {x: -96, y: 112}
+  RoomType: 7
+  BossRoomTemplates: []
+  EnemyRoomTemplates: []
+  EliteEnemyRoomTemplates: []
+  ShopRoomTemplates: []
+  TreasureRoomTemplates:
+  - {fileID: 6582014518909201663, guid: 68dc68a3d72eda0418ed8d094087d01d, type: 3}
+  BirthRoomTemplates: []
+  TeleportRoomTemplates: []
+  SecretRoomTemplates: []
+  BasicRoomTemplates: []
 --- !u!114 &-2584403217890916162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +176,6 @@ MonoBehaviour:
   EliteEnemyRoomTemplates:
   - {fileID: 4879955875728917644, guid: 7725c1d66bac6c4428b1e7734b9d3e1d, type: 3}
   - {fileID: 5472003485922369130, guid: 6dfff7fb45cbd8547a4914b6b3d1faf7, type: 3}
-  - {fileID: 3950535977017496297, guid: 91ca6061fa65427449692427d1eabd93, type: 3}
   - {fileID: 7097105974615416691, guid: 6ce261f7e27d59f46a9a432db454c9e5, type: 3}
   - {fileID: 7097105974615416691, guid: 5ec40cf2a3e6c4944afa20ac003687a3, type: 3}
   - {fileID: 7097105974615416691, guid: 6270302babb2061449eefd6eab8176a3, type: 3}
@@ -167,6 +213,8 @@ MonoBehaviour:
   - {fileID: -2584403217890916162}
   - {fileID: -6764877809549115042}
   - {fileID: 4887197132808425552}
+  - {fileID: 5672953169992431407}
+  - {fileID: 7443489959509472552}
   CorridorIndividualRoomTemplates:
   - {fileID: 5447453318837841858, guid: 238c6b2fdf0b182418778cec52468e17, type: 3}
   - {fileID: 1705957584681248660, guid: 3e7e0fdbc0cac444ea18890cf78ce795, type: 3}
@@ -211,9 +259,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: -123155952941457501}
   - {fileID: -7387819997913833181}
+  - {fileID: -7909391635289328325}
+  - {fileID: -3526534428316963871}
   EditorData:
-    PanOffset: {x: 195.62491, y: -47.701984}
-    Zoom: 1.7773811
+    PanOffset: {x: 326.48, y: -9.988247}
+    Zoom: 1.1537029
   RoomType: CustomRoom
   ConnectionType: CustomConnection
   IsDirected: 0
@@ -238,12 +288,9 @@ MonoBehaviour:
   - {fileID: 2313339408895456413, guid: 5ef4a7f68e09e2b4fb17cfb7924170ac, type: 3}
   - {fileID: 2313339408895456413, guid: e06c60cb60e154d4e816bd643f5cb437, type: 3}
   - {fileID: 2313339408895456413, guid: 231fcd8cc1f752949b9fdafb2c4cb158, type: 3}
-  - {fileID: 2313339408895456413, guid: 2c6e98c612bf54845b36cbecca2bb02f, type: 3}
-  - {fileID: 2313339408895456413, guid: 2c6e98c612bf54845b36cbecca2bb02f, type: 3}
   EliteEnemyRoomTemplates:
   - {fileID: 4879955875728917644, guid: 7725c1d66bac6c4428b1e7734b9d3e1d, type: 3}
   - {fileID: 5472003485922369130, guid: 6dfff7fb45cbd8547a4914b6b3d1faf7, type: 3}
-  - {fileID: 3950535977017496297, guid: 91ca6061fa65427449692427d1eabd93, type: 3}
   - {fileID: 7097105974615416691, guid: 6ce261f7e27d59f46a9a432db454c9e5, type: 3}
   - {fileID: 7097105974615416691, guid: 5ec40cf2a3e6c4944afa20ac003687a3, type: 3}
   - {fileID: 7097105974615416691, guid: 6270302babb2061449eefd6eab8176a3, type: 3}
@@ -284,6 +331,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: {fileID: -7387819997913833181}
   To: {fileID: -8304968755199214752}
+--- !u!114 &5672953169992431407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b99d630c893cc4b89f68475580f7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -123155952941457501}
+  To: {fileID: -7909391635289328325}
 --- !u!114 &5799884493794773418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +364,6 @@ MonoBehaviour:
   EliteEnemyRoomTemplates:
   - {fileID: 4879955875728917644, guid: 7725c1d66bac6c4428b1e7734b9d3e1d, type: 3}
   - {fileID: 5472003485922369130, guid: 6dfff7fb45cbd8547a4914b6b3d1faf7, type: 3}
-  - {fileID: 3950535977017496297, guid: 91ca6061fa65427449692427d1eabd93, type: 3}
   - {fileID: 7097105974615416691, guid: 6ce261f7e27d59f46a9a432db454c9e5, type: 3}
   - {fileID: 7097105974615416691, guid: 5ec40cf2a3e6c4944afa20ac003687a3, type: 3}
   - {fileID: 7097105974615416691, guid: 6270302babb2061449eefd6eab8176a3, type: 3}
@@ -324,3 +384,17 @@ MonoBehaviour:
   TeleportRoomTemplates: []
   SecretRoomTemplates: []
   BasicRoomTemplates: []
+--- !u!114 &7443489959509472552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b99d630c893cc4b89f68475580f7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -3526534428316963871}
+  To: {fileID: 4706833944523482774}

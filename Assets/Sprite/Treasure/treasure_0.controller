@@ -20,7 +20,11 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
+<<<<<<< HEAD
+  m_Motion: {fileID: 7400000, guid: 3d34d49a8f3c1794488ca29de4074ec1, type: 2}
+=======
   m_Motion: {fileID: 5592132577531445158, guid: 72f80704cc604f84791d971fcd06ec6c, type: 3}
+>>>>>>> bossline
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

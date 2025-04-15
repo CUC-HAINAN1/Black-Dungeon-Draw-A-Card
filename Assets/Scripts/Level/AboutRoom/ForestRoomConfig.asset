@@ -270,7 +270,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
   - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
   - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
-  UseRandomLevelGraph: 1
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  - {fileID: 11400000, guid: 09e9b692d940822438b8160e0cb517de, type: 2}
+  UseRandomLevelGraph: 0
   ExtraEnemyRoomChance: 0.9
   ExtraEnemyRoomDeadEndChance: 0.1
   TreasureRoomDeadEndChance: 0.5
@@ -280,7 +293,7 @@ MonoBehaviour:
     BasicRoomTemplates:
     - {fileID: 2313339408895456413, guid: fb971506bf43a55499cb88a82562deb3, type: 3}
     BossRoomTemplates:
-    - {fileID: 7097105974615416691, guid: 5ec40cf2a3e6c4944afa20ac003687a3, type: 3}
+    - {fileID: 6235581845726293211, guid: d97241329d6e1c04da7e3907b7f2b031, type: 3}
     EnemyRoomTemplates:
     - {fileID: 2313339408895456413, guid: e4da1f35d5f2e204e9ce772e301749bf, type: 3}
     - {fileID: 2313339408895456413, guid: 5ef4a7f68e09e2b4fb17cfb7924170ac, type: 3}
@@ -289,7 +302,6 @@ MonoBehaviour:
     EliteEnemyRoomTemplates:
     - {fileID: 4879955875728917644, guid: 7725c1d66bac6c4428b1e7734b9d3e1d, type: 3}
     - {fileID: 5472003485922369130, guid: 6dfff7fb45cbd8547a4914b6b3d1faf7, type: 3}
-    - {fileID: 3950535977017496297, guid: 91ca6061fa65427449692427d1eabd93, type: 3}
     - {fileID: 7097105974615416691, guid: 6ce261f7e27d59f46a9a432db454c9e5, type: 3}
     - {fileID: 7097105974615416691, guid: 5ec40cf2a3e6c4944afa20ac003687a3, type: 3}
     - {fileID: 7097105974615416691, guid: 6270302babb2061449eefd6eab8176a3, type: 3}
@@ -309,12 +321,10 @@ MonoBehaviour:
     - {fileID: 5447453318837841858, guid: 238c6b2fdf0b182418778cec52468e17, type: 3}
     BirthRoomTemplates:
     - {fileID: 2313339408895456413, guid: fb971506bf43a55499cb88a82562deb3, type: 3}
-    TeleportRoomTemplates:
-    - {fileID: 2313339408895456413, guid: 2c6e98c612bf54845b36cbecca2bb02f, type: 3}
+    TeleportRoomTemplates: []
     HubRoomTemplates: []
     TreasureRoomTemplates:
-    - {fileID: 2313339408895456413, guid: 2c6e98c612bf54845b36cbecca2bb02f, type: 3}
-    - {fileID: 3950535977017496297, guid: 91ca6061fa65427449692427d1eabd93, type: 3}
+    - {fileID: 6582014518909201663, guid: 68dc68a3d72eda0418ed8d094087d01d, type: 3}
     ShopRoomTemplates:
     - {fileID: 5472003485922369130, guid: 6dfff7fb45cbd8547a4914b6b3d1faf7, type: 3}
     SecretRoomTemplates: []

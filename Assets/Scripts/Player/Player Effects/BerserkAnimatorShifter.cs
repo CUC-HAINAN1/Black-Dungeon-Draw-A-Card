@@ -1,25 +1,33 @@
 using UnityEngine;
 
 public class BerserkAnimatorShifter : MonoBehaviour {
-    private Animator _animator;
+    public Animator animator;
     private int isAttackIncreasedHash = Animator.StringToHash("IsAttackincreased");
 
     private void OnEnable() {
-        
-        _animator = gameObject.GetComponent<Animator>();
 
         EventManager.Instance.Subscribe("AttackIncreasedStateEntered", HandleAttackIncreasedStart);
-        EventManager.Instance.Subscribe("AttackIncreasedStateExited", HandleAttackIncreasednd);
-    
+        EventManager.Instance.Subscribe("AttackIncreasedStateExited", HandleAttackIncreasedEnd);
+
+    }
+
+    private void OnDisable() {
+
+        if (EventManager.Instance != null) {
+
+            EventManager.Instance.Unsubscribe("AttackIncreasedStateEntered", HandleAttackIncreasedStart);
+            EventManager.Instance.Unsubscribe("AttackIncreasedStateExited", HandleAttackIncreasedEnd);
+
+        }
     }
 
     private void HandleAttackIncreasedStart(object eventData) {
-        
+
         //Debug.Log("Received AttackIncreasedStateEntered");
-        _animator.SetBool(isAttackIncreasedHash, true);
+        animator.SetBool(isAttackIncreasedHash, true);
 
     }
 
-    private void HandleAttackIncreasednd(object eventData) => _animator.SetBool(isAttackIncreasedHash, false);
+    private void HandleAttackIncreasedEnd(object eventData) => animator.SetBool(isAttackIncreasedHash, false);
 
 }

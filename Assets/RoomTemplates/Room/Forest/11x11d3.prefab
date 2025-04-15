@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7676303531619988821}
   - component: {fileID: 4925997988533116890}
   - component: {fileID: 1816551482770178588}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Other 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 3252412030595043214}
   - component: {fileID: 4818503967703394957}
   - component: {fileID: 6307749322642844417}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Other 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8785981100249002510}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SpawnerPoints (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6856786762587688093}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SpawnerPoints (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 7596463046428907244}
   - component: {fileID: 5702808716894132183}
   - component: {fileID: 7438460521341217616}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: 11x11d3
   m_TagString: Room
   m_Icon: {fileID: 0}
@@ -508,6 +508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a979b313578c54892dc34494a6c672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chestPrefab: {fileID: 0}
+  chestSpawnPoints: []
   isCombatRoom: 1
   enemySpawner: {fileID: 5870905378626287498}
   roomSize: {x: 11, y: 11}
@@ -632,7 +634,7 @@ GameObject:
   - component: {fileID: 8107299436856113821}
   - component: {fileID: 2247808217437462843}
   - component: {fileID: 8411131266359396298}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collideable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1552,7 +1554,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -1731,7 +1733,7 @@ GameObject:
   - component: {fileID: 748652362434510310}
   - component: {fileID: 3796653641387919743}
   - component: {fileID: 905220761018546100}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Floor
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -3269,7 +3271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1923316925374570341}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SpawnerPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3309,7 +3311,7 @@ GameObject:
   - component: {fileID: 3509055664341200842}
   - component: {fileID: 165190462269949647}
   - component: {fileID: 155681296525109152}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3536,7 +3538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7488031902676513042}
   - component: {fileID: 1407412005437148969}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Tilemaps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3586,7 +3588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 904017737405569914}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SpawnerPoints (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3620,7 +3622,7 @@ GameObject:
   - component: {fileID: 154044634573509101}
   - component: {fileID: 4899966618994600976}
   - component: {fileID: 5835713658389212460}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Outline Override
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5475,9 +5477,7 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 182
     m_Data: {fileID: 11400000, guid: c0893a769ec638e46812fc76ca05a3ee, type: 2}
-  m_TileSpriteArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  m_TileSpriteArray: []
   m_TileMatrixArray:
   - m_RefCount: 182
     m_Data:
@@ -5594,7 +5594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3254893101988338815}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SpawnerPoints (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5626,7 +5626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2367335728380386920}
   - component: {fileID: 5870905378626287498}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Enemy Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5662,7 +5662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoAdjustSpawnPoints: 1
   waves:
-  - enemyPrefab: {fileID: 3103918389335411751, guid: 2d861c13977539746b7b0335d7a0ca02, type: 3}
+  - enemyPrefabs: []
     enemyCount: 3
     spawnInterval: 0
   spawnPoints:
@@ -5682,7 +5682,7 @@ GameObject:
   - component: {fileID: 6736396553238215784}
   - component: {fileID: 6151497920098406111}
   - component: {fileID: 1306083554217985154}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Other 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5872,9 +5872,101 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8485309316714587885}
     m_Modifications:
+    - target: {fileID: 4404959523497548, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 186386669114516116, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 546021580422312242, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 610038162315977248, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 855684355542137823, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1998229595450223517, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150043582298649598, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375657181933246006, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509535375782636633, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2867858228991978258, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581983467284510369, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024329139108296684, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777323716589885297, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199431844649061977, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263138187296747631, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5960480409298718794, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
       propertyPath: m_Name
       value: HorDownDoor DOWN
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960480409298718794, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5963668045248127947, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653093323451551361, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811022826202693480, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901122142216858638, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8343699561739523463, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404283166368815698, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435997125496672227, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8683564361742174475, guid: 006b14d6d837f9a4482d9d17843e2fb4, type: 3}
       propertyPath: m_LocalPosition.x

@@ -35,7 +35,7 @@ public class DoorSizeAbsoluteController : MonoBehaviour
                 collider.size = targetColliderSize;
                 collider.offset = Vector2.zero;
             }
-
+    
         }
     }
 

@@ -7,7 +7,17 @@ using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class RoomManager : MonoBehaviour
-{ // ����״̬����
+{
+    [Header("宝箱生成设置")]
+    [SerializeField] private GameObject chestPrefab;  // 宝箱预制体
+    [SerializeField] private Transform[] chestSpawnPoints; // 生成点数组
+    private bool chestSpawned = false; // 防止重复生成
+
+    public event System.Action OnRoomCleared; // 添加事件声明
+    // ����״̬����
+    // 改用HashSet生成房间
+    private static HashSet<Vector3Int> spawnedRooms = new HashSet<Vector3Int>();
+    private Vector3Int roomCoordinate;
 
     [Header("ս������")]
     [SerializeField] private bool isCombatRoom; // ��Edgarģ��������
@@ -34,6 +44,28 @@ public class RoomManager : MonoBehaviour
         else
             Debug.Log($"�Ѱ�������������{enemySpawner.spawnPoints.Length}�����ɵ�");
     }
+
+
+    void SpawnChest()
+    {
+
+        Debug.LogWarning($"宝箱生成中");
+
+        // 防止重复生成
+        if (chestSpawned || chestPrefab == null || chestSpawnPoints.Length == 0)
+            return;
+
+        // 随机选择生成点
+        int randomIndex = Random.Range(0, chestSpawnPoints.Length);
+        Transform spawnPoint = chestSpawnPoints[randomIndex];
+
+        // 物理检测防止卡墙
+        //Collider2D hit = Physics2D.OverlapCircle(spawnPoint.position, 0.5f);
+            Instantiate(chestPrefab, spawnPoint.position, Quaternion.identity);
+            chestSpawned = true;
+            Debug.LogWarning($"宝箱生成成功！位置：{spawnPoint.position}");
+
+    }
     void AutoFindDoors()
     {
         var doorList = new List<DoorStateController>();
@@ -53,6 +85,8 @@ public class RoomManager : MonoBehaviour
 
         doors = doorList.ToArray();
     }
+
+
     void Awake()
     {
         AutoFindDoors();
@@ -84,6 +118,13 @@ public class RoomManager : MonoBehaviour
 
     void StartEnemySpawning()
     {
+        if (enemySpawner == null) return;
+
+        // 先取消旧订阅
+        enemySpawner.AllWavesClearedEvent -= OnEnemiesCleared;
+        // 再添加新订阅
+        enemySpawner.AllWavesClearedEvent += OnEnemiesCleared;
+
         if (enemySpawner != null)
         {
             // ����Edgar��Scale����
@@ -95,7 +136,6 @@ public class RoomManager : MonoBehaviour
                 point.position = enemySpawner.GetEdgarAdjustedPosition(point.position);
             }
             enemySpawner.StartSpawning();
-            enemySpawner.AllWavesClearedEvent += OnEnemiesCleared;
             // ͬ����״̬
             enemySpawner.SyncWithDoors(doors);
         }
@@ -119,17 +159,27 @@ public class RoomManager : MonoBehaviour
         isRoomCleared = true; // �־û�״̬
         hasActiveEnemies = false;
         OpenAllDoors();
+        // 触发宝箱显示事件
+        Debug.LogWarning("即将触发OnRoomCleared事件");
+        OnRoomCleared?.Invoke(); // 新增触发代码
+        // 添加调试日志
         // ����ȫ��ϵͳ���£������ͼ�е�2000���귶Χ��
         GlobalRoomSystem.UpdateConnectedRooms(transform.position * 1000f);
-    }
 
-    void OpenAllDoors()
-    {
-        foreach (var door in doors)
-        {
-            door.OpenDoor();
-        }
+        Debug.LogWarning("即将触发宝箱生成");
+
+        SpawnChest(); // 添加生成调用
     }
+    // 新增宝箱生成方法
+
+        void OpenAllDoors()
+        {
+            foreach (var door in doors)
+            {
+                door.OpenDoor();
+            }
+        }
+
 
     // Edgar����ת��������2000����ϵ��
     public Vector2 GetGridPosition()
@@ -157,9 +207,13 @@ public class RoomManager : MonoBehaviour
     {
         enemySpawner.StartSpawning();
 
+        // 先取消旧订阅
+        enemySpawner.AllWavesClearedEvent -= OnEnemiesCleared;
+        // 再添加新订阅
+        enemySpawner.AllWavesClearedEvent += OnEnemiesCleared;
+
         while (enemySpawner.activeEnemies.Count > 0 ||
-              !enemySpawner.AllWavesCleared)
-        {
+              !enemySpawner.AllWavesCleared) {
             yield return new WaitUntil(() =>
             enemySpawner.AllWavesCleared &&
             enemySpawner.activeEnemies.Count == 0

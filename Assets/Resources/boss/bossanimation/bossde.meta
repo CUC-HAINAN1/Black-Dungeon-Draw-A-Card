@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+guid: a8c26c3d35f816843ba851632c909603
+=======
+<<<<<<<< HEAD:Assets/Resources/Systems/GlobalSystem.meta
+guid: dd95e51d458804941bc7931b232bbdde
+========
+guid: a8c26c3d35f816843ba851632c909603
+>>>>>>>> bossline:Assets/Resources/boss/bossanimation/bossde.meta
+>>>>>>> reboss
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

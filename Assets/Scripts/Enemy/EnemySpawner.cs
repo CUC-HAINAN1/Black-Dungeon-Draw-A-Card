@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
     [System.Serializable]
     public class WaveConfig
     {
-        public GameObject enemyPrefab;
+        public GameObject[] enemyPrefabs; // 改为复数形式表示数组
         public int enemyCount;
         public float spawnInterval = 1f;
     }
@@ -63,17 +63,24 @@ public class EnemySpawner : MonoBehaviour
         {
             var spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
 
-            // 新增调试信息
-            Debug.Log($"使用生成点: {spawnPoint.name} 位置: {spawnPoint.position}");
-
-            var enemy = Instantiate(wave.enemyPrefab, spawnPoint.position, Quaternion.identity);
-            var property = enemy.GetComponent<EnemyProperty>();
-            property.OnDeath.AddListener(HandleEnemyDeath);
-            activeEnemies.Add(property);
+            // 从数组中随机选择敌人预制体
+            if (wave.enemyPrefabs.Length > 0)
+            {
+                GameObject randomEnemy = wave.enemyPrefabs[UnityEngine.Random.Range(0, wave.enemyPrefabs.Length)];
+                var enemy = Instantiate(randomEnemy, spawnPoint.position, Quaternion.identity);
+                var property = enemy.GetComponent<EnemyProperty>();
+                property.OnDeath.AddListener(HandleEnemyDeath);
+                activeEnemies.Add(property);
+            }
+            else
+            {
+                Debug.LogError($"第{currentWaveIndex}波未配置敌人预制体");
+            }
 
             yield return new WaitForSeconds(wave.spawnInterval);
         }
     }
+
     private void StartNextWave()
     {
         currentWaveIndex++;
