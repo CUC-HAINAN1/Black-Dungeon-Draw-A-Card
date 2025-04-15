@@ -5,6 +5,8 @@ public class GlobalDebugger : MonoBehaviour {
 
     public static GlobalDebugger Instance { get; private set; }
 
+    private bool Kaigua = false;
+
     private void Awake() {
 
         if (Instance != null && Instance != this) {
@@ -57,6 +59,31 @@ public class GlobalDebugger : MonoBehaviour {
                 if (boss != null) {
 
                     boss.GetComponent<BossHealth>().TakeDamage(1000);
+
+                }
+
+            }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.K)) {
+
+            var playerAttributes = PlayerAttributes.Instance;
+
+            if (playerAttributes != null) {
+
+                if (Kaigua) {
+
+                    Kaigua = false;
+                    playerAttributes.DecreaseAttackPower(100);
+                    playerAttributes.DisableInvincible();
+
+                }
+                else {
+
+                    Kaigua = true;
+                    playerAttributes.IncreaseAttackPower(100);
+                    playerAttributes.EnableInvincible();
 
                 }
 
