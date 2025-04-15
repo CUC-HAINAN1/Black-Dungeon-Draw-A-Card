@@ -1,9 +1,10 @@
+#if UNITY_EDITOR
+
 using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(CardDrawController))]
-public class CardDrawControllerEditor : Editor
-{
+public class CardDrawControllerEditor : Editor {
     public override void OnInspectorGUI() {
 
         base.OnInspectorGUI();
@@ -41,3 +42,5 @@ public class CardDrawControllerEditor : Editor
     }
 
 }
+
+#endif

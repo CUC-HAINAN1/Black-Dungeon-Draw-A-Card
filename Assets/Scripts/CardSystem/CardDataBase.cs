@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using UnityEditor.EditorTools;
 
 [CreateAssetMenu(menuName = "Card System/Card Data", order = 1)]
 public class CardDataBase : ScriptableObject {
