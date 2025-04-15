@@ -127,7 +127,7 @@ public class BossAI : MonoBehaviour
         // 发射远程弹幕
         Vector2 shootDirection = (player.position - transform.position).normalized;
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-
+        
         projectile.GetComponent<Rigidbody2D>().velocity = shootDirection * 10f;
         Destroy(projectile, 3f);
 
