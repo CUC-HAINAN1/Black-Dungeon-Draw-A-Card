@@ -5,11 +5,11 @@ using System;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("·¿¼äÊÊÅä")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private bool autoAdjustSpawnPoints = true;
     public Vector2 GetEdgarAdjustedPosition(Vector2 rawPosition)
     {
-        // ÊÊÅä½ØÍ¼ÖÐµÄ2000×ø±êÏµºÍScale=2²ÎÊý
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½Ðµï¿½2000ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½Scale=2ï¿½ï¿½ï¿½ï¿½
         return new Vector2(
             Mathf.Round(rawPosition.x / 1000f) * 2f,
             Mathf.Round(rawPosition.y / 1000f) * 2f
@@ -19,25 +19,25 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach (var door in doors)
         {
-            // ¸ù¾Ý½ØÍ¼ÖÐµÄReset·½Ïò²ÎÊýÈ·±£ÃÅ³¯ÏòÕýÈ·
+            // ï¿½ï¿½ï¿½Ý½ï¿½Í¼ï¿½Ðµï¿½Resetï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½È·
             door.transform.rotation = Quaternion.identity;
         }
     }
     [System.Serializable]
     public class WaveConfig
     {
-        public GameObject[] enemyPrefabs; // ¸ÄÎª¸´ÊýÐÎÊ½±íÊ¾Êý×é
+        public GameObject[] enemyPrefabs; // ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
         public int enemyCount;
         public float spawnInterval = 1f;
     }
 
-    [Header("Éú³ÉÉèÖÃ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private WaveConfig[] waves;
     [SerializeField] public Transform[] spawnPoints;
 
     public List<EnemyProperty> activeEnemies = new List<EnemyProperty>();
     private int currentWaveIndex = -1;
-    // ÐÂÔö×´Ì¬ÊôÐÔ
+    // ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½
     public bool AllWavesCleared { get; private set; }
     public event Action AllWavesClearedEvent;
     public bool IsActive { get; private set; }
@@ -51,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public void StartSpawning()
     {
-       
+
         if (IsActive) return;
         IsActive = true;
         StartNextWave();
@@ -63,18 +63,24 @@ public class EnemySpawner : MonoBehaviour
         {
             var spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
 
-            // ´ÓÊý×éÖÐËæ»úÑ¡ÔñµÐÈËÔ¤ÖÆÌå
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
             if (wave.enemyPrefabs.Length > 0)
             {
                 GameObject randomEnemy = wave.enemyPrefabs[UnityEngine.Random.Range(0, wave.enemyPrefabs.Length)];
                 var enemy = Instantiate(randomEnemy, spawnPoint.position, Quaternion.identity);
+
+                CustomLogger.LogWarning(enemy.tag);
+
+                if (enemy.CompareTag("Boss"))
+                    continue;
+
                 var property = enemy.GetComponent<EnemyProperty>();
                 property.OnDeath.AddListener(HandleEnemyDeath);
                 activeEnemies.Add(property);
             }
             else
             {
-                Debug.LogError($"µÚ{currentWaveIndex}²¨Î´ÅäÖÃµÐÈËÔ¤ÖÆÌå");
+                CustomLogger.LogError($"ï¿½ï¿½{currentWaveIndex}ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½");
             }
 
             yield return new WaitForSeconds(wave.spawnInterval);
@@ -86,7 +92,7 @@ public class EnemySpawner : MonoBehaviour
         currentWaveIndex++;
         if (currentWaveIndex >= waves.Length)
         {
-            Debug.LogError("²¨´ÎË÷ÒýÔ½½ç");
+            CustomLogger.LogError("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½");
             return;
         }
         StartCoroutine(SpawnWave(waves[currentWaveIndex]));
@@ -94,47 +100,47 @@ public class EnemySpawner : MonoBehaviour
 
     bool IsPositionValid(Vector3 pos)
     {
-        // »ñÈ¡·¿¼äÅö×²Æ÷±ß½ç
+        // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½ï¿½ß½ï¿½
         var roomCollider = GetComponentInParent<BoxCollider2D>();
         return roomCollider.bounds.Contains(pos);
     }
-    // ÔÚEnemySpawner½Å±¾ÖÐÌí¼ÓÑéÖ¤Âß¼­
+    // ï¿½ï¿½EnemySpawnerï¿½Å±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ß¼ï¿½
     void ValidateSpawnPoints()
     {
-        // »ñÈ¡²ã¼¶½á¹¹ÖÐËùÓÐ±ê¼ÇÎªSpawnPointsµÄ×Ó¶ÔÏó
+        // ï¿½ï¿½È¡ï¿½ã¼¶ï¿½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ÎªSpawnPointsï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
         var points = new List<Transform>();
         foreach (Transform child in transform)
         {
-            if (child.name.Contains("SpawnPoint")) // Æ¥ÅäÄãµÄ"SpawnPoints"²ã¼¶
+            if (child.name.Contains("SpawnPoint")) // Æ¥ï¿½ï¿½ï¿½ï¿½ï¿½"SpawnPoints"ï¿½ã¼¶
                 points.Add(child);
         }
         spawnPoints = points.ToArray();
 
-        // ´òÓ¡µ÷ÊÔÐÅÏ¢
-        Debug.Log($"ÒÑ°ó¶¨Éú³ÉµãÊýÁ¿: {spawnPoints.Length}");
+        // ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+        CustomLogger.Log($"ï¿½Ñ°ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½ï¿½ï¿½: {spawnPoints.Length}");
         foreach (var point in spawnPoints)
-            Debug.Log($"Éú³Éµã×ø±ê: {point.position}");
+            CustomLogger.Log($"ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½ï¿½ï¿½: {point.position}");
     }
     private void HandleEnemyDeath(EnemyProperty enemy)
     {
         activeEnemies.Remove(enemy);
-        enemy.OnDeath.RemoveListener(HandleEnemyDeath); // ÖØÒª£º½â³ýÊÂ¼þ°ó¶¨
-                                                        // ÐÂÔö²¨´Î¼ì²â
+        enemy.OnDeath.RemoveListener(HandleEnemyDeath); // ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½
+                                                        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¼ï¿½ï¿½
         if (activeEnemies.Count == 0)
         {
             if (currentWaveIndex < waves.Length - 1)
             {
-                // ×Ô¶¯¿ªÊ¼ÏÂÒ»²¨
+                // ï¿½Ô¶ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Ò»ï¿½ï¿½
                 StartNextWave();
             }
             else
             {
-                // ×îÖÕ²¨´ÎÍê³É
+                // ï¿½ï¿½ï¿½Õ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 AllWavesCleared = true;
                 AllWavesClearedEvent?.Invoke();
             }
         }
-       
+
     }
 
     public void KillAllEnemies()
