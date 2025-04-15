@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DoorStateController : MonoBehaviour
-{
+public class DoorStateController : MonoBehaviour {
     [Header("�ߴ�У׼")]
     [SerializeField] private Vector2 referenceSize = new Vector2(1.0f, 5.0f); // ��׼�ųߴ�
     [Header("��ײ������")]
@@ -16,8 +15,7 @@ public class DoorStateController : MonoBehaviour
     public bool startOpen = true;
 
     // ����Edgar�������䷽��
-    public void AlignWithEdgar()
-    {
+    public void AlignWithEdgar() {
         // �����ͼ�е�Direction=Reset����
         transform.rotation = Quaternion.identity;
 
@@ -30,11 +28,9 @@ public class DoorStateController : MonoBehaviour
             Mathf.Round(transform.position.y * 500f) / 500f
         );
     }
-    void Start()
-    {
+    void Start() {
         // ���ȴ���������
-        if (IsCorridorDoor())
-        {
+        if (IsCorridorDoor()) {
             ForceOpenCorridorDoor();
             return;
         }
@@ -43,18 +39,14 @@ public class DoorStateController : MonoBehaviour
     }
 
     // �ⲿ���ã�����
-    public void CloseDoor(bool instant = false)
-    {
-        try
-        {
-            if (!instant)
-            {
+    public void CloseDoor(bool instant = false) {
+        try {
+            if (!instant) {
                 // ��һ�׶Σ��Ӿ��ر�
                 SetDoorState(false);
                 StartCoroutine(DelayedColliderEnable());
             }
-            else
-            {
+            else {
                 // ������ȫ�ر�
                 physicsCollider.isTrigger = false;
                 SetDoorState(false);
@@ -62,14 +54,12 @@ public class DoorStateController : MonoBehaviour
 
             UpdateNavigationGraph(downDoor);
         }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"����ʧ�� {name}: {e.Message}");
+        catch (System.Exception e) {
+            CustomLogger.LogError($"����ʧ�� {name}: {e.Message}");
         }
     }
 
-    IEnumerator DelayedColliderEnable()
-    {
+    IEnumerator DelayedColliderEnable() {
         // ������ײ��ɴ�͸0.5��
         physicsCollider.isTrigger = true;
         yield return new WaitForSeconds(0.5f);
@@ -78,138 +68,115 @@ public class DoorStateController : MonoBehaviour
         physicsCollider.isTrigger = false;
     }
     // �ⲿ���ã�����
-    public void OpenDoor()
-    {
-        try
-        {
+    public void OpenDoor() {
+        try {
             physicsCollider.isTrigger = true;
             SetDoorState(true);
             UpdateNavigationGraph(upDoor);
         }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"����ʧ�� {name}: {e.Message}");
+        catch (System.Exception e) {
+            CustomLogger.LogError($"����ʧ�� {name}: {e.Message}");
         }
     }
 
     #region �ڲ�ʵ��
-    private bool IsCorridorDoor()
-    {
+    private bool IsCorridorDoor() {
         return transform.parent != null &&
                transform.parent.name.Contains("Corridor");
     }
 
-    private void ForceOpenCorridorDoor()
-    {
+    private void ForceOpenCorridorDoor() {
         startOpen = true;
         SetDoorState(true);
         DisableAllColliders(downDoor);
     }
 
-    private void InitializeNormalDoor()
-    {
+    private void InitializeNormalDoor() {
         SetDoorState(startOpen);
         ToggleColliders(downDoor, enable: !startOpen);
     }
 
-    private void SetDoorState(bool open)
-    {
+    private void SetDoorState(bool open) {
         upDoor.SetActive(open);
         downDoor.SetActive(!open);
     }
 
-    private void ToggleColliders(GameObject target, bool enable)
-    {
-        if (target == null) return;
+    private void ToggleColliders(GameObject target, bool enable) {
+        if (target == null)
+            return;
 
-        foreach (var collider in target.GetComponentsInChildren<Collider2D>())
-        {
+        foreach (var collider in target.GetComponentsInChildren<Collider2D>()) {
             collider.enabled = enable;
             collider.isTrigger = !enable; // �ǿ���״̬ʱ��Ϊ������ײ
         }
     }
 
-    private void DisableAllColliders(GameObject target)
-    {
-        if (target == null) return;
+    private void DisableAllColliders(GameObject target) {
+        if (target == null)
+            return;
 
-        foreach (var collider in target.GetComponentsInChildren<Collider2D>())
-        {
+        foreach (var collider in target.GetComponentsInChildren<Collider2D>()) {
             collider.enabled = false;
         }
     }
-    public void InitDoorState()
-    {
+    public void InitDoorState() {
         AlignWithEdgar();
         SetDoorState(startOpen);
     }
-    public void ForceInitialize()
-    {
-        if (upDoor == null || downDoor == null)
-        {
-            foreach (Transform child in transform)
-            {
-                if (child.name.Contains("Up")) upDoor = child.gameObject;
-                if (child.name.Contains("Down")) downDoor = child.gameObject;
+    public void ForceInitialize() {
+        if (upDoor == null || downDoor == null) {
+            foreach (Transform child in transform) {
+                if (child.name.Contains("Up"))
+                    upDoor = child.gameObject;
+                if (child.name.Contains("Down"))
+                    downDoor = child.gameObject;
             }
         }
 
         InitDoorState();
     }
-    void Awake()
-    {
+    void Awake() {
 
         // ����������������
-        if (transform.parent != null)
-        {
+        if (transform.parent != null) {
             transform.parent.localScale = Vector3.one;
         }
-        if (physicsCollider == null)
-        {
+        if (physicsCollider == null) {
             physicsCollider = GetComponentInChildren<Collider2D>(includeInactive: true);
-            Debug.LogWarning($"�ֶ�����ײ�嵽 {name}", this);
+            CustomLogger.LogWarning($"�ֶ�����ײ�嵽 {name}");
         }
     }
-    public void UpdateNavigationGraph(GameObject activePart)
-    {
-        if (AstarPath.active == null)
-        {
-            Debug.LogWarning("A* Pathfinding δ��ʼ��");
+    public void UpdateNavigationGraph(GameObject activePart) {
+        if (AstarPath.active == null) {
+            CustomLogger.LogWarning("A* Pathfinding δ��ʼ��");
             return;
         }
 
         var collider = activePart?.GetComponentInChildren<Collider2D>();
-        if (collider != null)
-        {
+        if (collider != null) {
             AstarPath.active.UpdateGraphs(collider.bounds);
         }
-        else
-        {
-            //Debug.LogError($"��������ʧ��: {activePart?.name} ȱ��Collider2D���");
+        else {
+            //CustomLogger.LogError($"��������ʧ��: {activePart?.name} ȱ��Collider2D���");
         }
     }
     #endregion
     // ���ӱ༭����ʼ������
 #if UNITY_EDITOR
     [ContextMenu("Init Doors")]
-    private void EditorInitialize()
-    {
+    private void EditorInitialize() {
         Start(); // �����ڱ༭���ֶ���ʼ��
     }
     [ContextMenu("�����޸����")]
-    private void FixComponents()
-    {
+    private void FixComponents() {
         var colliders = GetComponentsInChildren<Collider2D>();
-        foreach (var col in colliders)
-        {
-            if (!col.gameObject.CompareTag("Door"))
-            {
+        foreach (var col in colliders) {
+            if (!col.gameObject.CompareTag("Door")) {
                 col.gameObject.tag = "Door";
             }
         }
 
-        if (gameObject.layer != LayerMask.NameToLayer("Doors"))
-        {
+        if (gameObject.layer != LayerMask.NameToLayer("Doors")) {
             gameObject.layer = LayerMask.NameToLayer("Doors");
         }
     }

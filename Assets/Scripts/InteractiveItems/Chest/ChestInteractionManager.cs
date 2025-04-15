@@ -102,7 +102,7 @@ public class ChestInteraction : MonoBehaviour {
                 reward.card.Owned = true;
                 CardPoolManager.Instance.AddCardToPool(reward.card);
 
-                Debug.Log("首次获得雷电卡牌！");
+                CustomLogger.Log("首次获得雷电卡牌！");
                 RewardUIManager.Instance.ShowNewCardUI(reward.card);
 
             }
@@ -127,7 +127,7 @@ public class ChestInteraction : MonoBehaviour {
 
         var upgrade = card.upgradableParams[0];
 
-        Debug.Log($"强化：{upgrade.paramPath} -> {upgrade.upgradeType} {upgrade.value}");
+        CustomLogger.Log($"强化：{upgrade.paramPath} -> {upgrade.upgradeType} {upgrade.value}");
 
         RewardUIManager.Instance.ShowUpgradeUI(card, upgrade);
 

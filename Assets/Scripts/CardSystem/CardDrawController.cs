@@ -51,13 +51,13 @@ public class CardDrawController : MonoBehaviour {
         Transform targetSlot = cardQueueSystem.GetNextSlot();
         if (targetSlot == null) {
 
-            Debug.Log("没有可用卡槽");
+            CustomLogger.Log("没有可用卡槽");
             return;
         }
 
         if (!TryCreateCard(targetSlot, out var newCardInfo, num)) {
 
-            Debug.LogError("卡牌创建失败");
+            CustomLogger.Log("卡牌创建失败");
             return;
         }
 

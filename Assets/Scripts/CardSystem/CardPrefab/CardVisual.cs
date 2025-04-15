@@ -99,7 +99,7 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         if(transform == null) {
 
-            Debug.LogError("目标 Transform 为空，无法启动动画！");
+            CustomLogger.LogError("目标 Transform 为空，无法启动动画！");
             return;
 
         }

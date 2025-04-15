@@ -16,7 +16,7 @@ public class DoorManager : MonoBehaviour
 
             // �����ſ�����
             DoorStateController controller = doorDirection.gameObject.AddComponent<DoorStateController>();
-            
+
             // �����
             controller.upDoor = FindChild(doorDirection, "UpDoors");
             controller.downDoor = FindChild(doorDirection, "DownDoors");
@@ -32,7 +32,7 @@ public class DoorManager : MonoBehaviour
             if (child.name.Equals(name))
                 return child.gameObject;
         }
-        Debug.LogError($"�Ӷ���ȱʧ: {parent.name}/{name}");
+        CustomLogger.LogError($"�Ӷ���ȱʧ: {parent.name}/{name}");
         return null;
     }
 }

@@ -50,7 +50,6 @@ public class EnemyProperty : MonoBehaviour
     [SerializeField] private float predictionFactor = 0.3f;   // 新增：玩家移动预测系数
     [SerializeField] private float chaseStoppingDistance = 0.5f; // 新增：追击停止距离
 
-
     [Header("远程攻击配置")]
     public GameObject arrowPrefab;
     public Transform shootPoint; // 箭矢生成点
@@ -104,7 +103,7 @@ public class EnemyProperty : MonoBehaviour
             if (player.CompareTag("Player"))
             {
                 PlayerAttributes.Instance.TakeDamage(attackDamage);
-                Debug.Log($"对玩家造成 {attackDamage} 点伤害");
+                CustomLogger.Log($"对玩家造成 {attackDamage} 点伤害");
             }
         }
 
@@ -158,7 +157,6 @@ public class EnemyProperty : MonoBehaviour
         var aiPath = GetComponent<AIPath>();
         if (aiPath == null) return;
 
-
         // 强制重置路径
         if (aiPath.isStopped)
         {
@@ -172,7 +170,7 @@ public class EnemyProperty : MonoBehaviour
 
         aiPath.maxSpeed = patrolSpeed * (currentAIState == AIState.Chasing ? 2f : 1f) * speedFactor;
         // 添加调试信息
-        Debug.Log($"移动状态: {aiPath.canMove} | 速度: {aiPath.maxSpeed} | 目标: {aiPath.destination}");
+        CustomLogger.Log($"移动状态: {aiPath.canMove} | 速度: {aiPath.maxSpeed} | 目标: {aiPath.destination}");
     }
 
     void Awake()
@@ -187,7 +185,7 @@ public class EnemyProperty : MonoBehaviour
         if (GetComponent<AIPath>() == null)
         {
             gameObject.AddComponent<AIPath>();
-            Debug.Log("已自动添加AIPath组件");
+            CustomLogger.Log("已自动添加AIPath组件");
         }
         // 延迟初始化玩家坐标
         StartCoroutine(DelayedInit());
@@ -195,7 +193,7 @@ public class EnemyProperty : MonoBehaviour
         // 确保playerTransform正确初始化
         if (PlayerAttributes.Instance == null)
         {
-            Debug.LogError("PlayerAttributes实例未找到!");
+            CustomLogger.LogError("PlayerAttributes实例未找到!");
             return;
         }
         playerTransform = PlayerAttributes.Instance.PlayerTransform;
@@ -208,7 +206,7 @@ public class EnemyProperty : MonoBehaviour
         {
             animator = GetComponentInChildren<Animator>();
             if (animator == null)
-                Debug.LogError("Animator组件未找到!", gameObject);
+                CustomLogger.LogError("Animator组件未找到!");
         }
         StartPatrol();
         if (effectContainer == null)
@@ -362,6 +360,7 @@ public class EnemyProperty : MonoBehaviour
                             (Vector3)(playerRb != null ?
                              playerRb.velocity * predictionFactor : // 使用预测系数
                              Vector2.zero);
+
          aiPath.destination = predictPos;
 
         if (Vector3.Distance(aiPath.destination, predictPos) > 0.5f)
@@ -382,7 +381,7 @@ public class EnemyProperty : MonoBehaviour
         aiPath.destination = playerTransform.position;
 
         // 调试日志
-        Debug.Log($"进入追击状态，当前速度: {aiPath.maxSpeed}", gameObject);
+        CustomLogger.Log($"进入追击状态，当前速度: {aiPath.maxSpeed}");
 
     }
     // 新增巡逻点生成方法（在EnemyProperty类中添加）
@@ -400,7 +399,7 @@ public class EnemyProperty : MonoBehaviour
             {
                 patrolPoints[i] = waypoints[i].transform;
             }
-            Debug.Log($"从场景中找到{waypoints.Length}个巡逻点");
+            CustomLogger.Log($"从场景中找到{waypoints.Length}个巡逻点");
             return;
         }
 
@@ -463,7 +462,7 @@ public class EnemyProperty : MonoBehaviour
         // 添加空引用保护
         if (playerTransform == null)
         {
-            Debug.LogWarning("玩家Transform未初始化!");
+            CustomLogger.LogWarning("玩家Transform未初始化!");
             return;
         }
         // 调试可视化
@@ -507,7 +506,7 @@ public class EnemyProperty : MonoBehaviour
         }
 
         // 添加调试信息
-        Debug.Log($"当前状态: {currentAIState} | 玩家距离: {distanceToPlayer} | 检测范围: {detectionRange}");
+        CustomLogger.Log($"当前状态: {currentAIState} | 玩家距离: {distanceToPlayer} | 检测范围: {detectionRange}");
 
         // 添加状态切换保护
         if (currentAIState == AIState.Attacking && !canAttack) return;
@@ -570,7 +569,7 @@ public class EnemyProperty : MonoBehaviour
             if (hit.CompareTag("Player"))
             {
                 PlayerAttributes.Instance.TakeDamage(attackDamage);
-                Debug.Log($"近战攻击造成 {attackDamage} 点伤害");
+                CustomLogger.Log($"近战攻击造成 {attackDamage} 点伤害");
             }
         }
         // 添加动画事件监听
@@ -590,7 +589,7 @@ public class EnemyProperty : MonoBehaviour
 
             if (hit.CompareTag("Player")) {
                 PlayerAttributes.Instance.TakeDamage(attackDamage);
-                Debug.Log($"延迟伤害生效: {attackDamage}");
+                CustomLogger.Log($"延迟伤害生效: {attackDamage}");
             }
         }
     }
@@ -611,7 +610,7 @@ public class EnemyProperty : MonoBehaviour
         if (currentAIState == AIState.Attacking)
         {
             TransitionToState(AIState.Chasing);
-            Debug.Log("攻击动画结束，返回追击状态");
+            CustomLogger.Log("攻击动画结束，返回追击状态");
         }
     }
     //武器方向控制
@@ -641,17 +640,17 @@ public class EnemyProperty : MonoBehaviour
         // 输入验证
         if (arrowPrefab == null)
         {
-            Debug.LogError("箭矢预制体未分配!", gameObject);
+            CustomLogger.LogError("箭矢预制体未分配!");
             return;
         }
         if (shootPoint == null)
         {
-            Debug.LogError("攻击点未配置!", gameObject);
+            CustomLogger.LogError("攻击点未配置!");
             return;
         }
         if (PlayerAttributes.Instance == null)
         {
-            Debug.LogError("玩家属性实例未找到!", gameObject);
+            CustomLogger.LogError("玩家属性实例未找到!");
             return;
         }
 
@@ -679,7 +678,7 @@ public class EnemyProperty : MonoBehaviour
         ArrowProjectile projectile = arrow.GetComponent<ArrowProjectile>();
         if (projectile == null)
         {
-            Debug.LogError("箭矢预制体缺少 ArrowProjectile 组件!", arrow);
+            CustomLogger.LogError("箭矢预制体缺少 ArrowProjectile 组件!");
             Destroy(arrow);
             return;
         }
@@ -692,11 +691,11 @@ public class EnemyProperty : MonoBehaviour
 
             // 调试可视化
             Debug.DrawLine(shootPoint.position, predictedPosition, Color.red, 1f);
-            Debug.Log($"箭矢已生成 | 位置: {shootPoint.position} | 目标: {predictedPosition}");
+            CustomLogger.Log($"箭矢已生成 | 位置: {shootPoint.position} | 目标: {predictedPosition}");
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"弹道初始化失败: {e.Message}", arrow);
+            CustomLogger.LogError($"弹道初始化失败: {e.Message}");
             Destroy(arrow);
         }
 
@@ -707,7 +706,7 @@ public class EnemyProperty : MonoBehaviour
     private IEnumerator AttackCooldownRoutine()
     {
         canAttack = false;
-        Debug.Log($"攻击冷却开始 | 持续时间: {attackInterval}秒");
+        CustomLogger.Log($"攻击冷却开始 | 持续时间: {attackInterval}秒");
         // 添加冷却计时可视化
 
         float timer = 0;
@@ -719,7 +718,7 @@ public class EnemyProperty : MonoBehaviour
 
         yield return new WaitForSeconds(attackInterval);
         canAttack = true;
-        Debug.Log("攻击冷却结束");
+        CustomLogger.Log("攻击冷却结束");
     }
 
     private void TransitionToState(AIState newState)
@@ -752,7 +751,7 @@ public class EnemyProperty : MonoBehaviour
                 break;
         }
 
-        Debug.Log($"状态切换: {currentAIState} -> {newState}");
+        CustomLogger.Log($"状态切换: {currentAIState} -> {newState}");
         currentAIState = newState;
         // 应改为使用Trigger驱动：
         switch (newState)
@@ -828,7 +827,7 @@ public class EnemyProperty : MonoBehaviour
         // 确保至少有两个巡逻点才会开始巡逻
         if (patrolPoints.Length < 2)
         {
-            Debug.LogWarning("巡逻点不足，无法开始巡逻");
+            CustomLogger.LogWarning("巡逻点不足，无法开始巡逻");
             return;
         }
         if (patrolPoints.Length < 2) return;

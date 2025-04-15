@@ -17,7 +17,7 @@ public class ArrowProjectile : MonoBehaviour
 
     public void Initialize(Vector3 targetPos)
     {
-        Debug.Log($"����������� | ��ʼλ��: {transform.position} | Ŀ��λ��: {targetPos}");
+        CustomLogger.Log($"����������� | ��ʼλ��: {transform.position} | Ŀ��λ��: {targetPos}");
 
         moveDirection = (targetPos - transform.position).normalized;
         float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
@@ -37,11 +37,11 @@ public class ArrowProjectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // ���ӵ�����Ϣ
-        Debug.Log($"��ʸ��ײ����: {other.name} | �㼶: {LayerMask.LayerToName(other.gameObject.layer)}");
+        CustomLogger.Log($"��ʸ��ײ����: {other.name} | �㼶: {LayerMask.LayerToName(other.gameObject.layer)}");
 
         // �����Ѿ��ʹ�����
         if (other.CompareTag("Enemy") || other.isTrigger) return;
-        
+
         // ������ң�����PlayerAttributes���޸ģ�
         else if (other.CompareTag("Player"))
         {

@@ -207,7 +207,7 @@ public class PlayerAttributes : MonoBehaviour {
 
             else if (previous == 0 && _currentAttackPowerInCreased > 0) {
 
-                Debug.Log("Setpower!");
+                CustomLogger.Log("Setpower!");
                 IsAttackIncreased = true;
 
             }

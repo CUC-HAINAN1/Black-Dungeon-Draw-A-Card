@@ -74,7 +74,6 @@ public class CardPoolManager : MonoBehaviour {
 
         if (targetPool.Count == 0) {
 
-            //Debug.Log($"目标卡池为空，强制重置");
             targetPool = GetFallbackPool(isRareDraw);
 
         }
@@ -144,7 +143,7 @@ public class CardPoolManager : MonoBehaviour {
 
         }
 
-        //Debug.LogWarning($"未在卡池中找到 ID 为 {id} 的卡牌");
+        CustomLogger.Log($"未在卡池中找到 ID 为 {id} 的卡牌");
         return null;
 
     }

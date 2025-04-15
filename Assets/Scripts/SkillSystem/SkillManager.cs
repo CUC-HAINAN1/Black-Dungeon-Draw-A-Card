@@ -13,15 +13,15 @@ public class SkillSystem : MonoBehaviour {
         public Vector3 direction;
         public Vector3 position;
         public GameObject target;
-    
+
     }
 
     private void Awake() {
-        
+
         Instance = this;
 
         InitializeSkillHandlers();
-    
+
     }
 
     private void InitializeSkillHandlers() {
@@ -39,35 +39,35 @@ public class SkillSystem : MonoBehaviour {
     }
 
     private ExecutionContext CreateExecutionContext(CardDataBase cardData) {
-        
+
         rangeIndicator = RangeIndicatorManager.Instance;
         playerAttributes = PlayerAttributes.Instance;
-        
+
         Vector3 pos = Vector3.zero;
         Vector3 dir = Vector3.zero;
         GameObject target = null;
 
         switch (cardData.inputMode) {
-            
+
             case CardDataBase.InputMode.AreaSelection:
-                
+
                 pos = rangeIndicator.GetContext<Vector3>();
                 break;
-            
+
             case CardDataBase.InputMode.DragDirection:
-                
+
                 dir = rangeIndicator.GetContext<Vector3>();
                 break;
-           
+
             case CardDataBase.InputMode.TargetLock:
-               
+
                 target = rangeIndicator.GetContext<GameObject>();
                 break;
-        
+
         }
 
         return new ExecutionContext {
-            
+
             cardData = cardData,
             direction = dir,
             position = pos,
@@ -79,14 +79,14 @@ public class SkillSystem : MonoBehaviour {
     public void ExecuteSkill(CardDataBase cardData) {
 
         if (!skillHandlers.TryGetValue(cardData.skillType, out var handler)) {
-            
-            Debug.LogWarning($"No handler found for skill type: {cardData.skillType}");
+
+            CustomLogger.LogWarning($"No handler found for skill type: {cardData.skillType}");
             return;
-        
+
         }
 
         var context = CreateExecutionContext(cardData);
         handler.Execute(context);
-    
+
     }
 }

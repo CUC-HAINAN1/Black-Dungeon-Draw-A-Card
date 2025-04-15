@@ -44,18 +44,18 @@ public class SceneTransitionManager : MonoBehaviour {
     private void OnPlayerDied(object eventData) {
 
         TriggerSceneSwitch("DefeatScene", () => {
-            Debug.Log("玩家死亡 - 即将切换到死亡场景");
+            CustomLogger.Log("玩家死亡 - 即将切换到死亡场景");
 
         });
 
     }
-    
+
     private void OnBossDied(object eventData) {
 
         lightningCard.Owned = true;
 
         TriggerSceneSwitch("CompleteScene", () => {
-            Debug.Log("Boss 死亡 - 即将切换到通关场景");
+            CustomLogger.Log("Boss 死亡 - 即将切换到通关场景");
 
         });
 

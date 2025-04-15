@@ -4,10 +4,10 @@ using Pathfinding;
 
 public class SceneAIManager : MonoBehaviour
 {
-    [Header("ÅäÖÃ²ÎÊý")]
-    [SerializeField] private string enemyTag = "Enemy";    // µÐÈË±êÇ©
-    [SerializeField] private string playerTag = "Player"; // Íæ¼Ò±êÇ©
-    [SerializeField] private float scanInterval = 0.3f;    // É¨Ãè¼ä¸ô£¨Ãë£©
+    [Header("ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½")]
+    [SerializeField] private string enemyTag = "Enemy";    // ï¿½ï¿½ï¿½Ë±ï¿½Ç©
+    [SerializeField] private string playerTag = "Player"; // ï¿½ï¿½Ò±ï¿½Ç©
+    [SerializeField] private float scanInterval = 0.3f;    // É¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£©
 
     private Transform playerTransform;
     private Coroutine scanRoutine;
@@ -18,7 +18,7 @@ public class SceneAIManager : MonoBehaviour
         StartScanning();
     }
 
-    // ³õÊ¼»¯Íæ¼ÒÒýÓÃ
+    // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     void InitializePlayerReference()
     {
         GameObject playerObj = GameObject.FindWithTag(playerTag);
@@ -28,19 +28,19 @@ public class SceneAIManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"Î´ÕÒµ½±êÇ©Îª {playerTag} µÄÍæ¼Ò¶ÔÏó£¡");
+            CustomLogger.LogError($"Î´ï¿½Òµï¿½ï¿½ï¿½Ç©Îª {playerTag} ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½");
             enabled = false;
         }
     }
 
-    // Æô¶¯Ð­³ÌÉ¨Ãè
+    // ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½É¨ï¿½ï¿½
     void StartScanning()
     {
         if (scanRoutine != null) StopCoroutine(scanRoutine);
         scanRoutine = StartCoroutine(ScanEnemiesRoutine());
     }
 
-    // É¨ÃèÐ­³Ì
+    // É¨ï¿½ï¿½Ð­ï¿½ï¿½
     IEnumerator ScanEnemiesRoutine()
     {
         while (true)
@@ -50,7 +50,7 @@ public class SceneAIManager : MonoBehaviour
         }
     }
 
-    // ´¦ÀíÏÖÓÐµÐÈË
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½
     void ProcessExistingEnemies()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
@@ -60,12 +60,12 @@ public class SceneAIManager : MonoBehaviour
             if (aiSetter != null && aiSetter.target == null)
             {
                 aiSetter.target = playerTransform;
-                Debug.Log($"ÒÑÎª {enemy.name} ÉèÖÃÄ¿±ê");
+                CustomLogger.Log($"ï¿½ï¿½Îª {enemy.name} ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½");
             }
         }
     }
 
-    // µ±×é¼þ±»½ûÓÃÊ±
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
     void OnDisable()
     {
         if (scanRoutine != null)

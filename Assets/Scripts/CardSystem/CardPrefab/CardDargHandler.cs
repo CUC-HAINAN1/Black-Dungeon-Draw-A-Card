@@ -75,7 +75,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (transform == null) {
 
-            Debug.LogError("目标 Transform 为空，无法启动动画！");
+            CustomLogger.LogError("目标 Transform 为空，无法启动动画！");
             return;
 
         }
@@ -89,9 +89,6 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void Update() {
 
-        if (!IsComponentAlive || IsDestroyed)
-            return;
-
         if ((isValidDrag && cardStateManager.GetCardState(gameObject).IsDragging && Input.GetMouseButtonDown(1)) ||
             !cardStateManager.IsCardUsable(gameObject)
         ) {
@@ -104,6 +101,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (isValidDrag && cardStateManager.GetCardState(gameObject).IsDragging) {
 
+            Time.timeScale = 0.25f;
             transform.position = Input.mousePosition;
             rangeIndicatorManager.UpdateIndicator();
 
@@ -112,9 +110,6 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     public void OnEndDrag(PointerEventData eventData) {
-
-        if (!IsComponentAlive || IsDestroyed)
-            return;
 
         if (!isValidDrag || eventData.button != PointerEventData.InputButton.Left) {
 
@@ -151,11 +146,6 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void CancelDrag() {
 
-        if (!IsComponentAlive || IsDestroyed)
-            return;
-
-        Debug.Log(IsDestroyed);
-
         if (!cardStateManager.GetCardState(gameObject).IsDragging)
             return;
 
@@ -176,7 +166,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (transform == null) {
 
-            Debug.LogError("目标 Transform 为空，无法启动动画！");
+            CustomLogger.LogError("目标 Transform 为空，无法启动动画！");
             return;
 
         }
@@ -218,7 +208,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (TryGetComponent<CanvasGroup>(out var cg))
             cg.blocksRaycasts = true;
-            
+
     }
 
     private void OnDestroy() {
