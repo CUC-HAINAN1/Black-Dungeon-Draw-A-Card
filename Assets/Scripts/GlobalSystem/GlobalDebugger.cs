@@ -47,6 +47,23 @@ public class GlobalDebugger : MonoBehaviour {
 
         }
 
+        if (Input.GetKeyDown(KeyCode.M)) {
+
+            var eventManager = EventManager.Instance;
+
+            if (eventManager != null) {
+
+                var boss = GameObject.FindGameObjectWithTag("Boss");
+                if (boss != null) {
+
+                    boss.GetComponent<BossHealth>().TakeDamage(1000);
+
+                }
+
+            }
+
+        }
+
 
     }
 
