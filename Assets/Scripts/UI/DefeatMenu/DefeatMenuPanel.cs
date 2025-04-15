@@ -19,7 +19,7 @@ public class DeathMenuPanel : MonoBehaviour {
     private void OnStartClicked() {
 
         CustomLogger.Log("再次开始游戏！");
-        SceneTransitionHelper.Instance.LoadSceneWithTransition("SangTestScene");
+        SceneTransitionHelper.Instance.LoadSceneWithTransition("LevelScene");
 
     }
 
