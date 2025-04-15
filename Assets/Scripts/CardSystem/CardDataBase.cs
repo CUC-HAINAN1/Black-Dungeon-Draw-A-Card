@@ -23,7 +23,7 @@ public class CardDataBase : ScriptableObject {
     public InputMode inputMode;
 
     [Serializable]
-    public struct SkillBehaviorConfig {
+    public class SkillBehaviorConfig {
 
         [Header("弹道类设置")]
         public ProjectileParams projectile;
@@ -80,7 +80,7 @@ public class CardDataBase : ScriptableObject {
 
 
     [Serializable]
-    public struct ProjectileParams {
+    public class ProjectileParams {
 
         [Tooltip("飞行速度(米/秒)")]
         public float speed;
@@ -100,7 +100,7 @@ public class CardDataBase : ScriptableObject {
     }
 
     [Serializable]
-    public struct SweepParams {
+    public class SweepParams {
 
         [Tooltip("扇形角度")]
         [Range(5, 360)] public float angle;
@@ -123,7 +123,7 @@ public class CardDataBase : ScriptableObject {
     }
 
     [Serializable]
-    public struct LockOnParams {
+    public class LockOnParams {
 
         [Tooltip("最大锁定目标数")]
         public int maxTargets;
@@ -137,7 +137,7 @@ public class CardDataBase : ScriptableObject {
     }
 
     [Serializable]
-    public struct AreaParams {
+    public class AreaParams {
 
         [Tooltip("圆形半径")]
         public float radius;
@@ -154,7 +154,7 @@ public class CardDataBase : ScriptableObject {
     }
 
     [Serializable]
-    public struct InceaseAttck {
+    public class InceaseAttck {
 
         [Tooltip("提升数值")]
         public int amount;
@@ -165,7 +165,7 @@ public class CardDataBase : ScriptableObject {
     }
 
     [Serializable]
-    public struct GenerateShield {
+    public class GenerateShield {
 
         [Tooltip("护盾数值")]
         public int amount;
@@ -176,7 +176,7 @@ public class CardDataBase : ScriptableObject {
     }
 
     [Serializable]
-    public struct BurstAOE {
+    public class BurstAOE {
 
         [Tooltip("伤害")]
         public int damage;
@@ -191,7 +191,7 @@ public class CardDataBase : ScriptableObject {
 
 
     [Serializable]
-    public struct VisualFeedback {
+    public class VisualFeedback {
         [Header("预览效果")]
         public GameObject rangeIndicatorPrefab;
 
@@ -205,7 +205,7 @@ public class CardDataBase : ScriptableObject {
     }
 
     [Serializable]
-    public struct UpgradableParam {
+    public class UpgradableParam {
         public string displayName;
 
         [Tooltip("参数路径,格式:behaviorConfig.类型.参数")]

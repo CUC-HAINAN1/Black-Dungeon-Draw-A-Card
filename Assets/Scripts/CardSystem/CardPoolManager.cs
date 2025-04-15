@@ -51,12 +51,12 @@ public class CardPoolManager : MonoBehaviour {
             switch (card.rarity) {
                 case CardDataBase.Rarity.Common:
 
-                    commonPool.Add(card);
+                    commonPool.Add(runtimeCardMap[card]);
                     break;
 
                 case CardDataBase.Rarity.Rare:
 
-                    rarePool.Add(card);
+                    rarePool.Add(runtimeCardMap[card]);
                     break;
 
             }

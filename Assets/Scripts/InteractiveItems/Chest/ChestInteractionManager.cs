@@ -127,7 +127,7 @@ public class ChestInteraction : MonoBehaviour {
 
         var upgrade = card.upgradableParams[0];
 
-        CustomLogger.Log($"强化：{upgrade.paramPath} -> {upgrade.upgradeType} {upgrade.value}");
+        CustomLogger.LogWarning($"强化：{upgrade.paramPath} -> {upgrade.upgradeType} {upgrade.value}");
 
         RewardUIManager.Instance.ShowUpgradeUI(card, upgrade);
 
