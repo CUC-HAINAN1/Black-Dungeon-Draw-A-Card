@@ -86,7 +86,7 @@ public class FireballMover : MonoBehaviour {
 
         if(other.CompareTag("Player") || other.CompareTag("Floor") ||
             other.CompareTag("Bullet") || other.CompareTag("Room") ||
-            other.CompareTag("BirthRoom") || other.CompareTag("HitBox")
+            other.CompareTag("BirthRoom") || other.CompareTag("HitBox") 
             )
             return;
 

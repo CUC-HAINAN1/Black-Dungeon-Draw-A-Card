@@ -76,8 +76,11 @@ public class SectorHitbox : MonoBehaviour {
 
         GameObject detector = new GameObject("SectorDetector");
         detector.transform.position = origin;
+        detector.tag = "Bullet";
 
         CircleCollider2D collider = detector.AddComponent<CircleCollider2D>();
+
+
         collider.radius = radius * 5;
         collider.isTrigger = true;
 
@@ -132,6 +135,7 @@ public class SectorHitbox : MonoBehaviour {
 
             }
         }
+        Destroy(detector);
 
         // 延迟一点再销毁自身，确保特效完整播放
         yield return new WaitForSeconds(0.2f);
