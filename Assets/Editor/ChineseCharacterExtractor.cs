@@ -33,7 +33,7 @@ public class ChineseCharacterExtractor
             }
             catch
             {
-                Debug.LogWarning("跳过无法读取的文件: " + file);
+                CustomLogger.LogWarning("跳过无法读取的文件: " + file);
             }
         }
 
@@ -48,7 +48,7 @@ public class ChineseCharacterExtractor
         {
             File.WriteAllText(savePath, sb.ToString(), Encoding.UTF8);
             EditorUtility.RevealInFinder(savePath);
-            Debug.Log($"✅ 提取完毕，共 {chineseCharacters.Count} 个中文字符");
+            CustomLogger.Log($"✅ 提取完毕，共 {chineseCharacters.Count} 个中文字符");
         }
     }
 }

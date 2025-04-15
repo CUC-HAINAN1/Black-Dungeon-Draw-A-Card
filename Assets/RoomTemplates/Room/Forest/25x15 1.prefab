@@ -5167,8 +5167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestPrefab: {fileID: 6977788167404402593, guid: 1076dcad8518f4984b52581e3a03ea50, type: 3}
-  chestSpawnPoints:
-  - {fileID: 7024481365788661776}
+  chestSpawnPoints: []
   isCombatRoom: 1
   enemySpawner: {fileID: 3384987197597136668}
   roomSize: {x: 25, y: 15}
@@ -5326,7 +5325,7 @@ MonoBehaviour:
   autoAdjustSpawnPoints: 1
   waves:
   - enemyPrefabs:
-    - {fileID: 3103918389335411751, guid: 2d861c13977539746b7b0335d7a0ca02, type: 3}
+    - {fileID: 8369125955876776877, guid: a4ca0d7c3110acb44a5a42a69bbdaa40, type: 3}
     enemyCount: 1
     spawnInterval: 0
   spawnPoints:

@@ -1954,8 +1954,6 @@ namespace Edgar.Unity.Examples.PC2D
             _movingPlatformState.platform = null;
             _movingPlatformState.stuckToWall = CollidedSurface.None;
 
-            //Debug.Log(collidingAgainst);
-
             if (HasFlag(CollidedSurface.Ground))
             {
                 //Debug.Log(IsMovingPlatform(_collidersUpAgainst[DIRECTION_DOWN].gameObject));
