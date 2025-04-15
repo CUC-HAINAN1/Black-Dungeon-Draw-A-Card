@@ -358,7 +358,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: b98a8ae8848182a4586be01cde3db429, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -423,7 +423,7 @@ MonoBehaviour:
   meleeRange: 3
   rangedRange: 8
   aoeRadius: 3
-  skillCooldown: 3
+  skillCooldown: 2
   projectilePrefab: {fileID: 5282363550545569529, guid: 69661ec6db34eac49bfc73dea54c25a5, type: 3}
   aoeIndicator: {fileID: 6759855077772427950, guid: dfebf8a687976ba4e82e8ff81c707a9b, type: 3}
   aoeEffect: {fileID: 8967183998196460794, guid: b76d2221b75404f0aaa45849a9e255e7, type: 3}

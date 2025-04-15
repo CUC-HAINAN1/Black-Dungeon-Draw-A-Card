@@ -1,12 +1,8 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Sprite/Treasure/treasure_0.controller.meta
 guid: 1721f470c799211489ee14805e64475d
-========
-guid: d5030b25d2a873c49bf4016c02ecf144
->>>>>>>> bossline:Assets/Resources/boss/bossanimation/bossde/boss_anim_default.anim.meta
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 9100000
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -10,7 +10,7 @@ public class EnemyStateMachine : MonoBehaviour
     [SerializeField] private float attackRange = 2f;
     // 通过属性封装私有字段（推荐方式）
     public float AttackRange => attackRange;
-
+    
     [Header("Movement Settings")]
     [SerializeField] private float patrolSpeed = 2f;
     [SerializeField] private float chaseSpeed = 4f;
