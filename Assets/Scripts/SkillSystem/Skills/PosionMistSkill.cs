@@ -21,7 +21,7 @@ public class PoisonMistSkill : SkillBase {
         float duration = config.duration;
         float interval = config.tickRate;
         float radius = config.radius;
-        
+
         //增益伤害均摊到单次伤害
         int bonusDamage = System.Convert.ToInt32(playerAttributes.AttackPowerIncreased / (duration / interval));
         int damage = config.damage + bonusDamage;
@@ -32,7 +32,7 @@ public class PoisonMistSkill : SkillBase {
         poisonMist.AddComponent<PoisonMistArea>().Initialize(duration, interval, radius, damage, cardData, poisonMist);
 
         yield return null;
-    
+
     }
 
 }
@@ -46,7 +46,7 @@ public class PoisonMistArea : MonoBehaviour {
     private GameObject posionMist;
 
     public void Initialize(float dur, float intvl, float rad, int dmg, CardDataBase data, GameObject posion) {
-       
+
         duration = dur;
         interval = intvl;
         radius = rad;
@@ -57,25 +57,40 @@ public class PoisonMistArea : MonoBehaviour {
     }
 
     private IEnumerator DamageOverTime() {
-        
+
         float elapsed = 0f;
 
         while (elapsed < duration) {
 
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, radius * 3);
 
-             foreach (var enemyCol in hitEnemies) {
-                
+            foreach (var enemyCol in hitEnemies) {
+
                 if (enemyCol.CompareTag("Enemy")) {
-                    
+
                     EnemyProperty enemy = enemyCol.GetComponent<EnemyProperty>();
-                    
+
                     if (enemy != null) {
+
                         enemy.TakeDamage(damage);
+
                     }
-                
+
                 }
-            } 
+
+                if (enemyCol.CompareTag("Boss")) {
+
+                    BossHealth boss = enemyCol.GetComponent<BossHealth>();
+
+                    if(boss != null) {
+
+                        boss.TakeDamage(damage);
+
+                    }
+
+                }
+
+            }
 
             elapsed += interval;
             yield return new WaitForSeconds(interval);
@@ -85,12 +100,12 @@ public class PoisonMistArea : MonoBehaviour {
     }
 
     private void ExplodeAndDestroy() {
-        
+
         //GameObject hitEffect = Instantiate(cardData.visualConfig.hitEffect, transform.position, Quaternion.identity);
         //Destroy(hitEffect, 0.5f);
         Destroy(gameObject);
         Destroy(posionMist);
-    
+
     }
 
 }

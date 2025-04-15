@@ -7,7 +7,9 @@ public class MeteoricFireballSkill : SkillBase {
     [SerializeField] private GameObject aoeEffectPrefab;
 
     public override void Execute(SkillSystem.ExecutionContext context) {
+
         StartCoroutine(MeteoricFireballRoutine(context));
+
     }
 
     private IEnumerator MeteoricFireballRoutine(SkillSystem.ExecutionContext context) {
@@ -57,20 +59,34 @@ public class MeteoricFireballExplosion : MonoBehaviour {
 
         yield return new WaitForSeconds(hitDelay);
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, radius * 6f);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, radius * 4f);
 
-        Debug.Log($"实际攻击半径: {radius * 6f}");
+        CustomLogger.Log($"实际攻击半径: {radius * 4f}");
 
         foreach (var enemyCol in hitEnemies) {
 
-            Debug.Log(enemyCol.tag);
+            CustomLogger.Log(enemyCol.tag);
 
             if (enemyCol.CompareTag("Enemy")) {
 
                 EnemyProperty enemy = enemyCol.GetComponent<EnemyProperty>();
 
                 if (enemy != null) {
+
                     enemy.TakeDamage(damage);
+
+                }
+
+            }
+
+            if (enemyCol.CompareTag("Boss")) {
+
+                BossHealth boss = enemyCol.GetComponent<BossHealth>();
+
+                if(boss != null) {
+
+                    boss.TakeDamage(damage);
+
                 }
 
             }

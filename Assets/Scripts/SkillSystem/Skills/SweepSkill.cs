@@ -77,7 +77,7 @@ public class SectorHitbox : MonoBehaviour {
 
         foreach (var enemyCol in hitEnemys) {
 
-            if (!enemyCol.CompareTag("Enemy"))
+            if (!enemyCol.CompareTag("Enemy") || !enemyCol.CompareTag("Boss"))
                 continue;
 
             //扇形区域检测
@@ -89,13 +89,28 @@ public class SectorHitbox : MonoBehaviour {
             float angleBetween = Vector2.Angle(direction, toTarget.normalized);
             if (angleBetween <= halfAngle) {
 
-                 EnemyProperty enemy = enemyCol.GetComponent<EnemyProperty>();
+                if (enemyCol.CompareTag("Enemy")) {
 
-                 if (enemy != null) {
+                    EnemyProperty enemy = enemyCol.GetComponent<EnemyProperty>();
 
-                     enemy.TakeDamage(damage);
+                    if (enemy != null) {
 
-                 }
+                        enemy.TakeDamage(damage);
+
+                    }
+                }
+
+                if (enemyCol.CompareTag("Boss")) {
+
+                    BossHealth boss = enemyCol.GetComponent<BossHealth>();
+
+                    if (boss != null) {
+
+                        boss.TakeDamage(damage);
+
+                    }
+
+                }
 
             }
         }
