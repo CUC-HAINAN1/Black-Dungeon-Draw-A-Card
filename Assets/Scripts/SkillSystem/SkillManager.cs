@@ -26,7 +26,7 @@ public class SkillSystem : MonoBehaviour {
 
     private void InitializeSkillHandlers() {
         skillHandlers = new Dictionary<CardDataBase.SkillType, SkillBase> {
-            // 后续补齐
+  
             { CardDataBase.SkillType.GenerateShield, gameObject.AddComponent<GenerateShieldSkill>() },
             { CardDataBase.SkillType.InceaseAttck, gameObject.AddComponent<IncreaseAttackPowerSkill>() },
             {CardDataBase.SkillType.Projectile, gameObject.AddComponent<LaunchFireBallSkill>()},

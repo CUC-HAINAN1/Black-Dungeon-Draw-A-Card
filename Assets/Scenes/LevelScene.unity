@@ -261,6 +261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 3806258953977329366, guid: 8e004c59c8c3644e7b5bac4c876519ca, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5406420795530064735, guid: 8e004c59c8c3644e7b5bac4c876519ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
