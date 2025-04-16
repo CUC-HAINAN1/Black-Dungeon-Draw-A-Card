@@ -58,7 +58,7 @@ public class GlobalDebugger : MonoBehaviour {
                 var boss = GameObject.FindGameObjectWithTag("Boss");
                 if (boss != null) {
 
-                    boss.GetComponent<BossHealth>().TakeDamage(1000);
+                    boss.GetComponent<BossHealth>().TakeDamage(10000);
 
                 }
 
