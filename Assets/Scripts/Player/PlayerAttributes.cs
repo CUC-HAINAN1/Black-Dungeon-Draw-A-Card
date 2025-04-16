@@ -239,10 +239,10 @@ public class PlayerAttributes : MonoBehaviour {
                     );
 
                     Mana = 0;
+                    AttackPowerIncreased = 0;
                     HasShield = false;
                     IsInCombat = false;
                     IsInvincible = false;
-
 
                 }
 
