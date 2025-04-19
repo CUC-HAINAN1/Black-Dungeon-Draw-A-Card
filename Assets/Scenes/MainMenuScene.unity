@@ -431,6 +431,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8922032018852102938, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922032018852102938, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922032018852102938, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 2560
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922032018852102938, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1440
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -545,6 +561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneTransistionManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8997401731460197253, guid: 975da881ff490471790b8225b03f798b, type: 3}
+      propertyPath: bossPrefab
+      value: 
+      objectReference: {fileID: 8369125955876776877, guid: a4ca0d7c3110acb44a5a42a69bbdaa40, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

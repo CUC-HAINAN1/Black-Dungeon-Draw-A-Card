@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/UI/DefeatMenu.meta
-<<<<<<< HEAD
 guid: 871b90a0c5f5e9e458e0c814db089e1b
-=======
-guid: 1c35ef11be6bc974485fbdf55b84c522
->>>>>>> reboss
-========
-guid: 618e250a67e02974c9a2fc706aa84698
->>>>>>>> bossline:Assets/Resources/boss/bossanimation/bossdown.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -47,10 +47,11 @@ public class BossHealth : MonoBehaviour
         }
     }
 
-    void Die()
-    {
+    void Die() {
+
         // 死亡动画或效果
+        EventManager.Instance.TriggerEvent("BossDied");
         Destroy(gameObject);
-        Debug.Log("Boss Defeated!");
+
     }
 }

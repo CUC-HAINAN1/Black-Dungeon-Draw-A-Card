@@ -47,8 +47,8 @@ MonoBehaviour:
   _MaxHealth: 100
   GetDamageInvincibleDuration: 1
   _MaxMana: 15
-  _manaRegenInterval: 1.25
-  _manaRegenBase: 2
+  _manaRegenInterval: 1
+  _manaRegenBase: 3
   _MaxShield: 25
   _MaxAttackPowerInCreased: 100
   _currentHealth: 0

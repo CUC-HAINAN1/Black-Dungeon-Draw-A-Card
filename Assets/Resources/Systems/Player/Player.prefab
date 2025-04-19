@@ -349,6 +349,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Berserk
       objectReference: {fileID: 0}
+    - target: {fileID: 5788142196099635369, guid: 2361e4e7088b3408a90bcf176cd6ab97, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -410,6 +414,10 @@ PrefabInstance:
     - target: {fileID: 8023193922829336785, guid: 37c36bbd640c843b28bf2ed4bab3fc86, type: 3}
       propertyPath: m_Name
       value: Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023193922829336785, guid: 37c36bbd640c843b28bf2ed4bab3fc86, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9063198207140068833, guid: 37c36bbd640c843b28bf2ed4bab3fc86, type: 3}
       propertyPath: animator

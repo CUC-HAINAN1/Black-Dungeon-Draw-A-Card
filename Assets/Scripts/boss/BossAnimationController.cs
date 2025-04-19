@@ -9,12 +9,12 @@ public class BossAnimationController : MonoBehaviour
     private static readonly int AttackType = Animator.StringToHash("AttackType");
     private static readonly int AOEStep = Animator.StringToHash("AOEStep");
     private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
-
+    
     void Start()
     {
         animator = GetComponent<Animator>();
         bossAI = GetComponent<BossAI>();
-        
+
         // 注册AOE阶段切换事件
         bossAI.OnAOEPhaseChanged += HandleAOEPhase;
     }
@@ -33,7 +33,7 @@ public class BossAnimationController : MonoBehaviour
     {
         animator.SetInteger(AttackType, type);
         animator.SetBool(IsAttacking, true);
-        
+
         // 根据类型设置持续时间
         switch (type)
         {
@@ -51,7 +51,7 @@ public class BossAnimationController : MonoBehaviour
     {
         animator.SetInteger(AOEStep, phase);
         animator.SetBool(IsAttacking, true);
-        
+
         if (phase == 2) // 下砸完成后重置
         {
             StartCoroutine(ResetAfter(1.0f));

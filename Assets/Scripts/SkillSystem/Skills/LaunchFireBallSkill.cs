@@ -82,21 +82,32 @@ public class FireballMover : MonoBehaviour {
     // 用 OnTriggerEnter 进行碰撞检测
     private void OnTriggerEnter2D(Collider2D other) {
 
-        Debug.Log(other.name);
+        CustomLogger.Log(other.name);
 
         if(other.CompareTag("Player") || other.CompareTag("Floor") ||
             other.CompareTag("Bullet") || other.CompareTag("Room") ||
-            other.CompareTag("BirthRoom")
+            other.CompareTag("BirthRoom") || other.CompareTag("HitBox") 
             )
             return;
 
-        if(other.CompareTag("Enemy")) {
+        if (other.CompareTag("Enemy")) {
 
             EnemyProperty enemy = other.GetComponent<EnemyProperty>();
 
             if(enemy != null) {
 
                 enemy.TakeDamage(damage);
+
+            }
+
+        }
+        if (other.CompareTag("Boss")) {
+
+            BossHealth boss = other.GetComponent<BossHealth>();
+
+            if(boss != null) {
+
+                boss.TakeDamage(damage);
 
             }
 

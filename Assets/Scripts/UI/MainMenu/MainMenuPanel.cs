@@ -31,14 +31,14 @@ public class MainMenuPanel : MonoBehaviour {
 
     private void OnStartClicked() {
 
-        Debug.Log("开始游戏！");
-        SceneTransitionHelper.Instance.LoadSceneWithTransition("SangTestScene");
+        CustomLogger.Log("开始游戏！");
+        SceneTransitionHelper.Instance.LoadSceneWithTransition("LevelScene");
 
     }
 
     private void OnSettingClicked() {
 
-        Debug.Log("打开设置");
+        CustomLogger.Log("打开设置");
         if (settingPanelInstance != null)
             settingPanelInstance.SetActive(true);
 
@@ -46,7 +46,7 @@ public class MainMenuPanel : MonoBehaviour {
 
     private void OnExitClicked() {
 
-        Debug.Log("退出游戏！");
+        CustomLogger.Log("退出游戏！");
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

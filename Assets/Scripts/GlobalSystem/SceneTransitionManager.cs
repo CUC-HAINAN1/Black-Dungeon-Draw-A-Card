@@ -7,6 +7,7 @@ public class SceneTransitionManager : MonoBehaviour {
     public float delayBeforeSceneLoad = 2f;
     private bool hasTriggeredSceneLoad = false;
     public CardDataBase lightningCard;
+    public GameObject bossPrefab;
 
     public static SceneTransitionManager Instance { get; private set; }
 
@@ -44,18 +45,39 @@ public class SceneTransitionManager : MonoBehaviour {
     private void OnPlayerDied(object eventData) {
 
         TriggerSceneSwitch("DefeatScene", () => {
-            Debug.Log("玩家死亡 - 即将切换到死亡场景");
+            CustomLogger.Log("玩家死亡 - 即将切换到死亡场景");
 
         });
 
     }
-    
+
     private void OnBossDied(object eventData) {
 
         lightningCard.Owned = true;
+        var attribute = bossPrefab.GetComponent<BossAI>();
+
+
+        if (attribute.skillCooldown >= 1) {
+
+            attribute.skillCooldown -= 0.2f;
+
+        }
+        if (attribute.moveSpeed <= 20) {
+
+            attribute.moveSpeed += 2;
+
+        }
+
+        var health = bossPrefab.GetComponent<BossHealth>();
+
+        if (health.maxHealth < 3001) {
+
+            health.maxHealth += 500;
+
+        }
 
         TriggerSceneSwitch("CompleteScene", () => {
-            Debug.Log("Boss 死亡 - 即将切换到通关场景");
+            CustomLogger.Log("Boss 死亡 - 即将切换到通关场景");
 
         });
 

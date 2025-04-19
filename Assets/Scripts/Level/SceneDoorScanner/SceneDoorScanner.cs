@@ -25,12 +25,18 @@ public class SceneDoorScanner : MonoBehaviour
 
     public void SetAllDoorsOpenState(bool open)
     {
-        foreach (var door in allDoors)
-        {
-            if (door == null) continue;
 
-            if (open) door.OpenDoor();
-            else door.CloseDoor();
+        if (allDoors == null)
+            return;
+
+        foreach (var door in allDoors) {
+            if (door == null)
+                continue;
+
+            if (open)
+                door.OpenDoor();
+            else
+                door.CloseDoor();
 
             door.UpdateNavigationGraph(open ? door.upDoor : door.downDoor);
         }

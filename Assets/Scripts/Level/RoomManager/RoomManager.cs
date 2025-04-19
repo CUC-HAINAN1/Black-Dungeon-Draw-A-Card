@@ -40,16 +40,16 @@ public class RoomManager : MonoBehaviour
     void DebugSpawnerStatus()
     {
         if (enemySpawner == null)
-            Debug.LogError("EnemySpawnerδ��");
+            CustomLogger.LogError("EnemySpawnerδ��");
         else
-            Debug.Log($"�Ѱ�������������{enemySpawner.spawnPoints.Length}�����ɵ�");
+            CustomLogger.Log($"�Ѱ�������������{enemySpawner.spawnPoints.Length}�����ɵ�");
     }
 
 
     void SpawnChest()
     {
 
-        Debug.LogWarning($"宝箱生成中");
+        CustomLogger.Log($"宝箱生成中");
 
         // 防止重复生成
         if (chestSpawned || chestPrefab == null || chestSpawnPoints.Length == 0)
@@ -63,7 +63,7 @@ public class RoomManager : MonoBehaviour
         //Collider2D hit = Physics2D.OverlapCircle(spawnPoint.position, 0.5f);
             Instantiate(chestPrefab, spawnPoint.position, Quaternion.identity);
             chestSpawned = true;
-            Debug.LogWarning($"宝箱生成成功！位置：{spawnPoint.position}");
+            CustomLogger.Log($"宝箱生成成功！位置：{spawnPoint.position}");
 
     }
     void AutoFindDoors()
@@ -160,13 +160,13 @@ public class RoomManager : MonoBehaviour
         hasActiveEnemies = false;
         OpenAllDoors();
         // 触发宝箱显示事件
-        Debug.LogWarning("即将触发OnRoomCleared事件");
+        CustomLogger.LogWarning("即将触发OnRoomCleared事件");
         OnRoomCleared?.Invoke(); // 新增触发代码
         // 添加调试日志
         // ����ȫ��ϵͳ���£������ͼ�е�2000���귶Χ��
         GlobalRoomSystem.UpdateConnectedRooms(transform.position * 1000f);
 
-        Debug.LogWarning("即将触发宝箱生成");
+        CustomLogger.LogWarning("即将触发宝箱生成");
 
         SpawnChest(); // 添加生成调用
     }
@@ -203,8 +203,7 @@ public class RoomManager : MonoBehaviour
         StartCoroutine(CombatProcess());
     }
 
-    private IEnumerator CombatProcess()
-    {
+    private IEnumerator CombatProcess() {
         enemySpawner.StartSpawning();
 
         // 先取消旧订阅
@@ -221,6 +220,7 @@ public class RoomManager : MonoBehaviour
         }
 
         EndBattle();
+        PlayerAttributes.Instance.Heal(100);
     }
 
     private void EndBattle()

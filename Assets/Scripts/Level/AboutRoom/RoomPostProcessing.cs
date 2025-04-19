@@ -12,7 +12,7 @@ public class RoomPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D
     {
         if (level == null || level.RoomInstances == null)
         {
-            Debug.LogError("Invalid level data");
+            CustomLogger.LogError("Invalid level data");
             return;
         }
 
@@ -22,7 +22,7 @@ public class RoomPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D
         {
             if (roomInstance?.RoomTemplateInstance == null)
             {
-                Debug.LogWarning("Skipping invalid room instance");
+                CustomLogger.LogWarning("Skipping invalid room instance");
                 continue;
             }
 
@@ -37,7 +37,7 @@ public class RoomPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D
 
         if (floorTilemap == null)
         {
-            Debug.LogError($"Floor tilemap not found in room: {roomTemplate.name}");
+            CustomLogger.LogError($"Floor tilemap not found in room: {roomTemplate.name}");
             return;
         }
 
@@ -52,7 +52,7 @@ public class RoomPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D
         {
             rb = floor.AddComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Static; // ȷ������BodyType
-            Debug.LogWarning($"�Զ�Ϊ {floor.name} ������Rigidbody2D");
+            CustomLogger.LogWarning($"�Զ�Ϊ {floor.name} ������Rigidbody2D");
         }
 
         // ȷ����Ҫ���������

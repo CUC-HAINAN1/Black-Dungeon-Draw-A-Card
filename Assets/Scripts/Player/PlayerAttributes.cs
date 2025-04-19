@@ -207,7 +207,7 @@ public class PlayerAttributes : MonoBehaviour {
 
             else if (previous == 0 && _currentAttackPowerInCreased > 0) {
 
-                Debug.Log("Setpower!");
+                CustomLogger.Log("Setpower!");
                 IsAttackIncreased = true;
 
             }
@@ -239,10 +239,10 @@ public class PlayerAttributes : MonoBehaviour {
                     );
 
                     Mana = 0;
+                    AttackPowerIncreased = 0;
                     HasShield = false;
                     IsInCombat = false;
                     IsInvincible = false;
-
 
                 }
 

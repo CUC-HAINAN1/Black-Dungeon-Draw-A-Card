@@ -15,7 +15,7 @@ public class IncreaseAttackPowerSkill : SkillBase {
     private IEnumerator IncreaseAttackRoutine(int amount, float duration) {
 
         PlayerAttributes playerAttributes = PlayerAttributes.Instance;
-        Debug.Log("Increasepower!");
+        CustomLogger.Log("Increasepower!");
         playerAttributes.IncreaseAttackPower(amount);
 
         // 等待狂暴持续时间

@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 7aa23621c2c78984ab0a7439cd08bec7
-=======
-<<<<<<<< HEAD:Assets/Scripts/GlobalSystem.meta
-guid: fb31e51d6a4c5064f91a6a51207c5c4b
-========
-guid: 7aa23621c2c78984ab0a7439cd08bec7
->>>>>>>> bossline:Assets/Resources/boss/bossanimation.meta
->>>>>>> reboss
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

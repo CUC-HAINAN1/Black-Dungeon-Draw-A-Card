@@ -18,14 +18,14 @@ public class DeathMenuPanel : MonoBehaviour {
 
     private void OnStartClicked() {
 
-        Debug.Log("再次开始游戏！");
-        SceneTransitionHelper.Instance.LoadSceneWithTransition("SangTestScene");
+        CustomLogger.Log("再次开始游戏！");
+        SceneTransitionHelper.Instance.LoadSceneWithTransition("LevelScene");
 
     }
 
     private void OnReturnClicked() {
 
-        Debug.Log("回到主菜单！");
+        CustomLogger.Log("回到主菜单！");
         SceneTransitionHelper.Instance.LoadSceneWithTransition("MainMenuScene");
 
     }

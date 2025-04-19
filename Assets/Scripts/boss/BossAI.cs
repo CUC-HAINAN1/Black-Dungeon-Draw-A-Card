@@ -6,23 +6,37 @@ public class BossAI : MonoBehaviour
     [Header("距离设置")]
     public float meleeRange = 3f;
     public float rangedRange = 8f;
+    public float aoeRadius = 3f;
 
     [Header("技能设置")]
-    public float skillCooldown = 2f;
+    public float skillCooldown = 4f;
     public GameObject projectilePrefab;
     public GameObject aoeIndicator;
+    public GameObject aoeEffect;
     public float dashSpeed = 15f;
     public float dashDuration = 0.3f;
 
-    public int damage=10;
+    public int damage = 10;
 
     private Transform player;
     private bool isCooldown;
     private Rigidbody2D rb;
 
-    
     public event System.Action<int> OnAOEPhaseChanged;
     public bool IsSkillActive => isCooldown;
+
+    [Header("随机移动设置")]
+    public float moveSpeed = 2f;
+    public float moveDuration = 1f;
+    public float idleDuration = 2f;
+
+    [Range(0f, 1f)]
+    public float moveChance = 0.4f; // 每次判断有 40% 概率移动
+
+    private Vector2 moveDirection;
+    private float moveTimer;
+    private float idleTimer;
+    private bool isMoving = false;
 
     void Start()
     {
@@ -30,26 +44,52 @@ public class BossAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        if (!isCooldown)
-        {
+    void Update() {
+        if (!isCooldown) {
             float distance = Vector2.Distance(transform.position, player.position);
 
-            if (distance <= meleeRange)
-            {
+            if (distance <= meleeRange) {
                 PerformMeleeAttack();
             }
-            else if (distance <= rangedRange)
-            {
+            else if (distance <= rangedRange) {
                 PerformRangedAttack();
             }
-            else
-            {
+            else {
                 PerformAOEAttack();
             }
 
             StartCoroutine(SkillCooldown());
+        }
+
+        if (isMoving)
+        {
+            rb.velocity = moveDirection * moveSpeed;
+            moveTimer -= Time.deltaTime;
+            if (moveTimer <= 0f)
+            {
+                isMoving = false;
+                rb.velocity = Vector2.zero;
+                idleTimer = idleDuration;
+            }
+        }
+        else
+        {
+            idleTimer -= Time.deltaTime;
+            if (idleTimer <= 0f)
+            {
+                if (Random.value < moveChance)
+                {
+                    // 开始新一轮移动
+                    moveDirection = Random.insideUnitCircle.normalized;
+                    isMoving = true;
+                    moveTimer = moveDuration;
+                }
+                else
+                {
+                    // 再等一会再试
+                    idleTimer = idleDuration;
+                }
+            }
         }
     }
 
@@ -61,7 +101,7 @@ public class BossAI : MonoBehaviour
     }
 
     void PerformMeleeAttack()
-    {   
+    {
         GetComponent<BossAnimationController>().PlayAttackAnimation(1);
         // 冲刺攻击
         Vector2 dashDirection = (player.position - transform.position).normalized;
@@ -81,14 +121,16 @@ public class BossAI : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    void PerformRangedAttack()
-    {   
+    void PerformRangedAttack() {
+
         GetComponent<BossAnimationController>().PlayAttackAnimation(2);
         // 发射远程弹幕
         Vector2 shootDirection = (player.position - transform.position).normalized;
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        
         projectile.GetComponent<Rigidbody2D>().velocity = shootDirection * 10f;
         Destroy(projectile, 3f);
+
     }
 
     void PerformAOEAttack()
@@ -97,27 +139,49 @@ public class BossAI : MonoBehaviour
         StartCoroutine(AOEAttackRoutine());
     }
 
-    private System.Collections.IEnumerator AOEAttackRoutine()
-    {    
+    private System.Collections.IEnumerator AOEAttackRoutine() {
         OnAOEPhaseChanged?.Invoke(1);
         // 显示预警区域
-        GameObject indicator = Instantiate(aoeIndicator, player.position, Quaternion.identity);
+
+        Vector3 pos = player.position;
+
+        GameObject indicator = Instantiate(aoeIndicator, pos, Quaternion.identity);
+
+        SpriteRenderer sr = indicator.GetComponentInChildren<SpriteRenderer>();
+        float spriteWorldSize = sr.sprite.bounds.size.x;
+
+        float targetScale = aoeRadius * 2 / spriteWorldSize;
+        indicator.transform.localScale = new Vector3(targetScale, targetScale, 1f);
+
         yield return new WaitForSeconds(1.5f);
         Destroy(indicator);
 
+        Vector3 effectPos = pos;
+        effectPos.y += 2.5f;
 
-        yield return new WaitForSeconds(1.5f);
+        GameObject effect = Instantiate(aoeEffect, effectPos, Quaternion.identity);
+        effect.transform.localScale = new Vector3(targetScale / 2.5f, targetScale / 2.5f, 1f);
+
+        yield return new WaitForSeconds(0.25f);
+
+
         OnAOEPhaseChanged?.Invoke(2); // 下砸阶段
         // 实际伤害判定
-        float aoeRadius = 4f;
-        Collider2D[] hits = Physics2D.OverlapCircleAll(player.position, aoeRadius);
-        foreach (Collider2D hit in hits)
-        {
-            if (hit.CompareTag("Player"))
-            {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(pos, aoeRadius);
+
+        foreach (Collider2D hit in hits) {
+
+            if (hit.CompareTag("Player")) {
+
                 // 对玩家造成伤害
                 PlayerAttributes.Instance.TakeDamage(damage);
+
             }
+
         }
+
+        yield return new WaitForSeconds(0.5f);
+        Destroy(effect);
+
     }
 }

@@ -11,6 +11,9 @@ TagManager:
   - Bullet
   - Effect
   - Room
+  - Waypoint
+  - Boss
+  - HitBox
   layers:
   - Default
   - TransparentFX
