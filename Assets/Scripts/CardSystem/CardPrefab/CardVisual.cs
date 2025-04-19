@@ -87,6 +87,7 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private bool ShouldIgnoreHover() {
 
         return CardQueueSystem.Instance == null ||
+                CardStateManager.Instance.GetCardState(gameObject) == null ||
                CardStateManager.Instance.GetCardState(gameObject).IsDragging ||
                CardStateManager.Instance.GetCardState(gameObject).IsUsing ||
                CardQueueSystem.Instance.IsAnyCardDragging ||
