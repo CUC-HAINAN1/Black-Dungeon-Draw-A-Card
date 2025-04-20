@@ -7,7 +7,7 @@ public class SceneTransitionManager : MonoBehaviour {
     public float delayBeforeSceneLoad = 2f;
     private bool hasTriggeredSceneLoad = false;
     public CardDataBase lightningCard;
-    public GameObject bossPrefab;
+    public BossData bossData;
 
     public static SceneTransitionManager Instance { get; private set; }
 
@@ -49,43 +49,48 @@ public class SceneTransitionManager : MonoBehaviour {
 
         });
 
+        BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
+        
     }
 
     private void OnBossDied(object eventData) {
 
         lightningCard.Owned = true;
-        var attribute = bossPrefab.GetComponent<BossAI>();
-
-
-        if (attribute.skillCooldown >= 1) {
-
-            attribute.skillCooldown -= 0.2f;
-
-        }
-        if (attribute.moveSpeed <= 20) {
-
-            attribute.moveSpeed += 2;
-
-        }
-
-        var health = bossPrefab.GetComponent<BossHealth>();
-
-        if (health.maxHealth < 3001) {
-
-            health.maxHealth += 500;
-
-        }
+        UpdateBossData();
 
         TriggerSceneSwitch("CompleteScene", () => {
             CustomLogger.Log("Boss 死亡 - 即将切换到通关场景");
 
         });
 
+        BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
+
+    }
+    private void UpdateBossData() {
+
+        if (bossData.skillCooldown >= 1) {
+
+            bossData.skillCooldown -= 0.2f;
+
+        }
+        if (bossData.moveSpeed <= 20) {
+
+            bossData.moveSpeed += 2;
+
+        }
+
+        if (bossData.maxHealth < 5001) {
+
+            bossData.maxHealth += 750;
+
+        }
+
     }
 
     private void TriggerSceneSwitch(string sceneName, System.Action beforeLoadAction = null) {
 
-        if (hasTriggeredSceneLoad) return;
+        if (hasTriggeredSceneLoad)
+            return;
 
         hasTriggeredSceneLoad = true;
         StartCoroutine(DelayThenLoadScene(sceneName, beforeLoadAction));
