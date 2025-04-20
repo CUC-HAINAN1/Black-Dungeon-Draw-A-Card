@@ -10,7 +10,7 @@ public class EnemyStateMachine : MonoBehaviour
     [SerializeField] private float attackRange = 2f;
     // 通过属性封装私有字段（推荐方式）
     public float AttackRange => attackRange;
-    
+
     [Header("Movement Settings")]
     [SerializeField] private float patrolSpeed = 2f;
     [SerializeField] private float chaseSpeed = 4f;
@@ -62,14 +62,15 @@ public class EnemyStateMachine : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         // 状态切换逻辑
-        if (distanceToPlayer <= chaseRange)
-        {
+        if (distanceToPlayer <= chaseRange) {
             EnterChaseState();
-            if (distanceToPlayer <= attackRange) TriggerAttack();
+            if (distanceToPlayer <= attackRange)
+                TriggerAttack();
+
         }
-        else
-        {
+        else {
             EnterPatrolState();
+
         }
 
         UpdateAnimations();

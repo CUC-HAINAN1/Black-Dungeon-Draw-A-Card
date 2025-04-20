@@ -43,10 +43,10 @@ public class SceneAIManager : MonoBehaviour
     // ɨ��Э��
     IEnumerator ScanEnemiesRoutine()
     {
-        while (true)
-        {
+        while (true) {
             yield return new WaitForSeconds(scanInterval);
             ProcessExistingEnemies();
+
         }
     }
 
