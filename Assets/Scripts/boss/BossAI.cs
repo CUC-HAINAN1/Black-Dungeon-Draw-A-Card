@@ -9,14 +9,14 @@ public class BossAI : MonoBehaviour
     public float aoeRadius = 3f;
 
     [Header("技能设置")]
-    public float skillCooldown = 4f;
+    public float skillCooldown;
     public GameObject projectilePrefab;
     public GameObject aoeIndicator;
     public GameObject aoeEffect;
     public float dashSpeed = 15f;
     public float dashDuration = 0.3f;
 
-    public int damage = 10;
+    public int damage = 20;
 
     private Transform player;
     private bool isCooldown;
@@ -26,7 +26,7 @@ public class BossAI : MonoBehaviour
     public bool IsSkillActive => isCooldown;
 
     [Header("随机移动设置")]
-    public float moveSpeed = 2f;
+    public float moveSpeed;
     public float moveDuration = 1f;
     public float idleDuration = 2f;
 
@@ -38,10 +38,16 @@ public class BossAI : MonoBehaviour
     private float idleTimer;
     private bool isMoving = false;
 
-    void Start()
-    {
+    [Header("Boss数据")]
+    [SerializeField] public BossData bossData;
+
+    void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+
+        skillCooldown = bossData.skillCooldown;
+        moveSpeed = bossData.moveSpeed;
+
     }
 
     void Update() {
@@ -127,7 +133,7 @@ public class BossAI : MonoBehaviour
         // 发射远程弹幕
         Vector2 shootDirection = (player.position - transform.position).normalized;
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        
+
         projectile.GetComponent<Rigidbody2D>().velocity = shootDirection * 10f;
         Destroy(projectile, 3f);
 
