@@ -1,4 +1,5 @@
 using UnityEngine;
+using Pathfinding;
 
 public class SceneDoorScanner : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class SceneDoorScanner : MonoBehaviour
 
     void InitializeDoors()
     {
+
+        AstarPath.active.Scan();
+
         allDoors = FindObjectsOfType<DoorStateController>();
         foreach (var door in allDoors)
         {

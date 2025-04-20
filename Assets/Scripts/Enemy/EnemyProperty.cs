@@ -26,7 +26,7 @@ public class EnemyProperty : MonoBehaviour
     [SerializeField] private float attackRadius = 1f; // 攻击半径
     [SerializeField] private LayerMask playerLayer; // 玩家层级
     [SerializeField] private EnemyAttackType attackType = EnemyAttackType.Melee;
-    [SerializeField] private float detectionRange = 5f;    // 追击范围
+    [SerializeField] private float detectionRange = 50f;    // 追击范围
     [SerializeField] private float attackRange = 2f;       // 近战攻击范围
     [SerializeField] private float projectileSpeed = 10f;   // 远程投射速度
     [SerializeField] private Transform weaponPivot;         // 武器旋转支点
@@ -49,6 +49,8 @@ public class EnemyProperty : MonoBehaviour
     [SerializeField][Range(0.1f, 1f)] private float pathRefreshRate = 0.5f; // 新增：路径刷新频率
     [SerializeField] private float predictionFactor = 0.3f;   // 新增：玩家移动预测系数
     [SerializeField] private float chaseStoppingDistance = 0.5f; // 新增：追击停止距离
+    [SerializeField] private bool isChasing = false;
+    [SerializeField] private bool isPatrolling;
 
     [Header("远程攻击配置")]
     public GameObject arrowPrefab;
@@ -134,7 +136,6 @@ public class EnemyProperty : MonoBehaviour
     private int currentHealth;
     private float lastAttackTime;
     private int currentPatrolIndex;
-    private bool isPatrolling;
 
     // 血条UI组件
     private EnemyHealthUI healthUI;
@@ -277,9 +278,9 @@ public class EnemyProperty : MonoBehaviour
 
         effectRenderer.enabled = loopAttackEffect;
     }
-    void Update()
-    { // 根据移动状态更新参数
-        if (!IsAlive() || playerTransform == null) return; // 原条件写反了
+    void Update() { // 根据移动状态更新参数
+        if (!IsAlive() || playerTransform == null)
+            return; // 原条件写反了
 
         UpdateAIState();
         HandleWeaponRotation();
@@ -288,14 +289,14 @@ public class EnemyProperty : MonoBehaviour
         bool isMoving = GetComponent<AIPath>().velocity.magnitude > 0.1f;
         animator.SetBool("IsMoving", isMoving);
 
-        if (isPatrolling)
-        {
+        if (isPatrolling) {
             PatrolMovement();
         }
         // 动画混合控制
         HandleAnimationBlending();
 
         UpdateMovement(); // 新增此行
+
     }
 
     private void HandleAnimationBlending()
@@ -626,7 +627,6 @@ public class EnemyProperty : MonoBehaviour
 #if UNITY_EDITOR
     void OnValidate()
     {
-
         // 自动查找武器节点
         if (shootPoint == null)
         {
@@ -637,9 +637,10 @@ public class EnemyProperty : MonoBehaviour
 #endif
     public void PerformRangedAttack()
     {
+
+        if (!canAttack) return;
         // 输入验证
-        if (arrowPrefab == null)
-        {
+        if (arrowPrefab == null) {
             CustomLogger.LogError("箭矢预制体未分配!");
             return;
         }
@@ -708,13 +709,6 @@ public class EnemyProperty : MonoBehaviour
         canAttack = false;
         CustomLogger.Log($"攻击冷却开始 | 持续时间: {attackInterval}秒");
         // 添加冷却计时可视化
-
-        float timer = 0;
-        while (timer < attackInterval)
-        {
-            timer += Time.deltaTime;
-            yield return null;
-        }
 
         yield return new WaitForSeconds(attackInterval);
         canAttack = true;
@@ -836,19 +830,9 @@ public class EnemyProperty : MonoBehaviour
 
     }
 
-    private void PatrolMovement()
-    {
+    private void PatrolMovement() {
         Transform target = patrolPoints[currentPatrolIndex];
-        transform.position = Vector2.MoveTowards(
-            transform.position,
-            target.position,
-            patrolSpeed * Time.deltaTime
-        );
-
-        if (Vector2.Distance(transform.position, target.position) < 0.1f)
-        {
-            StartCoroutine(WaitAtPoint());
-        }
+        
     }
     // 在动画关键帧调用
     public void OnAttackAnimationEvent()

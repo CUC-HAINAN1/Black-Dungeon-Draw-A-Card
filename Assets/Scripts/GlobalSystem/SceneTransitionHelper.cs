@@ -58,6 +58,8 @@ public class SceneTransitionHelper : MonoBehaviour {
         //淡出
         yield return StartCoroutine(FadeOut());
 
+
+
         //加载新场景
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneName);
@@ -67,7 +69,7 @@ public class SceneTransitionHelper : MonoBehaviour {
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
 
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        StartCoroutine(FadeIn());
+        StartCoroutine(FadeInWithDelay());
 
     }
 
@@ -90,7 +92,9 @@ public class SceneTransitionHelper : MonoBehaviour {
 
     }
 
-    private IEnumerator FadeIn() {
+    private IEnumerator FadeInWithDelay() {
+
+        yield return new WaitForSeconds(0.5f);
 
         float time = 0f;
         Color c = transitionImage.color;

@@ -311,7 +311,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -10.795, y: -5.658, z: 0.057002354}
-  m_LocalScale: {x: 3.0657, y: 3.4741, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8976071589434326218}
@@ -403,11 +403,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46186f890eff6f14b8df073d088ac24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 1000
   currentHealth: 0
   healthSlider: {fileID: 5652170502255773190}
   flashDuration: 0.1
   flashColor: {r: 1, g: 0, b: 0, a: 1}
+  bossData: {fileID: 11400000, guid: de275d17b3afc40c3b52b098a671eb4d, type: 2}
 --- !u!114 &7180524702480217848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,11 +430,12 @@ MonoBehaviour:
   aoeEffect: {fileID: 8967183998196460794, guid: b76d2221b75404f0aaa45849a9e255e7, type: 3}
   dashSpeed: 15
   dashDuration: 0.3
-  damage: 10
+  damage: 20
   moveSpeed: 8
   moveDuration: 1
   idleDuration: 2
   moveChance: 0.6
+  bossData: {fileID: 11400000, guid: de275d17b3afc40c3b52b098a671eb4d, type: 2}
 --- !u!114 &5703017854127917305
 MonoBehaviour:
   m_ObjectHideFlags: 0

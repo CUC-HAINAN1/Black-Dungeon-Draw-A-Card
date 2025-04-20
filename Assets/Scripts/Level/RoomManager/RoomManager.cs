@@ -190,9 +190,9 @@ public class RoomManager : MonoBehaviour
         );
     }
     // ��ԭ�������������·���
-    private void StartBattle()
-    {
-        if (!isCombatRoom || isCleared) return;
+    private void StartBattle() {
+        if (!isCombatRoom || isCleared)
+            return;
 
         // �رձ�����������
         //SceneDoorScanner.Instance.ToggleRoomDoors(this, false);
@@ -201,6 +201,13 @@ public class RoomManager : MonoBehaviour
         SceneDoorScanner.Instance.SetAllDoorsOpenState(false);
 
         StartCoroutine(CombatProcess());
+
+        if (GameObject.FindGameObjectsWithTag("Boss").Length == 0)
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.battleBGM);
+
+        else
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.BossBGM);
+
     }
 
     private IEnumerator CombatProcess() {
@@ -223,13 +230,14 @@ public class RoomManager : MonoBehaviour
         PlayerAttributes.Instance.Heal(100);
     }
 
-    private void EndBattle()
-    {
+    private void EndBattle() {
         isCleared = true;
         //SceneDoorScanner.Instance.ToggleRoomDoors(this, true);
 
         // ����ȫ�����ţ���������ѡ��
         SceneDoorScanner.Instance.SetAllDoorsOpenState(true);
+        BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
+
     }
 
     // �޸�ԭ��OnTriggerEnter2D

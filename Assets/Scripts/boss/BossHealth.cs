@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class BossHealth : MonoBehaviour
 {
     [Header("血量设置")]
-    public int maxHealth = 500;
+    public int maxHealth;
     public int currentHealth;
     public Slider healthSlider;
     public float flashDuration = 0.1f;
@@ -12,9 +12,14 @@ public class BossHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
+    [Header("Boss数据")]
+    [SerializeField] private BossData bossData;
+
     void Start()
     {
+        maxHealth = bossData.maxHealth;
         currentHealth = maxHealth;
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         UpdateHealthUI();

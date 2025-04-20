@@ -11,6 +11,9 @@ public class DoorStateController : MonoBehaviour {
     public GameObject upDoor;   // ����UpDoor�Ӷ���
     public GameObject downDoor; // ����DownDoor�Ӷ���
 
+    public GameObject FloorTrigger1;
+    public GameObject FloorTrigger2;
+
     [Header("��ʼ״̬")]
     public bool startOpen = true;
 
@@ -69,14 +72,20 @@ public class DoorStateController : MonoBehaviour {
     }
     // �ⲿ���ã�����
     public void OpenDoor() {
+
+        if (!FloorTrigger1.GetComponent<FloorDetector>().IsFloorExisting ||
+            !FloorTrigger2.GetComponent<FloorDetector>().IsFloorExisting)
+            return;
+
         try {
-            physicsCollider.isTrigger = true;
-            SetDoorState(true);
-            UpdateNavigationGraph(upDoor);
-        }
-        catch (System.Exception e) {
-            CustomLogger.LogError($"����ʧ�� {name}: {e.Message}");
-        }
+                physicsCollider.isTrigger = true;
+                SetDoorState(true);
+                UpdateNavigationGraph(upDoor);
+            }
+            catch (System.Exception e) {
+                CustomLogger.LogError($"����ʧ�� {name}: {e.Message}");
+            }
+
     }
 
     #region �ڲ�ʵ��
@@ -92,11 +101,28 @@ public class DoorStateController : MonoBehaviour {
     }
 
     private void InitializeNormalDoor() {
+
+        if (!FloorTrigger1.GetComponent<FloorDetector>().IsFloorExisting ||
+            !FloorTrigger2.GetComponent<FloorDetector>().IsFloorExisting) {
+
+            CustomLogger.LogWarning("No floors, keep the door close");
+
+            SetDoorState(false);
+            ToggleColliders(downDoor, enable: true);
+
+            return;
+
+        }
+
         SetDoorState(startOpen);
         ToggleColliders(downDoor, enable: !startOpen);
+
     }
 
     private void SetDoorState(bool open) {
+
+        Debug.LogWarning($"[{name}] SetDoorState called. Open = {open}");
+
         upDoor.SetActive(open);
         downDoor.SetActive(!open);
     }
@@ -120,8 +146,10 @@ public class DoorStateController : MonoBehaviour {
         }
     }
     public void InitDoorState() {
+
         AlignWithEdgar();
-        SetDoorState(startOpen);
+        InitializeNormalDoor();
+
     }
     public void ForceInitialize() {
         if (upDoor == null || downDoor == null) {

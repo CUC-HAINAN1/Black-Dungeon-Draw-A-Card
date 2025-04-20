@@ -71,9 +71,11 @@ public class EnemySpawner : MonoBehaviour
 
                 CustomLogger.LogWarning(enemy.tag);
 
-                if (enemy.CompareTag("Boss"))
+                if (enemy.CompareTag("Boss")) {
+
                     continue;
 
+                }
                 var property = enemy.GetComponent<EnemyProperty>();
                 property.OnDeath.AddListener(HandleEnemyDeath);
                 activeEnemies.Add(property);

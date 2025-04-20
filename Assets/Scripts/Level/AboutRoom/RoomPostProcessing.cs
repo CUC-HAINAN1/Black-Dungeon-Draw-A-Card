@@ -60,10 +60,17 @@ public class RoomPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D
         rigidbody.bodyType = RigidbodyType2D.Static;
 
 
-        /* var compositeCollider = floor.GetComponent<CompositeCollider2D>() ?? floor.AddComponent<CompositeCollider2D>();
+        var compositeCollider = floor.GetComponent<CompositeCollider2D>();
+
+        if (compositeCollider == null) {
+
+            compositeCollider = floor.AddComponent<CompositeCollider2D>();
+            
+        }
+
         compositeCollider.geometryType = CompositeCollider2D.GeometryType.Polygons;
         compositeCollider.isTrigger = true;
-        compositeCollider.generationType = CompositeCollider2D.GenerationType.Synchronous; */
+        compositeCollider.generationType = CompositeCollider2D.GenerationType.Synchronous;
     }
 
     public List<RoomInstanceGrid2D> GetRoomInstances() => roomInstances;
