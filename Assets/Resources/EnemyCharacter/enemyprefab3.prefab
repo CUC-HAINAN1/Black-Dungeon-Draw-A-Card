@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2971611185721001686}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: ProjectileSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7258074428513927462}
   - component: {fileID: 6341875758246860010}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,9 +125,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2762389362316871388}
     m_Modifications:
+    - target: {fileID: 659601610687638277, guid: 202c8f9fbb13bea4cb173a7a1208cad9, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1234219286641554050, guid: 202c8f9fbb13bea4cb173a7a1208cad9, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1864743749012095983, guid: 202c8f9fbb13bea4cb173a7a1208cad9, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864743749012095983, guid: 202c8f9fbb13bea4cb173a7a1208cad9, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3263225789072054659, guid: 202c8f9fbb13bea4cb173a7a1208cad9, type: 3}
       propertyPath: m_Pivot.x
@@ -217,6 +229,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6354184548687082845, guid: 202c8f9fbb13bea4cb173a7a1208cad9, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232609230535668075, guid: 202c8f9fbb13bea4cb173a7a1208cad9, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -241,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
       propertyPath: m_TagString
@@ -399,6 +419,8 @@ MonoBehaviour:
   pathRefreshRate: 0.5
   predictionFactor: 0.3
   chaseStoppingDistance: 0.5
+  isChasing: 0
+  isPatrolling: 0
   arrowPrefab: {fileID: 2625410062066113412, guid: 7d35aacc17c14d6419eb799876561f11, type: 3}
   shootPoint: {fileID: 2971611185721001686}
   obstacleLayers:
@@ -656,6 +678,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArrowProjectile
       objectReference: {fileID: 0}
+    - target: {fileID: 4339904798315641497, guid: 9eec554fc30b29143aabb1270a6830bc, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6029793047914799507, guid: 9eec554fc30b29143aabb1270a6830bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.061
@@ -667,6 +693,10 @@ PrefabInstance:
     - target: {fileID: 7986969032279538965, guid: 9eec554fc30b29143aabb1270a6830bc, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175325060304674297, guid: 9eec554fc30b29143aabb1270a6830bc, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -694,6 +724,10 @@ PrefabInstance:
     - target: {fileID: -2253911629886400664, guid: e07e10cb000381249a3597c7730e021e, type: 3}
       propertyPath: m_Name
       value: weapons0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2253911629886400664, guid: e07e10cb000381249a3597c7730e021e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: e07e10cb000381249a3597c7730e021e, type: 3}
       propertyPath: m_SortingOrder

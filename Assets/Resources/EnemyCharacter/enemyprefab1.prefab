@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3119282476523643344}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,13 +39,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 241814715037845062, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 299714469029452843, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1122881847811721355, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: radius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122881847811721355, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: maxSpeed
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122881847811721355, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: maxAcceleration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122881847811721355, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: slowdownDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122881847811721355, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: endReachedDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122881847811721355, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: pickNextWaypointDist
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413179856022924972, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971638748104908737, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2825225402636334272, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -58,6 +90,10 @@ PrefabInstance:
     - target: {fileID: 3461293253058700370, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_Name
       value: enemyprefab1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461293253058700370, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4459972450872101943, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_LocalScale.x
@@ -121,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 6607136736947558023}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: chaseSpeed
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4974314592089267626, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: attackPoint
@@ -223,6 +259,10 @@ PrefabInstance:
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5932050183624857630, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6683176686610768636, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -241,19 +281,23 @@ PrefabInstance:
       objectReference: {fileID: 3706618726051528768, guid: b4a78120aaae42847aab392c19160547, type: 3}
     - target: {fileID: 7325055740991321330, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_Size.x
-      value: 0.1440057
+      value: 0.1022784
       objectReference: {fileID: 0}
     - target: {fileID: 7325055740991321330, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_Size.y
-      value: 0.20256297
+      value: 0.14508979
       objectReference: {fileID: 0}
     - target: {fileID: 7325055740991321330, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_Offset.x
-      value: -0.011014819
+      value: -0.0066846213
       objectReference: {fileID: 0}
     - target: {fileID: 7325055740991321330, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
       propertyPath: m_Offset.y
-      value: -0.00587368
+      value: 0.0023929279
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663909056612326440, guid: af413fd50a1c6da4c95f6981e1b1fc9a, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
