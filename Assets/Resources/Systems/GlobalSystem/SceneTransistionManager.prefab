@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBeforeSceneLoad: 2
   lightningCard: {fileID: 11400000, guid: c72bdfe6a662d4c1d967352aedeb3eeb, type: 2}
+  bossData: {fileID: 11400000, guid: de275d17b3afc40c3b52b098a671eb4d, type: 2}
