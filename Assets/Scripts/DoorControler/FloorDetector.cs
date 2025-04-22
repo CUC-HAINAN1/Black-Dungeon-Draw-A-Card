@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class FloorDetector : MonoBehaviour {
 
@@ -7,11 +8,14 @@ public class FloorDetector : MonoBehaviour {
     void Start() {
 
         IsFloorExisting = true;
-        detectFloor();
+
+        StartCoroutine(detectFloor());
 
     }
 
-    private void detectFloor() {
+    private IEnumerator detectFloor() {
+
+        yield return new WaitForSeconds(0.5f);
 
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 0.001f);
 

@@ -38,7 +38,7 @@ public class DoorStateController : MonoBehaviour {
             return;
         }
         // ��ͨ�ų�ʼ��
-        InitializeNormalDoor();
+        StartCoroutine(InitializeNormalDoor());
     }
 
     // �ⲿ���ã�����
@@ -100,7 +100,9 @@ public class DoorStateController : MonoBehaviour {
         DisableAllColliders(downDoor);
     }
 
-    private void InitializeNormalDoor() {
+    private IEnumerator InitializeNormalDoor() {
+
+            yield return new WaitForSeconds(1f);
 
         if (!FloorTrigger1.GetComponent<FloorDetector>().IsFloorExisting ||
             !FloorTrigger2.GetComponent<FloorDetector>().IsFloorExisting) {
@@ -110,13 +112,13 @@ public class DoorStateController : MonoBehaviour {
             SetDoorState(false);
             ToggleColliders(downDoor, enable: true);
 
-            return;
+        }
+        else {
+
+            SetDoorState(startOpen);
+            ToggleColliders(downDoor, enable: !startOpen);
 
         }
-
-        SetDoorState(startOpen);
-        ToggleColliders(downDoor, enable: !startOpen);
-
     }
 
     private void SetDoorState(bool open) {
