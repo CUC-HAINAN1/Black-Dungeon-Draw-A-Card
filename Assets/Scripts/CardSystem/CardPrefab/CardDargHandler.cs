@@ -138,6 +138,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         //技能使用！
         SkillSystem.Instance.ExecuteSkill(cardStateManager.GetCardState(gameObject).CardData);
+        this.enabled = false;
 
         rangeIndicatorManager.ClearIndicator();
         RestoreOtherCards();
