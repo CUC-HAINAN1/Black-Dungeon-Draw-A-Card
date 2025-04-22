@@ -57,6 +57,8 @@ public class MeteoricFireballExplosion : MonoBehaviour {
 
     private IEnumerator ExplosionDelayRoutine() {
 
+        CameraShaker.Instance.ShakeOnce(1.5f, 8, 0.6f, 0.3f);
+
         yield return new WaitForSeconds(hitDelay);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, radius * 4f);
@@ -69,7 +71,7 @@ public class MeteoricFireballExplosion : MonoBehaviour {
 
             if (enemyCol.CompareTag("Enemy")) {
 
-                EnemyProperty enemy = enemyCol.GetComponent<EnemyProperty>();
+                EnemyProperty enemy = enemyCol.GetComponentInChildren<EnemyProperty>();
 
                 if (enemy != null) {
 

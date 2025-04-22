@@ -609,6 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsFloorExisting: 0
+  Found: {fileID: 0}
 --- !u!1 &3295171748768335765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,6 +1585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsFloorExisting: 0
+  Found: {fileID: 0}
 --- !u!1 &6653093323451551361
 GameObject:
   m_ObjectHideFlags: 0

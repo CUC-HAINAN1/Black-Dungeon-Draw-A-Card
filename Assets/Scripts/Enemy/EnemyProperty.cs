@@ -32,6 +32,10 @@ public class EnemyProperty : MonoBehaviour
     [SerializeField] private Transform weaponPivot;         // 武器旋转支点
     [SerializeField] private float attackInterval = 2f;     // 远程攻击间隔
 
+    [Header("攻击特效")]
+    [SerializeField] private GameObject attackVFXPrefab;
+    [SerializeField] private float attackVFXDuration = 0.75f;
+
     //混合攻击模式设置
     [Header("高级配置")]
     [SerializeField] private bool enableHybridAttack = false;
@@ -60,27 +64,15 @@ public class EnemyProperty : MonoBehaviour
     private SpriteRenderer effectRenderer;
     private Coroutine attackEffectCoroutine;
     private int currentFrame;
-    private void HandleHybridAttack()
-    {
-        if (!enableHybridAttack) return;
 
-        float distance = Vector3.Distance(transform.position, playerTransform.position);
-
-        if (distance <= hybridRangeThreshold)
-        {
-            PerformMeleeAttack();
-        }
-        else
-        {
-            PerformRangedAttack();
-        }
-    }
     // 统一使用AIState枚举
     private enum AIState { Patrolling, Chasing, Attacking }
     private AIState currentAIState;
     private Transform playerTransform;
     private bool canAttack = true;
     private float attackCooldownTimer;
+    private float moveSign = 1.0f;
+
     [System.Serializable]
     public enum EnemyAttackType
     {
@@ -138,7 +130,12 @@ public class EnemyProperty : MonoBehaviour
     private int currentPatrolIndex;
 
     // 血条UI组件
+    [SerializeField] private Canvas healthUICanvs;
     private EnemyHealthUI healthUI;
+
+    //基础配置
+    [SerializeField] private Transform rootTransform;
+
 
     [Header("动画控制")]
     [SerializeField] private Animator animator;
@@ -155,7 +152,7 @@ public class EnemyProperty : MonoBehaviour
     );
     private void UpdateMovement()
     {
-        var aiPath = GetComponent<AIPath>();
+        var aiPath = GetComponentInParent<AIPath>();
         if (aiPath == null) return;
 
         // 强制重置路径
@@ -166,28 +163,25 @@ public class EnemyProperty : MonoBehaviour
         }
 
         // 根据距离动态调整速度
-        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        float distanceToPlayer = Vector3.Distance(rootTransform.position, playerTransform.position);
         float speedFactor = speedCurve.Evaluate(distanceToPlayer / detectionRange);
 
         aiPath.maxSpeed = patrolSpeed * (currentAIState == AIState.Chasing ? 2f : 1f) * speedFactor;
-        // 添加调试信息
-        CustomLogger.Log($"移动状态: {aiPath.canMove} | 速度: {aiPath.maxSpeed} | 目标: {aiPath.destination}");
+
     }
 
     void Awake()
     {
         currentHealth = maxHealth;
-        healthUI = GetComponentInChildren<EnemyHealthUI>();
+
+        healthUI = healthUICanvs.GetComponentInChildren<EnemyHealthUI>();
+
         healthUI?.Initialize(maxHealth);
     }
 
     void Start()
-    { // 确保AIPath组件存在
-        if (GetComponent<AIPath>() == null)
-        {
-            gameObject.AddComponent<AIPath>();
-            CustomLogger.Log("已自动添加AIPath组件");
-        }
+    {
+
         // 延迟初始化玩家坐标
         StartCoroutine(DelayedInit());
         GeneratePatrolPoints(); // 新增此行
@@ -286,7 +280,7 @@ public class EnemyProperty : MonoBehaviour
         HandleWeaponRotation();
         HandleAttackLogic();
         // 保留原有移动状态更新
-        bool isMoving = GetComponent<AIPath>().velocity.magnitude > 0.1f;
+        bool isMoving = GetComponentInParent<AIPath>().velocity.magnitude > 0.1f;
         animator.SetBool("IsMoving", isMoving);
 
         if (isPatrolling) {
@@ -297,23 +291,40 @@ public class EnemyProperty : MonoBehaviour
 
         UpdateMovement(); // 新增此行
 
+        HandleFacingDirection();
+
     }
 
-    private void HandleAnimationBlending()
+    private void HandleFacingDirection()
     {
+        AIPath aiPath = GetComponentInParent<AIPath>();
+        if (aiPath == null || aiPath.desiredVelocity == Vector3.zero) return;
+
+        Vector2 moveDir = aiPath.desiredVelocity.normalized;
+
+        if (Mathf.Abs(moveDir.x) > 0.01f) {
+
+            Vector3 scale = transform.localScale;
+            moveSign = Mathf.Sign(moveDir.x);
+            scale.x = moveSign * Mathf.Abs(scale.x); // 始终保持 y,z 不变
+            transform.localScale = scale;
+
+        }
+    }
+
+    private void HandleAnimationBlending() {
         // 攻击状态时禁用其他混合逻辑
-        if (currentAIState == AIState.Attacking) return;
+        if (currentAIState == AIState.Attacking)
+            return;
         // 根据移动速度调整动画混合
-        var aiPath = GetComponent<AIPath>();
-        if (aiPath != null)
-        {
+        var aiPath = GetComponentInParent<AIPath>();
+        if (aiPath != null) {
             float speedRatio = aiPath.velocity.magnitude / aiPath.maxSpeed;
             animator.SetFloat("MoveSpeed", speedRatio);
         }
 
         // 攻击动画强制播放
-        if (currentAIState == AIState.Attacking)
-        {
+        if (currentAIState == AIState.Attacking) {
             animator.Play("Attack", 0, 0);
         }
     }
@@ -326,7 +337,7 @@ public class EnemyProperty : MonoBehaviour
     private void ChaseBehavior()
     {
 
-        var aiPath = GetComponent<AIPath>();
+        var aiPath = GetComponentInParent<AIPath>();
         // 强制保持移动能力
         aiPath.canMove = true;
         // 强制刷新路径（原逻辑有缺陷）
@@ -428,7 +439,7 @@ public class EnemyProperty : MonoBehaviour
         for (int i = 0; i < pointCount; i++)
         {
             GameObject point = new GameObject($"PatrolPoint_{i}");
-            point.transform.position = transform.position + new Vector3(
+            point.transform.position = rootTransform.position + new Vector3(
                 Random.Range(-radius, radius),
                 Random.Range(-radius, radius),
                 0
@@ -446,29 +457,26 @@ public class EnemyProperty : MonoBehaviour
 
         Transform target = patrolPoints[currentPatrolIndex];
         Vector2 newPos = Vector2.MoveTowards(
-            transform.position,
+            rootTransform.position,
             target.position,
             patrolSpeed * Time.deltaTime
         );
 
         // 使用AIPath控制移动
-        GetComponent<AIPath>().destination = target.position;
+        GetComponentInParent<AIPath>().destination = target.position;
     }
     //状态转换管理
     private void UpdateAIState()
     {
         if (playerTransform == null) return;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        float distanceToPlayer = Vector3.Distance(rootTransform.position, playerTransform.position);
         // 添加空引用保护
         if (playerTransform == null)
         {
             CustomLogger.LogWarning("玩家Transform未初始化!");
             return;
         }
-        // 调试可视化
-        Debug.DrawLine(transform.position, playerTransform.position,
-                     currentAIState == AIState.Attacking ? Color.red : Color.yellow);
 
         switch (currentAIState)
         {
@@ -479,7 +487,7 @@ public class EnemyProperty : MonoBehaviour
                     TransitionToState(AIState.Chasing);
                     StopAllCoroutines(); // 确保停止所有协程
                     isPatrolling = false;
-                    GetComponent<AIPath>().destination = playerTransform.position; // 立即更新目标
+                    GetComponentInParent<AIPath>().destination = playerTransform.position; // 立即更新目标
                 }
                 break;
 
@@ -553,7 +561,34 @@ public class EnemyProperty : MonoBehaviour
         // 强制重置动画状态
         animator.Play("Attack", 0, 0f);
         animator.Update(0); // 立即更新
-                            // 扩展有效攻击范围（三维检测）
+
+        if (attackVFXPrefab != null && attackPoint != null) {
+
+            CustomLogger.LogWarning("attack effect!");
+            GameObject fx = Instantiate(attackVFXPrefab, attackPoint.position, Quaternion.identity);
+            fx.transform.SetParent(attackPoint);
+            fx.transform.localScale *= 6;
+
+            var scale = fx.transform.localScale;
+            scale.x *= moveSign;
+            fx.transform.localScale = scale;
+
+            if (transform.parent.gameObject.name == "EnemyPrefab2(Clone)") {
+
+                CustomLogger.LogWarning("detect enemy2!");
+
+                var pos = fx.transform.localPosition;
+                pos.y += 0.2f;
+
+                fx.transform.localPosition = pos;
+
+            }
+
+            Destroy(fx, attackVFXDuration);
+        }
+
+
+        // 扩展有效攻击范围（三维检测）
         Vector3 detectSize = new Vector3(attackRadius * 2, attackRadius * 2, 1f);
         Collider2D[] hits = Physics2D.OverlapBoxAll(
             attackPoint.position,
@@ -718,7 +753,7 @@ public class EnemyProperty : MonoBehaviour
     private void TransitionToState(AIState newState)
     {
         // 在状态切换时应用参数
-        var aiPath = GetComponent<AIPath>();
+        var aiPath = GetComponentInParent<AIPath>();
         // 需要增加动画触发器重置
         animator.ResetTrigger("Chase");
         animator.ResetTrigger("Attack");
@@ -736,12 +771,12 @@ public class EnemyProperty : MonoBehaviour
         {
             case AIState.Attacking:
                 animator.SetTrigger("AttackTrigger");
-                GetComponent<AIPath>().canMove = false; // 攻击时停止移动
+                GetComponentInParent<AIPath>().canMove = false; // 攻击时停止移动
                 break;
             case AIState.Chasing:
                 aiPath.slowdownDistance = attackRange * 0.8f; // 修改：关联攻击范围
                 aiPath.rotationSpeed = chaseRotationSpeed;    // 新增：确保转向速度生效
-                GetComponent<AIPath>().canMove = true;
+                GetComponentInParent<AIPath>().canMove = true;
                 break;
         }
 
@@ -777,18 +812,7 @@ public class EnemyProperty : MonoBehaviour
             Die();
         }
     }
-    private void HandlePlayerDetection()
-    {
-        // 与状态机联动的检测逻辑
-        float distance = Vector3.Distance(transform.position,
-            PlayerAttributes.Instance.PlayerTransform.position);
 
-        if (distance < stateMachine.chaseRange)
-        {
-            EventManager.Instance.TriggerEvent("EnemyStateChanged",
-                new EnemyStateEventData(EnemyStateType.Patrol, EnemyStateType.Chase));
-        }
-    }
     [Header("受击效果")]
     [SerializeField] private ParticleSystem hitEffect;
     // 在EnemyProperty.cs中添加
@@ -801,15 +825,24 @@ public class EnemyProperty : MonoBehaviour
         animator.SetTrigger("Die");
 
         // 禁用其他组件
-        GetComponent<AIPath>().enabled = false;
-        GetComponent<Collider2D>().enabled = false;
+        GetComponentInParent<AIPath>().enabled = false;
+        GetComponentInParent<Collider2D>().enabled = false;
+
+        var childSprite = transform.Find("EnemySprite");
+        if (childSprite == null) {
+
+            childSprite = transform.gameObject.transform;
+
+        }
+
+        Destroy(childSprite.gameObject);
 
         OnDeath?.Invoke(this);
         StopAllCoroutines();
-        GetComponent<Collider2D>().enabled = false;
+        GetComponentInParent<Collider2D>().enabled = false;
 
         if (deathEffect != null)
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Instantiate(deathEffect, rootTransform.position, Quaternion.identity);
 
         healthUI?.Hide();
         Destroy(gameObject, destroyDelay);
@@ -832,7 +865,7 @@ public class EnemyProperty : MonoBehaviour
 
     private void PatrolMovement() {
         Transform target = patrolPoints[currentPatrolIndex];
-        
+
     }
     // 在动画关键帧调用
     public void OnAttackAnimationEvent()
@@ -856,7 +889,7 @@ public class EnemyProperty : MonoBehaviour
 
         // 立即隐藏对象
         GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<Collider2D>().enabled = false;
+        GetComponentInParent<Collider2D>().enabled = false;
     }
     private IEnumerator WaitAtPoint()
     {
@@ -869,7 +902,7 @@ public class EnemyProperty : MonoBehaviour
     {
         animator.SetTrigger("Die"); // 触发死亡动画
                                     // 禁用其他组件
-        GetComponent<AIPath>().enabled = false;
+        GetComponentInParent<AIPath>().enabled = false;
     }
     public bool IsAlive()
     {

@@ -70,7 +70,7 @@ public class PoisonMistArea : MonoBehaviour {
 
                 if (enemyCol.CompareTag("Enemy")) {
 
-                    EnemyProperty enemy = enemyCol.GetComponent<EnemyProperty>();
+                    EnemyProperty enemy = enemyCol.GetComponentInChildren<EnemyProperty>();
 
                     if (enemy != null) {
 

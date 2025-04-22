@@ -635,7 +635,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoAdjustSpawnPoints: 1
   waves:
-  - enemyPrefabs: []
+  - enemyPrefabs:
+    - {fileID: 3805322949366651410, guid: 0002cb680f909467281413625c8f44c3, type: 3}
+    - {fileID: 6710908027184087002, guid: 1ec9abd05fa594ccd9f787048043eee2, type: 3}
+    - {fileID: 3150268982325456569, guid: 5971b503915215c47aab537db7212a32, type: 3}
     enemyCount: 4
     spawnInterval: 0
   spawnPoints:

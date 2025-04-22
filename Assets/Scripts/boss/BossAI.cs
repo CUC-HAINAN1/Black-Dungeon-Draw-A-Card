@@ -132,7 +132,10 @@ public class BossAI : MonoBehaviour
         GetComponent<BossAnimationController>().PlayAttackAnimation(2);
         // 发射远程弹幕
         Vector2 shootDirection = (player.position - transform.position).normalized;
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+
+        float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0, 0, angle));
 
         projectile.GetComponent<Rigidbody2D>().velocity = shootDirection * 10f;
         Destroy(projectile, 3f);
@@ -168,8 +171,9 @@ public class BossAI : MonoBehaviour
         GameObject effect = Instantiate(aoeEffect, effectPos, Quaternion.identity);
         effect.transform.localScale = new Vector3(targetScale / 2.5f, targetScale / 2.5f, 1f);
 
-        yield return new WaitForSeconds(0.25f);
+        CameraShaker.Instance.ShakeOnce(2f, 10, 0.6f, 0.3f);
 
+        yield return new WaitForSeconds(0.25f);
 
         OnAOEPhaseChanged?.Invoke(2); // 下砸阶段
         // 实际伤害判定

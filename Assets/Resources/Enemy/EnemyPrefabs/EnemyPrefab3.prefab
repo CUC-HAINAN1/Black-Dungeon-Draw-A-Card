@@ -247,6 +247,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3263225789072054659, guid: 202c8f9fbb13bea4cb173a7a1208cad9, type: 3}
   m_PrefabInstance: {fileID: 3551168948914771180}
   m_PrefabAsset: {fileID: 0}
+--- !u!223 &8361638300212535091 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4990772216125606879, guid: 202c8f9fbb13bea4cb173a7a1208cad9, type: 3}
+  m_PrefabInstance: {fileID: 3551168948914771180}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5404459889543051729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -257,7 +262,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
       propertyPath: m_Name
-      value: enemyprefab3
+      value: EnemyPrefab3
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
       propertyPath: m_Layer
@@ -281,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 7e4f419986bf30541b18203f349e0d04, type: 3}
       propertyPath: m_SortingLayerID
@@ -432,6 +437,8 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
+  healthUICanvs: {fileID: 8361638300212535091}
+  rootTransform: {fileID: 2762389362316871388}
   animator: {fileID: 6564584135294333977}
   stateMachine: {fileID: 0}
   speedCurve:

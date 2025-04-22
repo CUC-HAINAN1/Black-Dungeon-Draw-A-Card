@@ -34,6 +34,7 @@ public class CardDrawController : MonoBehaviour {
 
         }
 
+#if UNITY_EDITOR
         for (int i = 1; i <= 7; i++) {
 
             if (Input.GetKeyDown(KeyCode.Alpha0 + i)) {
@@ -43,6 +44,8 @@ public class CardDrawController : MonoBehaviour {
             }
 
         }
+
+#endif
 
     }
 

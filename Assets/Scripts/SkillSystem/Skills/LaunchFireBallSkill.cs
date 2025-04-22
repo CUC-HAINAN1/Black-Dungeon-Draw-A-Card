@@ -92,7 +92,7 @@ public class FireballMover : MonoBehaviour {
 
         if (other.CompareTag("Enemy")) {
 
-            EnemyProperty enemy = other.GetComponent<EnemyProperty>();
+            EnemyProperty enemy = other.GetComponentInChildren<EnemyProperty>();
 
             if(enemy != null) {
 
@@ -117,6 +117,8 @@ public class FireballMover : MonoBehaviour {
     }
 
     private void Explode() {
+
+        CameraShaker.Instance.ShakeOnce(0.5f, 10, 0.3f, 0.2f);
 
         GameObject explosion = Instantiate(cardData.visualConfig.hitEffect, transform.position, Quaternion.identity);
         Destroy(explosion, 0.5f);
