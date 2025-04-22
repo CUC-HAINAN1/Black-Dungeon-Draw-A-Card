@@ -12,7 +12,7 @@
 - 卡牌强化与宝箱奖励机制：成长路径明确，搭配性十足
 
 ## 📦 下载试玩
-👉 [点我下载 v1.05 Windows版](https://github.com/CUC-HAINAN1/Black-Dungeon-Draw-A-Card/releases/tag/v1.05)
+👉 [点我下载 v1.06 Windows版](https://github.com/CUC-HAINAN1/Black-Dungeon-Draw-A-Card/releases/tag/v1.06)
 
 ## 🛠 技术栈
 - Unity 2022.3
@@ -20,12 +20,9 @@
 - Git 远程协作
 - Edgar Pro - 地牢生成插件
 - A* Pathfinding Pro - AI寻路逻辑
+- DOTween - 动画衔接插件
 
 ## 👨‍👩‍👧‍👦 开发团队
 来自 中国传媒大学 x 阿伯泰大学 联合项目 | 数媒一班（24届）
-- 主程 + 主策：桑迪文
-- 主美：崔诚明
-- 程序：林彦霖
-- 美术+程序：陆弈同
 
 欢迎体验！如果你喜欢这款游戏，也欢迎 Star、Fork 或提 Issue 建议！✨
