@@ -358,7 +358,8 @@ public class PlayerAttributes : MonoBehaviour {
     //使用方式：PlayerAttributes.Instance.Takedamege(damage)
     public void TakeDamage(int amount) {
 
-        if (IsDead || IsInvincible || IsRolling) return;
+        if (IsDead || IsInvincible || IsRolling)
+            return;
 
         if (Shield > 0) {
 
@@ -367,6 +368,9 @@ public class PlayerAttributes : MonoBehaviour {
         } else {
 
             Health -= amount;
+
+            CameraShaker.Instance.ShakeOnce(1f, 10, 0.3f, 0.2f);
+            
             EnableInvincibleForDuration(GetDamageInvincibleDuration);
 
         }

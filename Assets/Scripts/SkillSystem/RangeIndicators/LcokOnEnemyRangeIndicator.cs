@@ -51,7 +51,7 @@ public class LockOnEnemyRangeIndicator : MonoBehaviour, IRangeIndicator {
 
         //查找所有敌人
         Collider2D[] enemys = Physics2D.OverlapCircleAll(_mouseWorldPos, lockRange);
-
+        
         foreach (var enemyCol in enemys) {
 
             if (enemyCol.CompareTag("Enemy") || enemyCol.CompareTag("Boss")) {
@@ -68,12 +68,14 @@ public class LockOnEnemyRangeIndicator : MonoBehaviour, IRangeIndicator {
 
         // 如果当前目标不在范围内，或已经被销毁，就自动切换目标
         if (targetsInRange.Count > 0) {
+
             if (currentTarget == null || !targetsInRange.Contains(currentTarget)) {
 
                 currentTargetIndex = 0;
                 currentTarget = targetsInRange[currentTargetIndex];
 
-            } else {
+            }
+            else {
                 // 更新当前索引,保持同步
                 currentTargetIndex = targetsInRange.IndexOf(currentTarget);
 

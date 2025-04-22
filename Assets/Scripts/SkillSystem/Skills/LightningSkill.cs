@@ -45,12 +45,14 @@ public class LightningSkill : SkillBase {
         // 等待关键帧时间
         yield return new WaitForSeconds(castDelay);
 
+        CameraShaker.Instance.ShakeOnce(1f, 10, 0.3f, 0.2f);
+
         // 如果目标还活着，造成伤害
         if (targetTransform != null && targetTransform.gameObject.activeInHierarchy) {
 
-            if (targetTransform.CompareTag("Enemy")) {
+            if (targetTransform.gameObject.CompareTag("Enemy")) {
 
-                EnemyProperty enemy = targetTransform.GetComponent<EnemyProperty>();
+                EnemyProperty enemy = targetTransform.gameObject.GetComponentInChildren<EnemyProperty>();
 
                 if (enemy != null) {
 
