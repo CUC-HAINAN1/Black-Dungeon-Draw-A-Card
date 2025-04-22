@@ -56,6 +56,9 @@ public class BossHealth : MonoBehaviour
 
         // 死亡动画或效果
         EventManager.Instance.TriggerEvent("BossDied");
+
+        TipManager.Instance.ShowTip("我还会回来的");
+
         Destroy(gameObject);
 
     }

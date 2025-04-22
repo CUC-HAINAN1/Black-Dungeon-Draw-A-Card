@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
     [System.Serializable]
     public class WaveConfig
     {
-        public GameObject[] enemyPrefabs; // ��Ϊ������ʽ��ʾ����
+        public GameObject[] enemyPrefabs;
         public int enemyCount;
         public float spawnInterval = 1f;
     }
@@ -76,7 +76,7 @@ public class EnemySpawner : MonoBehaviour
                     continue;
 
                 }
-                var property = enemy.GetComponent<EnemyProperty>();
+                var property = enemy.GetComponentInChildren<EnemyProperty>();
                 property.OnDeath.AddListener(HandleEnemyDeath);
                 activeEnemies.Add(property);
             }
