@@ -13153,15 +13153,15 @@ MonoBehaviour:
   autoAdjustSpawnPoints: 1
   waves:
   - enemyPrefabs:
-    - {fileID: 3103918389335411751, guid: 2d861c13977539746b7b0335d7a0ca02, type: 3}
+    - {fileID: 3805322949366651410, guid: 0002cb680f909467281413625c8f44c3, type: 3}
+    - {fileID: 6710908027184087002, guid: 1ec9abd05fa594ccd9f787048043eee2, type: 3}
     - {fileID: 3150268982325456569, guid: 5971b503915215c47aab537db7212a32, type: 3}
-    - {fileID: 8174397343277129669, guid: b33033a3bb4f93c4880bf13bbdb738f6, type: 3}
     enemyCount: 4
     spawnInterval: 0
   - enemyPrefabs:
-    - {fileID: 3103918389335411751, guid: 2d861c13977539746b7b0335d7a0ca02, type: 3}
+    - {fileID: 3805322949366651410, guid: 0002cb680f909467281413625c8f44c3, type: 3}
+    - {fileID: 6710908027184087002, guid: 1ec9abd05fa594ccd9f787048043eee2, type: 3}
     - {fileID: 3150268982325456569, guid: 5971b503915215c47aab537db7212a32, type: 3}
-    - {fileID: 8174397343277129669, guid: b33033a3bb4f93c4880bf13bbdb738f6, type: 3}
     enemyCount: 5
     spawnInterval: 0
   spawnPoints:
