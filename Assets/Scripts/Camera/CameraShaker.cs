@@ -23,7 +23,7 @@ public class CameraShaker : MonoBehaviour {
 
         transform.localPosition = initialLocalPos;
 
-        strength /= 20f;
+        strength /= 20f; //神秘数字
 
         currentShake = transform.DOShakePosition(
             duration,

@@ -87,7 +87,8 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnDrag(PointerEventData eventData) {
 
-        Time.timeScale = 0.25f;
+        if (isValidDrag)
+            Time.timeScale = 0.25f;
 
      }
 

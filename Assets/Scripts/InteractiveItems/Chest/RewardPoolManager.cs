@@ -69,7 +69,7 @@ public class RewardPoolManager : MonoBehaviour {
             chestRewards.Add(new ChestRewardInfo(card, false));
 
         }
-
+        
         // 随机选一个宝箱作为特殊奖励
         int specialIndex = Random.Range(0, chestRewards.Count);
 

@@ -58,8 +58,6 @@ public class SceneTransitionHelper : MonoBehaviour {
         //淡出
         yield return StartCoroutine(FadeOut());
 
-
-
         //加载新场景
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneName);

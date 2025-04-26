@@ -62,7 +62,7 @@ public class CardQueueSystem : MonoBehaviour {
     public CardDataBase DrawCard() {
 
         return CardPoolManager.Instance.DrawCard();
-
+        
     }
 
     public void CreateCard(CardDataBase data, Transform targetSlot) {

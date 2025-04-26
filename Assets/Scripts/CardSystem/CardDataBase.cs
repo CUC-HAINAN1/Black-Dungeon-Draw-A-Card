@@ -54,7 +54,7 @@ public class CardDataBase : ScriptableObject {
 
     [Header("升级参数")]
     public UpgradableParam[] upgradableParams;
-
+        
     // 以下是嵌套结构体定义
     public enum Rarity {
         Common,
