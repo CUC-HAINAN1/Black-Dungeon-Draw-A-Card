@@ -347,6 +347,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_text
+      value: "\u673A\u5173\u5BC6\u5377\uFF1A\n\u7834\u5FC3\u9B54\u5F55"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_fontSize
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 024e4b66059734a6f80044e6cfd5f5bb, type: 2}
+    - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 3545879120508407350, guid: 024e4b66059734a6f80044e6cfd5f5bb, type: 2}
+    - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5270881048705605183, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
       propertyPath: m_IsActive
       value: 0

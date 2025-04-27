@@ -6,7 +6,7 @@ public class BossRoomTipTrigger : MonoBehaviour {
 
         if (collision.CompareTag("Player")) {
 
-            TipManager.Instance.ShowTip("前方有强大魔物的气息...", 3f);
+            TipManager.Instance.ShowTip("墨室深处，藏魇之主，施主小心", 3f);
             GetComponent<Collider2D>().enabled = false;
 
         }

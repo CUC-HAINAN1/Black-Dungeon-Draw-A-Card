@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossHealth : MonoBehaviour
-{
+public class BossHealth : MonoBehaviour {
     [Header("血量设置")]
     public int maxHealth;
     public int currentHealth;
@@ -15,8 +14,7 @@ public class BossHealth : MonoBehaviour
     [Header("Boss数据")]
     [SerializeField] private BossData bossData;
 
-    void Start()
-    {
+    void Start() {
         maxHealth = bossData.maxHealth;
         currentHealth = maxHealth;
 
@@ -25,29 +23,24 @@ public class BossHealth : MonoBehaviour
         UpdateHealthUI();
     }
 
-    public void TakeDamage(int damage)
-    {
+    public void TakeDamage(int damage) {
         currentHealth = Mathf.Max(0, currentHealth - damage);
         StartCoroutine(FlashEffect());
         UpdateHealthUI();
 
-        if (currentHealth <= 0)
-        {
+        if (currentHealth <= 0) {
             Die();
         }
     }
 
-    private System.Collections.IEnumerator FlashEffect()
-    {
+    private System.Collections.IEnumerator FlashEffect() {
         spriteRenderer.color = flashColor;
         yield return new WaitForSeconds(flashDuration);
         spriteRenderer.color = originalColor;
     }
 
-    void UpdateHealthUI()
-    {
-        if (healthSlider != null)
-        {
+    void UpdateHealthUI() {
+        if (healthSlider != null) {
             healthSlider.value = (float)currentHealth / maxHealth;
         }
     }
@@ -57,7 +50,7 @@ public class BossHealth : MonoBehaviour
         // 死亡动画或效果
         EventManager.Instance.TriggerEvent("BossDied");
 
-        TipManager.Instance.ShowTip("我还会回来的");
+        TipManager.Instance.ShowTip("心若不净，魇终再现");
 
         Destroy(gameObject);
 

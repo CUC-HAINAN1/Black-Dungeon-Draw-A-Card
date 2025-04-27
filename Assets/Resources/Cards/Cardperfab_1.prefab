@@ -168,7 +168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.9, y: -31.6}
+  m_AnchoredPosition: {x: -0.8, y: -30.5}
   m_SizeDelta: {x: 69.2629, y: 22.261}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5984453834126722558
@@ -199,10 +199,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u9501\u5B9A\u4E00\u4E2A\u76EE\u6807\u654C\u4EBA\u540E\u964D\u4E0B\u96F7\u9706\uFF0C\u5BF9\u6307\u5B9A\u654C\u4EBA\u9020\u6210\u5927\u91CF\u4F24\u5BB3"
+  m_text: "\u5F15\u52A8\u9AD8\u67A2\uFF0C\u64CE\u96F7\u964D\u4E34\uFF0C\u5BF9\u9501\u5B9A\u4E4B\u654C\u65BD\u4EE5\u96F7\u9706\u91CD\u51FB\uFF0C\u9739\u96F3\u7A7F\u8EAB\uFF0C\u77AC\u95F4\u8F70\u706D\u3002\r\n\u6B64\u673A\u4EFF\u58A8\u95E8\u2018\u5F15\u96F7\u94DC\u67A2\u2019\uFF0C\u8BBE\u4E8E\u9AD8\u5904\uFF0C\u5F15\u5929\u96F7\u800C\u51FB\u654C\u3002\u94DC\u67A2\u69AB\u52A8\uFF0C\u64CE\u9706\u800C\u843D\uFF0C\u654C\u5F62\u96BE\u9003\u3002\u53E4\u5DE5\u5DE7\u4EBA\u4EE5\u94DC\u5236\u96F7\u5F15\uFF0C\u901A\u4E8E\u673A\u5173\uFF0C\u9047\u96F7\u5219\u6FC0\uFF0C\u4F7F\u654C\u9B42\u98DE\u9B44\u6563\u3002\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3d3c8dc4e93644679af110ad2af93e8c, type: 2}
-  m_sharedMaterial: {fileID: 341361784378901113, guid: 3d3c8dc4e93644679af110ad2af93e8c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 024e4b66059734a6f80044e6cfd5f5bb, type: 2}
+  m_sharedMaterial: {fileID: 3545879120508407350, guid: 024e4b66059734a6f80044e6cfd5f5bb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -226,8 +226,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
-  m_fontSizeBase: 6
+  m_fontSize: 4
+  m_fontSizeBase: 4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.3565255, y: 0.1328888, z: 0.5553019, w: 3.0038757}
+  m_margin: {x: -0.3565255, y: 0.1328888, z: -2.9337044, w: 3.0038757}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -333,10 +333,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u795E\u7F5A\u96F7\u9706"
+  m_text: "\u4E94\u96F7\u8F70\u67A2"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3d3c8dc4e93644679af110ad2af93e8c, type: 2}
-  m_sharedMaterial: {fileID: 341361784378901113, guid: 3d3c8dc4e93644679af110ad2af93e8c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 024e4b66059734a6f80044e6cfd5f5bb, type: 2}
+  m_sharedMaterial: {fileID: 3545879120508407350, guid: 024e4b66059734a6f80044e6cfd5f5bb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

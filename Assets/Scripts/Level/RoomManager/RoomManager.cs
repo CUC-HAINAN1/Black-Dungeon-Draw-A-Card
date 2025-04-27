@@ -236,7 +236,7 @@ public class RoomManager : MonoBehaviour
 
         // ����ȫ�����ţ���������ѡ��
         SceneDoorScanner.Instance.SetAllDoorsOpenState(true);
-        TipManager.Instance.ShowTip("完成");
+        TipManager.Instance.ShowTip("心息一刻");
         BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
 
     }
