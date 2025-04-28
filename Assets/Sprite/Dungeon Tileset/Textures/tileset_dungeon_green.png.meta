@@ -1,0 +1,2764 @@
+fileFormatVersion: 2
+guid: 6c22b85223b77b643a53d57231574598
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4590679998272751372
+    second: tileset_dungeon_green_0
+  - first:
+      213: 5537655469003375597
+    second: tileset_dungeon_green_1
+  - first:
+      213: 3855569513318205011
+    second: tileset_dungeon_green_2
+  - first:
+      213: 9198437096687484475
+    second: tileset_dungeon_green_3
+  - first:
+      213: -6658380684837113478
+    second: tileset_dungeon_green_4
+  - first:
+      213: -4776356517456894036
+    second: tileset_dungeon_green_5
+  - first:
+      213: -2966956119672414772
+    second: tileset_dungeon_green_6
+  - first:
+      213: 5906089335468355232
+    second: tileset_dungeon_green_7
+  - first:
+      213: -934055337820218993
+    second: tileset_dungeon_green_8
+  - first:
+      213: -6354023838454243423
+    second: tileset_dungeon_green_9
+  - first:
+      213: 3000889843809814353
+    second: tileset_dungeon_green_10
+  - first:
+      213: 5381211981596905596
+    second: tileset_dungeon_green_11
+  - first:
+      213: 365077563769909142
+    second: tileset_dungeon_green_12
+  - first:
+      213: 35943724631488159
+    second: tileset_dungeon_green_13
+  - first:
+      213: 5327978398829421390
+    second: tileset_dungeon_green_14
+  - first:
+      213: -199643592807484825
+    second: tileset_dungeon_green_15
+  - first:
+      213: -7562464270811699772
+    second: tileset_dungeon_green_16
+  - first:
+      213: 3667450594000716597
+    second: tileset_dungeon_green_17
+  - first:
+      213: 4229937752856011060
+    second: tileset_dungeon_green_18
+  - first:
+      213: 7522807302419208835
+    second: tileset_dungeon_green_19
+  - first:
+      213: -849236479321241964
+    second: tileset_dungeon_green_20
+  - first:
+      213: -7915833482978250570
+    second: tileset_dungeon_green_21
+  - first:
+      213: 7384858345357245999
+    second: tileset_dungeon_green_22
+  - first:
+      213: 82449277060724530
+    second: tileset_dungeon_green_23
+  - first:
+      213: 822688346952053323
+    second: tileset_dungeon_green_24
+  - first:
+      213: -5261826608339616003
+    second: tileset_dungeon_green_25
+  - first:
+      213: -5272735873545650655
+    second: tileset_dungeon_green_26
+  - first:
+      213: 4996546675416768311
+    second: tileset_dungeon_green_27
+  - first:
+      213: -3257726924918512882
+    second: tileset_dungeon_green_28
+  - first:
+      213: 5518237016147031944
+    second: tileset_dungeon_green_29
+  - first:
+      213: -3507985804462029232
+    second: tileset_dungeon_green_30
+  - first:
+      213: -1253140685605708492
+    second: tileset_dungeon_green_31
+  - first:
+      213: 448583794309856398
+    second: tileset_dungeon_green_32
+  - first:
+      213: -507229426519958813
+    second: tileset_dungeon_green_33
+  - first:
+      213: 15145847246881734
+    second: tileset_dungeon_green_34
+  - first:
+      213: 3527460378368468751
+    second: tileset_dungeon_green_35
+  - first:
+      213: 4252330864087613526
+    second: tileset_dungeon_green_36
+  - first:
+      213: -7204091777369084642
+    second: tileset_dungeon_green_37
+  - first:
+      213: -8637094514543933833
+    second: tileset_dungeon_green_38
+  - first:
+      213: 3421756886932407953
+    second: tileset_dungeon_green_39
+  - first:
+      213: 5665558645507034053
+    second: tileset_dungeon_green_40
+  - first:
+      213: 105110137931899580
+    second: tileset_dungeon_green_41
+  - first:
+      213: 3087270932769593110
+    second: tileset_dungeon_green_42
+  - first:
+      213: -2264767002748752675
+    second: tileset_dungeon_green_43
+  - first:
+      213: 711178052764400633
+    second: tileset_dungeon_green_44
+  - first:
+      213: -6832901737146061669
+    second: tileset_dungeon_green_45
+  - first:
+      213: -8671314283779871069
+    second: tileset_dungeon_green_46
+  - first:
+      213: -6902367704042071218
+    second: tileset_dungeon_green_47
+  - first:
+      213: 5196637427532409395
+    second: tileset_dungeon_green_48
+  - first:
+      213: -3476540328659870075
+    second: tileset_dungeon_green_49
+  - first:
+      213: 6350614861637966591
+    second: tileset_dungeon_green_50
+  - first:
+      213: 8159245313210297248
+    second: tileset_dungeon_green_51
+  - first:
+      213: -6156522915865735725
+    second: tileset_dungeon_green_52
+  - first:
+      213: 3865439212767824761
+    second: tileset_dungeon_green_53
+  - first:
+      213: 6198823154615777273
+    second: tileset_dungeon_green_54
+  - first:
+      213: 2918672972057272224
+    second: tileset_dungeon_green_55
+  - first:
+      213: 215070843791068475
+    second: tileset_dungeon_green_56
+  - first:
+      213: -8101329530407769751
+    second: tileset_dungeon_green_57
+  - first:
+      213: 2380756619355500088
+    second: tileset_dungeon_green_58
+  - first:
+      213: 1936926614384820917
+    second: tileset_dungeon_green_59
+  - first:
+      213: 504940106104338861
+    second: tileset_dungeon_green_60
+  - first:
+      213: -6398004250458790586
+    second: tileset_dungeon_green_61
+  - first:
+      213: -3615137408951245563
+    second: tileset_dungeon_green_62
+  - first:
+      213: -246847790722654716
+    second: tileset_dungeon_green_63
+  - first:
+      213: 6194642027069977434
+    second: tileset_dungeon_green_64
+  - first:
+      213: 4397925482421310472
+    second: tileset_dungeon_green_65
+  - first:
+      213: -4164442383912424604
+    second: tileset_dungeon_green_66
+  - first:
+      213: -8694350940651875281
+    second: tileset_dungeon_green_67
+  - first:
+      213: 3636084869129026761
+    second: tileset_dungeon_green_68
+  - first:
+      213: -2907743768989236254
+    second: tileset_dungeon_green_69
+  - first:
+      213: -8035266483449571830
+    second: tileset_dungeon_green_70
+  - first:
+      213: 5643262005932388381
+    second: tileset_dungeon_green_71
+  - first:
+      213: 784008285077460481
+    second: tileset_dungeon_green_72
+  - first:
+      213: 4295021698949724242
+    second: tileset_dungeon_green_73
+  - first:
+      213: 4399323726018264152
+    second: tileset_dungeon_green_74
+  - first:
+      213: -8736528202485653541
+    second: tileset_dungeon_green_75
+  - first:
+      213: 7359257878484283844
+    second: tileset_dungeon_green_76
+  - first:
+      213: -6939083994155879309
+    second: tileset_dungeon_green_77
+  - first:
+      213: 1261998690367947164
+    second: tileset_dungeon_green_78
+  - first:
+      213: 2475973223099793732
+    second: tileset_dungeon_green_79
+  - first:
+      213: 7910600454849475367
+    second: tileset_dungeon_green_80
+  - first:
+      213: -5892123630322084350
+    second: tileset_dungeon_green_81
+  - first:
+      213: -3231570280430578355
+    second: tileset_dungeon_green_82
+  - first:
+      213: 1256230409503231267
+    second: tileset_dungeon_green_83
+  - first:
+      213: 7661613443431688126
+    second: tileset_dungeon_green_84
+  - first:
+      213: 7978897395978229322
+    second: tileset_dungeon_green_85
+  - first:
+      213: -650922282259203055
+    second: tileset_dungeon_green_86
+  - first:
+      213: 5520191122498290887
+    second: tileset_dungeon_green_87
+  - first:
+      213: 191701942120625
+    second: tileset_dungeon_green_88
+  - first:
+      213: 5386795600097053264
+    second: tileset_dungeon_green_89
+  - first:
+      213: 5552853586676253607
+    second: tileset_dungeon_green_90
+  - first:
+      213: -2994192849598191379
+    second: tileset_dungeon_green_91
+  - first:
+      213: 2035500677383231159
+    second: tileset_dungeon_green_92
+  - first:
+      213: 8454007713940556520
+    second: tileset_dungeon_green_93
+  - first:
+      213: 7585060827325439626
+    second: tileset_dungeon_green_94
+  - first:
+      213: -7375916790262809132
+    second: tileset_dungeon_green_95
+  - first:
+      213: 1530461370453003861
+    second: tileset_dungeon_green_96
+  - first:
+      213: -1000845697527242525
+    second: tileset_dungeon_green_97
+  - first:
+      213: -2635871431946684221
+    second: tileset_dungeon_green_98
+  - first:
+      213: -3088034892054433703
+    second: tileset_dungeon_green_99
+  - first:
+      213: -4795802699155674386
+    second: tileset_dungeon_green_100
+  - first:
+      213: -5628533149506605373
+    second: tileset_dungeon_green_101
+  - first:
+      213: 7033425245567785262
+    second: tileset_dungeon_green_102
+  - first:
+      213: 7244298762798112583
+    second: tileset_dungeon_green_103
+  - first:
+      213: 2503646074982622414
+    second: tileset_dungeon_green_104
+  - first:
+      213: 2138431804162835899
+    second: tileset_dungeon_green_105
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 26
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tileset_dungeon_green_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f836713dd0aa40c0800000000000000
+      internalID: -4590679998272751372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de3027e2f44b9dc40800000000000000
+      internalID: 5537655469003375597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35648207b0cb18530800000000000000
+      internalID: 3855569513318205011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3e35d4ddc967af70800000000000000
+      internalID: 9198437096687484475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_4
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7136f47b0ea893a0800000000000000
+      internalID: -6658380684837113478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_5
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca72c58bd09f6bdb0800000000000000
+      internalID: -4776356517456894036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_6
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccd11c6f02143d6d0800000000000000
+      internalID: -2966956119672414772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_7
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae605475f4a6f150800000000000000
+      internalID: 5906089335468355232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_8
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f891bac7e919903f0800000000000000
+      internalID: -934055337820218993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_9
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1af1296ebf8f1d7a0800000000000000
+      internalID: -6354023838454243423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_10
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1578c5ed96d45a920800000000000000
+      internalID: 3000889843809814353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_11
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 208
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c70d82059c7edaa40800000000000000
+      internalID: 5381211981596905596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f68f72c14011500800000000000000
+      internalID: 365077563769909142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_13
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f96709a80a2bf7000800000000000000
+      internalID: 35943724631488159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_14
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e43ae29ff18c0f940800000000000000
+      internalID: 5327978398829421390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_15
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 762f609c539ba3df0800000000000000
+      internalID: -199643592807484825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_16
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c56fa730dabc0790800000000000000
+      internalID: -7562464270811699772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_17
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53345be52e665e230800000000000000
+      internalID: 3667450594000716597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_18
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4312ffc99f1c3ba30800000000000000
+      internalID: 4229937752856011060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_19
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38a596e4261666860800000000000000
+      internalID: 7522807302419208835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_20
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49601c7ebe7e634f0800000000000000
+      internalID: -849236479321241964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_21
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b030f9136f452290800000000000000
+      internalID: -7915833482978250570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_22
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2ef897d9894c7660800000000000000
+      internalID: 7384858345357245999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_23
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 182
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 237313f3e2be42100800000000000000
+      internalID: 82449277060724530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b423ee851b6ca6b00800000000000000
+      internalID: 822688346952053323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_25
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfef73cf39c3af6b0800000000000000
+      internalID: -5261826608339616003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_26
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12e3adeb8aa73d6b0800000000000000
+      internalID: -5272735873545650655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_27
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73f10eb7abc475540800000000000000
+      internalID: 4996546675416768311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_28
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e03a1093f9a3ac2d0800000000000000
+      internalID: -3257726924918512882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_29
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 887fadd4457b49c40800000000000000
+      internalID: 5518237016147031944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_30
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0568de73f71215fc0800000000000000
+      internalID: -3507985804462029232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_31
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43dd1e49f23fb9ee0800000000000000
+      internalID: -1253140685605708492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_32
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8cf5df8590b93600800000000000000
+      internalID: 448583794309856398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_33
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ea17a42685f5f8f0800000000000000
+      internalID: -507229426519958813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_34
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c309fc511fc53000800000000000000
+      internalID: 15145847246881734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_35
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f07eaeb568e04f030800000000000000
+      internalID: 3527460378368468751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6504f5d1460530b30800000000000000
+      internalID: 4252330864087613526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_37
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1d6a9882bce50c90800000000000000
+      internalID: -7204091777369084642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_38
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7764221ec40e22880800000000000000
+      internalID: -8637094514543933833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_39
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1964a5962c58c7f20800000000000000
+      internalID: 3421756886932407953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_40
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cb0797129b10ae40800000000000000
+      internalID: 5665558645507034053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_41
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb229b11d1d657100800000000000000
+      internalID: 105110137931899580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_42
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 617de196e8038da20800000000000000
+      internalID: 3087270932769593110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_43
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc6226096ee190e0800000000000000
+      internalID: -2264767002748752675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_44
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fb7317cbac9ed900800000000000000
+      internalID: 711178052764400633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_45
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9c62448218ac21a0800000000000000
+      internalID: -6832901737146061669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_46
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aea78bf99d49a780800000000000000
+      internalID: -8671314283779871069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_47
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 130
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b917bb42dd530a0800000000000000
+      internalID: -6902367704042071218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33aa196153a2e1840800000000000000
+      internalID: 5196637427532409395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_49
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58e98e69df8d0cfc0800000000000000
+      internalID: -3476540328659870075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_50
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffa5f35d19ae12850800000000000000
+      internalID: 6350614861637966591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_51
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0abab2102667b3170800000000000000
+      internalID: 8159245313210297248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_52
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dd4544d603af8aa0800000000000000
+      internalID: -6156522915865735725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_53
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97b44e9eb7cc4a530800000000000000
+      internalID: 3865439212767824761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_54
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f7f65cf0d4a60650800000000000000
+      internalID: 6198823154615777273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_55
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0afd103ba95318820800000000000000
+      internalID: 2918672972057272224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_56
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3dc5bdfac51cf200800000000000000
+      internalID: 215070843791068475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_57
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 969a9abf6bb429f80800000000000000
+      internalID: -8101329530407769751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_58
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83e285118852a0120800000000000000
+      internalID: 2380756619355500088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_59
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 104
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b248665e7851ea10800000000000000
+      internalID: 1936926614384820917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da97239e958e10700800000000000000
+      internalID: 504940106104338861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_61
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 645e6f34809b537a0800000000000000
+      internalID: -6398004250458790586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_62
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5052c3d2ea374ddc0800000000000000
+      internalID: -3615137408951245563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_63
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40ed2600e35039cf0800000000000000
+      internalID: -246847790722654716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_64
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a53363e5a1ac7f550800000000000000
+      internalID: 6194642027069977434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_65
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8045c50dce1980d30800000000000000
+      internalID: 4397925482421310472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_66
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46ba15b47bde436c0800000000000000
+      internalID: -4164442383912424604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_67
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f249cd552e5775780800000000000000
+      internalID: -8694350940651875281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_68
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ccbb957ce7f57230800000000000000
+      internalID: 3636084869129026761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_69
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e38a8fa27e95a7d0800000000000000
+      internalID: -2907743768989236254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_70
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a06d26ab4bffc7090800000000000000
+      internalID: -8035266483449571830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_71
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 78
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d10fe0625e4e05e40800000000000000
+      internalID: 5643262005932388381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1065105a16b51ea00800000000000000
+      internalID: 784008285077460481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_73
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2583e7caa7bfa9b30800000000000000
+      internalID: 4295021698949724242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_74
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85c3445ce998d0d30800000000000000
+      internalID: 4399323726018264152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_75
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdf19a053ed91c680800000000000000
+      internalID: -8736528202485653541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_76
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c1fc89ac06512660800000000000000
+      internalID: 7359257878484283844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_77
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3747db54fdb63bf90800000000000000
+      internalID: -6939083994155879309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_78
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c91c36e5f15838110800000000000000
+      internalID: 1261998690367947164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_79
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4410e34378c6c5220800000000000000
+      internalID: 2475973223099793732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_80
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 723b857933918cd60800000000000000
+      internalID: 7910600454849475367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_81
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20697f9a6c8fa3ea0800000000000000
+      internalID: -5892123630322084350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_82
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d45d93893f72723d0800000000000000
+      internalID: -3231570280430578355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_83
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 52
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32dcb72d6e60f6110800000000000000
+      internalID: 1256230409503231267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb76a1675d4835a60800000000000000
+      internalID: 7661613443431688126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_85
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a46529a58ecbabe60800000000000000
+      internalID: 7978897395978229322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_86
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11cbd8d02a577f6f0800000000000000
+      internalID: -650922282259203055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_87
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c486c42498ab9c40800000000000000
+      internalID: 5520191122498290887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_88
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b0b9261a5ea00000800000000000000
+      internalID: 191701942120625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_89
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05a0c6dce0eb1ca40800000000000000
+      internalID: 5386795600097053264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_90
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a38793bae2bf0d40800000000000000
+      internalID: 5552853586676253607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_91
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de86faa977d7276d0800000000000000
+      internalID: -2994192849598191379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_92
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b69e7fd41d8f3c10800000000000000
+      internalID: 2035500677383231159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_93
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eac6dd793ba25570800000000000000
+      internalID: 8454007713940556520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_94
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e967492ac834960800000000000000
+      internalID: 7585060827325439626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_95
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 26
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ddbb8f22ca73a990800000000000000
+      internalID: -7375916790262809132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_96
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55e0f48f18a4d3510800000000000000
+      internalID: 1530461370453003861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_97
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e029eb04284c12f0800000000000000
+      internalID: -1000845697527242525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_98
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8b739e5e08b6bd0800000000000000
+      internalID: -2635871431946684221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_99
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 950751570a81525d0800000000000000
+      internalID: -3088034892054433703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_100
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eea67f7bad2e17db0800000000000000
+      internalID: -4795802699155674386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_101
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cee529fbee63e1b0800000000000000
+      internalID: -5628533149506605373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_102
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2915540ffebb9160800000000000000
+      internalID: 7033425245567785262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_103
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74f1263c75be88460800000000000000
+      internalID: 7244298762798112583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_104
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec4e3ae17dcbeb220800000000000000
+      internalID: 2503646074982622414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_dungeon_green_105
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb5068f556c3dad10800000000000000
+      internalID: 2138431804162835899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      tileset_dungeon_green_0: -4590679998272751372
+      tileset_dungeon_green_1: 5537655469003375597
+      tileset_dungeon_green_10: 3000889843809814353
+      tileset_dungeon_green_100: -4795802699155674386
+      tileset_dungeon_green_101: -5628533149506605373
+      tileset_dungeon_green_102: 7033425245567785262
+      tileset_dungeon_green_103: 7244298762798112583
+      tileset_dungeon_green_104: 2503646074982622414
+      tileset_dungeon_green_105: 2138431804162835899
+      tileset_dungeon_green_11: 5381211981596905596
+      tileset_dungeon_green_12: 365077563769909142
+      tileset_dungeon_green_13: 35943724631488159
+      tileset_dungeon_green_14: 5327978398829421390
+      tileset_dungeon_green_15: -199643592807484825
+      tileset_dungeon_green_16: -7562464270811699772
+      tileset_dungeon_green_17: 3667450594000716597
+      tileset_dungeon_green_18: 4229937752856011060
+      tileset_dungeon_green_19: 7522807302419208835
+      tileset_dungeon_green_2: 3855569513318205011
+      tileset_dungeon_green_20: -849236479321241964
+      tileset_dungeon_green_21: -7915833482978250570
+      tileset_dungeon_green_22: 7384858345357245999
+      tileset_dungeon_green_23: 82449277060724530
+      tileset_dungeon_green_24: 822688346952053323
+      tileset_dungeon_green_25: -5261826608339616003
+      tileset_dungeon_green_26: -5272735873545650655
+      tileset_dungeon_green_27: 4996546675416768311
+      tileset_dungeon_green_28: -3257726924918512882
+      tileset_dungeon_green_29: 5518237016147031944
+      tileset_dungeon_green_3: 9198437096687484475
+      tileset_dungeon_green_30: -3507985804462029232
+      tileset_dungeon_green_31: -1253140685605708492
+      tileset_dungeon_green_32: 448583794309856398
+      tileset_dungeon_green_33: -507229426519958813
+      tileset_dungeon_green_34: 15145847246881734
+      tileset_dungeon_green_35: 3527460378368468751
+      tileset_dungeon_green_36: 4252330864087613526
+      tileset_dungeon_green_37: -7204091777369084642
+      tileset_dungeon_green_38: -8637094514543933833
+      tileset_dungeon_green_39: 3421756886932407953
+      tileset_dungeon_green_4: -6658380684837113478
+      tileset_dungeon_green_40: 5665558645507034053
+      tileset_dungeon_green_41: 105110137931899580
+      tileset_dungeon_green_42: 3087270932769593110
+      tileset_dungeon_green_43: -2264767002748752675
+      tileset_dungeon_green_44: 711178052764400633
+      tileset_dungeon_green_45: -6832901737146061669
+      tileset_dungeon_green_46: -8671314283779871069
+      tileset_dungeon_green_47: -6902367704042071218
+      tileset_dungeon_green_48: 5196637427532409395
+      tileset_dungeon_green_49: -3476540328659870075
+      tileset_dungeon_green_5: -4776356517456894036
+      tileset_dungeon_green_50: 6350614861637966591
+      tileset_dungeon_green_51: 8159245313210297248
+      tileset_dungeon_green_52: -6156522915865735725
+      tileset_dungeon_green_53: 3865439212767824761
+      tileset_dungeon_green_54: 6198823154615777273
+      tileset_dungeon_green_55: 2918672972057272224
+      tileset_dungeon_green_56: 215070843791068475
+      tileset_dungeon_green_57: -8101329530407769751
+      tileset_dungeon_green_58: 2380756619355500088
+      tileset_dungeon_green_59: 1936926614384820917
+      tileset_dungeon_green_6: -2966956119672414772
+      tileset_dungeon_green_60: 504940106104338861
+      tileset_dungeon_green_61: -6398004250458790586
+      tileset_dungeon_green_62: -3615137408951245563
+      tileset_dungeon_green_63: -246847790722654716
+      tileset_dungeon_green_64: 6194642027069977434
+      tileset_dungeon_green_65: 4397925482421310472
+      tileset_dungeon_green_66: -4164442383912424604
+      tileset_dungeon_green_67: -8694350940651875281
+      tileset_dungeon_green_68: 3636084869129026761
+      tileset_dungeon_green_69: -2907743768989236254
+      tileset_dungeon_green_7: 5906089335468355232
+      tileset_dungeon_green_70: -8035266483449571830
+      tileset_dungeon_green_71: 5643262005932388381
+      tileset_dungeon_green_72: 784008285077460481
+      tileset_dungeon_green_73: 4295021698949724242
+      tileset_dungeon_green_74: 4399323726018264152
+      tileset_dungeon_green_75: -8736528202485653541
+      tileset_dungeon_green_76: 7359257878484283844
+      tileset_dungeon_green_77: -6939083994155879309
+      tileset_dungeon_green_78: 1261998690367947164
+      tileset_dungeon_green_79: 2475973223099793732
+      tileset_dungeon_green_8: -934055337820218993
+      tileset_dungeon_green_80: 7910600454849475367
+      tileset_dungeon_green_81: -5892123630322084350
+      tileset_dungeon_green_82: -3231570280430578355
+      tileset_dungeon_green_83: 1256230409503231267
+      tileset_dungeon_green_84: 7661613443431688126
+      tileset_dungeon_green_85: 7978897395978229322
+      tileset_dungeon_green_86: -650922282259203055
+      tileset_dungeon_green_87: 5520191122498290887
+      tileset_dungeon_green_88: 191701942120625
+      tileset_dungeon_green_89: 5386795600097053264
+      tileset_dungeon_green_9: -6354023838454243423
+      tileset_dungeon_green_90: 5552853586676253607
+      tileset_dungeon_green_91: -2994192849598191379
+      tileset_dungeon_green_92: 2035500677383231159
+      tileset_dungeon_green_93: 8454007713940556520
+      tileset_dungeon_green_94: 7585060827325439626
+      tileset_dungeon_green_95: -7375916790262809132
+      tileset_dungeon_green_96: 1530461370453003861
+      tileset_dungeon_green_97: -1000845697527242525
+      tileset_dungeon_green_98: -2635871431946684221
+      tileset_dungeon_green_99: -3088034892054433703
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
