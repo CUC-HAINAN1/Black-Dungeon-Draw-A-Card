@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09158f7d79d9740e5bb2302706fed007, type: 3}
   m_Name: BossData
   m_EditorClassIdentifier: 
-  moveSpeed: 8
-  skillCooldown: 2
-  maxHealth: 1000
+  moveSpeed: 10
+  skillCooldown: 1.8
+  maxHealth: 1500
