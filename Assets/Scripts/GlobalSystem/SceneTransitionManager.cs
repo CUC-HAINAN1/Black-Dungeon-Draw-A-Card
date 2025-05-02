@@ -49,8 +49,8 @@ public class SceneTransitionManager : MonoBehaviour {
 
         });
 
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
-        
+        //BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
+
     }
 
     private void OnBossDied(object eventData) {
@@ -63,7 +63,7 @@ public class SceneTransitionManager : MonoBehaviour {
 
         });
 
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
+        //BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
 
     }
     private void UpdateBossData() {

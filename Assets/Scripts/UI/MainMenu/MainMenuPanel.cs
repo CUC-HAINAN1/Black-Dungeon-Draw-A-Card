@@ -27,14 +27,14 @@ public class MainMenuPanel : MonoBehaviour {
 
         settingPanelInstance.SetActive(false);
 
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
+        //BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
 
     }
 
     private void OnStartClicked() {
 
         CustomLogger.Log("开始游戏！");
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
+        //BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
         SceneTransitionHelper.Instance.LoadSceneWithTransition("LevelScene");
 
     }

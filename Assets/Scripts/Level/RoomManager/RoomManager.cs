@@ -6,8 +6,7 @@ using Google.Events.Protobuf.Cloud.NetworkManagement.V1;
 using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class RoomManager : MonoBehaviour
-{
+public class RoomManager : MonoBehaviour {
     [Header("宝箱生成设置")]
     [SerializeField] private GameObject chestPrefab;  // 宝箱预制体
     [SerializeField] private Transform[] chestSpawnPoints; // 生成点数组
@@ -37,8 +36,7 @@ public class RoomManager : MonoBehaviour
     private bool isRoomCleared; // ��������״̬���
 
     [ContextMenu("��ӡ������״̬")]
-    void DebugSpawnerStatus()
-    {
+    void DebugSpawnerStatus() {
         if (enemySpawner == null)
             CustomLogger.LogError("EnemySpawnerδ��");
         else
@@ -46,8 +44,7 @@ public class RoomManager : MonoBehaviour
     }
 
 
-    void SpawnChest()
-    {
+    void SpawnChest() {
 
         CustomLogger.Log($"宝箱生成中");
 
@@ -61,23 +58,20 @@ public class RoomManager : MonoBehaviour
 
         // 物理检测防止卡墙
         //Collider2D hit = Physics2D.OverlapCircle(spawnPoint.position, 0.5f);
-            Instantiate(chestPrefab, spawnPoint.position, Quaternion.identity);
-            chestSpawned = true;
-            CustomLogger.Log($"宝箱生成成功！位置：{spawnPoint.position}");
+        Instantiate(chestPrefab, spawnPoint.position, Quaternion.identity);
+        chestSpawned = true;
+        CustomLogger.Log($"宝箱生成成功！位置：{spawnPoint.position}");
 
     }
-    void AutoFindDoors()
-    {
+    void AutoFindDoors() {
         var doorList = new List<DoorStateController>();
         // ����2��ͨ����ǩ����
         GameObject[] doorObjs = GameObject.FindGameObjectsWithTag("Door");
-        foreach (var obj in doorObjs)
-        {
+        foreach (var obj in doorObjs) {
             if (obj.transform.IsChildOf(transform)) // ȷ���Ǳ�������Ӷ���
             {
                 var controller = obj.GetComponent<DoorStateController>();
-                if (controller != null)
-                {
+                if (controller != null) {
                     doorList.Add(controller);
                 }
             }
@@ -87,12 +81,10 @@ public class RoomManager : MonoBehaviour
     }
 
 
-    void Awake()
-    {
+    void Awake() {
         AutoFindDoors();
 
-        foreach (var door in doors)
-        {
+        foreach (var door in doors) {
             door.InitDoorState(); // ȷ���ŷ�����ȷ
         }
         // ����Edgar��11x11����ߴ�
@@ -105,10 +97,8 @@ public class RoomManager : MonoBehaviour
     }
 
 
-    public void CloseAllDoors()
-    {
-        foreach (var door in doors)
-        {
+    public void CloseAllDoors() {
+        foreach (var door in doors) {
             // ����Edgar��Scale=2����
             door.transform.localScale = Vector3.one;
             door.CloseDoor();
@@ -116,23 +106,21 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    void StartEnemySpawning()
-    {
-        if (enemySpawner == null) return;
+    void StartEnemySpawning() {
+        if (enemySpawner == null)
+            return;
 
         // 先取消旧订阅
         enemySpawner.AllWavesClearedEvent -= OnEnemiesCleared;
         // 再添加新订阅
         enemySpawner.AllWavesClearedEvent += OnEnemiesCleared;
 
-        if (enemySpawner != null)
-        {
+        if (enemySpawner != null) {
             // ����Edgar��Scale����
             enemySpawner.transform.localScale = Vector3.one * 2;
 
             // �������ɵ�����
-            foreach (Transform point in enemySpawner.spawnPoints)
-            {
+            foreach (Transform point in enemySpawner.spawnPoints) {
                 point.position = enemySpawner.GetEdgarAdjustedPosition(point.position);
             }
             enemySpawner.StartSpawning();
@@ -141,8 +129,7 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    bool CheckEnemiesInRoom()
-    {
+    bool CheckEnemiesInRoom() {
         Collider2D[] enemies = Physics2D.OverlapBoxAll(
             (Vector2)transform.position,
             roomTrigger.size,
@@ -153,8 +140,7 @@ public class RoomManager : MonoBehaviour
         return enemySpawner != null && enemySpawner.activeEnemies.Count > 0;
     }
 
-    void OnEnemiesCleared()
-    {
+    void OnEnemiesCleared() {
         isCleared = true; // ��Ƿ���Ϊ������
         isRoomCleared = true; // �־û�״̬
         hasActiveEnemies = false;
@@ -172,18 +158,15 @@ public class RoomManager : MonoBehaviour
     }
     // 新增宝箱生成方法
 
-        void OpenAllDoors()
-        {
-            foreach (var door in doors)
-            {
-                door.OpenDoor();
-            }
+    void OpenAllDoors() {
+        foreach (var door in doors) {
+            door.OpenDoor();
         }
+    }
 
 
     // Edgar����ת��������2000����ϵ��
-    public Vector2 GetGridPosition()
-    {
+    public Vector2 GetGridPosition() {
         return new Vector2(
             Mathf.RoundToInt(transform.position.x * 1000),
             Mathf.RoundToInt(transform.position.y * 1000)
@@ -202,11 +185,11 @@ public class RoomManager : MonoBehaviour
 
         StartCoroutine(CombatProcess());
 
-        if (GameObject.FindGameObjectsWithTag("Boss").Length == 0)
-            BGMManager.Instance.PlayBGM(BGMManager.Instance.battleBGM);
+        //if (GameObject.FindGameObjectsWithTag("Boss").Length == 0)
+        //BGMManager.Instance.PlayBGM(BGMManager.Instance.battleBGM);
 
-        else
-            BGMManager.Instance.PlayBGM(BGMManager.Instance.BossBGM);
+        //else
+        //BGMManager.Instance.PlayBGM(BGMManager.Instance.BossBGM);
 
     }
 
@@ -237,30 +220,27 @@ public class RoomManager : MonoBehaviour
         // ����ȫ�����ţ���������ѡ��
         SceneDoorScanner.Instance.SetAllDoorsOpenState(true);
         TipManager.Instance.ShowTip("心息一刻");
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
+        //BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
 
     }
 
     // �޸�ԭ��OnTriggerEnter2D
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!other.CompareTag("Player") || isCleared) return;
+    void OnTriggerEnter2D(Collider2D other) {
+        if (!other.CompareTag("Player") || isCleared)
+            return;
 
         StartCoroutine(DelayedDoorClose());
     }
 
-    IEnumerator DelayedDoorClose()
-    {
+    IEnumerator DelayedDoorClose() {
         // ���ֿ���״̬�ȴ���ҽ���
         yield return new WaitForSeconds(0.2f); // 0.2�뻺��ʱ��
 
         CloseAllDoors();
         StartBattle();
     }
-    void OnDestroy()
-    {
-        if (enemySpawner != null)
-        {
+    void OnDestroy() {
+        if (enemySpawner != null) {
             enemySpawner.AllWavesClearedEvent -= OnEnemiesCleared;
         }
     }
