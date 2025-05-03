@@ -35,6 +35,7 @@ public class EnemyProperty : MonoBehaviour
     [Header("攻击特效")]
     [SerializeField] private GameObject attackVFXPrefab;
     [SerializeField] private float attackVFXDuration = 0.75f;
+    [SerializeField] private float effectScaler = 6f;
 
     //混合攻击模式设置
     [Header("高级配置")]
@@ -556,8 +557,7 @@ public class EnemyProperty : MonoBehaviour
         StartCoroutine(AttackCooldown());
     }
     //攻击行为实现
-    private void PerformMeleeAttack()
-    {
+    private void PerformMeleeAttack() {
         // 强制重置动画状态
         animator.Play("Attack", 0, 0f);
         animator.Update(0); // 立即更新
@@ -567,7 +567,7 @@ public class EnemyProperty : MonoBehaviour
             CustomLogger.LogWarning("attack effect!");
             GameObject fx = Instantiate(attackVFXPrefab, attackPoint.position, Quaternion.identity);
             fx.transform.SetParent(attackPoint);
-            fx.transform.localScale *= 6;
+            fx.transform.localScale *= effectScaler;
 
             var scale = fx.transform.localScale;
             scale.x *= moveSign;
@@ -588,54 +588,43 @@ public class EnemyProperty : MonoBehaviour
         }
 
 
-        // 扩展有效攻击范围（三维检测）
-        Vector3 detectSize = new Vector3(attackRadius * 2, attackRadius * 2, 1f);
-        Collider2D[] hits = Physics2D.OverlapBoxAll(
-            attackPoint.position,
-            detectSize,
-            0f,
-            playerLayer);
-        // 新增动画触发
-        if (effectRenderer != null)
-        {
-            PlayAttackEffect();
-        }
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Player"))
-            {
-                PlayerAttributes.Instance.TakeDamage(attackDamage);
-                CustomLogger.Log($"近战攻击造成 {attackDamage} 点伤害");
-            }
-        }
-        // 添加动画事件监听
-        StartCoroutine(CheckAttackAnimationProgress());
-        // 添加攻击延迟补偿（解决动画同步问题）
-        StartCoroutine(DelayedDamage(hits, 0.2f)); // 延迟0.2秒生效
+        StartCoroutine(ContinuousAttackHitbox(0.2f));
+
     }
 
-    private IEnumerator DelayedDamage(Collider2D[] hits, float delay)
-    {
-        yield return new WaitForSeconds(delay);
+    private IEnumerator ContinuousAttackHitbox(float startDelay) {
 
-        foreach (var hit in hits)
-        {
-            if (hit == null)
-                continue;
+        float timer = 0f;
 
-            if (hit.CompareTag("Player")) {
-                PlayerAttributes.Instance.TakeDamage(attackDamage);
-                CustomLogger.Log($"延迟伤害生效: {attackDamage}");
+        yield return new WaitForSeconds(startDelay);
+
+        // 持续检测，直到动画播完
+        while (timer < attackVFXDuration) {
+
+            // 三维检测区域
+            Vector3 detectSize = new Vector3(attackRadius * 2, attackRadius * 2, 1f);
+            Collider2D[] hits = Physics2D.OverlapBoxAll(
+                attackPoint.position,
+                detectSize,
+                0f,
+                playerLayer);
+
+            foreach (var hit in hits) {
+
+                if (hit != null && hit.CompareTag("Player")) {
+
+                    PlayerAttributes.Instance.TakeDamage(attackDamage);
+
+                }
             }
-        }
-    }
-    private IEnumerator CheckAttackAnimationProgress()
-    {
-        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.95f)
-        {
+
+            timer += Time.deltaTime;
             yield return null;
+
         }
+
         TransitionToState(AIState.Chasing);
+
     }
 
     // 新增动画结束回调
@@ -782,7 +771,7 @@ public class EnemyProperty : MonoBehaviour
 
         CustomLogger.Log($"状态切换: {currentAIState} -> {newState}");
         currentAIState = newState;
-        // 应改为使用Trigger驱动：
+
         switch (newState)
         {
             case AIState.Chasing:
@@ -815,7 +804,7 @@ public class EnemyProperty : MonoBehaviour
 
     [Header("受击效果")]
     [SerializeField] private ParticleSystem hitEffect;
-    // 在EnemyProperty.cs中添加
+
     public void OnDeathAnimationEnd()
     {
         Destroy(gameObject);
