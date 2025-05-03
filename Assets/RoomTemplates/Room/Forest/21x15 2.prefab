@@ -442,6 +442,7 @@ MonoBehaviour:
   - {fileID: 1109212832988557015}
   - {fileID: 6496580838691609795}
   - {fileID: 7171010521240182820}
+  spawnEffectPrefab: {fileID: 5523046846973158029, guid: 42202a87802e94381a924efb0bcc715c, type: 3}
   activeEnemies: []
 --- !u!1 &1826750998236987061
 GameObject:

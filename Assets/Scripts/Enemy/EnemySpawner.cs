@@ -35,6 +35,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private WaveConfig[] waves;
     [SerializeField] public Transform[] spawnPoints;
 
+    [Header("敌人刷新特效")]
+
+    [SerializeField] private GameObject spawnEffectPrefab;
+    [SerializeField] private float spawnEffectOffset = 0.2f;
+
     public List<EnemyProperty> activeEnemies = new List<EnemyProperty>();
     private int currentWaveIndex = -1;
     // ����״̬����
@@ -66,10 +71,22 @@ public class EnemySpawner : MonoBehaviour
             // �����������ѡ�����Ԥ����
             if (wave.enemyPrefabs.Length > 0)
             {
+
+                if (spawnEffectPrefab != null) {
+
+                    var effectPos = spawnPoint.position;
+                    effectPos.y -= spawnEffectOffset;
+
+                    var effect = Instantiate(spawnEffectPrefab, effectPos, Quaternion.identity);
+
+                    yield return new WaitForSeconds(0.75f);
+
+                    Destroy(effect);
+
+                }
+
                 GameObject randomEnemy = wave.enemyPrefabs[UnityEngine.Random.Range(0, wave.enemyPrefabs.Length)];
                 var enemy = Instantiate(randomEnemy, spawnPoint.position, Quaternion.identity);
-
-                CustomLogger.LogWarning(enemy.tag);
 
                 if (enemy.CompareTag("Boss")) {
 
@@ -89,11 +106,19 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void StartNextWave()
-    {
+    private IEnumerator SpawnEffect(Transform SpawnTrans) {
+
+        var effect = Instantiate(spawnEffectPrefab, SpawnTrans.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(effect);
+
+    }
+
+    private void StartNextWave() {
         currentWaveIndex++;
-        if (currentWaveIndex >= waves.Length)
-        {
+        if (currentWaveIndex >= waves.Length) {
             CustomLogger.LogError("��������Խ��");
             return;
         }
@@ -106,6 +131,7 @@ public class EnemySpawner : MonoBehaviour
         var roomCollider = GetComponentInParent<BoxCollider2D>();
         return roomCollider.bounds.Contains(pos);
     }
+
     // ��EnemySpawner�ű���������֤�߼�
     void ValidateSpawnPoints()
     {
@@ -123,20 +149,17 @@ public class EnemySpawner : MonoBehaviour
         foreach (var point in spawnPoints)
             CustomLogger.Log($"���ɵ�����: {point.position}");
     }
-    private void HandleEnemyDeath(EnemyProperty enemy)
-    {
+
+    private void HandleEnemyDeath(EnemyProperty enemy) {
         activeEnemies.Remove(enemy);
         enemy.OnDeath.RemoveListener(HandleEnemyDeath); // ��Ҫ������¼���
                                                         // �������μ��
-        if (activeEnemies.Count == 0)
-        {
-            if (currentWaveIndex < waves.Length - 1)
-            {
+        if (activeEnemies.Count == 0) {
+            if (currentWaveIndex < waves.Length - 1) {
                 // �Զ���ʼ��һ��
                 StartNextWave();
             }
-            else
-            {
+            else {
                 // ���ղ������
                 AllWavesCleared = true;
                 AllWavesClearedEvent?.Invoke();
