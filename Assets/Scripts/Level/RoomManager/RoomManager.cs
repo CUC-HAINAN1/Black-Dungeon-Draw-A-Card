@@ -202,12 +202,20 @@ public class RoomManager : MonoBehaviour
 
         StartCoroutine(CombatProcess());
 
-        if (GameObject.FindGameObjectsWithTag("Boss").Length == 0)
+        if (GameObject.FindGameObjectsWithTag("Boss").Length == 0) {
+
             BGMManager.Instance.PlayBGM(BGMManager.Instance.battleBGM);
 
-        else
-            BGMManager.Instance.PlayBGM(BGMManager.Instance.BossBGM);
+        }
 
+        else {
+
+            if (BossEventManager.Instance == null)
+                CustomLogger.LogError("BossEventManager not found");
+
+            BossEventManager.Instance.PlayBossCinematic(GameObject.FindGameObjectsWithTag("Boss")[0].transform);
+
+        }
     }
 
     private IEnumerator CombatProcess() {
