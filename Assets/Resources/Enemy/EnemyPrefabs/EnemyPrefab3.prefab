@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb112f6753e0b0946a2846ae51d3d856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  enemyData: {fileID: 11400000, guid: 3a1bc6149428043a4ab563ad7538a5b9, type: 2}
   attackDamage: 10
   attackCooldown: 2
   patrolPoints: []
@@ -413,6 +413,9 @@ MonoBehaviour:
   projectileSpeed: 15
   weaponPivot: {fileID: 7258074428513927462}
   attackInterval: 2
+  attackVFXPrefab: {fileID: 0}
+  attackVFXDuration: 0.75
+  effectScaler: 6
   enableHybridAttack: 0
   hybridRangeThreshold: 3
   attackFrames: []

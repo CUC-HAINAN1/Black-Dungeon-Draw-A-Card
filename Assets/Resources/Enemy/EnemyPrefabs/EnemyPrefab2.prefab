@@ -450,7 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb112f6753e0b0946a2846ae51d3d856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  enemyData: {fileID: 11400000, guid: 3a1bc6149428043a4ab563ad7538a5b9, type: 2}
   attackDamage: 10
   attackCooldown: 2
   patrolPoints: []
@@ -471,6 +471,7 @@ MonoBehaviour:
   attackInterval: 2
   attackVFXPrefab: {fileID: 2986835625841162871, guid: 88b4e03f0f14645bb961ba202a767669, type: 3}
   attackVFXDuration: 0.75
+  effectScaler: 6
   enableHybridAttack: 0
   hybridRangeThreshold: 3
   attackFrames: []
@@ -644,6 +645,7 @@ GameObject:
   - component: {fileID: 1262417146792571457}
   - component: {fileID: 8139112172945310604}
   - component: {fileID: 8916820478152977}
+  - component: {fileID: 851568814879519547}
   m_Layer: 9
   m_Name: EnemyPrefab2
   m_TagString: Enemy
@@ -811,8 +813,43 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.016413147, y: 0.0031553374}
-  m_Size: {x: 0.20052812, y: 0.22853227}
+  m_Offset: {x: 0.016413147, y: 0.008260608}
+  m_Size: {x: 0.20052812, y: 0.20052812}
+  m_Direction: 0
+--- !u!70 &851568814879519547
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710908027184087002}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.010845423, y: 0.0021690924}
+  m_Size: {x: 0.32213318, y: 0.40566346}
   m_Direction: 0
 --- !u!1 &8894923991912464545
 GameObject:

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d803099e8c1f740eaa0d90776048ac4e, type: 3}
+  m_Name: DivineSpiritShieldCard Ori
+  m_EditorClassIdentifier: 
+  cardID: 7
+  displayName: "\u5723\u7075\u62A4\u76FE"
+  description: "\u8D4B\u4E88\u4E3B\u89D2\u4E00\u4E2A\u53EF\u4EE5\u62B5\u6321\u4F24\u5BB3\u7684\u62A4\u76FE\uFF0C\u62A4\u76FE\u88AB\u6253\u7834\u6216\u6301\u7EED\u4E00\u6BB5\u65F6\u95F4\u540E\u6D88\u5931"
+  cardIcon: {fileID: 3333558624019564704, guid: 6d454674dd86d274f8bce2e8872cdafc, type: 3}
+  rarity: 0
+  manaCost: 3
+  cooldown: 1
+  Owned: 1
+  skillType: 5
+  inputMode: 3
+  behaviorConfig:
+    projectile:
+      speed: 0
+      projectileCount: 0
+      maxRange: 0
+      interval: 0
+      damage: 0
+    sweep:
+      angle: 5
+      radius: 0
+      damage: 0
+      delay: 0
+      pivotOffsetY: 0
+      pivotOffsetX: 0
+    lockOn:
+      maxTargets: 0
+      damage: 0
+      delay: 0
+    area:
+      radius: 0
+      duration: 0
+      tickRate: 0
+      damage: 0
+    inceaseAttck:
+      amount: 0
+      duration: 0
+    generateShield:
+      amount: 25
+      duration: 10
+    burstAOE:
+      damage: 0
+      delay: 0
+      radius: 0
+  visualConfig:
+    rangeIndicatorPrefab: {fileID: 7982603594435453850, guid: 1b41597000285411abbe5de50cfc1803, type: 3}
+    castEffect: {fileID: 0}
+    castSound: {fileID: 0}
+    hitEffect: {fileID: 0}
+    hitSound: {fileID: 0}
+  upgradableParams: []

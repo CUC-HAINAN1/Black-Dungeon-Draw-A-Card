@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d803099e8c1f740eaa0d90776048ac4e, type: 3}
+  m_Name: ThunderOfDivinePunishmentCard Ori
+  m_EditorClassIdentifier: 
+  cardID: 5
+  displayName: "\u795E\u7F5A\u96F7\u9706"
+  description: "\u9501\u5B9A\u4E00\u4E2A\u76EE\u6807\u654C\u4EBA\u540E\u964D\u4E0B\u96F7\u9706\uFF0C\u5BF9\u6307\u5B9A\u654C\u4EBA\u9020\u6210\u5927\u91CF\u4F24\u5BB3"
+  cardIcon: {fileID: 6515741899584178625, guid: 6ef137cefe8b8cf47a11958d684b7d90, type: 3}
+  rarity: 1
+  manaCost: 7
+  cooldown: 1
+  Owned: 0
+  skillType: 2
+  inputMode: 1
+  behaviorConfig:
+    projectile:
+      speed: 0
+      projectileCount: 0
+      maxRange: 0
+      interval: 0
+      damage: 0
+    sweep:
+      angle: 5
+      radius: 0
+      damage: 0
+      delay: 0
+      pivotOffsetY: 0
+      pivotOffsetX: 0
+    lockOn:
+      maxTargets: 1
+      damage: 80
+      delay: 0.2
+    area:
+      radius: 0
+      duration: 0
+      tickRate: 0
+      damage: 0
+    increaseAttack:
+      amount: 0
+      duration: 0
+    generateShield:
+      amount: 0
+      duration: 0
+    burstAOE:
+      damage: 0
+      delay: 0
+      radius: 0
+  visualConfig:
+    rangeIndicatorPrefab: {fileID: 6616486395133798019, guid: 19267294a662744078bea5bf8a7c2135, type: 3}
+    castEffect: {fileID: 4872078864625106948, guid: ed0e7d286714d4cb1a86894739be87ab, type: 3}
+    castSound: {fileID: 0}
+    hitEffect: {fileID: 0}
+    hitSound: {fileID: 0}
+  upgradableParams:
+  - displayName: "\u96F7\u7535\u4F24\u5BB3\u589E\u52A030\u70B9"
+    paramPath: behaviorConfig.lockOn.damage
+    upgradeType: 0
+    value: 30

@@ -7,8 +7,10 @@ using UnityEngine.Rendering;
 
 public class EnemyProperty : MonoBehaviour
 {
+
     [Header("基础属性")]
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] EnemyData enemyData;
+    private int maxHealth;
     [SerializeField] private int attackDamage = 10;
     [SerializeField] private float attackCooldown = 2f;
 
@@ -173,6 +175,9 @@ public class EnemyProperty : MonoBehaviour
 
     void Awake()
     {
+
+        maxHealth = enemyData.maxHealth;
+
         currentHealth = maxHealth;
 
         healthUI = healthUICanvs.GetComponentInChildren<EnemyHealthUI>();
@@ -790,6 +795,8 @@ public class EnemyProperty : MonoBehaviour
     {
         if (!IsAlive()) return; // 防止重复伤害
 
+        RunStatTracker.Instance.RecordDamage(damage);
+
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
         OnHealthChanged?.Invoke(currentHealth);
         healthUI?.UpdateHealth(currentHealth);
@@ -810,7 +817,11 @@ public class EnemyProperty : MonoBehaviour
         Destroy(gameObject);
     }
     private void Die()
-    {// 触发死亡动画
+    {
+
+        RunStatTracker.Instance.RecordEnemyKilled();
+
+        // 触发死亡动画
         animator.SetTrigger("Die");
 
         // 禁用其他组件

@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb112f6753e0b0946a2846ae51d3d856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  attackDamage: 5
+  enemyData: {fileID: 11400000, guid: 3a1bc6149428043a4ab563ad7538a5b9, type: 2}
+  attackDamage: 10
   attackCooldown: 2
   patrolPoints: []
   patrolSpeed: 4
@@ -60,13 +60,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   attackType: 0
-  detectionRange: 6
+  detectionRange: 10
   attackRange: 3
   projectileSpeed: 10
   weaponPivot: {fileID: 0}
   attackInterval: 2
   attackVFXPrefab: {fileID: 1506671990725838215, guid: f65a1ed605e2d4d468acba9e2e5a1e32, type: 3}
   attackVFXDuration: 0.75
+  effectScaler: 6
   enableHybridAttack: 0
   hybridRangeThreshold: 3
   attackFrames: []
@@ -209,6 +210,7 @@ GameObject:
   - component: {fileID: 312692404679191356}
   - component: {fileID: 180879874034376207}
   - component: {fileID: 3304789676855535151}
+  - component: {fileID: 8464172727703204906}
   m_Layer: 9
   m_Name: EnemyPrefab1
   m_TagString: Enemy
@@ -378,6 +380,41 @@ CapsuleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.0048567057, y: -0.006872177}
   m_Size: {x: 0.12474513, y: 0.15976588}
+  m_Direction: 0
+--- !u!70 &8464172727703204906
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3805322949366651410}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.009605567, y: 0.0002565384}
+  m_Size: {x: 0.21183428, y: 0.2609291}
   m_Direction: 0
 --- !u!1 &4312753147183695443
 GameObject:
@@ -733,7 +770,7 @@ Transform:
   m_GameObject: {fileID: 7944941967818884289}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.075, y: -0.01, z: 0.24997999}
+  m_LocalPosition: {x: 0.094, y: -0.021, z: 0.24997999}
   m_LocalScale: {x: 0.1849102, y: 0.17817524, z: 2.1291547}
   m_ConstrainProportionsScale: 0
   m_Children: []
