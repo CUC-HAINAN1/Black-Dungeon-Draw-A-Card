@@ -131,64 +131,7 @@ public class ChestInteraction : MonoBehaviour {
 
         RewardUIManager.Instance.ShowUpgradeUI(card, upgrade);
 
-        UpgradeHelper(card, upgrade);
-
-    }
-
-    private void UpgradeHelper(CardDataBase card, CardDataBase.UpgradableParam param) {
-
-        object current = card;
-        FieldInfo field = null;
-
-        string[] path = param.paramPath.Split('.');
-
-        // 依次进入每一层字段
-        for (int i = 0; i < path.Length; i++) {
-
-            field = current.GetType().GetField(path[i],
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-
-            if (field == null) {
-
-                Debug.LogError($"字段未找到: {path[i]}");
-                return;
-
-            }
-
-            // 最后一层：修改字段值
-            if (i == path.Length - 1) {
-                object value = field.GetValue(current);
-
-                if (value is int intVal) {
-
-                    int result = param.upgradeType == CardDataBase.UpgradableParam.UpgradeType.Add
-                        ? intVal + (int)param.value
-                        : (int)(intVal * param.value);
-                    field.SetValue(current, result);
-
-                }
-
-                else if (value is float floatVal) {
-
-                    float result = param.upgradeType == CardDataBase.UpgradableParam.UpgradeType.Add
-                        ? floatVal + param.value
-                        : floatVal * param.value;
-                    field.SetValue(current, result);
-
-                }
-
-                else {
-
-                    Debug.LogWarning($"字段类型不支持强化: {value.GetType()}");
-                }
-
-                return;
-            }
-
-            // 非最后一层：进入下一层嵌套
-            current = field.GetValue(current);
-
-        }
+        CardDataBase.UpgradeCard(card, upgrade);
 
     }
 

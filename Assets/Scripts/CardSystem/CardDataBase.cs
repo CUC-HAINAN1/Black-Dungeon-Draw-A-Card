@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Reflection;
 
 [CreateAssetMenu(menuName = "Card System/Card Data", order = 1)]
 public class CardDataBase : ScriptableObject {
@@ -54,7 +55,7 @@ public class CardDataBase : ScriptableObject {
 
     [Header("升级参数")]
     public UpgradableParam[] upgradableParams;
-        
+
     // 以下是嵌套结构体定义
     public enum Rarity {
         Common,
@@ -220,5 +221,99 @@ public class CardDataBase : ScriptableObject {
     }
 
     public enum AreaShape { Circle }
+
+    public static void UpgradeCard(CardDataBase card, CardDataBase.UpgradableParam param) {
+
+        object current = card;
+        FieldInfo field = null;
+
+        string[] path = param.paramPath.Split('.');
+
+        // 依次进入每一层字段
+        for (int i = 0; i < path.Length; i++) {
+
+            field = current.GetType().GetField(path[i],
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+            if (field == null) {
+
+                Debug.LogError($"字段未找到: {path[i]}");
+                return;
+
+            }
+
+            // 最后一层：修改字段值
+            if (i == path.Length - 1) {
+                object value = field.GetValue(current);
+
+                if (value is int intVal) {
+
+                    int result = param.upgradeType == CardDataBase.UpgradableParam.UpgradeType.Add
+                        ? intVal + (int)param.value
+                        : (int)(intVal * param.value);
+                    field.SetValue(current, result);
+
+                }
+
+                else if (value is float floatVal) {
+
+                    float result = param.upgradeType == CardDataBase.UpgradableParam.UpgradeType.Add
+                        ? floatVal + param.value
+                        : floatVal * param.value;
+                    field.SetValue(current, result);
+
+                }
+
+                else {
+
+                    Debug.LogWarning($"字段类型不支持强化: {value.GetType()}");
+                }
+
+                return;
+            }
+
+            // 非最后一层：进入下一层嵌套
+            current = field.GetValue(current);
+
+        }
+
+    }
+
+    public static void CopyUpgradeFields(CardDataBase from, CardDataBase to, int cardID) {
+
+        switch (cardID) {
+
+            case 1:
+                to.behaviorConfig.projectile.damage = from.behaviorConfig.projectile.damage;
+                break;
+
+            case 2:
+                to.behaviorConfig.sweep.damage = from.behaviorConfig.sweep.damage;
+                break;
+
+            case 3:
+                to.behaviorConfig.burstAOE.damage = from.behaviorConfig.burstAOE.damage;
+                break;
+
+            case 4:
+                to.behaviorConfig.area.damage = from.behaviorConfig.area.damage;
+                break;
+
+            case 5:
+
+                break;
+
+            case 6:
+                to.behaviorConfig.increaseAttack.amount = from.behaviorConfig.increaseAttack.amount;
+                break;
+
+            case 7:
+                to.behaviorConfig.lockOn.damage = from.behaviorConfig.lockOn.damage;
+                to.Owned = from.Owned;
+                break;
+
+        }
+
+    }
 
 }
