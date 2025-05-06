@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections;
 using TMPro;
+using System.Collections.Generic;
 
 public class TipManager : MonoBehaviour {
     public static TipManager Instance { get; private set; }
@@ -14,6 +15,23 @@ public class TipManager : MonoBehaviour {
     [Header("动画参数")]
     [SerializeField] private float fadeDuration = 0.5f; // 淡入淡出时间
     [SerializeField] private float defaultDisplayTime = 2f; // 默认显示时间
+
+    [Header("Boss台词")]
+    [SerializeField]
+    public List<string> BossTips = new List<string> {
+
+        "我还会回来的",
+        "事不过三…",
+        "你赢了…",
+        "又是你？！",
+        "这不可能…",
+        "你是个魔鬼",
+        "你到底有什么目的？",
+        "我受够了",
+        "哈哈哈哈哈，你个作弊者",
+        "你赢了，但是我妈叫我回家吃饭了"
+
+    };
 
     private Tween currentTween;
 
@@ -37,8 +55,9 @@ public class TipManager : MonoBehaviour {
 
     void Start() {
 
-        StartCoroutine(PlayInitialTips());
-
+        if (GameDataManager.Instance.CompleteCnt == 0)
+            StartCoroutine(PlayInitialTips());
+            
     }
 
     void Update() {

@@ -27,6 +27,9 @@ public class BossHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+
+        RunStatTracker.Instance.RecordDamage(damage);
+
         currentHealth = Mathf.Max(0, currentHealth - damage);
         StartCoroutine(FlashEffect());
         UpdateHealthUI();
@@ -57,7 +60,10 @@ public class BossHealth : MonoBehaviour
         // 死亡动画或效果
         EventManager.Instance.TriggerEvent("BossDied");
 
-        TipManager.Instance.ShowTip("我还会回来的");
+        var tipManager = TipManager.Instance;
+        int cnt = GameDataManager.Instance.CompleteCnt - 1;
+
+        tipManager.ShowTip(tipManager.BossTips[cnt <= 9 ? cnt: 9]);
 
         Destroy(gameObject);
 
