@@ -42,8 +42,14 @@ public class BossAI : MonoBehaviour
     [SerializeField] public BossData bossData;
 
     void Start() {
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+
+        BGMManager.Instance.PlayBGM(BGMManager.Instance.BossBGM);
+
+        StartCoroutine(SkillCooldown());
+        idleTimer = idleDuration;
 
         skillCooldown = bossData.skillCooldown;
         moveSpeed = bossData.moveSpeed;
@@ -51,7 +57,9 @@ public class BossAI : MonoBehaviour
     }
 
     void Update() {
+
         if (!isCooldown) {
+
             float distance = Vector2.Distance(transform.position, player.position);
 
             if (distance <= meleeRange) {
@@ -65,6 +73,7 @@ public class BossAI : MonoBehaviour
             }
 
             StartCoroutine(SkillCooldown());
+
         }
 
         if (isMoving)
