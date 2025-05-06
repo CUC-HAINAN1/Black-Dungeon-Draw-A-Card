@@ -16,12 +16,9 @@ public class GlobalDebugger : MonoBehaviour {
 
         }
 
-        else {
+        Instance = this;
+        DontDestroyOnLoad(this);
 
-            Instance = this;
-            DontDestroyOnLoad(this);
-
-        }
     }
 
     void Update() {

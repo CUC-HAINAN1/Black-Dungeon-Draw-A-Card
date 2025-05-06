@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using System;
 
 public class CardQueueSystem : MonoBehaviour {
@@ -31,15 +30,12 @@ public class CardQueueSystem : MonoBehaviour {
         if (Instance != this && Instance != null) {
 
             Destroy(gameObject);
+            return;
 
         }
 
-        else {
-
-            Instance = this;
-            Initialize();
-
-        }
+        Instance = this;
+        Initialize();
 
     }
 
@@ -62,7 +58,7 @@ public class CardQueueSystem : MonoBehaviour {
     public CardDataBase DrawCard() {
 
         return CardPoolManager.Instance.DrawCard();
-        
+
     }
 
     public void CreateCard(CardDataBase data, Transform targetSlot) {
@@ -112,11 +108,11 @@ public class CardQueueSystem : MonoBehaviour {
 
     }
 
-    public bool TryUseCard(CardDragHandler draggedCard) {
+    public bool TryUseCard(GameObject draggedCard) {
 
         // 获取卡牌数据
         int slotIndex = System.Array.FindIndex(currentCards,
-            c => c.cardInstance == draggedCard.gameObject);
+            c => c.cardInstance == draggedCard);
 
         if (slotIndex == -1 ||
             PlayerAttributes.Instance.Mana < currentCards[slotIndex].cardData.manaCost)
@@ -133,6 +129,8 @@ public class CardQueueSystem : MonoBehaviour {
     private void ProcessCardUse(ActiveCardInfo usedCard) {
 
         CardStateManager.Instance.SetUsingState(usedCard.cardInstance, true);
+
+        RunStatTracker.Instance.RecordCardUsed();
 
         var cardVisual = usedCard.cardInstance.GetComponent<CardVisual>();
         cardVisual.AnimateAndDestroy();

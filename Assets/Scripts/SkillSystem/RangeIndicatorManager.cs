@@ -6,18 +6,16 @@ public class RangeIndicatorManager : MonoBehaviour {
     private IRangeIndicator currentIndicator;
     private PlayerAttributes playerAttributes;
 
-    public void Awake() {
+    void Awake() {
 
         if (Instance != null && Instance != this) {
 
             Destroy(gameObject);
+            return;
 
         }
-        else {
 
-            Instance = this;
-
-        }
+        Instance = this;
 
     }
 
@@ -71,7 +69,7 @@ public class RangeIndicatorManager : MonoBehaviour {
 
         currentIndicator?.Terminate();
         currentIndicator = null;
-        
+
     }
 
     public T GetContext <T> () {

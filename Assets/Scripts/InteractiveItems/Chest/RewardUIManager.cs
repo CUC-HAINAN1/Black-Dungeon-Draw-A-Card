@@ -14,9 +14,9 @@ public class RewardUIManager : MonoBehaviour {
     [Header("UI 容器")]
     public Transform rewardUIContainer;
 
-    private void Awake() {
+    void Awake() {
 
-        if (Instance != null) {
+        if (Instance != null && Instance != this) {
 
             Destroy(gameObject);
             return;

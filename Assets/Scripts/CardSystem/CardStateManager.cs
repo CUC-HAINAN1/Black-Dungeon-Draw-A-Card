@@ -12,13 +12,12 @@ public class CardStateManager : MonoBehaviour
         if (Instance != null && Instance != this) {
 
             Destroy(gameObject);
+            return;
 
         }
-        else {
 
-            Instance = this;
+        Instance = this;
 
-        }
     }
 
     // 注册新卡牌
@@ -68,7 +67,7 @@ public class CardStateManager : MonoBehaviour
     public CardState GetCardState(GameObject cardInstance) {
 
         return cardStates.ContainsKey(cardInstance) ? cardStates[cardInstance] : null;
-        
+
     }
 
     public bool IsCardUsable(GameObject cardInstance) {

@@ -21,18 +21,16 @@ public class SceneTransitionHelper : MonoBehaviour {
 
         }
 
-        else {
+        Instance = this;
+        DontDestroyOnLoad(this);
 
-            Instance = this;
-            DontDestroyOnLoad(this);
+        // 动态实例化 PersistentCanvas
+        persistentCanvasInstance = Instantiate(persistentCanvasPrefab);
+        DontDestroyOnLoad(persistentCanvasInstance.gameObject);
 
-            // 动态实例化 PersistentCanvas
-            persistentCanvasInstance = Instantiate(persistentCanvasPrefab);
-            DontDestroyOnLoad(persistentCanvasInstance.gameObject);
+        transitionImage = persistentCanvasInstance.GetComponentInChildren<Image>(true);
 
-            transitionImage = persistentCanvasInstance.GetComponentInChildren<Image>(true);
 
-        }
     }
 
     private void Start() {

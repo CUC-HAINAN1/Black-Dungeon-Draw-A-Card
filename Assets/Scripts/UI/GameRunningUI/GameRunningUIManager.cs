@@ -16,11 +16,8 @@ public class GameRunningUIManager : MonoBehaviour {
             Destroy(gameObject);
 
         }
-        else {
 
-            Instance = this;
-
-        }
+        Instance = this;
 
     }
 
