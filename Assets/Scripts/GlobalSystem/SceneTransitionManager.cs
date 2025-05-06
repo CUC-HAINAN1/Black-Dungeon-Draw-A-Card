@@ -7,7 +7,9 @@ public class SceneTransitionManager : MonoBehaviour {
     public float delayBeforeSceneLoad = 2f;
     private bool hasTriggeredSceneLoad = false;
     public CardDataBase lightningCard;
-    public BossData bossData;
+    public BossData runtimeBossDB;
+
+    public bool IsCompleteSceneLoaded { get; set; }
 
     public static SceneTransitionManager Instance { get; private set; }
 
@@ -50,40 +52,31 @@ public class SceneTransitionManager : MonoBehaviour {
         });
 
         BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
-        
+
     }
 
     private void OnBossDied(object eventData) {
 
-        lightningCard.Owned = true;
-        UpdateBossData();
+        if (GameDataManager.Instance.CompleteCnt == 3 && !IsCompleteSceneLoaded) {
 
-        TriggerSceneSwitch("CompleteScene", () => {
-            CustomLogger.Log("Boss 死亡 - 即将切换到通关场景");
+            IsCompleteSceneLoaded = true;
 
-        });
+            TriggerSceneSwitch("ResultScene", () => {
+                CustomLogger.Log("通关三次 - 即将切换到结算场景");
+
+            });
+
+        }
+        else {
+
+            TriggerSceneSwitch("CompleteScene", () => {
+                CustomLogger.Log("Boss 死亡 - 即将切换到通关场景");
+
+            });
+
+        }
 
         BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
-
-    }
-    private void UpdateBossData() {
-
-        if (bossData.skillCooldown >= 1) {
-
-            bossData.skillCooldown -= 0.2f;
-
-        }
-        if (bossData.moveSpeed <= 20) {
-
-            bossData.moveSpeed += 2;
-
-        }
-
-        if (bossData.maxHealth < 5001) {
-
-            bossData.maxHealth += 750;
-
-        }
 
     }
 

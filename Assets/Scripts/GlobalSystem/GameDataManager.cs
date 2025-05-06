@@ -69,7 +69,7 @@ public class GameDataManager : MonoBehaviour {
 
     }
 
-    private void HandleCompleteCnt() {
+    public void HandleCompleteCnt() {
 
         CompleteCnt++;
 
@@ -125,6 +125,12 @@ public class GameDataManager : MonoBehaviour {
 
             }
         }
+
+    }
+
+    public void ResetCompleteCnt() {
+
+        CompleteCnt = 0;
 
     }
 
