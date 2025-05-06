@@ -186,12 +186,14 @@ public class CardVisual : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void AnimateAndDestroy() {
 
+        this.enabled = false;
+
         transform.DOScale(Vector3.zero, 0.25f)
             .SetEase(Ease.InBack)
             .OnComplete(() => {
                 Destroy(gameObject);
             });
-
+    
     }
 
     void OnDestroy() {

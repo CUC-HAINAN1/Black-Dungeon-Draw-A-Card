@@ -20,7 +20,6 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private bool IsComponentAlive => !IsDestroyed && this != null;
 
-    //处理范围指示器的部分
     private CardDataBase cardData;
 
     [Header("动画设置")]
@@ -42,15 +41,23 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     }
 
-    public void OnBeginDrag(PointerEventData eventData) {
+    public void OnPointerDown(PointerEventData eventData) {
 
-        if (! IsComponentAlive || !cardStateManager.IsCardUsable(gameObject) || IsDestroyed)
+        if (!IsComponentAlive || !cardStateManager.IsCardUsable(gameObject) || IsDestroyed ||
+            eventData.button != PointerEventData.InputButton.Left)
             return;
 
-        if (eventData.button != PointerEventData.InputButton.Left ||
-            !cardStateManager.IsCardUsable(gameObject)) {
+        Time.timeScale = 0.25f;
+        isValidDrag = true;
 
-            eventData.pointerDrag = null; // 阻止事件传递
+    }
+
+    public void OnBeginDrag(PointerEventData eventData) {
+
+        if (!IsComponentAlive || eventData.button != PointerEventData.InputButton.Left
+        || !cardStateManager.IsCardUsable(gameObject) || IsDestroyed || cardQueueSystem.IsAnyCardDragging) {
+
+            eventData.pointerDrag = null; // 拦截非左键或不可用的拖拽
             return;
 
         }
@@ -138,12 +145,11 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
 
-        if (!cardQueueSystem.TryUseCard(this))
+        if (!cardQueueSystem.TryUseCard(gameObject))
             ReturnToOriginalPosition();
 
         //技能使用！
         SkillSystem.Instance.ExecuteSkill(cardStateManager.GetCardState(gameObject).CardData);
-        this.enabled = false;
 
         rangeIndicatorManager.ClearIndicator();
         RestoreOtherCards();
