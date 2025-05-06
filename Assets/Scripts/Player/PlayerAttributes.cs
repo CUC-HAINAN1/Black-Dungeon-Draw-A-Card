@@ -66,7 +66,7 @@ public class PlayerAttributes : MonoBehaviour {
         }
 
         _instance = this;
-        //DontDestroyOnLoad(gameObject);
+        RunStatTracker.Instance.StartTracking();
 
         _currentHealth = _MaxHealth;
 
@@ -370,7 +370,7 @@ public class PlayerAttributes : MonoBehaviour {
             Health -= amount;
 
             CameraShaker.Instance.ShakeOnce(1f, 10, 0.3f, 0.2f);
-            
+
             EnableInvincibleForDuration(GetDamageInvincibleDuration);
 
         }
