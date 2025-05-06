@@ -35,7 +35,7 @@ public class BGMManager : MonoBehaviour {
 
     private IEnumerator SwitchBGM(AudioClip newClip, float duration) {
         // 淡出
-        for (float t = 0; t < duration; t += Time.deltaTime) {
+        for (float t = 0; t < duration; t += Time.unscaledDeltaTime) {
             bgmSource.volume = Mathf.Lerp(1f, 0f, t / duration);
             yield return null;
         }
@@ -46,7 +46,7 @@ public class BGMManager : MonoBehaviour {
         bgmSource.Play();
 
         // 淡入
-        for (float t = 0; t < duration; t += Time.deltaTime) {
+        for (float t = 0; t < duration; t += Time.unscaledDeltaTime) {
             bgmSource.volume = Mathf.Lerp(0f, 1f, t / duration);
             yield return null;
         }
