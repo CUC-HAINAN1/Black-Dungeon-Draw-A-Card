@@ -290,6 +290,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1109127125254419513, guid: f0c0bfaefc9b44e08b513ff751d7af30, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109127125254419513, guid: f0c0bfaefc9b44e08b513ff751d7af30, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283953608220282235, guid: f0c0bfaefc9b44e08b513ff751d7af30, type: 3}
+      propertyPath: m_Name
+      value: Prompt1
+      objectReference: {fileID: 0}
     - target: {fileID: 5078652413248094877, guid: f0c0bfaefc9b44e08b513ff751d7af30, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -368,6 +380,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5078652413248094877, guid: f0c0bfaefc9b44e08b513ff751d7af30, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5339745377862533665, guid: f0c0bfaefc9b44e08b513ff751d7af30, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -475
+      objectReference: {fileID: 0}
+    - target: {fileID: 5339745377862533665, guid: f0c0bfaefc9b44e08b513ff751d7af30, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -434
+      objectReference: {fileID: 0}
+    - target: {fileID: 5589947382689879168, guid: f0c0bfaefc9b44e08b513ff751d7af30, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5589947382689879168, guid: f0c0bfaefc9b44e08b513ff751d7af30, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -212
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971044021593822613, guid: f0c0bfaefc9b44e08b513ff751d7af30, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8870908905648067524, guid: f0c0bfaefc9b44e08b513ff751d7af30, type: 3}

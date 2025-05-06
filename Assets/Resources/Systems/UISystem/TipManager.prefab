@@ -69,8 +69,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be80bae3883bd432aa642481e02eff33, type: 2}
-  m_sharedMaterial: {fileID: 1634619472146223687, guid: be80bae3883bd432aa642481e02eff33, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7871bc0f539044a39bab4501510fd4d0, type: 2}
+  m_sharedMaterial: {fileID: -461125878093034216, guid: 7871bc0f539044a39bab4501510fd4d0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -152,6 +152,17 @@ MonoBehaviour:
   canvasGroup: {fileID: 4958172713280882521}
   fadeDuration: 0.5
   defaultDisplayTime: 2
+  BossTips:
+  - "\u6211\u8FD8\u4F1A\u56DE\u6765\u7684"
+  - "\u4E8B\u4E0D\u8FC7\u4E09\u2026"
+  - "\u4F60\u8D62\u4E86\u2026"
+  - "\u53C8\u662F\u4F60\uFF1F\uFF01"
+  - "\u8FD9\u4E0D\u53EF\u80FD\u2026"
+  - "\u4F60\u662F\u4E2A\u9B54\u9B3C"
+  - "\u4F60\u5230\u5E95\u6709\u4EC0\u4E48\u76EE\u7684\uFF1F"
+  - "\u6211\u53D7\u591F\u4E86"
+  - "\u54C8\u54C8\u54C8\u54C8\u54C8\uFF0C\u4F60\u4E2A\u4F5C\u5F0A\u8005"
+  - "\u4F60\u8D62\u4E86\uFF0C\u4F46\u662F\u6211\u5988\u53EB\u6211\u56DE\u5BB6\u5403\u996D\u4E86"
 --- !u!225 &4958172713280882521
 CanvasGroup:
   m_ObjectHideFlags: 0

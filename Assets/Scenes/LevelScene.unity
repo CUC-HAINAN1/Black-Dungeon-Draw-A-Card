@@ -168,6 +168,56 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4099531945973889192, guid: 491a59afe96f2422e923d9f13b13e363, type: 3}
   m_PrefabInstance: {fileID: 7285001533192237138}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1087931886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1087931887}
+  - component: {fileID: 1087931888}
+  m_Layer: 0
+  m_Name: CardKeyBoardDragHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1087931887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087931886}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8554080428610507061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1087931888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087931886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6cbcc0aebdb8431ca0173c3fca7a37b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  returnDuration: 0.3
+  moveEase: 27
+  rotationDuration: 0.2
+  zoomScale: 0.3
+  hoverDuration: 0.3
+  hoverEase: 27
 --- !u!224 &1563900125 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8495249905947545530, guid: 491a59afe96f2422e923d9f13b13e363, type: 3}
@@ -178,23 +228,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6319182074895552965, guid: 491a59afe96f2422e923d9f13b13e363, type: 3}
   m_PrefabInstance: {fileID: 7285001533192237138}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1662943091 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 183678810140954662, guid: 4b3b612abf87741bda6da917119dabd5, type: 3}
-  m_PrefabInstance: {fileID: 7480948425546961791}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1662943095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662943091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e85cb79390694fa9aae24c85201deea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1957318171 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1495883258470308586, guid: 491a59afe96f2422e923d9f13b13e363, type: 3}
@@ -318,6 +351,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6683495238106257605, guid: ada956bb286554a84b341448089ac2c1, type: 3}
+      propertyPath: CameraController
+      value: 
+      objectReference: {fileID: 7480948425546961792}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -503,11 +540,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 183678810140954662, guid: 4b3b612abf87741bda6da917119dabd5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1662943095}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b3b612abf87741bda6da917119dabd5, type: 3}
+--- !u!1 &7480948425546961792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8449024748471433182, guid: 4b3b612abf87741bda6da917119dabd5, type: 3}
+  m_PrefabInstance: {fileID: 7480948425546961791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8139543906976405919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -696,9 +735,17 @@ PrefabInstance:
       objectReference: {fileID: 1563900125}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3294957348322612274, guid: 9b5fe60f55c104ce0bcedbc4b9886acf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1087931887}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b5fe60f55c104ce0bcedbc4b9886acf, type: 3}
+--- !u!4 &8554080428610507061 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3294957348322612274, guid: 9b5fe60f55c104ce0bcedbc4b9886acf, type: 3}
+  m_PrefabInstance: {fileID: 8554080428610507060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8664229756652603066
 PrefabInstance:
   m_ObjectHideFlags: 0

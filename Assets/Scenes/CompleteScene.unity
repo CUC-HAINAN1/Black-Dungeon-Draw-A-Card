@@ -290,9 +290,61 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 241089928701496742, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 93
+      objectReference: {fileID: 0}
+    - target: {fileID: 241089928701496742, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 192
+      objectReference: {fileID: 0}
     - target: {fileID: 4838752275864538164, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
       propertyPath: m_Name
       value: CompleteSceneUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387891067418834134, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -519
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387891067418834134, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -426
+      objectReference: {fileID: 0}
+    - target: {fileID: 6648175475443665477, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_text
+      value: "\u4E0E\u6B64\u540C\u65F6\uFF0C\u5730\u7262\u602A\u7269\u548CBoss\u4E5F\u5F97\u5230\u4E86\u5F3A\u5316\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6648175475443665477, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_margin.z
+      value: -164.35974
+      objectReference: {fileID: 0}
+    - target: {fileID: 6648175475443665477, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4689aa1699a3b4c3a82713b9fff07251, type: 2}
+    - target: {fileID: 6648175475443665477, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2994000126949503774, guid: 4689aa1699a3b4c3a82713b9fff07251, type: 2}
+    - target: {fileID: 7413669881277551741, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_text
+      value: "\u5361\u724C\u6570\u636E\u5DF2\u7EE7\u627F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7413669881277551741, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_margin.z
+      value: -57.168457
+      objectReference: {fileID: 0}
+    - target: {fileID: 7413669881277551741, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4689aa1699a3b4c3a82713b9fff07251, type: 2}
+    - target: {fileID: 7413669881277551741, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2994000126949503774, guid: 4689aa1699a3b4c3a82713b9fff07251, type: 2}
+    - target: {fileID: 7413669881277551741, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8363975660009803537, guid: 6f490f4210d28451c9da2fb4c2f12fc8, type: 3}
       propertyPath: m_Pivot.x
