@@ -826,7 +826,10 @@ public class EnemyProperty : MonoBehaviour
 
         // 禁用其他组件
         GetComponentInParent<AIPath>().enabled = false;
-        GetComponentInParent<Collider2D>().enabled = false;
+        foreach (var col in GetComponentsInParent<Collider2D>())
+        {
+            col.enabled = false;
+        }
 
         var childSprite = transform.Find("EnemySprite");
         if (childSprite == null) {
@@ -839,7 +842,6 @@ public class EnemyProperty : MonoBehaviour
 
         OnDeath?.Invoke(this);
         StopAllCoroutines();
-        GetComponentInParent<Collider2D>().enabled = false;
 
         if (deathEffect != null)
             Instantiate(deathEffect, rootTransform.position, Quaternion.identity);
