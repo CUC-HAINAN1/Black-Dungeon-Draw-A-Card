@@ -34,10 +34,28 @@ public class MainMenuPanel : MonoBehaviour {
     private void OnStartClicked() {
 
         CustomLogger.Log("开始游戏！");
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
+
         SceneTransitionHelper.Instance.LoadSceneWithTransition("LevelScene");
+        BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
 
     }
+
+#if UNITY_EDITOR
+
+    private void Update() {
+
+        if (Input.GetKeyDown(KeyCode.T)) {
+
+            CustomLogger.Log("进入测试场景");
+
+            SceneTransitionHelper.Instance.LoadSceneWithTransition("TestScene");
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
+
+        }
+
+    }
+
+#endif
 
     private void OnSettingClicked() {
 
