@@ -48,6 +48,7 @@ public class GameDataManager : MonoBehaviour {
     private void OnPlayerDied(object eventData) {
 
         ResetRuntimeData();
+        ResetCompleteCnt();
 
         RunStatTracker.Instance.StopTracking();
         RunStatTracker.Instance.ResetTotalStats();
