@@ -300,7 +300,8 @@ public class CardDataBase : ScriptableObject {
                 break;
 
             case 5:
-
+                to.behaviorConfig.lockOn.damage = from.behaviorConfig.lockOn.damage;
+                to.Owned = from.Owned;
                 break;
 
             case 6:
@@ -308,8 +309,7 @@ public class CardDataBase : ScriptableObject {
                 break;
 
             case 7:
-                to.behaviorConfig.lockOn.damage = from.behaviorConfig.lockOn.damage;
-                to.Owned = from.Owned;
+
                 break;
 
         }
