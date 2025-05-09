@@ -100,27 +100,27 @@ public class RunStatTracker : MonoBehaviour {
 
         int totalMinutes = Mathf.FloorToInt(TotalRunTimer / 60f);
 
-        if (totalMinutes <= 15) {
+        if (totalMinutes <= 10) {
 
             level = "SS";
 
         }
-        else if (totalMinutes <= 18) {
+        else if (totalMinutes <= 12) {
 
             level = "S";
 
         }
-        else if (totalMinutes <= 21) {
+        else if (totalMinutes <= 14) {
 
             level = "A";
 
         }
-        else if (totalMinutes <= 24) {
+        else if (totalMinutes <= 17) {
 
             level = "B";
 
         }
-        else if (totalMinutes <= 27) {
+        else if (totalMinutes <= 20) {
 
             level = "C";
 
