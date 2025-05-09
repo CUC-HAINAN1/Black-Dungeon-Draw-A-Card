@@ -12,7 +12,7 @@
 - 卡牌强化与宝箱奖励机制：成长路径明确，搭配性十足
 
 ## 📦 下载试玩
-👉 [点我下载 v1.06 Windows版](https://github.com/CUC-HAINAN1/Black-Dungeon-Draw-A-Card/releases/tag/v1.07)
+👉 [点我下载 v1.07 Windows版](https://github.com/CUC-HAINAN1/Black-Dungeon-Draw-A-Card/releases/tag/v1.07)
 
 ## 🛠 技术栈
 - Unity 2022.3
