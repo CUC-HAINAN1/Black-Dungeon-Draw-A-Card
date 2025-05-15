@@ -28,7 +28,7 @@ MonoBehaviour:
       projectileCount: 4
       maxRange: 30
       interval: 0.4
-      damage: 10
+      damage: 15
     sweep:
       angle: 5
       radius: 0

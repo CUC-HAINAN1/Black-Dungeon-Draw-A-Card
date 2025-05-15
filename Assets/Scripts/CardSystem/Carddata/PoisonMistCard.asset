@@ -44,7 +44,7 @@ MonoBehaviour:
       radius: 0.5
       duration: 5
       tickRate: 0.5
-      damage: 3
+      damage: 6
     increaseAttack:
       amount: 0
       duration: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
     hitEffect: {fileID: 0}
     hitSound: {fileID: 0}
   upgradableParams:
-  - displayName: "\u6269\u70DF\u56CA\u4E4B\u5BB9\u79EF\uFF0C\u707C\u8680\u66F4\u5F3A\uFF0C\u6BCF\u606F\u4F24\u589E\u4E24\u70B9\u3002"
+  - displayName: "\u6269\u70DF\u56CA\u4E4B\u5BB9\u79EF\uFF0C\u707C\u8680\u66F4\u5F3A\uFF0C\u6BCF\u606F\u4F24\u589E\u4E09\u70B9\u3002"
     paramPath: behaviorConfig.area.damage
     upgradeType: 0
-    value: 2
+    value: 3

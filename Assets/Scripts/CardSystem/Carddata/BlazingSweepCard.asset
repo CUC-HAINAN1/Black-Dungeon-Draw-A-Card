@@ -32,7 +32,7 @@ MonoBehaviour:
     sweep:
       angle: 50
       radius: 0.75
-      damage: 30
+      damage: 40
       delay: 0.25
       pivotOffsetY: 0
       pivotOffsetX: 0

@@ -52,7 +52,7 @@ MonoBehaviour:
       amount: 0
       duration: 0
     burstAOE:
-      damage: 20
+      damage: 30
       delay: 0.25
       radius: 0.75
   visualConfig:
