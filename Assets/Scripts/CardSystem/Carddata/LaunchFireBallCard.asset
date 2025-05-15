@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LaunchFireBallCard
   m_EditorClassIdentifier: 
   cardID: 1
-  displayName: "\u706B\u7403\u672F"
-  description: "\u5BF9\u6307\u5B9A\u76F4\u7EBF\u65B9\u5411\u53D1\u5C04\u4E00\u8FDE\u4E32\u706B\u7403\uFF0C\u78B0\u649E\u5230\u654C\u4EBA\u540E\u7206\u70B8\u5E76\u9020\u6210\u4F24\u5BB3"
+  displayName: "\u711A\u69AB\u98DE\u706B"
+  description: "\u6B64\u673A\u5173\u5BC6\u5377\u7531\u58A8\u95E8\u5DE5\u5E08\u6240\u5236\uFF0C\u5185\u85CF\u706B\u77F3\u6CB9\u818F\uFF0C\u4E00\u5F15\u5219\u69AB\u52A8\u673A\u8F6C\uFF0C\u7130\u82E5\u5954\u9F99\uFF0C\u98DE\u706B\u4E94\u8FDE\uFF0C\u711A\u5C3D\u9B4D\u9B49\u3002\n\u6B64\u673A\u6E90\u4E8E\u53E4\u4EE3\u58A8\u5BB6\u2018\u706B\u9F99\u673A\u2019\u7ED3\u6784\uFF0C\u673A\u5173\u6263\u52A8\uFF0C\u8FDE\u7EED\u53D1\u5C04\u706B\u5F39\uFF0C\u9002\u7528\u4E8E\u8FDC\u7A0B\u706B\u653B\u4E4B\u672F\u3002"
   cardIcon: {fileID: -7564434034282203093, guid: 897ad0c9a36ee354d8eed4613741515d, type: 3}
   rarity: 0
   manaCost: 4
@@ -28,7 +28,7 @@ MonoBehaviour:
       projectileCount: 4
       maxRange: 30
       interval: 0.4
-      damage: 10
+      damage: 15
     sweep:
       angle: 5
       radius: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
     hitEffect: {fileID: 8018359907108877938, guid: ea40806c20cca4a8ab8e86b16dbac036, type: 3}
     hitSound: {fileID: 0}
   upgradableParams:
-  - displayName: "\u706B\u7403\u4F24\u5BB3\u589E\u52A05\u70B9"
+  - displayName: "\u706B\u818F\u7CBE\u70BC\uFF0C\u7130\u52BF\u66F4\u731B\uFF0C\u707C\u529B\u63D0\u589E\u4E94\u70B9\u3002"
     paramPath: behaviorConfig.projectile.damage
     upgradeType: 0
     value: 5

@@ -26,11 +26,6 @@ public class BGMManager : MonoBehaviour {
 
     public void PlayBGM(AudioClip clip, float fadeDuration = 1f) {
 
-        if (bgmSource.clip == clip)
-            return;
-
-        StartCoroutine(SwitchBGM(clip, fadeDuration));
-
     }
 
     private IEnumerator SwitchBGM(AudioClip newClip, float duration) {

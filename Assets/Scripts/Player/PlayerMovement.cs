@@ -15,7 +15,7 @@ public class PlayerMovement: MonoBehaviour {
     public float maxSpeed = 8f; //最大速度
     public float drag = 5f; //手动设置的初始阻力
     public float stopDrag = 20f; //停止阻力更大，快速停止以符合肉鸽游戏操作手感
-    
+
     [Header("Rolling")]
     public float rollDistance = 5f;
     public float rollDuration = 0.3f;
@@ -31,7 +31,7 @@ public class PlayerMovement: MonoBehaviour {
 
     [Header("Rolling Curve")]
     public AnimationCurve rollSpeedCurve = new AnimationCurve(
-        
+
         new Keyframe(0, 0),
         new Keyframe(0.4f, 1),
         new Keyframe(0.6f, 1),
@@ -49,12 +49,12 @@ public class PlayerMovement: MonoBehaviour {
 
     void Start()
     {
-        
+
         playerAttributes = PlayerAttributes.Instance;
-        
+
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        
+
         rb.drag = drag;
         defaultDrag = rb.drag; //存储初始阻力
 
@@ -66,31 +66,31 @@ public class PlayerMovement: MonoBehaviour {
         if (!CheckAndHandleDeath() || playerAttributes.IsRolling) return;
 
         Vector2 newInput = new Vector2(
-            
+
             Input.GetAxisRaw("Horizontal"),
             Input.GetAxisRaw("Vertical")
-        
+
         ).normalized;
 
         //触发输入变化事件
         if (newInput != movementInput) {
-        
+
             movementInput = newInput;
             OnMovementInputChanged?.Invoke(movementInput);
-        
+
         }
 
         //记录输入时更新最后移动方向
-        if (movementInput.magnitude > 0.1f) lastNonZeroMovementInput = newInput.normalized;
+        if (movementInput.magnitude > 0.01f) lastNonZeroMovementInput = newInput.normalized;
 
         //翻滚输入检测
         if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > lastRollTime + rollCoolDown && playerAttributes.Mana >= 2) {
-            
+
             playerAttributes.UseMana(2);
             StartCoroutine(PerformRoll());
-            
+
         }
-        
+
         //水平移动时改变角色朝向
         if (newInput.x != 0) {
 
@@ -101,15 +101,15 @@ public class PlayerMovement: MonoBehaviour {
     }
 
     void FixedUpdate() {
-    
+
         //处于翻滚或死亡状态直接返回
         if (playerAttributes.IsRolling || playerAttributes.IsDead) return;
 
-        if (movementInput.magnitude > 0.1f) {
+        if (movementInput.magnitude > 0.01f) {
 
             //应用默认阻力
             rb.drag = defaultDrag;
-            
+
             //加速度模拟
             Vector2 targetVelocity = movementInput * maxSpeed;
             Vector2 velocityChange = (targetVelocity - rb.velocity) * acceleration;
@@ -120,25 +120,25 @@ public class PlayerMovement: MonoBehaviour {
 
             rb.drag = stopDrag;
 
-        }       
+        }
 
-    }   
+    }
 
     //翻滚动作
     IEnumerator PerformRoll() {
 
         playerAttributes.StartRolling();
-        
+
         lastRollTime = Time.time;
-        
+
         //计算初始转向方向
-        Vector2 rollDirection = movementInput.magnitude > 0.1f ? 
-                                movementInput.normalized : 
+        Vector2 rollDirection = movementInput.magnitude > 0.01f ?
+                                movementInput.normalized :
                                 (isFacingRight ? Vector2.right : Vector2.left);
 
         //计算初始速度
         float basedSpeed = rollDistance / rollDuration;
-        
+
         //保存物理参数
         float originalDrag = rb.drag;
         rb.drag = 0;
@@ -146,7 +146,7 @@ public class PlayerMovement: MonoBehaviour {
         //翻滚过程
         float elapsed = 0f;
         while (elapsed < rollDuration) {
-            
+
             float progress = elapsed / rollDuration;
             float speedMutiplier = rollSpeedCurve.Evaluate(progress);
 
@@ -163,11 +163,11 @@ public class PlayerMovement: MonoBehaviour {
         Vector2 startvelocity = rb.velocity;
 
         while (stopTimer < rollStopTime) {
-            
+
             float progress = stopTimer / rollStopTime;
 
             rb.velocity = Vector2.Lerp(startvelocity, Vector2.zero, progress);
-            
+
             stopTimer += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
 
@@ -175,10 +175,10 @@ public class PlayerMovement: MonoBehaviour {
 
         //防止多余移动
         rb.velocity = Vector2.zero;
-        
+
         //恢复阻力参数
         rb.drag = originalDrag;
-        
+
         //重置翻滚状态
         playerAttributes.EndRolling();
 
@@ -190,7 +190,7 @@ public class PlayerMovement: MonoBehaviour {
         if (faceRight != isFacingRight) {
 
             isFacingRight = faceRight;
-            transform.localScale = new Vector3(faceRight ? 4 : -4, 4, 1);
+            transform.localScale = new Vector3(faceRight ? 0.4f : -0.4f, 0.4f, 1);
 
         }
 
@@ -213,10 +213,10 @@ public class PlayerMovement: MonoBehaviour {
         return true;
 
     }
-    
+
     //处理死亡滑行
     private void OnDeathStart() {
-        
+
         Vector2 deathDirection = lastNonZeroMovementInput;
 
         if (deathDirection.magnitude < 0.1f) {

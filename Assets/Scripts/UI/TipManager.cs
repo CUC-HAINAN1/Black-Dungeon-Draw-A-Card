@@ -91,10 +91,10 @@ public class TipManager : MonoBehaviour {
     private IEnumerator PlayInitialTips() {
 
         yield return new WaitForSeconds(2f);
-        ShowTip("WASD 移动，Shift 翻滚", 3f);
+        ShowTip("心魔既出，不破不立", 3f);
 
         yield return new WaitForSeconds(3f + 2f);
-        ShowTip("拖拽卡牌以释放技能", 3f);
+        ShowTip("万机千变，皆由心控", 3f);
 
     }
 

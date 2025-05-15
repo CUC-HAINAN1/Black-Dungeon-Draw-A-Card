@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: CUC-HaiNan1
-  productName: 'Black Dungeon: Draw A Card'
+  productName: "\u673A\u5173\u5BC6\u5377 \u7834\u5FC3\u9B54\u5F55"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}

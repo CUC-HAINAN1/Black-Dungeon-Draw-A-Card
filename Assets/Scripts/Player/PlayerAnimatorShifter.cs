@@ -61,7 +61,7 @@ public class PlayerAnimatorShifter : MonoBehaviour
 
     }
 
-    private void HandleMovement(Vector2 input) => animator.SetBool(isMovingHash, input.magnitude > 0.1f);
+    private void HandleMovement(Vector2 input) => animator.SetBool(isMovingHash, input.magnitude >= 0.000001f);
 
     private void HandleDeath(object eventData) => animator.SetBool(deathHash, true);
 

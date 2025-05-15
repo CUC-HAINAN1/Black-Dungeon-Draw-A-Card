@@ -3,14 +3,14 @@ public class SectorRangeIndicator : MonoBehaviour, IRangeIndicator {
     [SerializeField] private Transform rangeSector;
     private CardDataBase.SweepParams config;
     [SerializeField] public Color color;
-    
+
     private Transform playerTransform;
     private Vector3 _direction;
 
     public Vector3 Direction => _direction;
 
     public void Initialize(CardDataBase cardData) {
-        
+
         playerTransform = PlayerAttributes.Instance.PlayerTransform;
         SectorMeshGenerator setcorRangeIndicator = gameObject.GetComponent<SectorMeshGenerator>();
 
@@ -18,14 +18,14 @@ public class SectorRangeIndicator : MonoBehaviour, IRangeIndicator {
         meshRenderer.material.color = color;
 
         config = cardData.behaviorConfig.sweep;
-        setcorRangeIndicator.radius = config.radius;
+        setcorRangeIndicator.radius = config.radius * 10;
 
-        rangeSector.localPosition = Vector3.zero; 
-    
+        rangeSector.localPosition = Vector3.zero;
+
     }
 
     public void UpdateIndicator() {
-        
+
         Camera mainCamera = Camera.main;
         Vector3 cameraWorldPos = mainCamera.transform.position;
 
@@ -38,7 +38,7 @@ public class SectorRangeIndicator : MonoBehaviour, IRangeIndicator {
 
         float parentScaleSign = Mathf.Sign(playerTransform.localScale.x);
         _direction.x *= parentScaleSign;
-        _direction.y *= parentScaleSign; 
+        _direction.y *= parentScaleSign;
 
         // 计算旋转角度（2D场景绕Z轴）
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
@@ -47,17 +47,17 @@ public class SectorRangeIndicator : MonoBehaviour, IRangeIndicator {
     }
 
     public void Terminate() {
-        
+
         Destroy(gameObject);
-    
+
     }
 
    public T GetContext<T>() {
 
         if (typeof(T) == typeof(Vector3)) {
-        
+
             return (T)(object)_direction; // 通过装箱转换类型
-        
+
         }
 
         return default;
