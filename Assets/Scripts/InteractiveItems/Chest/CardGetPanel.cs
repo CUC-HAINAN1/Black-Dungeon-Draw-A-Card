@@ -23,7 +23,7 @@ public class CardGetPanelUIPanel : MonoBehaviour {
             dragHandler.enabled = false;
 
         }
-        descriptionText.text = "隐藏卡牌已发现！";
+        descriptionText.text = "奇卷现世，机缘难再也";
 
         confirmButton.onClick.RemoveAllListeners();
 
