@@ -633,7 +633,7 @@ Transform:
   m_GameObject: {fileID: 1078302691931609091}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -1.53, z: 0}
+  m_LocalPosition: {x: -0.01, y: -3.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -652,6 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsFloorExisting: 0
+  Found: {fileID: 0}
 --- !u!1 &1998229595450223517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,7 +2515,7 @@ Transform:
   m_GameObject: {fileID: 7361608385780285961}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 2.58, z: 0}
+  m_LocalPosition: {x: 0.01, y: 3.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2533,6 +2534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsFloorExisting: 0
+  Found: {fileID: 0}
 --- !u!1 &7811022826202693480
 GameObject:
   m_ObjectHideFlags: 0

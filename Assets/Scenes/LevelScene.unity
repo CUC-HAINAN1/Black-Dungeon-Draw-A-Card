@@ -311,6 +311,10 @@ PrefabInstance:
       propertyPath: rewardUIContainer
       value: 
       objectReference: {fileID: 691019489}
+    - target: {fileID: 4200052638855411753, guid: ada956bb286554a84b341448089ac2c1, type: 3}
+      propertyPath: GeneratorConfig.RoomTemplatePrefabMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4459627837184678280, guid: ada956bb286554a84b341448089ac2c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.697857
