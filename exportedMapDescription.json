@@ -1,0 +1,1848 @@
+{
+  "roomDescriptionsList": [
+    {
+      "Key": {
+        "Id": 0,
+        "Name": "EliteEnemyRoom"
+      },
+      "Value": {
+        "IsCorridor": false,
+        "RoomTemplates": [
+          {
+            "$id": "4",
+            "Name": "15x21",
+            "Outline": {
+              "points": [
+                {
+                  "X": -9,
+                  "Y": 4
+                },
+                {
+                  "X": 7,
+                  "Y": 4
+                },
+                {
+                  "X": 7,
+                  "Y": -18
+                },
+                {
+                  "X": -9,
+                  "Y": -18
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": -3,
+                    "Y": 4
+                  },
+                  "To": {
+                    "X": 1,
+                    "Y": 4
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -3,
+                    "Y": -18
+                  },
+                  "To": {
+                    "X": 1,
+                    "Y": -18
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 7,
+                    "Y": -5
+                  },
+                  "To": {
+                    "X": 7,
+                    "Y": -9
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -9,
+                    "Y": -5
+                  },
+                  "To": {
+                    "X": -9,
+                    "Y": -9
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "23",
+            "Name": "19x13",
+            "Outline": {
+              "points": [
+                {
+                  "X": -7,
+                  "Y": 5
+                },
+                {
+                  "X": 13,
+                  "Y": 5
+                },
+                {
+                  "X": 13,
+                  "Y": -9
+                },
+                {
+                  "X": -7,
+                  "Y": -9
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 1,
+                    "Y": 5
+                  },
+                  "To": {
+                    "X": 5,
+                    "Y": 5
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 1,
+                    "Y": -9
+                  },
+                  "To": {
+                    "X": 5,
+                    "Y": -9
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 13,
+                    "Y": 0
+                  },
+                  "To": {
+                    "X": 13,
+                    "Y": -4
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -7,
+                    "Y": 0
+                  },
+                  "To": {
+                    "X": -7,
+                    "Y": -4
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "42",
+            "Name": "21x15",
+            "Outline": {
+              "points": [
+                {
+                  "X": -8,
+                  "Y": -1
+                },
+                {
+                  "X": 14,
+                  "Y": -1
+                },
+                {
+                  "X": 14,
+                  "Y": -17
+                },
+                {
+                  "X": -8,
+                  "Y": -17
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 2,
+                    "Y": -1
+                  },
+                  "To": {
+                    "X": 6,
+                    "Y": -1
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 2,
+                    "Y": -17
+                  },
+                  "To": {
+                    "X": 6,
+                    "Y": -17
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 14,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": 14,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -8,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": -8,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "61",
+            "Name": "21x15 1",
+            "Outline": {
+              "points": [
+                {
+                  "X": -8,
+                  "Y": -1
+                },
+                {
+                  "X": 14,
+                  "Y": -1
+                },
+                {
+                  "X": 14,
+                  "Y": -17
+                },
+                {
+                  "X": -8,
+                  "Y": -17
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 1,
+                    "Y": -1
+                  },
+                  "To": {
+                    "X": 5,
+                    "Y": -1
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 1,
+                    "Y": -17
+                  },
+                  "To": {
+                    "X": 5,
+                    "Y": -17
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 14,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": 14,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -8,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": -8,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "80",
+            "Name": "21x15 2",
+            "Outline": {
+              "points": [
+                {
+                  "X": -8,
+                  "Y": -1
+                },
+                {
+                  "X": 14,
+                  "Y": -1
+                },
+                {
+                  "X": 14,
+                  "Y": -17
+                },
+                {
+                  "X": -8,
+                  "Y": -17
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 1,
+                    "Y": -1
+                  },
+                  "To": {
+                    "X": 5,
+                    "Y": -1
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 1,
+                    "Y": -17
+                  },
+                  "To": {
+                    "X": 5,
+                    "Y": -17
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 14,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": 14,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -8,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": -8,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "99",
+            "Name": "21x21",
+            "Outline": {
+              "points": [
+                {
+                  "X": -4,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": -20
+                },
+                {
+                  "X": -4,
+                  "Y": -20
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": 2
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": 2
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": -20
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": -20
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 18,
+                    "Y": -8
+                  },
+                  "To": {
+                    "X": 18,
+                    "Y": -12
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -4,
+                    "Y": -8
+                  },
+                  "To": {
+                    "X": -4,
+                    "Y": -12
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "118",
+            "Name": "21x21 1",
+            "Outline": {
+              "points": [
+                {
+                  "X": -4,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": -20
+                },
+                {
+                  "X": -4,
+                  "Y": -20
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": 2
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": 2
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": -20
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": -20
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 18,
+                    "Y": -6
+                  },
+                  "To": {
+                    "X": 18,
+                    "Y": -10
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -4,
+                    "Y": -6
+                  },
+                  "To": {
+                    "X": -4,
+                    "Y": -10
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "137",
+            "Name": "21x21 2",
+            "Outline": {
+              "points": [
+                {
+                  "X": -4,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": -20
+                },
+                {
+                  "X": -4,
+                  "Y": -20
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": 2
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": 2
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": -20
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": -20
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 18,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": 18,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -4,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": -4,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "156",
+            "Name": "21x21 3",
+            "Outline": {
+              "points": [
+                {
+                  "X": -4,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": -20
+                },
+                {
+                  "X": -4,
+                  "Y": -20
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": 2
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": 2
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": -20
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": -20
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 18,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": 18,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -4,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": -4,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "175",
+            "Name": "21x21 4",
+            "Outline": {
+              "points": [
+                {
+                  "X": -4,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": -20
+                },
+                {
+                  "X": -4,
+                  "Y": -20
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": 2
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": 2
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": -20
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": -20
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 18,
+                    "Y": -6
+                  },
+                  "To": {
+                    "X": 18,
+                    "Y": -10
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -4,
+                    "Y": -6
+                  },
+                  "To": {
+                    "X": -4,
+                    "Y": -10
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "194",
+            "Name": "21x21 5",
+            "Outline": {
+              "points": [
+                {
+                  "X": -4,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": -20
+                },
+                {
+                  "X": -4,
+                  "Y": -20
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": 2
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": 2
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": -20
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": -20
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 18,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": 18,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -4,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": -4,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "213",
+            "Name": "21x21 7",
+            "Outline": {
+              "points": [
+                {
+                  "X": -4,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": -20
+                },
+                {
+                  "X": -4,
+                  "Y": -20
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 6,
+                    "Y": 2
+                  },
+                  "To": {
+                    "X": 10,
+                    "Y": 2
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 7,
+                    "Y": -20
+                  },
+                  "To": {
+                    "X": 11,
+                    "Y": -20
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 18,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": 18,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -4,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": -4,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "232",
+            "Name": "21x21 8",
+            "Outline": {
+              "points": [
+                {
+                  "X": -4,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": -20
+                },
+                {
+                  "X": -4,
+                  "Y": -20
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": 2
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": 2
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 5,
+                    "Y": -20
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": -20
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 18,
+                    "Y": -6
+                  },
+                  "To": {
+                    "X": 18,
+                    "Y": -10
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -4,
+                    "Y": -6
+                  },
+                  "To": {
+                    "X": -4,
+                    "Y": -10
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "251",
+            "Name": "21x21 9",
+            "Outline": {
+              "points": [
+                {
+                  "X": -4,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": 2
+                },
+                {
+                  "X": 18,
+                  "Y": -20
+                },
+                {
+                  "X": -4,
+                  "Y": -20
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 4,
+                    "Y": 2
+                  },
+                  "To": {
+                    "X": 8,
+                    "Y": 2
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 4,
+                    "Y": -20
+                  },
+                  "To": {
+                    "X": 8,
+                    "Y": -20
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 18,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": 18,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -4,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": -4,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "270",
+            "Name": "21x25",
+            "Outline": {
+              "points": [
+                {
+                  "X": -3,
+                  "Y": 3
+                },
+                {
+                  "X": 19,
+                  "Y": 3
+                },
+                {
+                  "X": 19,
+                  "Y": -23
+                },
+                {
+                  "X": -3,
+                  "Y": -23
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 6,
+                    "Y": 3
+                  },
+                  "To": {
+                    "X": 10,
+                    "Y": 3
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 6,
+                    "Y": -23
+                  },
+                  "To": {
+                    "X": 10,
+                    "Y": -23
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 19,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": 19,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -3,
+                    "Y": -7
+                  },
+                  "To": {
+                    "X": -3,
+                    "Y": -11
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          },
+          {
+            "$id": "289",
+            "Name": "25x15",
+            "Outline": {
+              "points": [
+                {
+                  "X": -10,
+                  "Y": 2
+                },
+                {
+                  "X": 16,
+                  "Y": 2
+                },
+                {
+                  "X": 16,
+                  "Y": -14
+                },
+                {
+                  "X": -10,
+                  "Y": -14
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 1,
+                    "Y": 2
+                  },
+                  "To": {
+                    "X": 5,
+                    "Y": 2
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 0,
+                    "Y": -14
+                  },
+                  "To": {
+                    "X": 4,
+                    "Y": -14
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 16,
+                    "Y": -5
+                  },
+                  "To": {
+                    "X": 16,
+                    "Y": -9
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -10,
+                    "Y": -5
+                  },
+                  "To": {
+                    "X": -10,
+                    "Y": -9
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "Key": {
+        "Id": 1,
+        "Name": "EliteEnemyRoom"
+      },
+      "Value": {
+        "IsCorridor": false,
+        "RoomTemplates": [
+          {
+            "$ref": "4"
+          },
+          {
+            "$ref": "23"
+          },
+          {
+            "$ref": "42"
+          },
+          {
+            "$ref": "61"
+          },
+          {
+            "$ref": "80"
+          },
+          {
+            "$ref": "99"
+          },
+          {
+            "$ref": "118"
+          },
+          {
+            "$ref": "137"
+          },
+          {
+            "$ref": "156"
+          },
+          {
+            "$ref": "175"
+          },
+          {
+            "$ref": "194"
+          },
+          {
+            "$ref": "213"
+          },
+          {
+            "$ref": "232"
+          },
+          {
+            "$ref": "251"
+          },
+          {
+            "$ref": "270"
+          },
+          {
+            "$ref": "289"
+          }
+        ]
+      }
+    },
+    {
+      "Key": {
+        "Id": 2,
+        "Name": "EliteEnemyRoom"
+      },
+      "Value": {
+        "IsCorridor": false,
+        "RoomTemplates": [
+          {
+            "$ref": "4"
+          },
+          {
+            "$ref": "23"
+          },
+          {
+            "$ref": "42"
+          },
+          {
+            "$ref": "61"
+          },
+          {
+            "$ref": "80"
+          },
+          {
+            "$ref": "99"
+          },
+          {
+            "$ref": "118"
+          },
+          {
+            "$ref": "137"
+          },
+          {
+            "$ref": "156"
+          },
+          {
+            "$ref": "175"
+          },
+          {
+            "$ref": "194"
+          },
+          {
+            "$ref": "213"
+          },
+          {
+            "$ref": "232"
+          },
+          {
+            "$ref": "251"
+          },
+          {
+            "$ref": "270"
+          },
+          {
+            "$ref": "289"
+          }
+        ]
+      }
+    },
+    {
+      "Key": {
+        "Id": 3,
+        "Name": "EliteEnemyRoom"
+      },
+      "Value": {
+        "IsCorridor": false,
+        "RoomTemplates": [
+          {
+            "$ref": "4"
+          },
+          {
+            "$ref": "23"
+          },
+          {
+            "$ref": "42"
+          },
+          {
+            "$ref": "61"
+          },
+          {
+            "$ref": "80"
+          },
+          {
+            "$ref": "99"
+          },
+          {
+            "$ref": "118"
+          },
+          {
+            "$ref": "137"
+          },
+          {
+            "$ref": "156"
+          },
+          {
+            "$ref": "175"
+          },
+          {
+            "$ref": "194"
+          },
+          {
+            "$ref": "213"
+          },
+          {
+            "$ref": "232"
+          },
+          {
+            "$ref": "251"
+          },
+          {
+            "$ref": "270"
+          },
+          {
+            "$ref": "289"
+          }
+        ]
+      }
+    },
+    {
+      "Key": {
+        "Id": 4,
+        "Name": "BirthRoom"
+      },
+      "Value": {
+        "IsCorridor": false,
+        "RoomTemplates": [
+          {
+            "Name": "11x11c",
+            "Outline": {
+              "points": [
+                {
+                  "X": -3,
+                  "Y": 5
+                },
+                {
+                  "X": 9,
+                  "Y": 5
+                },
+                {
+                  "X": 9,
+                  "Y": -8
+                },
+                {
+                  "X": -3,
+                  "Y": -8
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 1,
+                    "Y": -8
+                  },
+                  "To": {
+                    "X": 5,
+                    "Y": -8
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 1,
+                    "Y": 5
+                  },
+                  "To": {
+                    "X": 5,
+                    "Y": 5
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -3,
+                    "Y": 0
+                  },
+                  "To": {
+                    "X": -3,
+                    "Y": -4
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 9,
+                    "Y": 0
+                  },
+                  "To": {
+                    "X": 9,
+                    "Y": -4
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "Key": {
+        "Id": 5,
+        "Name": "BossRoom"
+      },
+      "Value": {
+        "IsCorridor": false,
+        "RoomTemplates": [
+          {
+            "Name": "25x15 1",
+            "Outline": {
+              "points": [
+                {
+                  "X": -10,
+                  "Y": 2
+                },
+                {
+                  "X": 16,
+                  "Y": 2
+                },
+                {
+                  "X": 16,
+                  "Y": -14
+                },
+                {
+                  "X": -10,
+                  "Y": -14
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": 1,
+                    "Y": 2
+                  },
+                  "To": {
+                    "X": 5,
+                    "Y": 2
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 0,
+                    "Y": -14
+                  },
+                  "To": {
+                    "X": 4,
+                    "Y": -14
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 16,
+                    "Y": -5
+                  },
+                  "To": {
+                    "X": 16,
+                    "Y": -9
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -10,
+                    "Y": -5
+                  },
+                  "To": {
+                    "X": -10,
+                    "Y": -9
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "Key": {
+        "Id": 6,
+        "Name": "TreasureRoom"
+      },
+      "Value": {
+        "IsCorridor": false,
+        "RoomTemplates": [
+          {
+            "Name": "13x13",
+            "Outline": {
+              "points": [
+                {
+                  "X": -11,
+                  "Y": 0
+                },
+                {
+                  "X": 3,
+                  "Y": 0
+                },
+                {
+                  "X": 3,
+                  "Y": -14
+                },
+                {
+                  "X": -11,
+                  "Y": -14
+                }
+              ]
+            },
+            "Doors": {
+              "$type": "Edgar.GraphBasedGenerator.Grid2D.ManualDoorModeGrid2D, EdgarSingleFile",
+              "Doors": [
+                {
+                  "From": {
+                    "X": -5,
+                    "Y": 0
+                  },
+                  "To": {
+                    "X": -1,
+                    "Y": 0
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -5,
+                    "Y": -14
+                  },
+                  "To": {
+                    "X": -1,
+                    "Y": -14
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": 3,
+                    "Y": -5
+                  },
+                  "To": {
+                    "X": 3,
+                    "Y": -9
+                  },
+                  "Socket": null,
+                  "Type": 0
+                },
+                {
+                  "From": {
+                    "X": -11,
+                    "Y": -5
+                  },
+                  "To": {
+                    "X": -11,
+                    "Y": -9
+                  },
+                  "Socket": null,
+                  "Type": 0
+                }
+              ],
+              "DoorLines": null
+            },
+            "RepeatMode": 0,
+            "AllowedTransformations": [
+              0
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "passages": [
+    {
+      "Room1": {
+        "Id": 0,
+        "Name": "EliteEnemyRoom"
+      },
+      "Room2": {
+        "Id": 1,
+        "Name": "EliteEnemyRoom"
+      }
+    },
+    {
+      "Room1": {
+        "Id": 0,
+        "Name": "EliteEnemyRoom"
+      },
+      "Room2": {
+        "Id": 6,
+        "Name": "TreasureRoom"
+      }
+    },
+    {
+      "Room1": {
+        "Id": 1,
+        "Name": "EliteEnemyRoom"
+      },
+      "Room2": {
+        "Id": 2,
+        "Name": "EliteEnemyRoom"
+      }
+    },
+    {
+      "Room1": {
+        "Id": 1,
+        "Name": "EliteEnemyRoom"
+      },
+      "Room2": {
+        "Id": 4,
+        "Name": "BirthRoom"
+      }
+    },
+    {
+      "Room1": {
+        "Id": 2,
+        "Name": "EliteEnemyRoom"
+      },
+      "Room2": {
+        "Id": 3,
+        "Name": "EliteEnemyRoom"
+      }
+    },
+    {
+      "Room1": {
+        "Id": 3,
+        "Name": "EliteEnemyRoom"
+      },
+      "Room2": {
+        "Id": 5,
+        "Name": "BossRoom"
+      }
+    }
+  ],
+  "MinimumRoomDistance": 0,
+  "Clusters": null,
+  "Constraints": null,
+  "RoomTemplateRepeatModeDefault": 2,
+  "RoomTemplateRepeatModeOverride": null,
+  "Name": "Test"
+}
