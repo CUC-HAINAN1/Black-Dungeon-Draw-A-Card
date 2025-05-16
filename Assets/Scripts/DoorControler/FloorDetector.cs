@@ -15,7 +15,7 @@ public class FloorDetector : MonoBehaviour {
 
     private IEnumerator detectFloor() {
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
 
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 0.001f);
 
