@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
             door.transform.rotation = Quaternion.identity;
         }
     }
-    [System.Serializable]
+    [Serializable]
     public class WaveConfig
     {
         public GameObject[] enemyPrefabs;
@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     [Header("��������")]
-    [SerializeField] private WaveConfig[] waves;
+    [SerializeField] public WaveConfig[] waves;
     [SerializeField] public Transform[] spawnPoints;
 
     [Header("敌人刷新特效")]
@@ -41,19 +41,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnEffectOffset = 0.2f;
 
     public List<EnemyProperty> activeEnemies = new List<EnemyProperty>();
-    private int currentWaveIndex = -1;
+    public int currentWaveIndex = -1;
+    public int currentWaveDeadEnemyCount = 0;
     // ����״̬����
     public bool AllWavesCleared { get; private set; }
     public event Action AllWavesClearedEvent;
     public bool IsActive { get; private set; }
-    private void HandleWaveCompletion()
-    {
-        if (currentWaveIndex >= waves.Length - 1 && activeEnemies.Count == 0)
-        {
-            AllWavesCleared = true;
-            AllWavesClearedEvent?.Invoke();
-        }
-    }
+
     public void StartSpawning()
     {
 
@@ -64,13 +58,11 @@ public class EnemySpawner : MonoBehaviour
     }
     private IEnumerator SpawnWave(WaveConfig wave)
     {
-        for (int i = 0; i < wave.enemyCount; i++)
-        {
+        for (int i = 0; i < wave.enemyCount; i++) {
             var spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
 
             // �����������ѡ�����Ԥ����
-            if (wave.enemyPrefabs.Length > 0)
-            {
+            if (wave.enemyPrefabs.Length > 0) {
 
                 if (spawnEffectPrefab != null) {
 
@@ -97,27 +89,18 @@ public class EnemySpawner : MonoBehaviour
                 property.OnDeath.AddListener(HandleEnemyDeath);
                 activeEnemies.Add(property);
             }
-            else
-            {
+            else {
                 CustomLogger.LogError($"��{currentWaveIndex}��δ���õ���Ԥ����");
             }
 
-            yield return new WaitForSeconds(wave.spawnInterval);
+
         }
-    }
-
-    private IEnumerator SpawnEffect(Transform SpawnTrans) {
-
-        var effect = Instantiate(spawnEffectPrefab, SpawnTrans.position, Quaternion.identity);
-
-        yield return new WaitForSeconds(0.5f);
-
-        Destroy(effect);
-
     }
 
     private void StartNextWave() {
         currentWaveIndex++;
+        currentWaveDeadEnemyCount = 0;
+        
         if (currentWaveIndex >= waves.Length) {
             CustomLogger.LogError("��������Խ��");
             return;
@@ -125,32 +108,9 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnWave(waves[currentWaveIndex]));
     }
 
-    bool IsPositionValid(Vector3 pos)
-    {
-        // ��ȡ������ײ���߽�
-        var roomCollider = GetComponentInParent<BoxCollider2D>();
-        return roomCollider.bounds.Contains(pos);
-    }
-
-    // ��EnemySpawner�ű���������֤�߼�
-    void ValidateSpawnPoints()
-    {
-        // ��ȡ�㼶�ṹ�����б��ΪSpawnPoints���Ӷ���
-        var points = new List<Transform>();
-        foreach (Transform child in transform)
-        {
-            if (child.name.Contains("SpawnPoint")) // ƥ�����"SpawnPoints"�㼶
-                points.Add(child);
-        }
-        spawnPoints = points.ToArray();
-
-        // ��ӡ������Ϣ
-        CustomLogger.Log($"�Ѱ����ɵ�����: {spawnPoints.Length}");
-        foreach (var point in spawnPoints)
-            CustomLogger.Log($"���ɵ�����: {point.position}");
-    }
-
     private void HandleEnemyDeath(EnemyProperty enemy) {
+
+        currentWaveDeadEnemyCount++;
         activeEnemies.Remove(enemy);
         enemy.OnDeath.RemoveListener(HandleEnemyDeath); // ��Ҫ������¼���
                                                         // �������μ��

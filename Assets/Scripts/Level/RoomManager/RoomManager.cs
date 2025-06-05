@@ -230,7 +230,9 @@ public class RoomManager : MonoBehaviour
               !enemySpawner.AllWavesCleared) {
             yield return new WaitUntil(() =>
             enemySpawner.AllWavesCleared &&
-            enemySpawner.activeEnemies.Count == 0
+            enemySpawner.currentWaveIndex != -1 &&
+            enemySpawner.waves[enemySpawner.currentWaveIndex].enemyCount == enemySpawner.currentWaveDeadEnemyCount
+
         );
         }
 
