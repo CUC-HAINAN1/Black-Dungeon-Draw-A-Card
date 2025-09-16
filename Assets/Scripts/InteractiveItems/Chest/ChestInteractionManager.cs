@@ -104,7 +104,7 @@ public class ChestInteraction : MonoBehaviour {
 
                 CustomLogger.Log("首次获得雷电卡牌！");
                 RewardUIManager.Instance.ShowNewCardUI(reward.card);
-
+                UnlockThisCard();
             }
 
             else {
@@ -133,6 +133,23 @@ public class ChestInteraction : MonoBehaviour {
 
         CardDataBase.UpgradeCard(card, upgrade);
 
+    }
+
+    /// <summary>
+    /// 新增：解锁此卡牌的方法。
+    /// 这个方法会去寻找场景中存在的BackpackManager实例并调用它的解锁功能。
+    /// </summary>
+    public void UnlockThisCard()
+    {
+        // 检查场景中是否有BackpackManager的实例
+        if (BackpackManager.Instance != null)
+        {
+            BackpackManager.Instance.UnlockCardByID(5);
+        }
+        else
+        {
+            Debug.LogError("场景中找不到 BackpackManager 的实例！无法解锁卡牌。");
+        }
     }
 
 }
