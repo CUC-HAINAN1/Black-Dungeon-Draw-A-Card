@@ -68,11 +68,11 @@ public class MainMenuPanel : MonoBehaviour {
     private void OnExitClicked() {
 
         CustomLogger.Log("退出游戏！");
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
+// #if UNITY_EDITOR
+//         UnityEditor.EditorApplication.isPlaying = false;
+// #else
         Application.Quit();
-#endif
+// #endif
 
     }
 }

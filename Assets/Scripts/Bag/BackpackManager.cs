@@ -2,226 +2,204 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Text;
-using Unity.VisualScripting; // ÓÃÓÚ¹¹½¨×Ö·û´®
+using Unity.VisualScripting; // ç”¨äºæ„å»ºå­—ç¬¦ä¸²
 
-public class BackpackManager : MonoBehaviour
-{
-    [Header("ºËĞÄÊı¾İ")]
-    [Tooltip("½«ÄãÏîÄ¿ÖĞËùÓĞµÄCardDataBase×Ê²úÍÏµ½ÕâÀï")]
+public class BackpackManager : MonoBehaviour {
+    [Header("æ ¸å¿ƒæ•°æ®")]
+    [Tooltip("å°†ä½ é¡¹ç›®ä¸­æ‰€æœ‰çš„CardDataBaseèµ„äº§æ‹–åˆ°è¿™é‡Œ")]
     public List<CardDataBase> allCardsDatabase;
 
-    [Header("UI ÒıÓÃ - Ö÷±³°ü")]
+    [Header("UI å¼•ç”¨ - ä¸»èƒŒåŒ…")]
     public GameObject bagPanel;
     public Button bagButton;
     public Transform cardContainer;
     public Button leftPageButton;
     public Button rightPageButton;
-    public Text pageInfoText; // ¿ÉÑ¡£¬ÓÃÓÚÏÔÊ¾ "1 / 3"
+    public Text pageInfoText; // å¯é€‰ï¼Œç”¨äºæ˜¾ç¤º "1 / 3"
 
-    [Header("UI ÒıÓÃ - Ô¤ÖÆ¼ş")]
-    public GameObject cardDisplayPrefab; // ÄãµÄ CardDisplay_Prefab   ÓÃÀ´Õ¹Ê¾¿¨ÅÆµÄÔ¤ÖÆÌå
+    [Header("UI å¼•ç”¨ - é¢„åˆ¶ä»¶")]
+    public GameObject cardDisplayPrefab; // ä½ çš„ CardDisplay_Prefab   ç”¨æ¥å±•ç¤ºå¡ç‰Œçš„é¢„åˆ¶ä½“
 
-    [Header("UI ÒıÓÃ - ÏêÇéÃæ°å")]
+    [Header("UI å¼•ç”¨ - è¯¦æƒ…é¢æ¿")]
     public GameObject cardDetailPanel;
     public Button closeDetailButton;
     public Image detailIcon;
     public Text detailNameText;
     public Text detailRarityText;
     public Text detailDescriptionText;
-    // --- ÔÚÕâÀïÌí¼ÓÏÂÃæÁ½ĞĞ ---
-    public Text detailManaCostText; // ĞÂÔö£ºÓÃÓÚÏÔÊ¾·¨Á¦ÏûºÄ
-    public Text detailCooldownText; // ĞÂÔö£ºÓÃÓÚÏÔÊ¾ÀäÈ´Ê±¼ä
-    
+    // --- åœ¨è¿™é‡Œæ·»åŠ ä¸‹é¢ä¸¤è¡Œ ---
+    public Text detailManaCostText; // æ–°å¢ï¼šç”¨äºæ˜¾ç¤ºæ³•åŠ›æ¶ˆè€—
+    public Text detailCooldownText; // æ–°å¢ï¼šç”¨äºæ˜¾ç¤ºå†·å´æ—¶é—´
 
-    [Header("±³°üÉèÖÃ")]
-    public int cardsPerPage = 12;//Ã¿Ò³¶àÉÙ¿¨ÅÆ
-    //ÉèÖÃ±³°ü³õÊ¼Õ¹Ê¾×´Ì¬
+
+    [Header("èƒŒåŒ…è®¾ç½®")]
+    public int cardsPerPage = 12;//æ¯é¡µå¤šå°‘å¡ç‰Œ
+    //è®¾ç½®èƒŒåŒ…åˆå§‹å±•ç¤ºçŠ¶æ€
     private int currentPage = 0;
     private bool isBagOpen = false;
 
-    // --- ĞÂÔö£ºµ¥ÀıÄ£Ê½ ---
-    // ´´½¨Ò»¸ö¾²Ì¬ÊµÀı£¬ÈÃÆäËûÈÎºÎ½Å±¾¶¼¿ÉÒÔÍ¨¹ı BackpackManager.Instance À´·ÃÎÊËü
+    // --- æ–°å¢ï¼šå•ä¾‹æ¨¡å¼ ---
+    // åˆ›å»ºä¸€ä¸ªé™æ€å®ä¾‹ï¼Œè®©å…¶ä»–ä»»ä½•è„šæœ¬éƒ½å¯ä»¥é€šè¿‡ BackpackManager.Instance æ¥è®¿é—®å®ƒ
     public static BackpackManager Instance { get; private set; }
 
-    // Awake ÔÚ Start Ö®Ç°±»µ÷ÓÃ
-    void Awake()
-    {
-        // --- ĞÂÔö£ºÉèÖÃµ¥Àı ---
-        // È·±£³¡¾°ÖĞÖ»ÓĞÒ»¸öBackpackManagerÊµÀı
-        if (Instance != null && Instance != this)
-        {
+    // Awake åœ¨ Start ä¹‹å‰è¢«è°ƒç”¨
+    void Awake() {
+        // --- æ–°å¢ï¼šè®¾ç½®å•ä¾‹ ---
+        // ç¡®ä¿åœºæ™¯ä¸­åªæœ‰ä¸€ä¸ªBackpackManagerå®ä¾‹
+        if (Instance != null && Instance != this) {
             Destroy(gameObject);
         }
-        else
-        {
+        else {
             Instance = this;
         }
     }
-    void Start()
-    {
-        // È·±£UIÔÚ¿ªÊ¼Ê±ÊÇ¹Ø±ÕµÄ  ÏÔÊ¾UI¾ÍÊÇÓÃSetActive
+    void Start() {
+        // ç¡®ä¿UIåœ¨å¼€å§‹æ—¶æ˜¯å…³é—­çš„  æ˜¾ç¤ºUIå°±æ˜¯ç”¨SetActive
         bagPanel.SetActive(false);
         cardDetailPanel.SetActive(false);
 
+        allCardsDatabase = CardPoolManager.Instance.GetOwnedCardsFromAllPools();
 
-        //ÔÚUI½çÃæ×ª±äµÄÊ±ºò¿ÉÒÔÊ¹ÓÃÌí¼ÓÊÂ¼şµÄ·½Ê½
+        //åœ¨UIç•Œé¢è½¬å˜çš„æ—¶å€™å¯ä»¥ä½¿ç”¨æ·»åŠ äº‹ä»¶çš„æ–¹å¼
 
-        // °ó¶¨°´Å¥ÊÂ¼ş   ÔÚ°´ÏÂ°´¼üµÄÊ±ºòÌí¼ÓÊÂ¼ş
+        // ç»‘å®šæŒ‰é’®äº‹ä»¶   åœ¨æŒ‰ä¸‹æŒ‰é”®çš„æ—¶å€™æ·»åŠ äº‹ä»¶
         bagButton.onClick.AddListener(ToggleBag);
-        //°´ÏÂ×óÓÒ»»Ò³  Ö±½Óµ÷ÓÃº¯Êı
+        //æŒ‰ä¸‹å·¦å³æ¢é¡µ  ç›´æ¥è°ƒç”¨å‡½æ•°
         leftPageButton.onClick.AddListener(() => ChangePage(-1));
         rightPageButton.onClick.AddListener(() => ChangePage(1));
-        //°´ÏÂ¹Ø±Õ°´Å¥   Ìí¼Ó¹Ø±ÕÊÂ¼ş
+        //æŒ‰ä¸‹å…³é—­æŒ‰é’®   æ·»åŠ å…³é—­äº‹ä»¶
         closeDetailButton.onClick.AddListener(CloseCardDetailPanel);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        // ¼àÌıTab¼ü   ¼àÌı   Èç¹û°´ÏÂÖ±½Óµ÷ÓÃ
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
+    void Update() {
+        // ç›‘å¬Tabé”®   ç›‘å¬   å¦‚æœæŒ‰ä¸‹ç›´æ¥è°ƒç”¨
+        if (Input.GetKeyDown(KeyCode.Tab)) {
             ToggleBag();
         }
     }
 
-    public void ToggleBag()
-    {//ÏÈ×ª±ä´ò¿ª×´Ì¬  µ÷ÕûboolÖµ
+    public void ToggleBag() {//å…ˆè½¬å˜æ‰“å¼€çŠ¶æ€  è°ƒæ•´boolå€¼
         isBagOpen = !isBagOpen;
-        bagPanel.SetActive(isBagOpen);//×´Ì¬ÓÉ¹Øµ½¿ª
+        bagPanel.SetActive(isBagOpen);//çŠ¶æ€ç”±å…³åˆ°å¼€
 
-        if (cardDetailPanel.activeSelf)
-        {
-            //±£Ö¤¶ş¼¶½çÃæ¹Ø±Õ×´Ì¬   ÏÈµ÷ÓÃ¹Ø±Õº¯Êı
+        if (cardDetailPanel.activeSelf) {
+            //ä¿è¯äºŒçº§ç•Œé¢å…³é—­çŠ¶æ€   å…ˆè°ƒç”¨å…³é—­å‡½æ•°
             CloseCardDetailPanel();
         }
 
         Time.timeScale = isBagOpen ? 0f : 1f;
 
-        if (isBagOpen)//Ã¿Ò»´Îµ÷ÓÃº¯Êı¶¼½øĞĞ×´Ì¬±£Ö¤
+        if (isBagOpen)//æ¯ä¸€æ¬¡è°ƒç”¨å‡½æ•°éƒ½è¿›è¡ŒçŠ¶æ€ä¿è¯
         {
-            // ´ò¿ª±³°üÊ±£¬ÖØÖÃµ½µÚÒ»Ò³²¢Ë¢ĞÂÏÔÊ¾
+            // æ‰“å¼€èƒŒåŒ…æ—¶ï¼Œé‡ç½®åˆ°ç¬¬ä¸€é¡µå¹¶åˆ·æ–°æ˜¾ç¤º
             currentPage = 0;
             DisplayCardsForCurrentPage();
         }
     }
 
-    private void DisplayCardsForCurrentPage()
-    {
-        // 1. ÇåÀíÈİÆ÷ÖĞ¾ÉµÄ¿¨ÅÆÍ¼±ê  »ñÈ¡×ÓÎïÌå
-        foreach (Transform child in cardContainer)
-        {
+    private void DisplayCardsForCurrentPage() {
+        // 1. æ¸…ç†å®¹å™¨ä¸­æ—§çš„å¡ç‰Œå›¾æ ‡  è·å–å­ç‰©ä½“
+        foreach (Transform child in cardContainer) {
             Destroy(child.gameObject);
         }
 
-        // 2. ¼ÆËãµ±Ç°Ò³µÄ¿¨ÅÆ·¶Î§
+        // 2. è®¡ç®—å½“å‰é¡µçš„å¡ç‰ŒèŒƒå›´
         int startIndex = currentPage * cardsPerPage;
         int endIndex = Mathf.Min(startIndex + cardsPerPage, allCardsDatabase.Count);
 
-        // 3. ÊµÀı»¯µ±Ç°Ò³µÄ¿¨ÅÆÍ¼±ê
-        for (int i = startIndex; i < endIndex; i++)
-        {
+        // 3. å®ä¾‹åŒ–å½“å‰é¡µçš„å¡ç‰Œå›¾æ ‡
+        for (int i = startIndex; i < endIndex; i++) {
             CardDataBase currentCard = allCardsDatabase[i];
-            //´´½¨Ò»¸öÊµÀıµÄcardDisplayPrefab   ÓÃÀ´½øĞĞ²Ù¿ØºÍÉèÖÃ   Ô¤ÖÆÌåÊÇÓÃÀ´´«ÈëÊı¾İµÄ
-            GameObject cardObj = Instantiate(cardDisplayPrefab, cardContainer);//´´½¨Ò»¸ö¿¨ÅÆÔ¤ÖÆÌå  ×÷ÎªCardContainerµÄ×ÓÎïÌå
+            //åˆ›å»ºä¸€ä¸ªå®ä¾‹çš„cardDisplayPrefab   ç”¨æ¥è¿›è¡Œæ“æ§å’Œè®¾ç½®   é¢„åˆ¶ä½“æ˜¯ç”¨æ¥ä¼ å…¥æ•°æ®çš„
+            GameObject cardObj = Instantiate(cardDisplayPrefab, cardContainer);//åˆ›å»ºä¸€ä¸ªå¡ç‰Œé¢„åˆ¶ä½“  ä½œä¸ºCardContainerçš„å­ç‰©ä½“
             CardUIDisplay display = cardObj.GetComponent<CardUIDisplay>();
 
-            if (display != null)
-            {
+            if (display != null) {
                 display.Setup(currentCard, this);
             }
         }
-        // 4. ¸üĞÂ·­Ò³°´Å¥ºÍÒ³ÂëĞÅÏ¢
+        // 4. æ›´æ–°ç¿»é¡µæŒ‰é’®å’Œé¡µç ä¿¡æ¯
         UpdatePageControls();
     }
 
-    private void ChangePage(int direction)
-    {//»ñÈ¡×ÜÒ³Êı
+    private void ChangePage(int direction) {//è·å–æ€»é¡µæ•°
         int totalPages = Mathf.CeilToInt((float)allCardsDatabase.Count / cardsPerPage);
         currentPage += direction;
 
-        // Ë¢ĞÂÏÔÊ¾
+        // åˆ·æ–°æ˜¾ç¤º
         DisplayCardsForCurrentPage();
     }
 
-    private void UpdatePageControls()
-    {
+    private void UpdatePageControls() {
         int totalPages = Mathf.CeilToInt((float)allCardsDatabase.Count / cardsPerPage);
-        //·ÀÖ¹ÌØÊâÇé¿ö
-        if (totalPages <= 0) totalPages = 1; // ÖÁÉÙÓĞ1Ò³
-        // ¸ù¾İµ±Ç°Ò³Âë¾ö¶¨ÊÇ·ñ¿ÉÒÔµã»÷·­Ò³°´Å¥    ÅĞ¶Ï°´Å¥ÄÜ·ñ½»»¥
-        leftPageButton.interactable = (currentPage > 0);//¸ø³öÅĞ¶¨Ìõ¼ş
-        rightPageButton.interactable = (currentPage < totalPages - 1);//µ±Ç°Ò³ÃæÒÑ¾­µ½ÁË×îºóÒ»Ò³ÁË
+        //é˜²æ­¢ç‰¹æ®Šæƒ…å†µ
+        if (totalPages <= 0)
+            totalPages = 1; // è‡³å°‘æœ‰1é¡µ
+        // æ ¹æ®å½“å‰é¡µç å†³å®šæ˜¯å¦å¯ä»¥ç‚¹å‡»ç¿»é¡µæŒ‰é’®    åˆ¤æ–­æŒ‰é’®èƒ½å¦äº¤äº’
+        leftPageButton.interactable = (currentPage > 0);//ç»™å‡ºåˆ¤å®šæ¡ä»¶
+        rightPageButton.interactable = (currentPage < totalPages - 1);//å½“å‰é¡µé¢å·²ç»åˆ°äº†æœ€åä¸€é¡µäº†
 
-        //ĞŞ¸ÄÏÔÊ¾µ±Ç°µÚ¼¸Ò³
-        if (pageInfoText != null)
-        {
+        //ä¿®æ”¹æ˜¾ç¤ºå½“å‰ç¬¬å‡ é¡µ
+        if (pageInfoText != null) {
             pageInfoText.text = $"{currentPage + 1} / {totalPages}";
         }
     }
 
-    // ¹«¿ª·½·¨£ºÏÔÊ¾¿¨ÅÆÏêÇé
-    public void ShowCardDetail(CardDataBase data)
-    {
+    // å…¬å¼€æ–¹æ³•ï¼šæ˜¾ç¤ºå¡ç‰Œè¯¦æƒ…
+    public void ShowCardDetail(CardDataBase data) {
         cardDetailPanel.SetActive(true);
 
-        detailIcon.sprite = data.cardIcon;//Í¼±ê
-        detailNameText.text = data.displayName;//Ãû×Ö
-        detailRarityText.text = data.rarity.ToString();//Ï¡ÓĞ¶È
-        detailRarityText.color = GetRarityColor(data.rarity); // ¸ù¾İÏ¡ÓĞ¶È¸øÎÄ×ÖÉÏÉ«
-        detailDescriptionText.text = data.description;//¼¼ÄÜÃèÊö
+        detailIcon.sprite = data.cardIcon;//å›¾æ ‡
+        detailNameText.text = data.displayName;//åå­—
+        detailRarityText.text = data.rarity.ToString();//ç¨€æœ‰åº¦
+        detailRarityText.color = GetRarityColor(data.rarity); // æ ¹æ®ç¨€æœ‰åº¦ç»™æ–‡å­—ä¸Šè‰²
+        detailDescriptionText.text = data.description;//æŠ€èƒ½æè¿°
 
-        // Ê¹ÓÃStringBuilderÀ´¸ßĞ§µØ¹¹½¨ÊôĞÔ×Ö·û´®
+        // ä½¿ç”¨StringBuilderæ¥é«˜æ•ˆåœ°æ„å»ºå±æ€§å­—ç¬¦ä¸²
         StringBuilder statsBuilder = new StringBuilder();
-        statsBuilder.AppendLine($"·¨Á¦ÏûºÄ: {data.manaCost}");//ºÏ²¢×Ö·û´®
-        statsBuilder.AppendLine($"ÀäÈ´Ê±¼ä: {data.cooldown}s");
-        // Äã¿ÉÒÔÔÚÕâÀïÌí¼Ó¸ü¶àÄãÏëÕ¹Ê¾µÄÊôĞÔ...
+        statsBuilder.AppendLine($"æ³•åŠ›æ¶ˆè€—: {data.manaCost}");//åˆå¹¶å­—ç¬¦ä¸²
+        statsBuilder.AppendLine($"å†·å´æ—¶é—´: {data.cooldown}s");
+        // ä½ å¯ä»¥åœ¨è¿™é‡Œæ·»åŠ æ›´å¤šä½ æƒ³å±•ç¤ºçš„å±æ€§...
 
-        detailManaCostText.text = $"·¨Á¦ÏûºÄ: {data.manaCost}";
-        detailCooldownText.text = $"ÀäÈ´Ê±¼ä: {data.cooldown}s"; // ÔÚÀäÈ´Ê±¼äºó¼ÓÉÏ "s" ±íÊ¾Ãë
+        detailManaCostText.text = $"æ³•åŠ›æ¶ˆè€—: {data.manaCost}";
+        detailCooldownText.text = $"å†·å´æ—¶é—´: {data.cooldown}s"; // åœ¨å†·å´æ—¶é—´ååŠ ä¸Š "s" è¡¨ç¤ºç§’
     }
 
-    // ¹«¿ª·½·¨£º¹Ø±Õ¿¨ÅÆÏêÇé
-    public void CloseCardDetailPanel()
-    {
+    // å…¬å¼€æ–¹æ³•ï¼šå…³é—­å¡ç‰Œè¯¦æƒ…
+    public void CloseCardDetailPanel() {
         cardDetailPanel.SetActive(false);
     }
 
-    // ¸¨Öú·½·¨£º¸ù¾İÏ¡ÓĞ¶È·µ»Ø²»Í¬ÑÕÉ«
-    private Color GetRarityColor(CardDataBase.Rarity rarity)
-    {
-        switch (rarity)
-        {
+    // è¾…åŠ©æ–¹æ³•ï¼šæ ¹æ®ç¨€æœ‰åº¦è¿”å›ä¸åŒé¢œè‰²
+    private Color GetRarityColor(CardDataBase.Rarity rarity) {
+        switch (rarity) {
             case CardDataBase.Rarity.Common:
-                return Color.white;//Õı³£¿¨ÅÆ
+                return Color.white;//æ­£å¸¸å¡ç‰Œ
             case CardDataBase.Rarity.Rare:
-                return Color.cyan; // Ï¡ÓĞ¿¨ÅÆÓÃÇàÉ«
-            // ¿ÉÒÔÌí¼Ó¸ü¶àÏ¡ÓĞ¶È...
+                return Color.cyan; // ç¨€æœ‰å¡ç‰Œç”¨é’è‰²
+            // å¯ä»¥æ·»åŠ æ›´å¤šç¨€æœ‰åº¦...
             default:
                 return Color.gray;
         }
     }
 
 
-    // --- ÖØÒª£ºÈçºÎ½âËø¿¨ÅÆ ---
-    // Íâ²¿ÏµÍ³£¨ÈçÈÎÎñ¡¢ÉÌµê£©¿ÉÒÔÍ¨¹ıIDµ÷ÓÃÕâ¸ö·½·¨À´½âËøÒ»ÕÅ¿¨ÅÆ
-    public void UnlockCardByID(int cardID)
-    {
-        CardDataBase cardToUnlock = allCardsDatabase.Find(card => card.cardID == cardID);
-        if (cardToUnlock != null)
-        {
+    // --- é‡è¦ï¼šå¦‚ä½•è§£é”å¡ç‰Œ ---
+    // å¤–éƒ¨ç³»ç»Ÿï¼ˆå¦‚ä»»åŠ¡ã€å•†åº—ï¼‰å¯ä»¥é€šè¿‡IDè°ƒç”¨è¿™ä¸ªæ–¹æ³•æ¥è§£é”ä¸€å¼ å¡ç‰Œ
+    public void UnlockCardByID(int cardID) {
+        CardDataBase cardToUnlock = CardPoolManager.Instance.FindCardInPools(cardID);
+        if (cardToUnlock != null) {
             cardToUnlock.Owned = true;
-            Debug.Log($"¿¨ÅÆÒÑ½âËø: {cardToUnlock.displayName}");
+            Debug.Log($"å¡ç‰Œå·²è§£é”: {cardToUnlock.displayName}");
 
-            // Èç¹û±³°üÊÇ´ò¿ªµÄ£¬Ë¢ĞÂÒ»ÏÂÏÔÊ¾£¬ÈÃĞÂ½âËøµÄ¿¨ÅÆ±äÁÁ
-            if (isBagOpen)
-            {
+            // å¦‚æœèƒŒåŒ…æ˜¯æ‰“å¼€çš„ï¼Œåˆ·æ–°ä¸€ä¸‹æ˜¾ç¤ºï¼Œè®©æ–°è§£é”çš„å¡ç‰Œå˜äº®
+            if (isBagOpen) {
                 DisplayCardsForCurrentPage();
             }
         }
-        else
-        {
-            Debug.LogWarning($"Î´ÕÒµ½IDÎª {cardID} µÄ¿¨ÅÆ¡£");
+        else {
+            Debug.LogWarning($"æœªæ‰¾åˆ°IDä¸º {cardID} çš„å¡ç‰Œã€‚");
         }
     }
 }

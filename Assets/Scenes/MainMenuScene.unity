@@ -347,6 +347,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_text
+      value: "\u7ED8\u8680\uFF1A\n\u5F8B\u5916\u4E4B\u529B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0899e995439f34edbb16531813344056, type: 2}
+    - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_isRightToLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7231023108446815145, guid: 0899e995439f34edbb16531813344056, type: 2}
+    - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5270881048705605183, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
       propertyPath: m_IsActive
       value: 0

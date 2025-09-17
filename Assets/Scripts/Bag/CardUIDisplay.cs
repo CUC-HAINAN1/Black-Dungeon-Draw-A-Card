@@ -1,32 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardUIDisplay : MonoBehaviour
-{
+public class CardUIDisplay : MonoBehaviour {
     public Image cardIconImage;
 
     private CardDataBase cardData;
     private BackpackManager backpackManager;
 
-    // 由BackpackManager调用，用于初始化这个UI元素
-    public void Setup(CardDataBase data, BackpackManager manager)
-    {
+    // 鐢盉ackpackManager璋冪敤锛岀敤浜庡垵濮嬪寲杩欎釜UI鍏冪礌
+    public void Setup(CardDataBase data, BackpackManager manager) {
         this.cardData = data;
         this.backpackManager = manager;
 
         cardIconImage.sprite = data.cardIcon;
 
-        // 根据卡牌是否已拥有来设置颜色
-        // 已拥有：正常颜色 (白色)
-        // 未拥有：变暗 (灰色)
+        // 鏍规嵁鍗＄墝鏄惁宸叉嫢鏈夋潵璁剧疆棰滆壊
+        // 宸叉嫢鏈夛細姝ｅ父棰滆壊 (鐧借壊)
+        // 鏈嫢鏈夛細鍙樻殫 (鐏拌壊)
         cardIconImage.color = data.Owned ? Color.white : new Color(0.4f, 0.4f, 0.4f, 0.8f);
     }
 
-    // 这个方法需要你在Inspector中手动绑定到Button的OnClick事件
-    public void OnCardClicked()
-    {
-        if (cardData != null)
-        {
+    // 杩欎釜鏂规硶闇�瑕佷綘鍦↖nspector涓墜鍔ㄧ粦瀹氬埌Button鐨凮nClick浜嬩欢
+    public void OnCardClicked() {
+        if (cardData != null) {
             backpackManager.ShowCardDetail(cardData);
         }
     }
