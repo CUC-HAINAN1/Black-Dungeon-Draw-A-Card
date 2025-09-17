@@ -1447,6 +1447,10 @@ PrefabInstance:
       propertyPath: detailDescriptionText
       value: 
       objectReference: {fileID: 427085109}
+    - target: {fileID: 4915420232352317976, guid: 67cf38e6efd0fa84ba99931f6b0e498c, type: 3}
+      propertyPath: allCardsDatabase.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: c72bdfe6a662d4c1d967352aedeb3eeb, type: 2}
     - target: {fileID: 4933410895889037996, guid: 67cf38e6efd0fa84ba99931f6b0e498c, type: 3}
       propertyPath: m_Name
       value: GameManager

@@ -5,6 +5,8 @@ using System.Text;
 using Unity.VisualScripting; // 用于构建字符串
 
 public class BackpackManager : MonoBehaviour {
+
+
     [Header("核心数据")]
     [Tooltip("将你项目中所有的CardDataBase资产拖到这里")]
     public List<CardDataBase> allCardsDatabase;
@@ -58,7 +60,7 @@ public class BackpackManager : MonoBehaviour {
         bagPanel.SetActive(false);
         cardDetailPanel.SetActive(false);
 
-        allCardsDatabase = CardPoolManager.Instance.GetOwnedCardsFromAllPools();
+        
 
         //在UI界面转变的时候可以使用添加事件的方式
 
@@ -187,18 +189,24 @@ public class BackpackManager : MonoBehaviour {
 
     // --- 重要：如何解锁卡牌 ---
     // 外部系统（如任务、商店）可以通过ID调用这个方法来解锁一张卡牌
-    public void UnlockCardByID(int cardID) {
-        CardDataBase cardToUnlock = CardPoolManager.Instance.FindCardInPools(cardID);
-        if (cardToUnlock != null) {
-            cardToUnlock.Owned = true;
-            Debug.Log($"卡牌已解锁: {cardToUnlock.displayName}");
+    public void UnlockCardByID(int cardID)
+    {
+        CardDataBase cardToUnlock = allCardsDatabase.Find(card => card.cardID == cardID);
+        if (cardToUnlock != null)
+        {
+            if (!cardToUnlock.Owned)
+            {
+                cardToUnlock.Owned = true;
+                Debug.Log($"卡牌已解锁: {cardToUnlock.displayName}");
 
-            // 如果背包是打开的，刷新一下显示，让新解锁的卡牌变亮
-            if (isBagOpen) {
-                DisplayCardsForCurrentPage();
+                if (isBagOpen)
+                {
+                    DisplayCardsForCurrentPage();
+                }
             }
         }
-        else {
+        else
+        {
             Debug.LogWarning($"未找到ID为 {cardID} 的卡牌。");
         }
     }
