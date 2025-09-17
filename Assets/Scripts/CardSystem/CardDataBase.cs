@@ -11,6 +11,7 @@ public class CardDataBase : ScriptableObject {
     [TextArea(3, 5)] public string description;
     public Sprite cardIcon;
     public Rarity rarity;
+    public int level = 1; // 新增：卡牌等级，默认为1
 
     [Header("资源消耗")]
     public int manaCost;
@@ -302,6 +303,7 @@ public class CardDataBase : ScriptableObject {
             case 5:
                 to.behaviorConfig.lockOn.damage = from.behaviorConfig.lockOn.damage;
                 to.Owned = from.Owned;
+                to.UnlockThisCard();
                 break;
 
             case 6:
@@ -314,6 +316,23 @@ public class CardDataBase : ScriptableObject {
 
         }
 
+    }
+
+    /// <summary>
+    /// 新增：解锁此卡牌的方法。
+    /// 这个方法会去寻找场景中存在的BackpackManager实例并调用它的解锁功能。
+    /// </summary>
+    public void UnlockThisCard()
+    {
+        // 检查场景中是否有BackpackManager的实例
+        if (BackpackManager.Instance != null)
+        {
+            BackpackManager.Instance.UnlockCardByID(this.cardID);
+        }
+        else
+        {
+            Debug.LogError("场景中找不到 BackpackManager 的实例！无法解锁卡牌。");
+        }
     }
 
 }

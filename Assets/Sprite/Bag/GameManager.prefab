@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4933410895889037996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1790323041994732348}
+  - component: {fileID: 4915420232352317976}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1790323041994732348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4933410895889037996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1596.3911, y: 769.25793, z: -6.727093}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4915420232352317976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4933410895889037996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb6d8589d77c7447b541baff1290dc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allCardsDatabase:
+  - {fileID: 11400000, guid: 9a4ff64d85fbb4ee2b73be667314a078, type: 2}
+  - {fileID: 11400000, guid: 3877cc1b0072d44e68625d54bcf89c8f, type: 2}
+  - {fileID: 11400000, guid: a50112d7b463c473cb64852ec7d55fc8, type: 2}
+  - {fileID: 11400000, guid: d8893b3a3a7c64b40b0ff4aa7cf89e0d, type: 2}
+  - {fileID: 11400000, guid: c4e1cd02123be4967a7d98061c05a086, type: 2}
+  - {fileID: 11400000, guid: 528e24a4329694dde9aa56a4b12d6492, type: 2}
+  - {fileID: 11400000, guid: a00cbccbd757440478fe2edea2d89d2a, type: 2}
+  bagPanel: {fileID: 0}
+  bagButton: {fileID: 0}
+  cardContainer: {fileID: 0}
+  leftPageButton: {fileID: 0}
+  rightPageButton: {fileID: 0}
+  pageInfoText: {fileID: 0}
+  cardDisplayPrefab: {fileID: 5031969886267785300, guid: 4f4ff854fa499b84f8711bbf846ebb2a, type: 3}
+  cardDetailPanel: {fileID: 0}
+  closeDetailButton: {fileID: 0}
+  detailIcon: {fileID: 0}
+  detailNameText: {fileID: 0}
+  detailRarityText: {fileID: 0}
+  detailDescriptionText: {fileID: 0}
+  detailManaCostText: {fileID: 0}
+  detailCooldownText: {fileID: 0}
+  cardsPerPage: 3

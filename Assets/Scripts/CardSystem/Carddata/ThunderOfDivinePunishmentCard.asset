@@ -17,6 +17,7 @@ MonoBehaviour:
   description: "\u9501\u5B9A\u4E00\u4E2A\u76EE\u6807\u654C\u4EBA\u540E\u964D\u4E0B\u96F7\u9706\uFF0C\u5BF9\u6307\u5B9A\u654C\u4EBA\u9020\u6210\u5927\u91CF\u4F24\u5BB3"
   cardIcon: {fileID: 6515741899584178625, guid: 6ef137cefe8b8cf47a11958d684b7d90, type: 3}
   rarity: 1
+  level: 1
   manaCost: 7
   cooldown: 1
   Owned: 0
