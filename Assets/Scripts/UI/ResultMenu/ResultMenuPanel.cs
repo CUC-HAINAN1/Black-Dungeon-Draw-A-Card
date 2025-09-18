@@ -132,7 +132,9 @@ public class ResultMenuPanel : MonoBehaviour {
     private void OnInfinityClicked() {
 
         SceneTransitionHelper.Instance.LoadSceneWithTransition("LevelScene");
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
+
+        if (BGMManager.Instance != null)
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
 
     }
 
@@ -144,7 +146,9 @@ public class ResultMenuPanel : MonoBehaviour {
         SceneTransitionManager.Instance.IsCompleteSceneLoaded = false;
 
         SceneTransitionHelper.Instance.LoadSceneWithTransition("LevelScene");
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
+
+        if (BGMManager.Instance != null)
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
 
     }
 

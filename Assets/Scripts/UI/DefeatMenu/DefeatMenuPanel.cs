@@ -20,7 +20,9 @@ public class DeathMenuPanel : MonoBehaviour {
 
         CustomLogger.Log("再次开始游戏！");
         SceneTransitionHelper.Instance.LoadSceneWithTransition("LevelScene");
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
+
+        if (BGMManager.Instance != null)
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
 
     }
 

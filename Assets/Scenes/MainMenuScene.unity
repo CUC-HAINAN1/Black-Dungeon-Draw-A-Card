@@ -347,6 +347,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2807176411597013752, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033030493994346195, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8806913589245628359, guid: 21031b3416aa54a1baea61cebd1f188c, type: 3}
     - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
       propertyPath: m_text
       value: "\u7ED8\u8680\uFF1A\n\u5F8B\u5916\u4E4B\u529B"
@@ -366,6 +374,22 @@ PrefabInstance:
     - target: {fileID: 4573293886120609521, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663719266523387358, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 347.0929
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663719266523387358, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 616.6873
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663719266523387358, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.9094
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663719266523387358, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -230.21
       objectReference: {fileID: 0}
     - target: {fileID: 5270881048705605183, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
       propertyPath: m_IsActive
@@ -455,6 +479,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8770240262866654126, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: frames.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8770240262866654126, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: frames.Array.data[0]
+      value: 
+      objectReference: {fileID: 8806913589245628359, guid: 21031b3416aa54a1baea61cebd1f188c, type: 3}
+    - target: {fileID: 8770240262866654126, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: frames.Array.data[1]
+      value: 
+      objectReference: {fileID: -5970147972166977817, guid: 21031b3416aa54a1baea61cebd1f188c, type: 3}
+    - target: {fileID: 8770240262866654126, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: frames.Array.data[2]
+      value: 
+      objectReference: {fileID: -4189643905279173885, guid: 21031b3416aa54a1baea61cebd1f188c, type: 3}
+    - target: {fileID: 8770240262866654126, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: frames.Array.data[3]
+      value: 
+      objectReference: {fileID: -5894590811398861394, guid: 21031b3416aa54a1baea61cebd1f188c, type: 3}
+    - target: {fileID: 8770240262866654126, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
+      propertyPath: frames.Array.data[4]
+      value: 
+      objectReference: {fileID: -7028867918900320262, guid: 21031b3416aa54a1baea61cebd1f188c, type: 3}
     - target: {fileID: 8922032018852102938, guid: 7260c7dc4fc864220865799259cb6a61, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -601,6 +649,10 @@ PrefabInstance:
     - target: {fileID: 4655117609066962516, guid: d63f175a7c0c441b09d854a43ada5abf, type: 3}
       propertyPath: m_Name
       value: BGMManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655117609066962516, guid: d63f175a7c0c441b09d854a43ada5abf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6565650702947875887, guid: d63f175a7c0c441b09d854a43ada5abf, type: 3}
       propertyPath: m_LocalPosition.x

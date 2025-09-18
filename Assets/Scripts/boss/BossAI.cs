@@ -46,7 +46,8 @@ public class BossAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
 
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.BossBGM);
+        if (BGMManager.Instance != null)
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.BossBGM);
 
         StartCoroutine(SkillCooldown());
         idleTimer = idleDuration;

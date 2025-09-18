@@ -85,7 +85,7 @@ public class MeteoricFireballExplosion : MonoBehaviour {
 
                 BossHealth boss = enemyCol.GetComponent<BossHealth>();
 
-                if(boss != null) {
+                if (boss != null) {
 
                     boss.TakeDamage(damage);
 

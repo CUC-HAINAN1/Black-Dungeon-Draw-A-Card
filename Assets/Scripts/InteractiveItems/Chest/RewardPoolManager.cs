@@ -60,7 +60,7 @@ public class RewardPoolManager : MonoBehaviour {
 
         var cardPoolManager = CardPoolManager.Instance;
 
-        commonCardList = cardPoolManager.GetOwnedCardsFromAllPools();
+        commonCardList = cardPoolManager.GetOwnedCardsFromAllPoolsExceptForShieldCard();
 
         // 先随机生成普通奖励
         for (int i = 0; i < chestCount; i++) {
@@ -69,7 +69,7 @@ public class RewardPoolManager : MonoBehaviour {
             chestRewards.Add(new ChestRewardInfo(card, false));
 
         }
-        
+
         // 随机选一个宝箱作为特殊奖励
         int specialIndex = Random.Range(0, chestRewards.Count);
 

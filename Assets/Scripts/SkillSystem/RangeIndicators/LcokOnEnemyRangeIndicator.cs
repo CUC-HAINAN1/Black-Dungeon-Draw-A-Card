@@ -23,7 +23,7 @@ public class LockOnEnemyRangeIndicator : MonoBehaviour, IRangeIndicator {
 
     public void Initialize(CardDataBase cardData) {
 
-        ellipseTransform.localScale = new Vector3(0.5f, 0.7f, 1f);
+        ellipseTransform.localScale = new Vector3(0.5f, 0.7f, 1f) * 5;
         mainCamera = Camera.main;
 
         UpdateTargetList();
@@ -51,7 +51,7 @@ public class LockOnEnemyRangeIndicator : MonoBehaviour, IRangeIndicator {
 
         //查找所有敌人
         Collider2D[] enemys = Physics2D.OverlapCircleAll(_mouseWorldPos, lockRange);
-        
+
         foreach (var enemyCol in enemys) {
 
             if (enemyCol.CompareTag("Enemy") || enemyCol.CompareTag("Boss")) {

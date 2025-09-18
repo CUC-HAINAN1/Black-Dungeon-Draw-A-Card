@@ -2,44 +2,55 @@ using UnityEngine;
 using System.Collections;
 public class BirthRoomTeleporter : MonoBehaviour
 {
-    [Header("µ÷ÊÔÉèÖÃ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private bool showSpawnGizmos = true;
     [SerializeField] private Color gizmoColor = Color.green;
 
     void Start()
     {
-        // È·±£ÔÚµÚÒ»¸ö¿ÉÖ´ÐÐÖ¡Ö®ºóÖ´ÐÐ
+        // È·ï¿½ï¿½ï¿½Úµï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½Ö¡Ö®ï¿½ï¿½Ö´ï¿½ï¿½
         StartCoroutine(TeleportWithDelay());
     }
 
     IEnumerator TeleportWithDelay()
     {
-        yield return new WaitForEndOfFrame(); // µÈ´ý³¡¾°ÍêÈ«¼ÓÔØ
+        yield return new WaitForEndOfFrame(); // ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½
 
-        // ²éÕÒ³öÉú±ê¼Ç
+        // ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         GameObject spawnAnchor = GameObject.FindWithTag("BirthRoom");
         if (spawnAnchor == null)
         {
-            Debug.LogError("Î´ÕÒµ½³öÉú±ê¼Ç£¡Çë¼ì²é£º\n1.ÊÇ·ñ´æÔÚ´øBirthRoom±êÇ©µÄ¶ÔÏó\n2.±êÇ©Æ´Ð´ÊÇ·ñÕýÈ·");
+            Debug.LogError("Î´ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½ï¿½ï¿½ï¿½é£º\n1.ï¿½Ç·ï¿½ï¿½ï¿½Ú´ï¿½BirthRoomï¿½ï¿½Ç©ï¿½Ä¶ï¿½ï¿½ï¿½\n2.ï¿½ï¿½Ç©Æ´Ð´ï¿½Ç·ï¿½ï¿½ï¿½È·");
             yield break;
         }
 
-        // ²éÕÒÍæ¼Ò
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         GameObject player = GameObject.FindWithTag("Player");
-        if (player == null)
+
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (var p in players)
         {
-            Debug.LogError("Î´ÕÒµ½Íæ¼Ò£¡Çë¼ì²é£º\n1.Íæ¼Ò¶ÔÏóÊÇ·ñ´æÔÚ\n2.ÊÇ·ñÉèÖÃPlayer±êÇ©");
-            yield break;
+            Debug.LogWarning($"Before Spawning, players name: {p.name}");
         }
 
-        // Ö´ÐÐ´«ËÍ
+
+        if (player == null) {
+                Debug.LogError("Î´ï¿½Òµï¿½ï¿½ï¿½Ò£ï¿½ï¿½ï¿½ï¿½é£º\n1.ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½\n2.ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Playerï¿½ï¿½Ç©");
+                yield break;
+            }
+
+        Debug.LogWarning($"Before Spawning: Player Transform: {player.transform.position}");
+        // Ö´ï¿½Ð´ï¿½ï¿½ï¿½
         player.transform.position = spawnAnchor.transform.position;
+
+        Debug.LogWarning($"Spawn player to birth room. Transform: {player.transform.position}");
         DebugTeleportLog(spawnAnchor.transform.position);
     }
 
     void DebugTeleportLog(Vector3 pos)
     {
-        Debug.Log($"Íæ¼ÒÒÑ³öÉúÔÚ×ø±ê£ºX:{pos.x:F2}, Y:{pos.y:F2}, Z:{pos.z:F2}");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½Ñ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê£ºX:{pos.x:F2}, Y:{pos.y:F2}, Z:{pos.z:F2}");
 
         if (showSpawnGizmos)
         {

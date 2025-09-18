@@ -202,7 +202,7 @@ public class RoomManager : MonoBehaviour
 
         StartCoroutine(CombatProcess());
 
-        if (GameObject.FindGameObjectsWithTag("Boss").Length == 0) {
+        if (GameObject.FindGameObjectsWithTag("Boss").Length == 0 && BGMManager.Instance != null) {
 
             BGMManager.Instance.PlayBGM(BGMManager.Instance.battleBGM);
 
@@ -213,7 +213,8 @@ public class RoomManager : MonoBehaviour
             if (BossEventManager.Instance == null)
                 CustomLogger.LogError("BossEventManager not found");
 
-            BossEventManager.Instance.PlayBossCinematic(GameObject.FindGameObjectsWithTag("Boss")[0].transform);
+            if (BGMManager.Instance != null)
+                BossEventManager.Instance.PlayBossCinematic(GameObject.FindGameObjectsWithTag("Boss")[0].transform);
 
         }
     }
@@ -247,7 +248,9 @@ public class RoomManager : MonoBehaviour
         // ����ȫ�����ţ���������ѡ��
         SceneDoorScanner.Instance.SetAllDoorsOpenState(true);
         TipManager.Instance.ShowTip("完成");
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
+
+        if (BGMManager.Instance != null)
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
 
     }
 

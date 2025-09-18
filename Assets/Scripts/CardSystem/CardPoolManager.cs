@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CardPoolManager : MonoBehaviour
-{
+public class CardPoolManager : MonoBehaviour {
     public static CardPoolManager Instance { get; private set; }
 
     [Header("卡牌数据源")]
@@ -19,11 +18,9 @@ public class CardPoolManager : MonoBehaviour
     // 抽卡计数器
     private int drawCounter;
 
-    private void Awake()
-    {
+    private void Awake() {
 
-        if (Instance != null)
-        {
+        if (Instance != null) {
 
             Destroy(gameObject);
             return;
@@ -41,15 +38,13 @@ public class CardPoolManager : MonoBehaviour
 
     }
 
-    public void InitializePools()
-    {
+    public void InitializePools() {
 
         commonPool.Clear();
         rarePool.Clear();
         runtimeCardMap.Clear();
 
-        foreach (var card in allCards)
-        {
+        foreach (var card in allCards) {
 
             // 克隆一份，不污染原始数据
             CardDataBase clone = Instantiate(card);
@@ -58,8 +53,7 @@ public class CardPoolManager : MonoBehaviour
             if (!card.Owned)
                 continue;
 
-            switch (card.rarity)
-            {
+            switch (card.rarity) {
                 case CardDataBase.Rarity.Common:
 
                     commonPool.Add(runtimeCardMap[card]);
@@ -76,16 +70,14 @@ public class CardPoolManager : MonoBehaviour
     }
 
     // 抽卡方法
-    public CardDataBase DrawCard()
-    {
+    public CardDataBase DrawCard() {
 
         drawCounter++;
         bool isRareDraw = drawCounter % RadePollDrawInterval == 0;
 
         List<CardDataBase> targetPool = isRareDraw ? rarePool : commonPool;
 
-        if (targetPool.Count == 0)
-        {
+        if (targetPool.Count == 0) {
 
             targetPool = GetFallbackPool(isRareDraw);
 
@@ -96,8 +88,7 @@ public class CardPoolManager : MonoBehaviour
     }
 
     // 获取随机卡牌
-    private CardDataBase GetRandomCard(List<CardDataBase> pool)
-    {
+    private CardDataBase GetRandomCard(List<CardDataBase> pool) {
 
         int index = Random.Range(0, pool.Count);
 
@@ -106,8 +97,7 @@ public class CardPoolManager : MonoBehaviour
     }
 
     // 后备卡池策略(若稀有卡池无卡则降级为普通卡池)
-    private List<CardDataBase> GetFallbackPool(bool requireRare)
-    {
+    private List<CardDataBase> GetFallbackPool(bool requireRare) {
 
         if (!requireRare)
             return commonPool;
@@ -117,14 +107,12 @@ public class CardPoolManager : MonoBehaviour
     }
 
     //玩家获得新卡
-    public void AddCardToPool(CardDataBase newCard)
-    {
+    public void AddCardToPool(CardDataBase newCard) {
 
         if (!newCard.Owned)
             return;
 
-        switch (newCard.rarity)
-        {
+        switch (newCard.rarity) {
 
             case CardDataBase.Rarity.Common:
 
@@ -144,19 +132,16 @@ public class CardPoolManager : MonoBehaviour
     }
 
     //找到某张卡牌
-    public CardDataBase FindCardInPools(int id)
-    {
+    public CardDataBase FindCardInPools(int id) {
 
-        foreach (var card in commonPool)
-        {
+        foreach (var card in commonPool) {
 
             if (card.cardID == id)
                 return card;
 
         }
 
-        foreach (var card in rarePool)
-        {
+        foreach (var card in rarePool) {
 
             if (card.cardID == id)
                 return card;
@@ -169,13 +154,11 @@ public class CardPoolManager : MonoBehaviour
     }
 
     //获得除了护盾卡之外的所有卡
-    public List<CardDataBase> GetOwnedCardsFromAllPools()
-    {
+    public List<CardDataBase> GetOwnedCardsFromAllPoolsExceptForShieldCard() {
 
         List<CardDataBase> result = new();
 
-        foreach (var card in commonPool)
-        {
+        foreach (var card in commonPool) {
 
             //假如遇到护盾卡就跳过
             if (card.cardID == 7)
@@ -193,24 +176,38 @@ public class CardPoolManager : MonoBehaviour
 
     }
 
+    public List<CardDataBase> GetOwnedCardsFromAllPools() {
+
+        List<CardDataBase> result = new();
+
+        foreach (var card in commonPool) {
+            if (card.Owned)
+                result.Add(card);
+        }
+
+        foreach (var card in rarePool)
+            if (card.Owned)
+                result.Add(card);
+
+        return result;
+
+    }
+
 
     /// <summary>
     /// 新增方法：用于在游戏启动时重置特定卡牌的状态。
     /// </summary>
-    private void ResetSpecificCardStates()
-    {
+    private void ResetSpecificCardStates() {
         // 找到ID为5的卡牌
         CardDataBase hiddenCard = allCards.Find(card => card.cardID == 5);
 
         // 如果找到了这张卡
-        if (hiddenCard != null)
-        {
+        if (hiddenCard != null) {
             // 无论它在资产文件中是什么状态，都在游戏开始时强制设为“未拥有”
             hiddenCard.Owned = false;
             Debug.Log($"卡牌 '{hiddenCard.displayName}' (ID: 5) 的状态已在启动时重置为 '未拥有'.");
         }
-        else
-        {
+        else {
             Debug.LogWarning("在 allCards 列表中未找到 ID 为 5 的卡牌来进行状态重置。");
         }
 

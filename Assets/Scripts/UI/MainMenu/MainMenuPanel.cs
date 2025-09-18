@@ -27,7 +27,8 @@ public class MainMenuPanel : MonoBehaviour {
 
         settingPanelInstance.SetActive(false);
 
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
+        if (BGMManager.Instance != null)
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
 
     }
 
@@ -36,7 +37,9 @@ public class MainMenuPanel : MonoBehaviour {
         CustomLogger.Log("开始游戏！");
 
         SceneTransitionHelper.Instance.LoadSceneWithTransition("LevelScene");
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
+
+        if (BGMManager.Instance != null)
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
 
     }
 
@@ -49,7 +52,9 @@ public class MainMenuPanel : MonoBehaviour {
             CustomLogger.Log("进入测试场景");
 
             SceneTransitionHelper.Instance.LoadSceneWithTransition("TestScene");
-            BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
+
+            if (BGMManager.Instance != null)
+                BGMManager.Instance.PlayBGM(BGMManager.Instance.normalBGM);
 
         }
 

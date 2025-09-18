@@ -33,6 +33,8 @@ public class SweepSkill : SkillBase {
             playerAttributes.PlayerTransform
         );
 
+        sectorEffect.transform.localScale *= 10;
+
         direction.x *= parentScaleSign;
         direction.y *= parentScaleSign;
 

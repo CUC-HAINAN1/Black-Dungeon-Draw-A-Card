@@ -50,8 +50,8 @@ public class SceneTransitionManager : MonoBehaviour {
             CustomLogger.Log("玩家死亡 - 即将切换到死亡场景");
 
         });
-
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
+        if (BGMManager.Instance != null)
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
 
     }
 
@@ -75,8 +75,8 @@ public class SceneTransitionManager : MonoBehaviour {
             });
 
         }
-
-        BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
+        if (BGMManager.Instance != null)
+            BGMManager.Instance.PlayBGM(BGMManager.Instance.menuBGM);
 
     }
 
