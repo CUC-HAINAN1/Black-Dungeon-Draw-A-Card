@@ -96,9 +96,9 @@ public class RoomManager : MonoBehaviour
             door.InitDoorState(); // ȷ���ŷ�����ȷ
         }
         // ����Edgar��11x11����ߴ�
-        roomTrigger = GetComponent<BoxCollider2D>();
-        roomTrigger.size = roomSize;
-        roomTrigger.isTrigger = true;
+        //roomTrigger = GetComponent<BoxCollider2D>();
+        //roomTrigger.size = roomSize;
+        //roomTrigger.isTrigger = true;
 
         // �Զ�����Edgar���ɵ��ţ���ӦVerDownDoorǰ׺��
         doors = GetComponentsInChildren<DoorStateController>(true);
@@ -262,7 +262,7 @@ public class RoomManager : MonoBehaviour
     IEnumerator DelayedDoorClose()
     {
         // ���ֿ���״̬�ȴ���ҽ���
-        yield return new WaitForSeconds(0.2f); // 0.2�뻺��ʱ��
+        yield return new WaitForSeconds(0.2f);
 
         CloseAllDoors();
         StartBattle();

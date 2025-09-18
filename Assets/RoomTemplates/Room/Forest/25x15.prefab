@@ -5288,7 +5288,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.4420185, y: -5.506176}
+  m_Offset: {x: 3.5450835, y: -5.8615093}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5299,7 +5299,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 25.019299, y: 15.155064}
+  m_Size: {x: 23.851223, y: 13.07019}
   m_EdgeRadius: 0
 --- !u!1 &7271812988491370182
 GameObject:
@@ -5396,6 +5396,7 @@ MonoBehaviour:
   - {fileID: 8554496406114084195}
   - {fileID: 2525563397330916675}
   spawnEffectPrefab: {fileID: 5523046846973158029, guid: 42202a87802e94381a924efb0bcc715c, type: 3}
+  spawnEffectOffset: 0.2
   activeEnemies: []
 --- !u!1 &7520835746706327603
 GameObject:

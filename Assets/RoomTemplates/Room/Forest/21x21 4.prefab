@@ -95,6 +95,7 @@ MonoBehaviour:
   - {fileID: 8907218179535582193}
   - {fileID: 3083329912676484069}
   spawnEffectPrefab: {fileID: 5523046846973158029, guid: 42202a87802e94381a924efb0bcc715c, type: 3}
+  spawnEffectOffset: 0.2
   activeEnemies: []
 --- !u!1 &2490409204694849862
 GameObject:
@@ -8160,7 +8161,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 7.467781, y: -8.455823}
+  m_Offset: {x: 7.5173297, y: -8.876991}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8171,7 +8172,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 21.082584, y: 20.944712}
+  m_Size: {x: 19.893398, y: 19.111385}
   m_EdgeRadius: 0
 --- !u!1 &7637651120484846159
 GameObject:

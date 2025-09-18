@@ -97,7 +97,7 @@ public class DoorStateController : MonoBehaviour {
     private void ForceOpenCorridorDoor() {
         startOpen = true;
         SetDoorState(true);
-        DisableAllColliders(downDoor);
+        //DisableAllColliders(downDoor);
     }
 
     private IEnumerator InitializeNormalDoor() {
@@ -116,7 +116,7 @@ public class DoorStateController : MonoBehaviour {
         else {
 
             SetDoorState(startOpen);
-            ToggleColliders(downDoor, enable: !startOpen);
+            //ToggleColliders(downDoor, enable: !startOpen);
 
         }
     }
